@@ -1,9 +1,9 @@
 ---
 deployment:
   tasks:
-  – export DEPLOYPATH=/home/webcsosl/public_html/
-  – /bin/cp -R Home.html $DEPLOYPATH
-  – /bin/cp -R ContactUs.html $DEPLOYPATH
-  – /bin/cp -R CSS $DEPLOYPATH
-  – /bin/cp -R Websites.html $DEPLOYPATH
-  /bin/cp -R OurServices.html $DEPLOYPATH
+    – export DEPLOYPATH=/home/webcsosl/public_html/
+    – /bin/cp -R Home.html $DEPLOYPATH
+    – /bin/cp -R ContactUs.html $DEPLOYPATH
+    – /bin/cp -R CSS $DEPLOYPATH
+    – /bin/cp -R Websites.html $DEPLOYPATH
+    /bin/cp -R OurServices.html $DEPLOYPATH
