@@ -17,44 +17,6 @@
         color: lightgray
     }
 }
-
-.Title {
-    font-size: 40px;
-    margin-top: 200px;
-    position: absolute
-}
-
-.Title h2 {
-    animation: RightAnim 1.4s;
-    color: #fff;
-    font-size: 46px;
-    font-style: italic;
-    font-weight: 500;
-    margin-left: 150px;
-    padding-top: 15px;
-    text-shadow: 3px 3px 6px #000000d9
-}
-
-.TitleBtn {
-    animation: RightAnim 1.4s;
-    border: 2px solid #fff;
-    border-radius: 15px;
-    box-shadow: 4px 4px 6px #000000d9;
-    color: #fff;
-    display: inline-flex;
-    font-size: 40px;
-    margin: 50px 0 0 230px;
-    padding: 20px 25px;
-    text-shadow: 4px 4px 6px #000000d9;
-    transition: color 0.3s, background-color 0.3s, transform .2s
-}
-
-.TitleBtn:hover {
-    background-color: #fff;
-    color: #000;
-    transform: scale(1.1)
-}
-
 .Top-Buttons {
     float: right;
     margin-right: 100px;
@@ -157,59 +119,6 @@
 }
 
 @media screen and (max-width: 1300px) {
-    header {
-        height: 90vh
-    }
-
-    .Title {
-        font-size: 20px;
-        margin-top: 200px;
-        position: absolute
-    }
-
-    .HomeBtn {
-        animation: Opacity .8s;
-        margin-left: 75px
-    }
-
-    .HomeBtn img {
-        margin-left: 150px;
-        margin-top: 0;
-        position: absolute;
-        width: 60%
-    }
-
-    .Title h2 {
-        animation: RightAnim 1.4s;
-        color: #fff;
-        font-size: 35px;
-        font-style: italic;
-        font-weight: 500;
-        margin-left: 200px;
-        padding-top: 125px;
-        text-shadow: 3px 3px 6px #000000d9
-    }
-
-    .TitleBtn {
-        animation: RightAnim 1.4s;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        box-shadow: 4px 4px 6px #000000d9;
-        color: #fff;
-        display: inline-flex;
-        font-size: 35px;
-        margin: 50px 0 0 240px;
-        padding: 15px 20px;
-        text-shadow: 4px 4px 6px #000000d9;
-        transition: color 0.3s, background-color 0.3s, transform .2s
-    }
-
-    .TitleBtn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.1)
-    }
-
     .Top-Buttons {
         float: right;
         margin-right: 100px;
@@ -257,59 +166,6 @@
 }
 
 @media screen and (max-width: 1200px) {
-    header {
-        height: 90vh
-    }
-
-    .Title {
-        font-size: 40px;
-        margin-top: 200px;
-        position: absolute
-    }
-
-    .HomeBtn {
-        animation: Opacity .8s;
-        margin-left: 75px
-    }
-
-    .HomeBtn img {
-        margin-left: 150px;
-        margin-top: 0;
-        position: absolute;
-        width: 65%
-    }
-
-    .Title h2 {
-        animation: RightAnim 1.4s;
-        color: #fff;
-        font-size: 45px;
-        font-style: italic;
-        font-weight: 500;
-        margin-left: 200px;
-        padding-top: 125px;
-        text-shadow: 3px 3px 6px #000000d9
-    }
-
-    .TitleBtn {
-        animation: RightAnim 1.4s;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        box-shadow: 4px 4px 6px #000000d9;
-        color: #fff;
-        display: inline-flex;
-        font-size: 40px;
-        margin: 50px 0 0 280px;
-        padding: 20px 25px;
-        text-shadow: 4px 4px 6px #000000d9;
-        transition: color 0.3s, background-color 0.3s, transform .2s
-    }
-
-    .TitleBtn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.1)
-    }
-
     .Top-Buttons {
         float: right;
         margin-right: 100px;
@@ -357,53 +213,6 @@
 }
 
 @media screen and (max-width: 1060px) {
-    header {
-        height: 90vh
-    }
-
-    .HomeBtn {
-        animation: Opacity .8s;
-        margin-left: 0
-    }
-
-    .HomeBtn img {
-        margin-left: 120px;
-        margin-top: 0;
-        position: absolute;
-        width: 70%
-    }
-
-    .Title h2 {
-        animation: RightAnim 1.4s;
-        color: #fff;
-        font-size: 45px;
-        font-style: italic;
-        font-weight: 500;
-        margin-left: 60px;
-        padding-top: 125px;
-        text-shadow: 3px 3px 6px #000000d9
-    }
-
-    .TitleBtn {
-        animation: RightAnim 1.4s;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        box-shadow: 4px 4px 6px #000000d9;
-        color: #fff;
-        display: inline-flex;
-        font-size: 40px;
-        margin: 50px 0 0 130px;
-        padding: 20px 25px;
-        text-shadow: 4px 4px 6px #000000d9;
-        transition: color 0.3s, background-color 0.3s, transform .2s
-    }
-
-    .TitleBtn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.1)
-    }
-
     .Top-Buttons {
         float: left;
         margin-left: 10px;
@@ -452,35 +261,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    header {
-        height: 35vh
-    }
-
-    .Title {
-        font-size: 10px;
-        margin-top: 0
-    }
-
-    .HomeBtn img {
-        margin-left: 250px;
-        margin-top: -100px;
-        position: absolute;
-        width: 65%
-    }
-
-    .Title h2 {
-        font-size: 25px;
-        margin: 50px 0 0 220px;
-        text-align: center
-    }
-
-    .TitleBtn {
-        font-size: 25px;
-        margin: 30px 0 0 240px;
-        padding: 15px 20px;
-        text-align: center
-    }
-
     .Top-Buttons {
         display: none
     }
@@ -502,40 +282,6 @@
 }
 
 @media screen and (max-width: 600px) {
-    header {
-        height: 30vh
-    }
-
-    .Title {
-        font-size: 10px;
-        margin-top: 0
-    }
-
-    .HomeBtn {
-        margin-left: 0
-    }
-
-    .HomeBtn img {
-        margin-left: 160px;
-        margin-top: -65px;
-        position: absolute;
-        width: 55%
-    }
-
-    .Title h2 {
-        font-size: 20px;
-        margin: 40px 70px 0;
-        position: absolute;
-        text-align: center
-    }
-
-    .TitleBtn {
-        font-size: 18px;
-        margin: 220px 96px 0;
-        padding: 15px 20px;
-        text-align: center
-    }
-
     .Top-Buttons {
         display: none
     }
@@ -557,39 +303,6 @@
 }
 
 @media screen and (max-width: 415px) {
-    header {
-        height: 30vh
-    }
-
-    .Title {
-        font-size: 10px;
-        margin-top: 0
-    }
-
-    .HomeBtn {
-        margin-left: 0
-    }
-
-    .HomeBtn img {
-        margin-left: 170px;
-        margin-top: -50px;
-        width: 45%
-    }
-
-    .Title h2 {
-        font-size: 20px;
-        margin: 40px 19px 0;
-        position: absolute;
-        text-align: center
-    }
-
-    .TitleBtn {
-        font-size: 15px;
-        margin: 250px 60px 0;
-        padding: 15px 20px;
-        text-align: center
-    }
-
     .Top-Buttons {
         display: none
     }
