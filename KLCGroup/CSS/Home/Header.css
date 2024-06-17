@@ -11,26 +11,6 @@ header {
     width: 100%
 }
 
-@keyframes ColorChange {
-    from {
-        color: lightgray
-    }
-
-    to {
-        color: #fff
-    }
-}
-
-@keyframes ColorChangeBack {
-    from {
-        color: #fff
-    }
-
-    to {
-        color: lightgray
-    }
-}
-
 .Title {
     font-size: 40px;
     margin-top: 200px;
@@ -120,23 +100,23 @@ header {
 
 .open-slide a p {
     align-items: center;
-    color: #fff;
+    color: #f0f0f0;
     font-size: 35px;
-    padding-top: 50px
+    padding-top: 50px;
 }
 
 .hamburger p {
     display: none;
-    margin-left: 50px
+    margin-left: 50px;
 }
 
 .hamburger {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .side-nav {
-    background-color: #535353;
-    border-color: #000;
+    background-color: #333;
+    border-color: #222;
     border-radius: 10px;
     height: 100vh;
     left: 0;
@@ -145,25 +125,32 @@ header {
     padding-top: 60px;
     position: fixed;
     top: 0;
-    transition: 0, 5s;
+    transition: width 0.5s ease;
     width: 0;
-    z-index: 1
+    z-index: 1;
 }
 
-.side-nav a {
+.mobile-nav-buttons a {
     animation: ColorChangeBack 1s;
-    color: lightgray;
+    color: #b0b0b0;
     display: block;
     font-size: 22px;
     margin-right: 20px;
     padding: 10px 10px 10px 30px;
     text-decoration: none;
-    transition: .3s
+    transition: color 0.3s, background-color 0.3s;
+    border-left: 4px solid transparent;
 }
 
-.side-nav a:hover {
+.btn-close:hover{
+    background-color: transparent;
+}
+
+.mobile-nav-buttons a:hover {
     animation: ColorChange .5;
-    color: #fff
+    color: #fff;
+    background-color: #444;
+    border-left: 4px solid #fff;
 }
 
 .side-nav .btn-close {
@@ -171,7 +158,19 @@ header {
     margin-left: 50px;
     position: absolute;
     right: 22px;
-    top: 0
+    top: 0;
+    color: #fff; 
+    cursor: pointer;
+}
+
+@keyframes ColorChange {
+    0% { color: #b0b0b0; }
+    100% { color: #fff; }
+}
+
+@keyframes ColorChangeBack {
+    0% { color: #fff; }
+    100% { color: #b0b0b0; }
 }
 
 @media screen and (max-width: 1300px) {
