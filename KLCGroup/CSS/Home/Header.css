@@ -471,7 +471,7 @@ header {
 
 @media screen and (max-width: 768px) {
     header {
-        height: 35vh
+        height: 45vh
     }
 
     .Title {
@@ -521,7 +521,7 @@ header {
 
 @media screen and (max-width: 600px) {
     header {
-        height: 30vh
+        height: 45vh
     }
 
     .Title {
@@ -576,7 +576,7 @@ header {
 
 @media screen and (max-width: 415px) {
     header {
-        height: 30vh
+        height: 45vh
     }
 
     .Title {
