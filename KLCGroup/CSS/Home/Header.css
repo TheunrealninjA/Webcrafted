@@ -117,8 +117,8 @@ header {
 .side-nav {
     background-color: #333;
     border-color: #222;
-    border-radius: 10px;
-    height: 100vh;
+    border-radius: 0 10px 10px 0;
+    height: 47vh;
     left: 0;
     opacity: .95;
     overflow: hidden;
@@ -470,7 +470,7 @@ header {
 
 @media screen and (max-width: 768px) {
     header {
-        height: 45vh
+        height: 55vh
     }
 
     .Title {
@@ -489,6 +489,10 @@ header {
         font-size: 25px;
         margin: 50px 0 0 220px;
         text-align: center
+    }
+
+    .side-nav {
+        height: 58vh;
     }
 
     .TitleBtn {
@@ -520,7 +524,7 @@ header {
 
 @media screen and (max-width: 600px) {
     header {
-        height: 45vh
+        height: 55vh
     }
 
     .Title {
@@ -575,7 +579,7 @@ header {
 
 @media screen and (max-width: 415px) {
     header {
-        height: 45vh
+        height: 55vh
     }
 
     .Title {
