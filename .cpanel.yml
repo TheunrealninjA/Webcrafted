@@ -1,11 +1,8 @@
-##### THIS ALLOWS US TO DEPLOY THE SITE FROM A GIT REPO ######—
 Deployment:
-Tasks:
-– export DEPLOYPATH=/home/webcsosl/public_html/
-– /bin/cp -R .vscode $DEPLOYPATH
-– /bin/cp -R assets $DEPLOYPATH
-– /bin/cp -R css $DEPLOYPATH
-– /bin/cp -R fonts $DEPLOYPATH
-– /bin/cp -R img $DEPLOYPATH
-– /bin/cp -R js $DEPLOYPATH
-/bin/cp index.html $DEPLOYPATH
+  Tasks:
+  – export DEPLOYPATH=/home/webcsosl/public_html/
+  – /bin/cp -R Home.html $DEPLOYPATH
+  – /bin/cp -R ContactUs.html $DEPLOYPATH
+  – /bin/cp -R CSS $DEPLOYPATH
+  – /bin/cp -R Websites.html $DEPLOYPATH
+  /bin/cp -R OurServices.html $DEPLOYPATH
