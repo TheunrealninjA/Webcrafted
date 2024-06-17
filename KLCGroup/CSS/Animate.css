@@ -1,0 +1,109 @@
+/* Inframe Right And Down Animation */
+
+@keyframes Opacity{
+    from{
+        opacity: 0;
+        transform: translateX(-20px) translateY(-20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0px) translateY(0px);
+    }
+}
+
+/* Inframe Right Animation */
+
+@keyframes RightAnim{
+    from{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* Change Color Animations */
+
+@keyframes ChangeColor{
+    from{
+        background-color: #fdca40;
+    }
+    to{
+        background-color: #c59e31;
+    }
+}
+
+@keyframes ChangeColorBack{
+    from{
+        background-color: #c59e31;
+    }
+    to{
+        background-color: #fdca40;
+    }
+}
+
+/* Fade Animation */
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* Right and Down Animation */
+
+.AnimStartRightDown{
+    opacity: 0;
+    transform: translateX(-20px) translateY(-20px);
+    transition: all 0.7s ease-out;
+    transition-delay: 0.4s;
+}
+
+/* Right Animation */
+
+.AnimStartRight{
+    opacity: 0;
+    transform: translateX(150px);
+    transition: all 0.7s ease-out;
+    transition-delay: 0.4s;
+}
+
+/* Down Animation */
+
+.AnimStartDown{
+    opacity: 0;
+    transform: translateY(-120px);
+    transition: all 0.7s ease-out;
+    transition-delay: 0.4s;
+}
+
+/* Left Animation */
+
+.AnimStartLeft{
+    opacity: 0;
+    transform: translateX(-300px);
+    transition: all 0.9s ease-out;
+}
+
+/* Far Away Right Animation */
+
+.AnimStartRightFar{
+    opacity: 0;
+    transform: translateX(300px);
+    transition: all 0.7s ease-out;
+    transition-delay: 0.4s;
+}
+
+/* Set to Default */
+
+.ToDefault{
+    opacity: 1;
+    transform: translateX(0px);
+    transform: translateY(0px);
+}

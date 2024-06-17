@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins';
+    list-style: none;
+    color: black;
+    text-decoration: none;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+p{
+    font-size: 18px;
+}
+
+.main-body{
+    width: 100%;
+}
+
+.About-Section{
+    margin: 70px 540px 20px 540px;
+    text-align: center;
+}
+
+.About-Section p{
+    padding-top: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.splitter{
+    width: 80px;
+    height: 8px;
+}
+
+.Double-Section{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 250px;
+    text-align: center;
+    margin: 200px 100px 0 100px;
+}
+
+.Double-Section p{
+    padding-top: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.Applicators-Section ul{
+    margin: 30px 0 0 80px;
+}
+
+.Applicators-Section ul li{
+    list-style: outside;
+    text-align: left;
+    font-size: 19px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+    margin-top: 8px;
+}
+@media screen and (max-width: 1300px) {
+    p{
+        font-size: 18px;
+    }
+
+    .About-Section{
+        margin: 70px 60px 20px;
+        text-align: center;
+    }
+    
+    .About-Section p{
+        padding-top: 8px;
+    }
+    
+    .splitter{
+        width: 80px;
+        height: 8px;
+    }
+    
+    .Double-Section{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 100px;
+        margin: 100px 60px 0;
+    }
+    
+    .Double-Section p{
+        padding-top: 8px;
+    }
+    
+    .Applicators-Section ul{
+        margin: 30px 0 0 80px;
+    }
+    
+    .Applicators-Section ul li{
+        font-size: 19px;
+        margin-top: 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    p{
+        font-size: 14px;
+    }
+
+    .About-Section{
+        margin: 70px 20px 20px 20px;
+        text-align: center;
+    }
+    
+    .About-Section p{
+        padding-top: 8px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+    }
+    
+    .splitter{
+        width: 80px;
+        height: 8px;
+    }
+    
+    .Double-Section{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 100px;
+        text-align: center;
+        margin: 100px 10px 0 10px;
+    }
+    
+    .Double-Section p{
+        padding-top: 8px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+    }
+    
+    .Applicators-Section ul{
+        margin: 30px 0 0 80px;
+    }
+    
+    .Applicators-Section ul li{
+        list-style: outside;
+        text-align: left;
+        font-size: 19px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+        margin-top: 8px;
+    }
+}

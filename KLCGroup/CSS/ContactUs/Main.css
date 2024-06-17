@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins';
+    list-style: none;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.splitter{
+    width: 80px;
+    height: 8px;
+}
+
+p{
+    font-size: 18px;
+}
+
+.main-body h2{
+    margin-top: 50px;
+}
+
+.ContactForm {
+    width: 50vw;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+}
+
+.ContactForm label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.ContactForm input[type="text"],
+.ContactForm input[type="email"] {
+    width: 35%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.ContactForm select {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+}
+
+.ContactForm textarea {
+    width: 65%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.ContactForm input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #9cb1d09f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.6s;
+}
+
+.ContactForm input[type="submit"]:hover {
+    background-color: #9cb1d0;
+}
+
+@media screen and (max-width: 1400px){
+    .ContactForm {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .ContactForm {
+        width: 80vw;
+    }
+    
+    .ContactForm input[type="text"],
+    .ContactForm input[type="email"] {
+        width: 65%;
+    }
+    
+    .ContactForm select {
+        width: 60%;
+        font-size: 14px;
+    }
+    
+    .ContactForm textarea {
+        width: 90%;
+    }
+}

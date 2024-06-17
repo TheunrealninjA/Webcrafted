@@ -1,0 +1,341 @@
+header{
+    background-image: url(/Images/2ndBanner.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 10vh;
+    width: 100%;
+    background-color: #9cb1d0;
+    padding-bottom: 80px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.65);
+    border-radius: 0 0 10px 10px;
+}
+
+@keyframes ColorChange{
+    from{
+        color: lightgray;
+    }
+
+    to{
+        color: white;
+    }
+}
+
+@keyframes ColorChangeBack{
+    from{
+        color: white;
+    }
+
+    to{
+        color: lightgray;
+    }
+}
+
+.Title{
+    position: absolute;
+    margin-top:40px;
+}
+
+.HomeBtn img{
+    margin-left: 20px;
+    animation: Opacity .8s;
+    width: 400px;
+}
+
+.Top-Buttons{
+    float: right;
+    margin-right: 100px;
+    padding-top: 80px;
+}
+
+
+.Top-Buttons li{
+    float: left;
+    margin-left: 100px;
+    font-size: 19px;
+    font-weight: bold;
+    animation: Opacity .8s;
+    position: relative;
+}
+
+.Top-Buttons li a{
+    color:lightgray;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.65);
+    animation: ColorChangeBack .8s;
+}
+
+.Top-Buttons li a:hover{
+    animation: ColorChange .8s;
+    color: white;
+}
+
+.Top-Buttons li a::after{
+    content: '';
+    position: absolute;
+    top: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #9cb1d0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.Top-Buttons li a:hover::after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.open-slide a{
+    height: 100%;
+}
+
+.open-slide a p{
+    height: 20px;
+    width: 35px;
+    align-items: center;
+    font-size: 45px;
+    padding: 15px;
+    padding-top: 50px;
+    color: white;
+}
+
+.hamburger p{
+    display: none;
+    margin-left: 50px;
+}
+
+.hamburger{
+    text-decoration: none;
+}
+
+.side-nav{
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(83, 83, 83);
+    border-radius: 10px;
+    border-color: black;
+    opacity: 0.95;
+    overflow: hidden;
+    padding-top: 60px;
+    transition: 0, 5s;
+    width: 0;
+}
+
+.side-nav a{
+    padding: 10px 10px 10px 30px;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 22px;
+    color: lightgray;
+    display: block;
+    transition: 0.3s;
+    animation: ColorChangeBack 1s;
+}
+
+.side-nav a:hover{
+    animation: ColorChange .5;
+    color: white;
+}
+
+.side-nav .btn-close{
+    position: absolute;
+    top: 0;
+    right: 22px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-width: 1400px){
+    header{
+        height: 15vh;
+    }
+
+    .Title{
+        font-size: 40px;
+        margin-top: 60px;
+    }
+    
+    .HomeBtn{
+        margin-left: 0px;
+    }
+    
+    .Top-Buttons{
+        margin-right: 16px;
+        padding-top: 100px;
+    }
+    
+    .Top-Buttons li{
+        margin-left: 45px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1060px){
+    header{
+        height: 20vh;
+    }
+    
+    .HomeBtn{
+        margin-left: 0px;
+    }
+
+    .HomeBtn img{
+        width: 380px;
+    }
+
+    .Top-Buttons{
+        margin-right: 25px;
+        padding-top: 100px;
+        margin-left: 0px;
+    }
+    
+    .Top-Buttons li{
+        margin-left: 50px;
+        font-size: 17px;
+    }
+}
+
+
+/* tablet view */
+
+@media screen and (max-width: 1028px){
+    header{
+        height: 10vh;
+    }
+
+    .Title{
+        font-size: 10px;
+        margin-top: 0px;
+    }
+
+    .HomeBtn img{
+        width: 40%;
+        margin-top: -45px;
+        margin-left: 380px;
+    }
+    
+    .Title h2{
+        font-size: 25px;
+        text-align: center;
+        margin: 50px 0 0 220px;
+    }
+    
+    .TitleBtn{
+        font-size: 25px;
+        margin: 30px 0 0 240px;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    .Top-Buttons{
+        display: none;
+    }
+    
+    .open-slide a p{
+        font-size: 60px;
+        padding-top: 50px;
+    }
+    
+    .hamburger p{
+        display: block;
+    }
+    
+    .hamburger{
+        display: block;
+        width: 53px;
+        margin-left: 50px;
+    }
+}
+
+/* Mobile Large and Medium */
+
+@media screen and (max-width: 640px){
+    header{
+        height: 10vh;
+    }
+
+    .Title{
+        font-size: 10px;
+        margin-top: 0px;
+    }
+    
+    .HomeBtn{
+        margin-left: 0px;
+    }
+
+    .HomeBtn img{
+        width: 55%;
+        margin-top: -55px;
+        margin-left: 160px;
+    }
+    
+    .Top-Buttons{
+        display: none;
+    }
+    
+    .open-slide a p{
+        font-size: 40px;
+        padding-top: 40px;
+    }
+    
+    .hamburger p{
+        display: block;
+    }
+    
+    .hamburger{
+        display: block;
+        width: 53px;
+        margin-left: 0px;
+    }
+}
+
+/* Mobile Small */
+ 
+@media screen and (max-width: 360px){
+    header{
+        height: 10vh;
+    }
+
+    .Title{
+        font-size: 10px;
+        margin-top: 0px;
+    }
+    
+    .HomeBtn{
+        margin-left: 0px;
+        position: absolute;
+    }
+
+    .HomeBtn img{
+        width: 100%;
+        margin-top: -36px;
+        margin-left: 150px;
+    }
+    
+    .Top-Buttons{
+        display: none;
+    }
+    
+    .open-slide a p{
+        align-items: center;
+        font-size: 35px;
+        padding-top: 40px;
+        color: white;
+    }
+    
+    .hamburger p{
+        display: block;
+        
+    }
+    
+    .hamburger{
+        display: block;
+        width: 53px;
+    }
+}

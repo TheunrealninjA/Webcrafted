@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins';
+    list-style: none;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+p{
+    font-size: 18px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.splitter{
+    width: 80px;
+    height: 8px;
+}
+
+.main-body{
+    margin: 80px 80px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+}
+
+.Testimonials{
+    border: 1px solid grey;
+    border-radius: 12px;
+    padding: 30px 30px;
+    transition: transform 0.6s;
+    min-height: 300px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.65);
+}
+
+.Testimonials:hover{
+    transform: scale(1.05);
+}
+
+
+/* add mobile stuff */
+@media screen and (max-width: 1250px){
+    h2{
+        font-size: 18px;
+    }
+    .main-body{
+        margin: 80px 20px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 80px;
+    }
+    p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    h2{
+        font-size: 18px;
+    }
+    .main-body{
+        margin: 80px 20px 0;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 80px;
+    }
+    p{
+        font-size: 14px;
+    }
+}
