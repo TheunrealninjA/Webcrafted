@@ -1,4 +1,3 @@
-
 function openSideMenu() {
     document.getElementById('side-menu').style.width = '250px';
 }

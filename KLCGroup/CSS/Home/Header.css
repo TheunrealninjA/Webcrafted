@@ -34,7 +34,6 @@ header {
 }
 
 .TitleBtn {
-    animation: RightAnim 1.4s;
     border: 2px solid #fff;
     border-radius: 15px;
     box-shadow: 4px 4px 6px #000000d9;
@@ -101,8 +100,6 @@ header {
 .open-slide a p {
     align-items: center;
     color: #f0f0f0;
-    font-size: 35px;
-    padding-top: 50px;
 }
 
 .hamburger p {
@@ -110,15 +107,10 @@ header {
     margin-left: 50px;
 }
 
-.hamburger {
-    text-decoration: none;
-}
-
 .side-nav {
     background-color: #333;
     border-color: #222;
     border-radius: 0 10px 10px 0;
-    height: 47vh;
     left: 0;
     opacity: .95;
     overflow: hidden;
@@ -174,20 +166,9 @@ header {
 }
 
 @media screen and (max-width: 1300px) {
-    header {
-        height: 90vh
-    }
+    .Title { font-size: 20px }
 
-    .Title {
-        font-size: 20px;
-        margin-top: 200px;
-        position: absolute
-    }
-
-    .HomeBtn {
-        animation: Opacity .8s;
-        margin-left: 75px
-    }
+    .HomeBtn { margin-left: 75px }
 
     .HomeBtn img {
         margin-left: 150px;
@@ -197,281 +178,54 @@ header {
     }
 
     .Title h2 {
-        animation: RightAnim 1.4s;
-        color: #fff;
         font-size: 35px;
-        font-style: italic;
-        font-weight: 500;
         margin-left: 200px;
-        padding-top: 125px;
-        text-shadow: 3px 3px 6px #000000d9
+        padding-top: 125px
     }
 
     .TitleBtn {
-        animation: RightAnim 1.4s;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        box-shadow: 4px 4px 6px #000000d9;
-        color: #fff;
-        display: inline-flex;
         font-size: 35px;
-        margin: 50px 0 0 240px;
-        padding: 15px 20px;
-        text-shadow: 4px 4px 6px #000000d9;
-        transition: color 0.3s, background-color 0.3s, transform .2s
+        padding: 15px 20px
     }
 
-    .TitleBtn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.1)
-    }
-
-    .Top-Buttons {
-        float: right;
-        margin-right: 100px;
-        padding-top: 100px
-    }
-
-    .Top-Buttons li {
-        animation: Opacity .8s;
-        float: left;
-        font-size: 19px;
-        font-weight: 700;
-        margin-left: 100px;
-        position: relative
-    }
-
-    .Top-Buttons li a {
-        animation: ColorChangeBack .8s;
-        color: lightgray;
-        text-shadow: 2px 2px 4px #000000a6
-    }
-
-    .Top-Buttons li a:hover {
-        animation: ColorChange .8s;
-        color: #fff
-    }
-
-    .Top-Buttons li a::after {
-        background-color: #9cb1d0;
-        bottom: 0;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 25px;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .3s ease;
-        width: 100%
-    }
-
-    .Top-Buttons li a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left
-    }
+    .Top-Buttons { padding-top: 100px }
 }
 
 @media screen and (max-width: 1200px) {
-    header {
-        height: 90vh
-    }
+    .HomeBtn { margin-left: 75px }
 
-    .Title {
-        font-size: 40px;
-        margin-top: 200px;
-        position: absolute
-    }
+    .HomeBtn img { width: 65% }
 
-    .HomeBtn {
-        animation: Opacity .8s;
-        margin-left: 75px
-    }
-
-    .HomeBtn img {
-        margin-left: 150px;
-        margin-top: 0;
-        position: absolute;
-        width: 65%
-    }
-
-    .Title h2 {
-        animation: RightAnim 1.4s;
-        color: #fff;
-        font-size: 45px;
-        font-style: italic;
-        font-weight: 500;
-        margin-left: 200px;
-        padding-top: 125px;
-        text-shadow: 3px 3px 6px #000000d9
-    }
+    .Title h2 { font-size: 46px }
 
     .TitleBtn {
-        animation: RightAnim 1.4s;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        box-shadow: 4px 4px 6px #000000d9;
-        color: #fff;
-        display: inline-flex;
         font-size: 40px;
         margin: 50px 0 0 280px;
-        padding: 20px 25px;
-        text-shadow: 4px 4px 6px #000000d9;
-        transition: color 0.3s, background-color 0.3s, transform .2s
-    }
-
-    .TitleBtn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.1)
-    }
-
-    .Top-Buttons {
-        float: right;
-        margin-right: 100px;
-        padding-top: 100px
-    }
-
-    .Top-Buttons li {
-        animation: Opacity .8s;
-        float: left;
-        font-size: 19px;
-        font-weight: 700;
-        margin-left: 100px;
-        position: relative
-    }
-
-    .Top-Buttons li a {
-        animation: ColorChangeBack .8s;
-        color: lightgray;
-        text-shadow: 2px 2px 4px #000000a6
-    }
-
-    .Top-Buttons li a:hover {
-        animation: ColorChange .8s;
-        color: #fff
-    }
-
-    .Top-Buttons li a::after {
-        background-color: #9cb1d0;
-        bottom: 0;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 25px;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .3s ease;
-        width: 100%
-    }
-
-    .Top-Buttons li a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left
+        padding: 20px 25px
     }
 }
 
 @media screen and (max-width: 1060px) {
-    header {
-        height: 90vh
-    }
-
-    .HomeBtn {
-        animation: Opacity .8s;
-        margin-left: 0
-    }
+    .HomeBtn { margin-left: 0 }
 
     .HomeBtn img {
         margin-left: 120px;
-        margin-top: 0;
-        position: absolute;
         width: 70%
     }
 
-    .Title h2 {
-        animation: RightAnim 1.4s;
-        color: #fff;
-        font-size: 45px;
-        font-style: italic;
-        font-weight: 500;
-        margin-left: 60px;
-        padding-top: 125px;
-        text-shadow: 3px 3px 6px #000000d9
-    }
+    .Title h2 { margin-left: 60px }
 
-    .TitleBtn {
-        animation: RightAnim 1.4s;
-        border: 2px solid #fff;
-        border-radius: 15px;
-        box-shadow: 4px 4px 6px #000000d9;
-        color: #fff;
-        display: inline-flex;
-        font-size: 40px;
-        margin: 50px 0 0 130px;
-        padding: 20px 25px;
-        text-shadow: 4px 4px 6px #000000d9;
-        transition: color 0.3s, background-color 0.3s, transform .2s
-    }
+    .TitleBtn { margin: 50px 0 0 130px }
 
-    .TitleBtn:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.1)
-    }
-
-    .Top-Buttons {
-        float: left;
-        margin-left: 10px;
-        margin-right: 0;
-        padding-top: 100px
-    }
 
     .Top-Buttons li {
-        animation: Opacity .8s;
-        float: left;
-        font-size: 19px;
-        font-weight: 700;
-        margin-left: 50px;
-        position: relative
-    }
-
-    .Top-Buttons li a {
-        animation: ColorChangeBack .8s;
-        color: lightgray;
-        text-shadow: 2px 2px 4px #000000a6
-    }
-
-    .Top-Buttons li a:hover {
-        animation: ColorChange .8s;
-        color: #fff
-    }
-
-    .Top-Buttons li a::after {
-        background-color: #9cb1d0;
-        bottom: 0;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 25px;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .3s ease;
-        width: 100%
-    }
-
-    .Top-Buttons li a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left
+        font-size: 17.8px;
+        margin-left: 48px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    header {
-        height: 55vh
-    }
+    header { height: 55vh }
 
     .Title {
         font-size: 10px;
@@ -481,39 +235,30 @@ header {
     .HomeBtn img {
         margin-left: 250px;
         margin-top: -100px;
-        position: absolute;
         width: 65%
     }
 
     .Title h2 {
         font-size: 25px;
         margin: 50px 0 0 220px;
-        text-align: center
     }
 
-    .side-nav {
-        height: 58vh;
-    }
+    .side-nav { height: 58vh }
 
     .TitleBtn {
         font-size: 25px;
         margin: 30px 0 0 240px;
         padding: 15px 20px;
-        text-align: center
     }
 
-    .Top-Buttons {
-        display: none
-    }
+    .Top-Buttons { display: none }
 
     .open-slide a p {
         font-size: 60px;
         padding-top: 50px
     }
 
-    .hamburger p {
-        display: block
-    }
+    .hamburger p { display: block }
 
     .hamburger {
         display: block;
@@ -523,23 +268,16 @@ header {
 }
 
 @media screen and (max-width: 600px) {
-    header {
-        height: 55vh
-    }
-
     .Title {
         font-size: 10px;
         margin-top: 0
     }
 
-    .HomeBtn {
-        margin-left: 0
-    }
+    .HomeBtn { margin-left: 0 }
 
     .HomeBtn img {
         margin-left: 160px;
         margin-top: -65px;
-        position: absolute;
         width: 55%
     }
 
@@ -547,18 +285,11 @@ header {
         font-size: 20px;
         margin: 40px 70px 0;
         position: absolute;
-        text-align: center
     }
 
     .TitleBtn {
         font-size: 18px;
         margin: 220px 96px 0;
-        padding: 15px 20px;
-        text-align: center
-    }
-
-    .Top-Buttons {
-        display: none
     }
 
     .open-slide a p {
@@ -566,31 +297,10 @@ header {
         padding-top: 40px
     }
 
-    .hamburger p {
-        display: block
-    }
-
-    .hamburger {
-        display: block;
-        margin-left: 0;
-        width: 53px
-    }
+    .hamburger { margin-left: 0 }
 }
 
 @media screen and (max-width: 415px) {
-    header {
-        height: 55vh
-    }
-
-    .Title {
-        font-size: 10px;
-        margin-top: 0
-    }
-
-    .HomeBtn {
-        margin-left: 0
-    }
-
     .HomeBtn img {
         margin-left: 170px;
         margin-top: -50px;
@@ -598,36 +308,15 @@ header {
     }
 
     .Title h2 {
-        font-size: 20px;
         margin: 40px 19px 0;
-        position: absolute;
-        text-align: center
     }
 
     .TitleBtn {
         font-size: 15px;
         margin: 250px 60px 0;
-        padding: 15px 20px;
-        text-align: center
-    }
-
-    .Top-Buttons {
-        display: none
     }
 
     .open-slide a p {
-        align-items: center;
-        color: #fff;
         font-size: 35px;
-        padding-top: 40px
-    }
-
-    .hamburger p {
-        display: block
-    }
-
-    .hamburger {
-        display: block;
-        width: 53px
     }
 }
