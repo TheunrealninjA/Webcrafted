@@ -1,7 +1,10 @@
-function openSideMenu() {
-    document.getElementById('side-menu').style.width = '250px';
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-function closeSideMenu(){
-    document.getElementById('side-menu').style.width = '0px';
-}
+    function openSideMenu() {
+        document.getElementById('side-menu').style.width = '250px';
+    }
+
+    function closeSideMenu() {
+        document.getElementById('side-menu').style.width = '0px';
+    }
+});
