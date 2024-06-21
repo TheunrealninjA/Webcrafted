@@ -10,9 +10,7 @@
     text-align: center;
 }
 
-body{
-    overflow: hidden;
-}
+body{ overflow: hidden }
 
 h2{
     font-size: 20px;

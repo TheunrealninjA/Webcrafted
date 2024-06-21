@@ -10,9 +10,7 @@
     text-align: center;
 }
 
-body{
-    overflow-x: hidden;
-}
+body{ overflow-x: hidden; }
 
 .splitter{
     width: 80px;
@@ -25,71 +23,19 @@ body{
     padding: 10px;
 }
 
-.LoftInsulation, .Rendering{
-    margin-top: 80px;
-}
-
-@media screen and (max-width: 1200px){
-    .splitter{
-        width: 80px;
-        height: 8px;
-    }
-    
-    .Rimages img, .LIimages img, .EWIimages img{
-        width: 15%;
-        grid-template-columns: repeat(5 , 1fr);
-        padding: 10px;
-    }
-    
-    .LoftInsulation, .Rendering{
-        margin-top: 80px;
-    }
-}
+.LoftInsulation, .Rendering{ margin-top: 80px }
 
 @media screen and (max-width: 1060px){
-    .splitter{
-        width: 80px;
-        height: 8px;
-    }
-    
     .Rimages img, .LIimages img, .EWIimages img{
         width: 23.5%;
         padding: 6px;
     }
-    
-    .LoftInsulation, .Rendering{
-        margin-top: 80px;
-    }
 }
 
 @media screen and (max-width: 768px){
-    .splitter{
-        width: 80px;
-        height: 8px;
-    }
-    
-    .Rimages img, .LIimages img, .EWIimages img{
-        width: 23%;
-        padding: 6px;
-    }
-    
-    .LoftInsulation, .Rendering{
-        margin-top: 80px;
-    }
+    .Rimages img, .LIimages img, .EWIimages img{ width: 23% }
 }
 
 @media screen and (max-width: 615px){
-    .splitter{
-        width: 60px;
-        height: 6px;
-    }
-    
-    .Rimages img, .LIimages img, .EWIimages img{
-        width: 29%;
-        padding: 6px;
-    }
-    
-    .LoftInsulation, .Rendering, .EWI{
-        margin-top: 80px;
-    }
+    .Rimages img, .LIimages img, .EWIimages img{ width: 29% }
 }

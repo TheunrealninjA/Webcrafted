@@ -96,9 +96,7 @@ p{
     }
     
     .ContactForm input[type="text"],
-    .ContactForm input[type="email"] {
-        width: 65%;
-    }
+    .ContactForm input[type="email"] { width: 65% }
     
     .ContactForm select {
         width: 60%;
