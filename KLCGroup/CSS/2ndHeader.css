@@ -11,24 +11,14 @@ header{
     border-radius: 0 0 10px 10px;
 }
 
-@keyframes ColorChange{
-    from{
-        color: lightgray;
-    }
-
-    to{
-        color: white;
-    }
+@keyframes ColorChange {
+    0% { color: #b0b0b0; }
+    100% { color: #fff; }
 }
 
-@keyframes ColorChangeBack{
-    from{
-        color: white;
-    }
-
-    to{
-        color: lightgray;
-    }
+@keyframes ColorChangeBack {
+    0% { color: #fff; }
+    100% { color: #b0b0b0; }
 }
 
 .Title{
@@ -152,18 +142,14 @@ header{
 }
 
 @media screen and (max-width: 1400px){
-    header{
-        height: 15vh;
-    }
+    header{ height: 15vh }
 
     .Title{
         font-size: 40px;
         margin-top: 60px;
     }
     
-    .HomeBtn{
-        margin-left: 0px;
-    }
+    .HomeBtn{ margin-left: 0px }
     
     .Top-Buttons{
         margin-right: 16px;
@@ -177,21 +163,12 @@ header{
 }
 
 @media screen and (max-width: 1060px){
-    header{
-        height: 20vh;
-    }
+    header{ height: 20vh }
     
-    .HomeBtn{
-        margin-left: 0px;
-    }
-
-    .HomeBtn img{
-        width: 380px;
-    }
+    .HomeBtn img{ width: 380px }
 
     .Top-Buttons{
         margin-right: 25px;
-        padding-top: 100px;
         margin-left: 0px;
     }
     
@@ -201,13 +178,8 @@ header{
     }
 }
 
-
-/* tablet view */
-
 @media screen and (max-width: 1028px){
-    header{
-        height: 10vh;
-    }
+    header{ height: 10vh }
 
     .Title{
         font-size: 10px;
@@ -233,18 +205,14 @@ header{
         padding: 15px 20px;
     }
     
-    .Top-Buttons{
-        display: none;
-    }
+    .Top-Buttons{ display: none }
     
     .open-slide a p{
         font-size: 60px;
         padding-top: 50px;
     }
     
-    .hamburger p{
-        display: block;
-    }
+    .hamburger p{ display: block }
     
     .hamburger{
         display: block;
@@ -253,18 +221,7 @@ header{
     }
 }
 
-/* Mobile Large and Medium */
-
 @media screen and (max-width: 640px){
-    header{
-        height: 10vh;
-    }
-
-    .Title{
-        font-size: 10px;
-        margin-top: 0px;
-    }
-    
     .HomeBtn{
         margin-left: 0px;
     }
@@ -275,40 +232,18 @@ header{
         margin-left: 160px;
     }
     
-    .Top-Buttons{
-        display: none;
-    }
-    
     .open-slide a p{
         font-size: 40px;
         padding-top: 40px;
     }
     
-    .hamburger p{
-        display: block;
-    }
-    
     .hamburger{
-        display: block;
-        width: 53px;
         margin-left: 0px;
     }
 }
 
-/* Mobile Small */
- 
 @media screen and (max-width: 360px){
-    header{
-        height: 10vh;
-    }
-
-    .Title{
-        font-size: 10px;
-        margin-top: 0px;
-    }
-    
     .HomeBtn{
-        margin-left: 0px;
         position: absolute;
     }
 
@@ -318,24 +253,5 @@ header{
         margin-left: 150px;
     }
     
-    .Top-Buttons{
-        display: none;
-    }
-    
-    .open-slide a p{
-        align-items: center;
-        font-size: 35px;
-        padding-top: 40px;
-        color: white;
-    }
-    
-    .hamburger p{
-        display: block;
-        
-    }
-    
-    .hamburger{
-        display: block;
-        width: 53px;
-    }
+    .open-slide a p{ font-size: 35px }
 }
