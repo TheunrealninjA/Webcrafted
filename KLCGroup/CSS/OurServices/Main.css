@@ -38,7 +38,7 @@ p { font-size: 18px }
 }
 
 .Rendering h3, .LI h3, .EWI h3 {
-    margin-left: 380px;
+    margin-left: 360px;
     transition: 0.6s ease;
     padding: 5px 5px 10px 0;
     border-radius: 8px 0 28px;
