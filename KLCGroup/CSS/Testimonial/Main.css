@@ -10,9 +10,7 @@
     text-align: center;
 }
 
-body{
-    overflow-x: hidden;
-}
+body{ overflow-x: hidden }
 
 p{
     font-size: 18px;
@@ -35,38 +33,30 @@ p{
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.65);
 }
 
-.Testimonials:hover{
-    transform: scale(1.05);
-}
+.Testimonials:hover{ transform: scale(1.05) }
 
-
-/* add mobile stuff */
 @media screen and (max-width: 1250px){
-    h2{
-        font-size: 18px;
-    }
+    h2{ font-size: 18px }
+
     .main-body{
         margin: 80px 20px 0;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 80px;
     }
-    p{
-        font-size: 14px;
-    }
+
+    p{ font-size: 14px }
 }
 
 @media screen and (max-width: 450px){
-    h2{
-        font-size: 18px;
-    }
+    h2{ font-size: 18px }
+
     .main-body{
         margin: 80px 20px 0;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 80px;
     }
-    p{
-        font-size: 14px;
-    }
+
+    p{ font-size: 14px }
 }

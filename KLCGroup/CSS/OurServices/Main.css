@@ -21,9 +21,7 @@ p { font-size: 18px }
     gap: 30px;
 }
 
-.Rendering,
-.LI,
-.EWI {
+.Rendering, .LI, .EWI {
     border-radius: 28px;
     background-color: #9cb1d0b0;
     margin: 0 80px;
@@ -31,32 +29,22 @@ p { font-size: 18px }
     transition: transform 0.2s;
 }
 
-.Rendering:hover,
-.LI:hover,
-.EWI:hover{
-    transform: scale(1.05);
-}
+.Rendering:hover, .LI:hover, .EWI:hover{ transform: scale(1.05) }
 
-.Rendering img,
-.LI img,
-.EWI img {
+.Rendering img, .LI img, .EWI img {
     width: 400px;
     margin-top: 30px;
     border-radius: 28px;
 }
 
-.Rendering h3,
-.LI h3,
-.EWI h3 {
+.Rendering h3, .LI h3, .EWI h3 {
     margin-left: 380px;
     transition: 0.6s ease;
     padding: 5px 5px 10px 0;
     border-radius: 8px 0 28px;
 }
 
-.Rendering h3:hover,
-.LI h3:hover,
-.EWI h3:hover {
+.Rendering h3:hover, .LI h3:hover, .EWI h3:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
 }
@@ -64,90 +52,58 @@ p { font-size: 18px }
 @media screen and (max-width: 1780px){
     .main-body { gap: 0px }
     
-    .Rendering,
-    .LI,
-    .EWI {
+    .Rendering, .LI, .EWI {
         margin: 0 5%;
         width: 30vw;
     }
     
-    .Rendering img,
-    .LI img,
-    .EWI img { width: 25vw }
+    .Rendering img, .LI img, .EWI img { width: 25vw }
     
-    .Rendering h3,
-    .LI h3,
-    .EWI h3 {
+    .Rendering h3, .LI h3, .EWI h3 {
         margin-left: 19vw;
         padding: 0 0 5px 0;
     }
 }
 
 @media screen and (max-width: 1060px){
-    .main-body {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .main-body { grid-template-columns: repeat(2, 1fr) }
     
-    .Rendering,
-    .LI,
-    .EWI {
+    .Rendering, .LI, .EWI {
         margin: 0 9% 8%;
         width: 40vw;
     }
     
-    .Rendering img,
-    .LI img,
-    .EWI img { width: 35vw }
+    .Rendering img, .LI img, .EWI img { width: 35vw }
     
-    .Rendering h3,
-    .LI h3,
-    .EWI h3 { margin-left: 29vw }
+    .Rendering h3, LI h3, .EWI h3 { margin-left: 29vw }
 }
 
 @media screen and (max-width: 768px){
-    .main-body {
-        grid-template-columns: repeat(1, 1fr);
-    }
+    .main-body { grid-template-columns: repeat(1, 1fr) }
     
-    .Rendering,
-    .LI,
-    .EWI {
+    .Rendering, .LI, .EWI {
         margin: 0 9% 5%;
         width: 80vw;
     }
     
-    .Rendering img,
-    .LI img,
-    .EWI img { width: 70vw }
+    .Rendering img, .LI img, .EWI img { width: 70vw }
     
-    .Rendering h3,
-    .LI h3,
-    .EWI h3 { margin-left: 60vw }
+    .Rendering h3, .LI h3, .EWI h3 { margin-left: 60vw }
 }
 
 @media screen and (max-width: 415px){
-    .Rendering,
-    .LI,
-    .EWI {
+    .Rendering, .LI, .EWI {
         margin: 0 10% 5%;
         width: 300px;
     }
     
-    .Rendering img,
-    .LI img,
-    .EWI img { width: 240px }
+    .Rendering img, .LI img, .EWI img { width: 240px }
     
-    .Rendering h3,
-    .LI h3,
-    .EWI h3 { margin-left: 220px }
+    .Rendering h3, .LI h3, .EWI h3 { margin-left: 220px }
 }
 
 @media screen and (max-width: 365px){
-    .Rendering,
-    .LI,
-    .EWI { margin: 0 3% 5% }
+    .Rendering, .LI, .EWI { margin: 0 3% 5% }
     
-    .Rendering img,
-    .LI img,
-    .EWI img { width: 250px }
+    .Rendering img, .LI img, .EWI img { width: 250px }
 }

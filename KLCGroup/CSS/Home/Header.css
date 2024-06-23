@@ -133,9 +133,7 @@ header {
     border-left: 4px solid transparent;
 }
 
-.btn-close:hover{
-    background-color: transparent;
-}
+.btn-close:hover{ background-color: transparent }
 
 .mobile-nav-buttons a:hover {
     animation: ColorChange .5;
@@ -306,16 +304,12 @@ header {
         width: 45%
     }
 
-    .Title h2 {
-        margin: 40px 19px 0;
-    }
+    .Title h2 { margin: 40px 19px 0 }
 
     .TitleBtn {
         font-size: 15px;
         margin: 250px 60px 0;
     }
 
-    .open-slide a p {
-        font-size: 35px;
-    }
+    .open-slide a p { font-size: 35px }
 }

@@ -217,9 +217,7 @@ header{
 }
 
 @media screen and (max-width: 640px){
-    .HomeBtn{
-        margin-left: 0px;
-    }
+    .HomeBtn{ margin-left: 0px }
 
     .HomeBtn img{
         width: 55%;
@@ -232,15 +230,11 @@ header{
         padding-top: 40px;
     }
     
-    .hamburger{
-        margin-left: 0px;
-    }
+    .hamburger{ margin-left: 0px }
 }
 
 @media screen and (max-width: 360px){
-    .HomeBtn{
-        position: absolute;
-    }
+    .HomeBtn{ position: absolute }
 
     .HomeBtn img{
         width: 100%;

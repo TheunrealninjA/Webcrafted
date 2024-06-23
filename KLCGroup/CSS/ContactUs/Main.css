@@ -10,17 +10,11 @@
     text-align: center;
 }
 
-body{
-    overflow-x: hidden;
-}
+body{ overflow-x: hidden }
 
-p{
-    font-size: 18px;
-}
+p{ font-size: 18px }
 
-.main-body h2{
-    margin-top: 50px;
-}
+.main-body h2{ margin-top: 50px }
 
 .ContactForm {
     width: 50vw;
@@ -75,30 +69,21 @@ p{
     transition: background-color 0.6s;
 }
 
-.ContactForm input[type="submit"]:hover {
-    background-color: #9cb1d0;
-}
+.ContactForm input[type="submit"]:hover { background-color: #9cb1d0 }
 
 @media screen and (max-width: 1400px){
-    .ContactForm {
-        width: 70vw;
-    }
+    .ContactForm { width: 70vw }
 }
 
 @media screen and (max-width: 500px){
-    .ContactForm {
-        width: 80vw;
-    }
+    .ContactForm { width: 80vw }
     
-    .ContactForm input[type="text"],
-    .ContactForm input[type="email"] { width: 65% }
+    .ContactForm input[type="text"], .ContactForm input[type="email"] { width: 65% }
     
     .ContactForm select {
         width: 60%;
         font-size: 14px;
     }
     
-    .ContactForm textarea {
-        width: 90%;
-    }
+    .ContactForm textarea { width: 90% }
 }
