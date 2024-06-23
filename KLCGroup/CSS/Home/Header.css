@@ -16,7 +16,7 @@ header {
     position: absolute
 }
 
-.HomeBtn {
+.HomeButton {
     animation: Opacity .8s;
     margin-left: 100px
 }
@@ -165,9 +165,9 @@ header {
 @media screen and (max-width: 1300px) {
     .Title { font-size: 20px }
 
-    .HomeBtn { margin-left: 75px }
+    .HomeButton { margin-left: 75px }
 
-    .HomeBtn img {
+    .HomeButton img {
         margin-left: 150px;
         margin-top: 0;
         position: absolute;
@@ -189,9 +189,9 @@ header {
 }
 
 @media screen and (max-width: 1200px) {
-    .HomeBtn { margin-left: 75px }
+    .HomeButton { margin-left: 75px }
 
-    .HomeBtn img { width: 65% }
+    .HomeButton img { width: 65% }
 
     .Title h2 { font-size: 46px }
 
@@ -203,9 +203,9 @@ header {
 }
 
 @media screen and (max-width: 1060px) {
-    .HomeBtn { margin-left: 0 }
+    .HomeButton { margin-left: 0 }
 
-    .HomeBtn img {
+    .HomeButton img {
         margin-left: 120px;
         width: 70%
     }
@@ -229,7 +229,7 @@ header {
         margin-top: 0
     }
 
-    .HomeBtn img {
+    .HomeButton img {
         margin-left: 250px;
         margin-top: -100px;
         width: 65%
@@ -270,9 +270,9 @@ header {
         margin-top: 0
     }
 
-    .HomeBtn { margin-left: 0 }
+    .HomeButton { margin-left: 0 }
 
-    .HomeBtn img {
+    .HomeButton img {
         margin-left: 160px;
         margin-top: -65px;
         width: 55%
@@ -298,7 +298,7 @@ header {
 }
 
 @media screen and (max-width: 415px) {
-    .HomeBtn img {
+    .HomeButton img {
         margin-left: 170px;
         margin-top: -50px;
         width: 45%

@@ -55,12 +55,12 @@ footer {
 .Copyright p{
     font-size: 16px;
     margin: 100px 0 0 30px;
-    color: #c4c4c4;
+    color: #dfdfdf;
     font-weight: 600;
     text-align: left;
 }
 
-.Copyright p a{ color: lightsalmon }
+.Copyright p a{ color: rgb(254, 137, 91) }
 
 @media(max-width: 768px){
     footer { padding-bottom: 0px }
