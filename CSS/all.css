@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins';
+    list-style: none;
+    color: white;
+    text-decoration: none;
+}
+
+.splitter{
+    margin-bottom: 20px;
+    margin-top: 8px;
+}

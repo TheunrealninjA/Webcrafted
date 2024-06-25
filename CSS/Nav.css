@@ -17,25 +17,29 @@
         color: lightgray
     }
 }
+
 .Top-Buttons {
-    float: right;
-    margin-right: 100px;
-    padding-top: 140px
+    animation: Down 1.5s;
+    width: 100%;
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
 }
 
 .Top-Buttons li {
-    animation: Opacity .8s;
     float: left;
     font-size: 19px;
     font-weight: 700;
     margin-left: 100px;
-    position: relative
+    position: relative;
 }
+
+.Top-Buttons li:first-child { margin-left: 0 }
 
 .Top-Buttons li a {
     animation: ColorChangeBack .8s;
     color: lightgray;
-    text-shadow: 2px 2px 4px #000000a6
+    text-shadow: 2px 2px 4px #000000a6;
 }
 
 .Top-Buttons li a:hover {
@@ -44,13 +48,12 @@
 }
 
 .Top-Buttons li a::after {
-    background-color: #9cb1d0;
+    background-color: white;
     bottom: 0;
     content: '';
     height: 4px;
     left: 0;
     position: absolute;
-    top: 25px;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform .3s ease;
@@ -62,10 +65,18 @@
     transform-origin: left
 }
 
+.First-Layer a{
+    font-size: 25px;
+}
+
+.Second-Layer a{
+    font-size: 22px;
+}
+
 .open-slide a p {
     align-items: center;
     color: #fff;
-    font-size: 35px;
+    font-size: 60px;
     padding-top: 50px
 }
 
@@ -118,156 +129,15 @@
     top: 0
 }
 
-@media screen and (max-width: 1300px) {
-    .Top-Buttons {
-        float: right;
-        margin-right: 100px;
-        padding-top: 100px
-    }
-
-    .Top-Buttons li {
-        animation: Opacity .8s;
-        float: left;
-        font-size: 19px;
-        font-weight: 700;
-        margin-left: 100px;
-        position: relative
-    }
-
-    .Top-Buttons li a {
-        animation: ColorChangeBack .8s;
-        color: lightgray;
-        text-shadow: 2px 2px 4px #000000a6
-    }
-
-    .Top-Buttons li a:hover {
-        animation: ColorChange .8s;
-        color: #fff
-    }
-
-    .Top-Buttons li a::after {
-        background-color: #9cb1d0;
-        bottom: 0;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 25px;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .3s ease;
-        width: 100%
-    }
-
-    .Top-Buttons li a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .Top-Buttons {
-        float: right;
-        margin-right: 100px;
-        padding-top: 100px
-    }
-
-    .Top-Buttons li {
-        animation: Opacity .8s;
-        float: left;
-        font-size: 19px;
-        font-weight: 700;
-        margin-left: 100px;
-        position: relative
-    }
-
-    .Top-Buttons li a {
-        animation: ColorChangeBack .8s;
-        color: lightgray;
-        text-shadow: 2px 2px 4px #000000a6
-    }
-
-    .Top-Buttons li a:hover {
-        animation: ColorChange .8s;
-        color: #fff
-    }
-
-    .Top-Buttons li a::after {
-        background-color: #9cb1d0;
-        bottom: 0;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 25px;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .3s ease;
-        width: 100%
-    }
-
-    .Top-Buttons li a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left
-    }
-}
-
 @media screen and (max-width: 1060px) {
-    .Top-Buttons {
-        float: left;
-        margin-left: 10px;
-        margin-right: 0;
-        padding-top: 100px
-    }
-
     .Top-Buttons li {
-        animation: Opacity .8s;
-        float: left;
-        font-size: 19px;
-        font-weight: 700;
         margin-left: 50px;
-        position: relative
-    }
-
-    .Top-Buttons li a {
-        animation: ColorChangeBack .8s;
-        color: lightgray;
-        text-shadow: 2px 2px 4px #000000a6
-    }
-
-    .Top-Buttons li a:hover {
-        animation: ColorChange .8s;
-        color: #fff
-    }
-
-    .Top-Buttons li a::after {
-        background-color: #9cb1d0;
-        bottom: 0;
-        content: '';
-        height: 4px;
-        left: 0;
-        position: absolute;
-        top: 25px;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .3s ease;
-        width: 100%
-    }
-
-    .Top-Buttons li a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left
     }
 }
 
 @media screen and (max-width: 768px) {
     .Top-Buttons {
         display: none
-    }
-
-    .open-slide a p {
-        font-size: 60px;
-        padding-top: 50px
     }
 
     .hamburger p {
@@ -282,44 +152,14 @@
 }
 
 @media screen and (max-width: 600px) {
-    .Top-Buttons {
-        display: none
-    }
-
     .open-slide a p {
         font-size: 40px;
         padding-top: 40px
     }
 
-    .hamburger p {
-        display: block
-    }
-
-    .hamburger {
-        display: block;
-        margin-left: 0;
-        width: 53px
-    }
+    .hamburger { margin-left: 0 }
 }
 
-@media screen and (max-width: 415px) {
-    .Top-Buttons {
-        display: none
-    }
-
-    .open-slide a p {
-        align-items: center;
-        color: #fff;
-        font-size: 35px;
-        padding-top: 40px
-    }
-
-    .hamburger p {
-        display: block
-    }
-
-    .hamburger {
-        display: block;
-        width: 53px
-    }
+@media screen and (max-width: 415px) { 
+    .open-slide a p { font-size: 35px }
 }

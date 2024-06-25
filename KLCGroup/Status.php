@@ -32,7 +32,7 @@
 <body>
     <header>
         <ul class="Top-Buttons">
-            <li><a href="Home.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="OurServices.html">Our Services</a></li>
             <li><a href="Gallery.html">Gallery</a></li>
             <li><a href="Testimonial.html">Testimonial</a></li>
@@ -46,7 +46,7 @@
         </span>
         <div id="side-menu" class="side-nav">
             <a href="" class="btn-close" onclick="closeSideMenu()">&times;</a>
-            <a href="Home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="OurServices.html">Our Services</a>
             <a href="Gallery.html">Gallery</a>
             <a href="Testimonial.html">Testimonial</a>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="Title">
-            <a class="HomeBtn" href="Home.html"><img alt="" src="Images/Company Logo.webp"></a>
+            <a class="HomeBtn" href="index.html"><img alt="" src="Images/Company Logo.webp"></a>
         </div>
     </header>
 
@@ -65,7 +65,7 @@
         if ($status === 'success') {
             echo '<img alt="" class="status" src="Images/Status/CheckMark.webp" alt="Check Mark">';
             echo '<h2>Thank you for your submission! We will contact you shortly!</h2>';
-            echo '<a class="BackButton" href="Home.html">Back to Home &#10095;</a>';
+            echo '<a class="BackButton" href="index.html">Back to Home &#10095;</a>';
         } elseif ($status === 'error') {
             echo '<img alt="" class="status" src="Images/Status/Error.webp" alt="Error">';
             echo '<h2>There was an error processing your request. Please try again.</h2>';
