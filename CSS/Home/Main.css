@@ -26,13 +26,8 @@
 .Title h1, h2{ animation: Up 1s forwards }
 
 .Middle{
-    background-color: #181818;
-    border-radius: 20px;
     text-align: center;
     margin: 0 22vw;
-    padding: 20px 50px;
-    /* box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5); */
-    border: 2px solid;
 }
 
 .Middle h3{
@@ -41,5 +36,8 @@
 }
 
 .two-con{
+    margin-top: 50px; 
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    text-align: center;
 }
