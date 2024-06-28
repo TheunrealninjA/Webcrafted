@@ -62,3 +62,14 @@
         opacity: 1
     }
 }
+
+@keyframes scrollanim {
+    0%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50%{
+        opacity: 0.4;
+        transform: translateY(20px);
+    }
+}

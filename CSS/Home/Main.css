@@ -25,19 +25,30 @@
 
 .Title h1, h2{ animation: Up 1s forwards }
 
+.Title h3{
+    color: rgb(200, 200, 200);
+    margin-bottom: 60px;
+    animation: scrollanim 2.4s infinite;
+}
+
+.Title p{
+    display: inline;
+}
+
 .Middle{
     text-align: center;
     margin: 0 22vw;
 }
 
+.text{ display: flex }
+
 .Middle h3{
     font-size: 24px;
-    margin-bottom: 30px;
+    margin-bottom: 30px
 }
 
-.two-con{
-    margin-top: 50px; 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    text-align: center;
+.first p{
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 14px;
 }

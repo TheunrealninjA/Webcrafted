@@ -20,3 +20,15 @@
     font-size: 24px;
     margin-bottom: 30px;
 }
+
+.two-con{
+    margin-top: 50px; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    gap: 10px;
+}
+
+.first{
+    margin-left: 14px;
+}
