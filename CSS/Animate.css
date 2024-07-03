@@ -73,3 +73,14 @@
         transform: translateY(20px);
     }
 }
+
+.farleft{
+    opacity: 0;
+    transform: translateX(-300px);
+}
+
+.ToDefault{
+    opacity: 1;
+    transform: translateX(0px);
+    transition: transform 1s, opacity 0.8s ease-in;
+}

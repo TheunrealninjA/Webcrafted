@@ -1,6 +1,11 @@
 html, body { height: 100% }
-body{
-    background-image: linear-gradient(black , rgb(50, 50, 50));
+.Gup{
+    background-image: linear-gradient(rgb(4, 5, 23) , black);
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+.Gdown{
+    background-image: linear-gradient(black , rgb(4, 5, 23));
+    background-repeat: no-repeat;
 }

@@ -1,9 +1,14 @@
+header{ height: 100vh }
+
 .Title{
     text-align: center;
     padding-top: 80px;
 }
 
-.Title img{ animation: UpLogo 1s forwards }
+.Title img{ 
+    animation: UpLogo 1s forwards;
+    margin-top: 10vh;
+}
 
 .Title a{
     animation: FarLeft 2.3s;
@@ -27,24 +32,49 @@
 
 .Title h3{
     color: rgb(200, 200, 200);
-    margin-bottom: 60px;
+    margin-top: 18vh;
     animation: scrollanim 2.4s infinite;
 }
 
-.Title p{
-    display: inline;
-}
-
-.Middle{
-    text-align: center;
-    margin: 0 22vw;
-}
+.Title p{ display: inline }
 
 .text{ display: flex }
 
-.Middle h3{
-    font-size: 24px;
-    margin-bottom: 30px
+.box{
+    height: 100vh;
+    width: 100%
+}
+
+.box h3{
+    padding: 100px 50px 20px;
+    font-size: 70px;
+}
+
+.box p{
+    margin: 20px 50px;
+    font-size: 25px;
+}
+
+.box li{
+    font-size: 20px;
+    margin:5px 100px;
+    list-style: inside;
+}
+
+.box li:nth-child(1) {
+    transition-duration: 2s;
+}
+.box li:nth-child(2) {
+    transition-duration: 2.5s;
+}
+.box li:nth-child(3) {
+    transition-duration: 3s;
+}
+.box li:nth-child(4) {
+    transition-duration: 4s;
+}
+.box li:nth-child(5) {
+    transition-duration: 4.5s;
 }
 
 .first p{
