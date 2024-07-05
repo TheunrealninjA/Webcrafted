@@ -61,24 +61,41 @@ header{ height: 100vh }
     list-style: inside;
 }
 
-.box li:nth-child(1) {
-    transition-duration: 2s;
-}
-.box li:nth-child(2) {
-    transition-duration: 2.5s;
-}
-.box li:nth-child(3) {
-    transition-duration: 3s;
-}
-.box li:nth-child(4) {
-    transition-duration: 4s;
-}
-.box li:nth-child(5) {
-    transition-duration: 4.5s;
-}
+.box li:nth-child(1) { transition-duration: 2s }
+.box li:nth-child(2) { transition-duration: 2.5s }
+.box li:nth-child(3) { transition-duration: 3s }
+.box li:nth-child(4) { transition-duration: 4s }
+.box li:nth-child(5) { transition-duration: 4.5s }
 
 .first p{
     text-align: left;
     padding-left: 20px;
     padding-top: 14px;
+}
+
+.purbar{
+    background-image: linear-gradient(179deg, rgb(196, 68, 222), rgb(130, 26, 156));
+    width: 40vw;
+    margin-left: 100px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px 2px white, 0 0 20px 2px rgb(59, 59, 59) inset;
+    transition: transform 0.5s;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.pinbar{
+    background-image: linear-gradient(179deg, rgb(219, 50, 154), rgb(171, 27, 121));
+    margin: 30px 100px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px 2px white, 0 0 20px 2px rgb(59, 59, 59) inset;
+    transition: transform 0.5s;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pinbar:hover, .purbar:hover{
+    transform: scale(1.05);
+    transition: transform 0.5s;
 }
