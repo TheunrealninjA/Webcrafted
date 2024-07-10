@@ -19,7 +19,6 @@
 }
 
 .Top-Buttons {
-    animation: Down 1.5s;
     width: 100%;
     padding-top: 80px;
     display: flex;
@@ -72,6 +71,26 @@
 
 .Second-Layer a{
     font-size: 22px;
+}
+
+#templates {
+    animation: moveHomeToLeft 1s forwards;
+    animation-delay: 0.2s;
+}
+
+#services {
+    animation: moveHomeToLeft 1s forwards;
+    animation-delay: 0.4s;
+}
+
+#websites {
+    animation: moveHomeToRight 1s forwards;
+    animation-delay: 0.2s;
+}
+
+#contact {
+    animation: moveHomeToRight 1s forwards;
+    animation-delay: 0.4s;
 }
 
 .open-slide a p {

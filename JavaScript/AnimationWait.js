@@ -6,7 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "#wait3",
         "#wait4",
         "#wait5",
-        "#wait6"
+        "#wait6",
+        "#wait7",
+        "#wait8",
+        "#wait9",
+        "#bar1",
+        "#bar2"
     ];
 
     // Set up the Observers
@@ -36,8 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function handleIntersect(entries, observer) {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('ToDefault');
+                if (entry.target.id === 'bar1') {
+                    entry.target.classList.add('ToDefaultBar1');
+                } else if (entry.target.id === 'bar2') {
+                    entry.target.classList.add('ToDefaultBar2');
+                } else {
+                    entry.target.classList.add('ToDefault');
+                }
             } else {
+                entry.target.classList.remove('ToDefaultBar1');
+                entry.target.classList.remove('ToDefaultBar2');
                 entry.target.classList.remove('ToDefault');
             }
         });

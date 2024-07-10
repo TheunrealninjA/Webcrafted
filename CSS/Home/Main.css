@@ -1,5 +1,20 @@
 header{ height: 100vh }
 
+body{
+    overflow: hidden;
+}
+
+.main-body{
+    height: 100vh;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.main-body > .snap{
+    scroll-snap-align: start;
+}
+
 .Title{
     text-align: center;
     padding-top: 80px;
@@ -38,21 +53,24 @@ header{ height: 100vh }
 
 .Title p{ display: inline }
 
-.text{ display: flex }
-
 .box{
     height: 100vh;
-    width: 100%
+    width: 100%;
 }
 
-.box h3{
+.box h3, .lastbox h3{
     padding: 100px 50px 20px;
     font-size: 70px;
 }
 
-.box p{
+.box p, .lastbox p{
     margin: 20px 50px;
     font-size: 25px;
+}
+
+.lastbox{
+    height: 60vh;
+    width: 100%;
 }
 
 .box li{
@@ -61,11 +79,11 @@ header{ height: 100vh }
     list-style: inside;
 }
 
-.box li:nth-child(1) { transition-duration: 2s }
-.box li:nth-child(2) { transition-duration: 2.5s }
-.box li:nth-child(3) { transition-duration: 3s }
-.box li:nth-child(4) { transition-duration: 4s }
-.box li:nth-child(5) { transition-duration: 4.5s }
+.box li:nth-child(1) { transition-duration: 1.4s }
+.box li:nth-child(2) { transition-duration: 1.8s }
+.box li:nth-child(3) { transition-duration: 2.2s }
+.box li:nth-child(4) { transition-duration: 2.6s }
+.box li:nth-child(5) { transition-duration: 3s }
 
 .first p{
     text-align: left;
@@ -98,4 +116,16 @@ header{ height: 100vh }
 .pinbar:hover, .purbar:hover{
     transform: scale(1.05);
     transition: transform 0.5s;
+}
+
+.text{ display: flex }
+
+.text img{
+    margin-left: 100px;
+    width: 150px;
+    height: auto;
+}
+
+.text p{
+    width: 60vw;
 }

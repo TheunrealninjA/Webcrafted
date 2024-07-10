@@ -1,7 +1,6 @@
 footer{
     padding-bottom: 30px;
     padding-top: 50px;  
-    position: absolute;
 }
 
 .footerlist{
@@ -24,7 +23,7 @@ footer{
 }
 
 .footerlist h4 a {
-    color: lightsalmon;
+    color: rgb(34, 181, 255);
 }
 
 .Copyright p{
@@ -36,7 +35,7 @@ footer{
 }
 
 .Copyright p a{
-    color: lightsalmon;
+    color: rgb(34, 181, 255);
 }
 
 @media(max-width: 768px){

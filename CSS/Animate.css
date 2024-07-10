@@ -20,6 +20,34 @@
     }
 }
 
+/* Keyframes for moving left */
+@keyframes moveHomeToLeft {
+    0% {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Keyframes for moving right */
+@keyframes moveHomeToRight {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Down */
 @keyframes Down{
     from{
@@ -74,13 +102,44 @@
     }
 }
 
+/* JavaScript Animations */
+
 .farleft{
     opacity: 0;
     transform: translateX(-300px);
 }
 
+.expand{
+    transform: scale(0.1);
+}
+
+.farright{
+    opacity: 0;
+    transform: translateX(300px); 
+}
+
+.barmove{
+    width: 32vw;
+    opacity: 0;
+}
+
+/* Defaults */
+
 .ToDefault{
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0px) scale(1);
     transition: transform 1s, opacity 0.8s ease-in;
+}
+
+.ToDefaultBar1 {
+    opacity: 1;
+    width: 80vw;
+    transition: width 1s ease-in-out, opacity 0.8s ease-in;
+}
+
+.ToDefaultBar2 {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+    width: 40vw;
+    transition: width 1s ease-in-out, transform 1s ease-in-out, opacity 0.8s ease-in;
 }
