@@ -74,23 +74,23 @@
 }
 
 #templates {
-    animation: moveHomeToLeft 1s forwards;
-    animation-delay: 0.2s;
+    transform: translateX(300%);
+    animation: moveHome 1s forwards;
 }
 
 #services {
-    animation: moveHomeToLeft 1s forwards;
-    animation-delay: 0.4s;
+    transform: translateX(150%);
+    animation: moveHome 1s forwards;
 }
 
 #websites {
-    animation: moveHomeToRight 1s forwards;
-    animation-delay: 0.2s;
+    transform: translateX(-150%);
+    animation: moveHome 1s forwards;
 }
 
 #contact {
-    animation: moveHomeToRight 1s forwards;
-    animation-delay: 0.4s;
+    transform: translateX(-300%);
+    animation: moveHome 1s forwards;
 }
 
 .open-slide a p {

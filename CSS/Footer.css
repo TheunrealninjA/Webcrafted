@@ -5,7 +5,7 @@ footer{
 
 .footerlist{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     animation: Opacity .8s;
     gap: 2%;
     margin: 0 1% 0 1%;

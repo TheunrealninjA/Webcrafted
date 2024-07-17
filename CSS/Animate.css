@@ -21,29 +21,15 @@
 }
 
 /* Keyframes for moving left */
-@keyframes moveHomeToLeft {
+@keyframes moveHome {
     0% {
-        transform: translateX(50%);
         opacity: 0;
     }
-    50% {
-        opacity: 1;
+    10%{
+        opacity: 0
     }
     100% {
         transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Keyframes for moving right */
-@keyframes moveHomeToRight {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
         opacity: 1;
     }
 }
