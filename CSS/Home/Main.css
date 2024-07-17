@@ -96,7 +96,6 @@ body{
     margin-left: 100px;
     border-radius: 8px;
     box-shadow: 0 0 8px 2px white, 0 0 20px 2px rgb(59, 59, 59) inset;
-    transition: transform 0.5s;
     display: flex;
     justify-content: space-between;
 }
@@ -107,7 +106,6 @@ body{
     margin: 30px 100px;
     border-radius: 8px;
     box-shadow: 0 0 8px 2px white, 0 0 20px 2px rgb(59, 59, 59) inset;
-    transition: transform 0.5s;
     display: flex;
     justify-content: space-between;
 }
