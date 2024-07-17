@@ -1,11 +1,10 @@
-html, body { height: 100% }
 .Gup{
-    background-image: linear-gradient(rgb(8, 10, 50) , black);
-    background-repeat: no-repeat;
+    background-color: black;
+    background-size: 100px 100px;
+    background-position: 50.4px 32.4px , 0, 0 ;
+    background-image:
+    radial-gradient(circle, rgb(85, 85, 85) 2px, rgba(0, 0, 0, 0) 2px),
+    linear-gradient(to right, rgb(32,32,32) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(32,32,32) 1px, transparent 1px);
     overflow-x: hidden;
-}
-
-.Gdown{
-    background-image: linear-gradient(black , rgb(8, 10, 50));
-    background-repeat: no-repeat;
 }

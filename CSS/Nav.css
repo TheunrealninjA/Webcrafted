@@ -75,21 +75,25 @@
 
 #templates {
     transform: translateX(300%);
+    animation-delay: 0.5s;
     animation: moveHome 1s forwards;
 }
 
 #services {
     transform: translateX(150%);
+    animation-delay: 0.5s;
     animation: moveHome 1s forwards;
 }
 
 #websites {
     transform: translateX(-150%);
+    animation-delay: 0.5s;
     animation: moveHome 1s forwards;
 }
 
 #contact {
     transform: translateX(-300%);
+    animation-delay: 0.5s;
     animation: moveHome 1s forwards;
 }
 
