@@ -1,0 +1,9 @@
+.box h3{
+    padding: 100px 50px 20px;
+    font-size: 70px;
+}
+
+.box p{
+    margin: 20px 50px;
+    font-size: 25px;
+}

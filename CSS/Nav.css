@@ -18,6 +18,14 @@
     }
 }
 
+.MiniWCLogo{
+    margin-left: 6vw;
+}
+
+.MiniWCLogo img{
+    margin-top: -75px;
+}
+
 .Top-Buttons {
     width: 100%;
     padding-top: 80px;

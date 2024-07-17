@@ -53,11 +53,6 @@ body{
 
 .Title p{ display: inline }
 
-.box{
-    height: 100vh;
-    width: 100%;
-}
-
 .box h3, .lastbox h3{
     padding: 100px 50px 20px;
     font-size: 70px;
