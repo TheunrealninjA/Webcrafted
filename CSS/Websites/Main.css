@@ -1,9 +1,44 @@
 .box h3{
-    padding: 100px 50px 20px;
-    font-size: 70px;
+    padding: 50px 40px 20px;
+    font-size: 50px;
 }
 
 .box p{
-    margin: 20px 50px;
     font-size: 25px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.web{
+    border: 1px solid white;
+    border-radius: 12px;
+    height: 48vh;
+    width: 26vw;
+    box-shadow: 0 0 8px 1px white;
+    text-align: center;
+}
+
+.web a{
+    padding: 10px;
+    float: right;
+    font-size: 20px;
+    border-radius: 12px 0 12px 0;
+    transition: 0.6s ease;
+}
+
+.web a:hover{
+    transform: scale(1.05);
+    background-color: rgba(211, 211, 211, 0.25);
+}
+
+.klc{
+    width: 20vw !important;
+}
+
+.web img{
+    width: 6.4vw;
 }

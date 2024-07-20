@@ -1,20 +1,5 @@
 header{ height: 100vh }
 
-body{
-    overflow: hidden;
-}
-
-.main-body{
-    height: 100vh;
-    width: 100%;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-}
-
-.main-body > .snap{
-    scroll-snap-align: start;
-}
-
 .Title{
     text-align: center;
     padding-top: 80px;
@@ -108,6 +93,24 @@ body{
 .pinbar:hover, .purbar:hover{
     transform: scale(1.05);
     transition: transform 0.5s;
+}
+
+.plans{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.packtext{
+    font-size: 37px !important;
+}
+
+.pricebox{
+    border: 1px solid white;
+    border-radius: 32px;
+    margin: 6vh 4vw;
+    background-color: rgb(10, 10, 10);
+    background-image: linear-gradient(135deg, #181818, #101010);
+    box-shadow: 0 0 8px 3px white;
 }
 
 .text{ display: flex }

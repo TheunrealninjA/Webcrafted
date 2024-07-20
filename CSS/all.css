@@ -7,6 +7,21 @@
     text-decoration: none;
 }
 
+body{
+    overflow: hidden;
+}
+
+.main-body{
+    height: 100vh;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.main-body > .snap{
+    scroll-snap-align: start;
+}
+
 .box{
     height: 100vh;
     width: 100%;
