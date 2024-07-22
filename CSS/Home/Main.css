@@ -113,6 +113,21 @@ header{ height: 100vh }
     box-shadow: 0 0 8px 3px white;
 }
 
+.pricebox h4{
+    font-size: 32px;
+    margin-left: 50px;
+}
+
+.pricebox ul li{
+    font-size: 28px;
+    list-style: none;
+}
+
+.pricebox img{
+    width: 24px;
+    height: auto;
+}
+
 .text{ display: flex }
 
 .text img{
