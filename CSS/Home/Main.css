@@ -97,36 +97,74 @@ header{ height: 100vh }
 
 .plans{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .packtext{
-    font-size: 37px !important;
+    font-size: 30px !important;
+    padding-top: 50px !important
 }
 
 .pricebox{
     border: 1px solid white;
     border-radius: 32px;
-    margin: 6vh 4vw;
+    margin: 9vh 2.8vw;
+    width: 25vw;
     background-color: rgb(10, 10, 10);
     background-image: linear-gradient(135deg, #181818, #101010);
     box-shadow: 0 0 8px 3px white;
+    transition: transform 0.8s;
 }
 
+.pricebox:hover{ transform: scale(1.05) }
+
 .pricebox h4{
-    font-size: 32px;
+    font-size: 26px;
     margin-left: 50px;
+    margin-bottom: 30px;
 }
 
 .pricebox ul li{
-    font-size: 28px;
+    font-size: 22px;
     list-style: none;
+    margin: 10px 50px;
 }
 
 .pricebox img{
-    width: 24px;
+    width: 22px;
     height: auto;
 }
+
+.pricebox a{
+    float: right;
+    font-size: 22px;
+    margin: 30px 32px 0px;
+    border: white 1px solid;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: background-color 0.5s, color 0.3s;
+}
+
+.pricebox a:hover{
+    color: black;
+    background-color: white;
+}
+
+.next{
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.see-more{
+    font-size: 120px;
+    margin-bottom: 6vh;
+    transition: transform 0.8s;
+}
+
+.see-more p { margin: -4.5vh 1.03vw 0 0 }
+
+.see-more:hover{ transform: scale(1.05) }
 
 .text{ display: flex }
 
@@ -136,6 +174,4 @@ header{ height: 100vh }
     height: auto;
 }
 
-.text p{
-    width: 60vw;
-}
+.text p{ width: 60vw }
