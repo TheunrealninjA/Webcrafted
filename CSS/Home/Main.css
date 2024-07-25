@@ -1,3 +1,4 @@
+
 header{ height: 100vh }
 
 .Title{
@@ -32,7 +33,7 @@ header{ height: 100vh }
 
 .Title h3{
     color: rgb(200, 200, 200);
-    margin-top: 18vh;
+    margin-top: 16vh;
     animation: scrollanim 2.4s infinite;
 }
 
@@ -164,8 +165,6 @@ header{ height: 100vh }
 
 .see-more p { margin: -4.5vh 1.03vw 0 0 }
 
-.see-more:hover{ transform: scale(1.05) }
-
 .text{ display: flex }
 
 .text img{
@@ -175,3 +174,7 @@ header{ height: 100vh }
 }
 
 .text p{ width: 60vw }
+
+.iubenda-cs-brand-badge{
+    display: none !important;
+}
