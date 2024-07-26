@@ -36,9 +36,9 @@ $stmt->bind_param("sss", $user, $email, $hashed_password);
 
 // Execute the statement
 if ($stmt->execute()) {
-    echo "Signup successful!";
+    header("Location: Status.php?page=signup&status=success");
 } else {
-    echo "Error: " . $stmt->error;
+    header("Location: Status.php?page=signup&status=error");
 }
 
 // Close connection
