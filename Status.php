@@ -7,12 +7,10 @@
     <?php
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
-        echo "Page: " . $page . "<br>";
 
         if ($page === 'signup') {
             if (isset($_GET['status'])) {
                 $status = $_GET['status'];
-                echo "Status: " . $status . "<br>";
                 if ($status === 'success') {
                     echo '<title>Successful Sign Up</title>';
                 } elseif ($status === 'error') {
