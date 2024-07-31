@@ -5,31 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
-    if (isset($_GET['page'])) {
-        $page = $_GET['page'];
+    $page = htmlspecialchars($_GET['page'] ?? '', ENT_QUOTES, 'UTF-8');
+    $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
 
-        if ($page === 'signup') {
-            if (isset($_GET['status'])) {
-                $status = $_GET['status'];
-                if ($status === 'success') {
-                    echo '<title>Successful Sign Up</title>';
-                } elseif ($status === 'error') {
-                    echo '<title>Failed Sign Up</title>';
-                } else {
-                    echo '<title>Invalid Status</title>';
-                }
-            } else {
+    if ($page === 'signup') {
+        switch ($status) {
+            case 'success':
+                echo '<title>Successful Sign Up</title>';
+                break;
+            case 'error':
+                echo '<title>Failed Sign Up</title>';
+                break;
+            case '':
                 echo '<title>Missing Status</title>';
-            }
-        } else {
-            echo '<title>Invalid Page</title>';
+                break;
+            default:
+                echo '<title>Invalid Status</title>';
+                break;
         }
     } else {
-        echo '<title>Missing Page</title>';
+        echo $page === '' ? '<title>Missing Page</title>' : '<title>Invalid Page</title>';
     }
     ?>
-
-
     <link rel="icon" href="images/WCLogo.webp">
 
     <link rel="stylesheet" href="CSS/Footer.css">
@@ -67,40 +64,32 @@
             <a class="MiniWCLogo" href="index.html"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
         <?php
-        if (isset($page)) {
-            if ($page === 'signup') {
-                if ($status === 'success') {
-                    echo '<div style="text-align: center;">';
-                    echo '<img class="status" src="images/status/CheckMark.webp" alt="Check Mark">';
-                    echo '<h3 class="message">Sign Up Successful</h3>';
-                    echo '<a class="button" href="index.html">Back to home</a>';
-                    echo '</div>';
-                } elseif ($status === 'error') {
-                    echo '<div style="text-align: center;">';
-                    echo '<img class="status" src="images/status/Error.webp" alt="Error">';
-                    echo '<h3 class="message">Sign Up Failed</h3>';
-                    echo '<a class="button" href="SignUp.html">Go Back</a>';
-                    echo '</div>';
-                } else {
-                    echo '<div style="text-align: center;">';
-                    echo '<img class="status" src="images/status/QuestionMark.webp" alt="Invalid Status">';
-                    echo '<h3 class="message">Invalid Status</h3>';
-                    echo '<a class="button" href="SignUp.html">Go Back</a>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<div style="text-align: center;">';
-                echo '<img class="status" src="images/status/QuestionMark.webp" alt="Invalid Redirect">';
-                echo '<h3 class="message">Invalid Redirect</h3>';
-                echo '<a class="button" href="index.html">Back to home</a>';
-                echo '</div>';
+        function displayMessage($image, $message, $linkText, $linkHref)
+        {
+            echo '<div style="text-align: center;">';
+            echo '<img class="status" src="images/status/' . $image . '" alt="' . $message . '">';
+            echo '<h3 class="message">' . $message . '</h3>';
+            echo '<a class="button" href="' . $linkHref . '">' . $linkText . '</a>';
+            echo '</div>';
+        }
+
+        $page = htmlspecialchars($_GET['page'] ?? '', ENT_QUOTES, 'UTF-8');
+        $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
+
+        if ($page === 'signup') {
+            switch ($status) {
+                case 'success':
+                    displayMessage('CheckMark.webp', 'Sign Up Successful', 'Back to home', 'index.html');
+                    break;
+                case 'error':
+                    displayMessage('Error.webp', 'Sign Up Failed', 'Go Back', 'SignUp.html');
+                    break;
+                default:
+                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.html');
+                    break;
             }
         } else {
-            echo '<div style="text-align: center;">';
-            echo '<img class="status" src="images/status/QuestionMark.webp" alt="Invalid Redirect">';
-            echo '<h3 class="message">Invalid Redirect</h3>';
-            echo '<a class="button" href="index.html">Back to home</a>';
-            echo '</div>';
+            displayMessage('QuestionMark.webp', 'Invalid Redirect', 'Back to home', 'index.html');
         }
         ?>
         <footer>
