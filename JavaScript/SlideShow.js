@@ -1,19 +1,29 @@
-let slideIndex = 1;
+let slideIndices = {};
+
 document.addEventListener("DOMContentLoaded", function() {
-    showSlides(slideIndex);
+    initializeSlideshows();
 });
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
+function initializeSlideshows() {
+    let slideshows = document.getElementsByClassName("slideshow-container");
+    for (let i = 0; i < slideshows.length; i++) {
+        let slideshowId = slideshows[i].id;
+        slideIndices[slideshowId] = 1;
+        showSlides(1, slideshowId);
+    }
 }
 
-function showSlides(n) {
+function plusSlides(n, slideshowId) {
+    showSlides(slideIndices[slideshowId] += n, slideshowId);
+}
+
+function showSlides(n, slideshowId) {
     let i;
-    let slides = document.getElementsByClassName("slide");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
+    let slides = document.querySelectorAll(`#${slideshowId} .slide`);
+    if (n > slides.length) { slideIndices[slideshowId] = 1 }
+    if (n < 1) { slideIndices[slideshowId] = slides.length }
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    slides[slideIndex-1].style.display = "flex";
+    slides[slideIndices[slideshowId] - 1].style.display = "flex";
 }

@@ -1,3 +1,9 @@
+<?php
+// Start a session
+session_start();
+$is_logged_in = isset($_SESSION['username']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,27 +29,32 @@
 </head>
 
 <body>
-    <div class="main-body Gup">
+    <div class="main-body">
         <header class="snap">
             <ul class="Top-Buttons">
                 <li id="templates"><a href="Templates.php">Templates</a></li>
-                <li id="services" class="Second-Layer"><a href="Pricing.html">Pricing</a></li>
-                <li class="First-Layer"><a href="index.html">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.html">Websites</a></li>
-                <li id="contact"><a href="ContactUs.html">Contact Us</a></li>
+                <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a></li>
+                <li class="First-Layer"><a href="index.php">Home</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
+                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
 
             <ul class="account">
-                <li><a href="Login.php">Login</a></li>
-                <li><a href="SignUp.html">Sign Up</a></li>
+                <?php if ($is_logged_in): ?>
+                    <li><a href="account.php"><img src="images/account.png" alt="Account"
+                                style="width:30px;height:30px;"></a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="Login.php">Login</a></li>
+                    <li><a href="SignUp.php">Sign Up</a></li>
+                <?php endif; ?>
             </ul>
 
-            <a class="MiniWCLogo" href="index.html"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
-
         <div class="box snap">
             <h3>Our Websites</h3>
-            <div class="grid">
+            <div class="three-grid">
                 <div class="web">
                     <h3>WebCrafted.Pro</h3>
                     <img src="images/WCLogo.webp" alt="webcrafted.pro home page">

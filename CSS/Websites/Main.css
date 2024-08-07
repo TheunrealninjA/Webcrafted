@@ -7,12 +7,6 @@
     font-size: 25px;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-}
-
 .web{
     border: 1px solid white;
     border-radius: 12px;

@@ -2,6 +2,12 @@
 // Start a session
 session_start();
 $is_logged_in = isset($_SESSION['username']);
+
+// Check if user is logged in
+if (!$is_logged_in) {
+    header("Location: LoginPage.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -10,17 +16,16 @@ $is_logged_in = isset($_SESSION['username']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Templates - WebCrafted Pro</title>
+    <title>Contact Us - WebCrafted Pro</title>
     <meta name="description"
-        content="Welcome to WebCrafted.Pro, where you can get hand-crafted custom websites for your businesses specific needs. We have competive prices and exclusive features that elevate your website to the next level.">
-
+        content="Welcome to WebCrafted.Pro Contact Page, where you can get in contact with us about your hand-crafted custom websites for your businesses specific needs. We have competive prices and exclusive features that elevate your website to the next level.">
     <link rel="icon" href="images/WCLogo.webp">
 
+    <link rel="stylesheet" href="CSS/Footer.css">
+
+    <link rel="stylesheet" href="CSS/Nav.css">
     <link rel="stylesheet" href="CSS/all.css">
     <link rel="stylesheet" href="CSS/Animate.css">
-    <link rel="stylesheet" href="CSS/Footer.css">
-    <link rel="stylesheet" href="CSS/Nav.css">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
     <style>
@@ -52,10 +57,6 @@ $is_logged_in = isset($_SESSION['username']);
 
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
-
-        <div class="templates three-grid">
-            
-        </div>
     </div>
 </body>
 

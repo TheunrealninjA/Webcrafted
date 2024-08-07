@@ -1,3 +1,15 @@
+<?php
+// Start a session
+session_start();
+$is_logged_in = isset($_SESSION['username']);
+
+// Check if user is logged in
+if ($is_logged_in) {
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,23 +39,23 @@
         <header class="snap">
             <ul class="Top-Buttons">
                 <li id="templates"><a href="Templates.php">Templates</a></li>
-                <li id="services" class="Second-Layer"><a href="Pricing.html">Pricing</a></li>
-                <li class="First-Layer"><a href="index.html">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.html">Websites</a></li>
-                <li id="contact"><a href="ContactUs.html">Contact Us</a></li>
+                <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a>
+                <li class="First-Layer"><a href="index.php">Home</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php>Websites</a></li>
+                <li id="contact"><a href="ContactUs.php>Contact Us</a></li>
             </ul>
 
             <ul class="account">
                 <li><a href="Login.php">Login</a></li>
-                <li><a href="Signup.html">Sign Up</a></li>
+                <li><a href="Signup.php>Sign Up</a></li>
             </ul>
 
-            <a class="MiniWCLogo" href="index.html"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
         <div class=" SignCont">
             <h3>Sign Up</h3>
-            <form class="signup" action="signup.php" method="post">
+            <form class="signup" action="signupcheck.php" method="post">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" required><br><br>
                 

@@ -1,3 +1,8 @@
+<?php
+session_start();
+$is_logged_in = isset($_SESSION['username']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,15 +40,20 @@
         <header class="snap">
             <ul class="Top-Buttons">
                 <li id="templates"><a href="Templates.php">Templates</a></li>
-                <li id="services" class="Second-Layer"><a href="Pricing.html">Pricing</a></li>
-                <li class="First-Layer"><a href="index.html">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.html">Websites</a></li>
-                <li id="contact"><a href="ContactUs.html">Contact Us</a></li>
+                <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a></li>
+                <li class="First-Layer"><a href="index.php">Home</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
+                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
 
             <ul class="account">
-                <li><a href="Login.php">Login</a></li>
-                <li><a href="SignUp.html">Sign Up</a></li>
+                <?php if ($is_logged_in): ?>
+                    <li><a href="account.php"><img src="images/account.png" alt="Account" style="width:30px;height:30px;"></a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="Login.php">Login</a></li>
+                    <li><a href="SignUp.php">Sign Up</a></li>
+                <?php endif; ?>
             </ul>
 
             <div class="Title">
@@ -139,7 +149,7 @@
             </div>
 
             <div class="next">
-                <a class="see-more" href="Pricing.html">&rarr;<p>See More</p></a>
+                <a class="see-more" href="Pricing.php">&rarr;<p>See More</p></a>
 
             </div>
         </div>
@@ -156,24 +166,31 @@
                 </div>
             </div>
         </div>
-        <footer>
+
+        <footer class="box snap">
             <div class="footerlist">
-                <div class="section-1">
+                <div class="section">
                     <h3>About Us</h3>
                     <h4>WebCrafted.Pro is where you can get hand-crafted custom websites for your businesses
                         specific needs.
                         We have competive prices and exclusive features that elevate your website to the next
                         level.</h4>
                 </div>
-                <div class="section-2">
+                <div class="section">
                     <h3>Contact Us</h3>
                     <h4>Email Us : <a href="mailto:wyattd@webcrafted.pro">wyattd@webcrafted.pro</a></h4>
                 </div>
-                <div class="section-3">
+                <div class="section">
                     <h3>Extras</h3>
                     <h4><a href="">Sitemap</a></h4>
                     <h4><a href="Terms.html">Terms & Conditions</a></h4>
                     <h4><a href="Privacy.html">Privacy Policy</a></h4>
+                </div>
+                <div class="section">
+                    <h3>Services</h3>
+                    <h4><a href="">Image Optimisation</a></h4>
+                    <h4><a href="">Code Optimisation</a></h4>
+                    <h4><a href="">Hourly Hire</a></h4>
                 </div>
             </div>
             <div class="Copyright">
@@ -181,7 +198,6 @@
                         href="https://webcrafted.pro">webcrafted.pro</a></p>
             </div>
         </footer>
-
     </div>
 
 </body>

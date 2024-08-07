@@ -1,6 +1,8 @@
 footer{
     padding-bottom: 30px;
-    padding-top: 50px;  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .footerlist{
@@ -9,17 +11,20 @@ footer{
     animation: Opacity .8s;
     gap: 2%;
     margin: 0 1% 0 1%;
+    padding-bottom: 40px;
 }
 
 .footerlist h3 {
     color: whitesmoke;
     padding-bottom: 10px;
     text-align: center;
+    font-size: large !important;
 }
 
 .footerlist h4 {
     color: #a8a8a8;
     text-align: center;
+    padding-bottom: 5px;
 }
 
 .footerlist h4 a {
@@ -27,7 +32,7 @@ footer{
 }
 
 .Copyright p{
-    font-size: 16px;
+    font-size: 16px !important;
     margin: 100px 0 0 30px;
     color: #a8a8a8;
     font-weight: 600;

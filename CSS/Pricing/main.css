@@ -27,13 +27,13 @@
     font-weight: bold;
     font-size: 55px;
     transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 12px 12px 0;
     user-select: none;
 }
 
 .next {
     right: 0;
-    border-radius: 3px 0 0 3px;
+    border-radius: 12px 0 0 12px;
 }
 
 .prev:hover, .next:hover {
@@ -42,7 +42,7 @@
 
 .packtext{
     font-size: 30px !important;
-    padding-top: 20px !important
+    padding-top: 0px !important
 }
 
 .serviceBox{ padding-bottom: 60px !important;}
@@ -50,7 +50,7 @@
 .pricebox, .serviceBox{
     border: 1px solid white;
     border-radius: 32px;
-    margin: 7vh 2.8vw;
+    margin: 3vh 2.8vw;
     width: 80%;
     background-color: rgb(10, 10, 10);
     background-image: linear-gradient(135deg, #181818, #101010);

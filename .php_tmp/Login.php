@@ -39,17 +39,17 @@ if ($is_logged_in) {
             <ul class="Top-Buttons">
                 <li id="templates"><a href="Templates.php">Templates</a></li>
                 <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a></li>
-                <li class="First-Layer"><a href="index.php">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
-                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
+                <li class="First-Layer"><a href="index.php>Home</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php>Websites</a></li>
+                <li id="contact"><a href="ContactUs.php>Contact Us</a></li>
             </ul>
 
             <ul class="account">
                 <li><a href="Login.php">Login</a></li>
-                <li><a href="SignUp.php">Sign Up</a></li>
+                <li><a href="SignUp.php>Sign Up</a></li>
             </ul>
 
-            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
         <h2>Login</h2>

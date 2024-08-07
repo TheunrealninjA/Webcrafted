@@ -1,47 +1,79 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Start a session
+session_start();
+$is_logged_in = isset($_SESSION['username']);
 
-// Database connection parameters
-$servername = "server330";
-$username = "webcsosl_Admin"; // Update this if your database username is different
-$password = "S*@zUCE.E[X*"; // Update this if your database password is different
-$dbname = "webcsosl_Login-info";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check if user is logged in
+if ($is_logged_in) {
+    header("Location: index.php");
+    exit();
 }
-
-// Retrieve and sanitize user input
-$user = htmlspecialchars($_POST['username']);
-$email = htmlspecialchars($_POST['email']);
-$pass = htmlspecialchars($_POST['password']);
-$confirm_pass = htmlspecialchars($_POST['confirm_password']);
-
-// Check if passwords match
-if ($pass !== $confirm_pass) {
-    die("Passwords do not match.");
-}
-
-// Hash the password
-$hashed_password = password_hash($pass, PASSWORD_BCRYPT);
-
-// Prepare SQL statement
-$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $user, $email, $hashed_password);
-
-// Execute the statement
-if ($stmt->execute()) {
-    header("Location: Status.php?page=signup&status=success");
-} else {
-    header("Location: Status.php?page=signup&status=error");
-}
-
-// Close connection
-$stmt->close();
-$conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Welcome to WebCrafted.Pro, where you can get hand-crafted custom websites for your businesses specific needs. We have competive prices and exclusive features that elevate your website to the next level.">
+    <title>Sign Up - WebCrafted Pro</title>
+
+    <link rel="icon" href="images/WCLogo.webp">
+
+    <link rel="stylesheet" href="CSS/Footer.css">
+    <link rel="stylesheet" href="CSS/SignUp/Main.css">
+    <link rel="stylesheet" href="CSS/Nav.css">
+    <link rel="stylesheet" href="CSS/all.css">
+    <link rel="stylesheet" href="CSS/Animate.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="JavaScript/AnimationWait.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins");
+    </style>
+</head>
+
+<body>
+    <div class="main-body">
+        <header class="snap">
+            <ul class="Top-Buttons">
+                <li id="templates"><a href="Templates.php">Templates</a></li>
+                <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a>
+                <li class="First-Layer"><a href="index.php">Home</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
+                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
+            </ul>
+
+            <ul class="account">
+                <li><a href="Login.php">Login</a></li>
+                <li><a href="Signup.php">Sign Up</a></li>
+            </ul>
+
+            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+        </header>
+
+        <div class=" SignCont">
+            <h3>Sign Up</h3>
+            <form class="signup" action="signupcheck.php" method="post">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br><br>
+                
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                
+                <label for="confirm_password">Confirm Password:</label><br>
+                <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+                
+                <input type="submit" value="Sign Up">
+            </form>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
