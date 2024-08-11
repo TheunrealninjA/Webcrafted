@@ -88,7 +88,7 @@ $is_logged_in = isset($_SESSION['username']);
         </div>
 
         <div class="box snap plans">
-            <div class="pricebox">
+            <div class="pricebox farleft" id="price1">
                 <h3 class="packtext">Starter/Personal package</h3>
                 <h4>from £18/month</h4>
                 <ul>
@@ -108,7 +108,7 @@ $is_logged_in = isset($_SESSION['username']);
                 <a href="">Get Started</a>
             </div>
 
-            <div class="pricebox">
+            <div class="pricebox farleft" style="transition-duration: 1.2s;" id="price2">
                 <h3 class="packtext">Buisness package</h3>
                 <h4>from £30/month</h4>
                 <ul>
@@ -128,7 +128,7 @@ $is_logged_in = isset($_SESSION['username']);
                 <a href="">Get Started</a>
             </div>
 
-            <div class="pricebox">
+            <div class="pricebox farleft" style="transition-duration: 1.8s;" id="price3">
                 <h3 class="packtext">Buisness+ package</h3>
                 <h4>from £45/month</h4>
                 <ul>
@@ -201,5 +201,4 @@ $is_logged_in = isset($_SESSION['username']);
     </div>
 
 </body>
-
 </html>

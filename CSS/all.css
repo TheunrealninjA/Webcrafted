@@ -1,3 +1,5 @@
+/* everything */
+
 *{
     margin: 0%;
     padding: 0%;
@@ -6,6 +8,8 @@
     color: white;
     text-decoration: none;
 }
+
+/* background functions */
 
 body{
     overflow: hidden;
@@ -34,6 +38,8 @@ body{
     width: 100%;
 }
 
+/* grids */
+
 .two-grid{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -44,4 +50,85 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+}
+
+/* contact form stuff */
+
+.ContactCont{
+    margin: 7vh 35vw 0 !important;
+}
+
+.Cont{
+    border: 1px solid white;
+    text-align: center;
+    margin: 11vh 35vw 0;
+    border-radius: 16px;
+    box-shadow: 0 0 10px 5px white;
+    padding: 60px 0;
+    background-image: linear-gradient(135deg, #181818, #101010);
+    animation: Down 1.2s;
+}
+
+.login{
+    padding: 8px 13px !important;
+    background-color: #101010;
+    color: #fff;
+    border: 1px solid white;
+    box-shadow: inset 0 0 4px 2px black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.6s;
+    margin-left: 18vw;
+    width: auto;
+}
+
+.filter-item{
+    display: none;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+label{
+    padding-top: 3.5%;
+}
+
+input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #101010;
+    color: #fff;
+    border: 1px solid white;
+    box-shadow: inset 0 0 4px 2px black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.6s, transform 0.6s, color 0.3s;
+    margin-left: 18vw;
+    width: auto;
+}
+
+input, select, textarea{
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #101010;
+    border-radius: 8px;
+    width: 10vw;
+    color: white;
+}
+
+textarea {
+    width: 65%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover{
+    background-color: white;
+    transform: scale(1.05);
+    color: black;
 }

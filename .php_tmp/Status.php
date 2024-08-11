@@ -35,7 +35,22 @@ if ($is_logged_in) {
                 echo '<title>Invalid Status</title>';
                 break;
         }
-    } else {
+    }elseif ($page === 'Contact') {
+        switch ($status) {
+            case 'success':
+                echo '<title>Sent Sucessfully</title>';
+                break;
+            case 'error':
+                echo '<title>Uh Oh</title>';
+                break;
+            case '':
+                echo '<title>Missing Status</title>';
+                break;
+            default:
+                echo '<title>Invalid Status</title>';
+                break;
+        }
+    }else {
         echo $page === '' ? '<title>Missing Page</title>' : '<title>Invalid Page</title>';
     }
     ?>
@@ -64,16 +79,16 @@ if ($is_logged_in) {
                 <li id="templates"><a href="Templates.php">Templates</a></li>
                 <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a></li>
                 <li class="First-Layer"><a href="index.php">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.php>Websites</a></li>
-                <li id="contact"><a href="ContactUs.php>Contact Us</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
+                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
 
             <ul class="account">
                 <li><a href="Login.php">Login</a></li>
-                <li><a href="Signup.php>Sign Up</a></li>
+                <li><a href="Signup.php">Sign Up</a></li>
             </ul>
 
-            <a class="MiniWCLogo" href="index.php><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
         <?php
         function displayMessage($image, $message, $linkText, $linkHref)
@@ -91,17 +106,29 @@ if ($is_logged_in) {
         if ($page === 'signup') {
             switch ($status) {
                 case 'success':
-                    displayMessage('CheckMark.webp', 'Sign Up Successful', 'Back to home', 'index.php);
+                    displayMessage('CheckMark.webp', 'Sign Up Successful', 'Back to home', 'index.php');
                     break;
                 case 'error':
-                    displayMessage('Error.webp', 'Sign Up Failed', 'Go Back', 'SignUp.php);
+                    displayMessage('Error.webp', 'Sign Up Failed', 'Go Back', 'SignUp.php');
                     break;
                 default:
-                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php);
+                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');
                     break;
             }
-        } else {
-            displayMessage('QuestionMark.webp', 'Invalid Redirect', 'Back to home', 'index.php);
+        } elseif($page === 'Contact') {
+            switch ($status) {
+                case 'success':
+                    displayMessage('CheckMark.webp', 'Sent Sucessfully', 'Back to home', 'index.php');
+                    break;
+                case 'error':
+                    displayMessage('Error.webp', 'Something Went Wrong', 'Try Again', 'ContactUs.php');
+                    break;
+                default:
+                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'ContactUs.php');
+                    break;
+            }
+        }else {
+            displayMessage('QuestionMark.webp', 'Invalid Redirect', 'Back to home', 'index.php');
         }
         ?>
         <footer>
@@ -120,8 +147,8 @@ if ($is_logged_in) {
                 <div class="section-3">
                     <h3>Extras</h3>
                     <h4><a href="">Sitemap</a></h4>
-                    <h4><a href="Terms.php">Terms & Conditions</a></h4>
-                    <h4><a href="Privacy.php">Privacy Policy</a></h4>
+                    <h4><a href="Terms.html">Terms & Conditions</a></h4>
+                    <h4><a href="Privacy.html">Privacy Policy</a></h4>
                 </div>
             </div>
             <div class="Copyright">

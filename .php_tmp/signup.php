@@ -32,6 +32,7 @@ if ($is_logged_in) {
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
 <body>
@@ -41,34 +42,41 @@ if ($is_logged_in) {
                 <li id="templates"><a href="Templates.php">Templates</a></li>
                 <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a>
                 <li class="First-Layer"><a href="index.php">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.php>Websites</a></li>
-                <li id="contact"><a href="ContactUs.php>Contact Us</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
+                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
 
             <ul class="account">
                 <li><a href="Login.php">Login</a></li>
-                <li><a href="Signup.php>Sign Up</a></li>
+                <li><a href="Signup.php">Sign Up</a></li>
             </ul>
 
-            <a class="MiniWCLogo" href="index.php><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class=" SignCont">
+        <div class="Cont">
             <h3>Sign Up</h3>
-            <form class="signup" action="signupcheck.php" method="post">
+            <script>
+                function onSubmit(token) {
+                    document.getElementById("form").submit();
+                }
+            </script>
+            <form class="signup" action="signupcheck.php" method="post" id="form">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" required><br><br>
-                
+
                 <label for="email">Email:</label><br>
                 <input type="email" id="email" name="email" required><br><br>
-                
+
                 <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password" required><br><br>
-                
+
                 <label for="confirm_password">Confirm Password:</label><br>
-                <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-                
-                <input type="submit" value="Sign Up">
+                <input type="password" id="confirm_password" name="confirm_password"><br><br>
+
+                <input type="submit" value="Sign Up" class="g-recaptcha"
+                    data-sitekey="6LcnGSQqAAAAAJg8PHzFcNFfhkhv-oX1lKZ38pBm" data-callback='onSubmit'
+                    data-action='submit required'>
             </form>
 
         </div>

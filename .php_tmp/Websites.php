@@ -55,7 +55,7 @@ $is_logged_in = isset($_SESSION['username']);
         <div class="box snap">
             <h3>Our Websites</h3>
             <div class="three-grid">
-                <div class="web">
+                <div class="web Cont" style="margin: 0;">
                     <h3>WebCrafted.Pro</h3>
                     <img src="images/WCLogo.webp" alt="webcrafted.pro home page">
                     <p>WebCrafted.Pro, where you can get hand-crafted custom websites for your businesses
@@ -63,7 +63,7 @@ $is_logged_in = isset($_SESSION['username']);
                         next level.</p>
                     <a href="https://webcrafted.pro/">See More &gt;</a>
                 </div>
-                <div class="web">
+                <div class="web Cont" style="margin: 0;">
                     <h3>KLCGroup</h3>
                     <img class="klc" src="KLCGroup/Images/Company Logo.webp" alt="klcgroup home page">
                     <p>A small family owned business that works in home improvement and offers services like
@@ -71,38 +71,38 @@ $is_logged_in = isset($_SESSION['username']);
                         operate in the West Midlands.</p>
                     <a href="https://klcgroup.co.uk/">See More &gt;</a>
                 </div>
-                <div class="web">
+                <div class="web Cont" style="margin: 0;">
                     <h3>More Coming Soon</h3>
                     <img src="images/QuestionMark.webp" alt="Question Mark">
                     <p>More will be coming soon! If you have made a website with us and want to see it here then please
                         contact us.</p>
                 </div>
             </div>
-            <footer>
-                <div class="footerlist">
-                    <div class="section-1">
-                        <h3>About Us</h3>
-                        <h4>WebCrafted.Pro is where you can get hand-crafted custom websites for your businesses
-                            specific needs.
-                            We have competive prices and exclusive features that elevate your website to the next
-                            level.</h4>
-                    </div>
-                    <div class="section-2">
-                        <h3>Contact Us</h3>
-                        <h4>Email Us : <a href="mailto:wyattd@webcrafted.pro">wyattd@webcrafted.pro</a></h4>
-                    </div>
-                    <div class="section-3">
-                        <h3>Extras</h3>
-                        <h4><a href="">Sitemap</a></h4>
-                        <h4><a href="Privacy.html">Privacy Policy</a></h4>
-                    </div>
-                </div>
-                <div class="Copyright">
-                    <p>&copy2024 WebCrafted.Pro. All rights reserved. Website designed and coded by Wyatt @ <a
-                            href="https://webcrafted.pro">webcrafted.pro</a></p>
-                </div>
-            </footer>
         </div>
+        <footer class="box snap">
+            <div class="footerlist">
+                <div class="section-1">
+                    <h3>About Us</h3>
+                    <h4>WebCrafted.Pro is where you can get hand-crafted custom websites for your businesses
+                        specific needs.
+                        We have competive prices and exclusive features that elevate your website to the next
+                        level.</h4>
+                </div>
+                <div class="section-2">
+                    <h3>Contact Us</h3>
+                    <h4>Email Us : <a href="mailto:wyattd@webcrafted.pro">wyattd@webcrafted.pro</a></h4>
+                </div>
+                <div class="section-3">
+                    <h3>Extras</h3>
+                    <h4><a href="">Sitemap</a></h4>
+                    <h4><a href="Privacy.html">Privacy Policy</a></h4>
+                </div>
+            </div>
+            <div class="Copyright">
+                <p>&copy2024 WebCrafted.Pro. All rights reserved. Website designed and coded by Wyatt @ <a
+                        href="https://webcrafted.pro">webcrafted.pro</a></p>
+            </div>
+        </footer>
     </div>
 </body>
 

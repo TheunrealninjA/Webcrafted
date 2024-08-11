@@ -1,32 +1,30 @@
 .box h3{
-    padding: 50px 40px 20px;
-    font-size: 50px;
+    padding: 20px 40px 20px;
+    font-size: 35px;
 }
 
 .box p{
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .web{
-    border: 1px solid white;
-    border-radius: 12px;
-    height: 48vh;
     width: 26vw;
-    box-shadow: 0 0 8px 1px white;
-    text-align: center;
 }
 
 .web a{
-    padding: 10px;
     float: right;
-    font-size: 20px;
-    border-radius: 12px 0 12px 0;
-    transition: 0.6s ease;
+    font-size: 22px;
+    margin: 30px 32px 0px;
+    border: white 1px solid;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: background-color 0.5s, color 0.3s, transform 0.5s;
 }
 
 .web a:hover{
+    color: black;
+    background-color: white;
     transform: scale(1.05);
-    background-color: rgba(211, 211, 211, 0.25);
 }
 
 .klc{

@@ -35,7 +35,22 @@ if ($is_logged_in) {
                 echo '<title>Invalid Status</title>';
                 break;
         }
-    } else {
+    }elseif ($page === 'Contact') {
+        switch ($status) {
+            case 'success':
+                echo '<title>Sent Sucessfully</title>';
+                break;
+            case 'error':
+                echo '<title>Uh Oh</title>';
+                break;
+            case '':
+                echo '<title>Missing Status</title>';
+                break;
+            default:
+                echo '<title>Invalid Status</title>';
+                break;
+        }
+    }else {
         echo $page === '' ? '<title>Missing Page</title>' : '<title>Invalid Page</title>';
     }
     ?>
@@ -100,7 +115,19 @@ if ($is_logged_in) {
                     displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');
                     break;
             }
-        } else {
+        } elseif($page === 'Contact') {
+            switch ($status) {
+                case 'success':
+                    displayMessage('CheckMark.webp', 'Sent Sucessfully', 'Back to home', 'index.php');
+                    break;
+                case 'error':
+                    displayMessage('Error.webp', 'Something Went Wrong', 'Try Again', 'ContactUs.php');
+                    break;
+                default:
+                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'ContactUs.php');
+                    break;
+            }
+        }else {
             displayMessage('QuestionMark.webp', 'Invalid Redirect', 'Back to home', 'index.php');
         }
         ?>

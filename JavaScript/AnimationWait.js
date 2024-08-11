@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Variables
     let observedElements = [
         "#wait1",
         "#wait2",
@@ -11,15 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
         "#wait8",
         "#wait9",
         "#bar1",
-        "#bar2"
+        "#bar2",
+        "#price1",
+        "#price2",
+        "#price3"
     ];
 
-    // Set up the Observers
     window.addEventListener("load", (event) => {
         createObserver();
     }, false);
 
-    // Create the Observer
     function createObserver() {
         let options = {
             root: document.querySelector("#scrollArea"),
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Handle Intersection
     function handleIntersect(entries, observer) {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {

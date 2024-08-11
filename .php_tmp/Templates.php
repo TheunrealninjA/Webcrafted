@@ -23,6 +23,7 @@ $is_logged_in = isset($_SESSION['username']);
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
+    <script src="JavaScript/Filter.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
@@ -35,8 +36,8 @@ $is_logged_in = isset($_SESSION['username']);
                 <li id="templates"><a href="Templates.php">Templates</a></li>
                 <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a></li>
                 <li class="First-Layer"><a href="index.php">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.php>Websites</a></li>
-                <li id="contact"><a href="ContactUs.php>Contact Us</a></li>
+                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
+                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
 
             <ul class="account">
@@ -46,15 +47,32 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
-                    <li><a href="SignUp.php>Sign Up</a></li>
+                    <li><a href="SignUp.php">Sign Up</a></li>
                 <?php endif; ?>
             </ul>
 
-            <a class="MiniWCLogo" href="index.php><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="templates three-grid">
-            
+        <div class="filter-options">
+            <label><input type="checkbox" class="filter-checkbox" value="personal"> Personal</label>
+            <label><input type="checkbox" class="filter-checkbox" value="small-business"> Small Business</label>
+            <label><input type="checkbox" class="filter-checkbox" value="business"> Business</label>
+        </div>
+
+        <div class="templates three-grid" id="items-container">
+            <div class="Cont filter-item" data-category="small-business" style="margin: 0;">
+                <h3>E-commerce</h3>
+                <p>Best for small E-commerce businesses</p>
+            </div>
+            <div class="Cont filter-item" data-category="personal" style="margin: 0;">
+                <h3>Bio</h3>
+                <p>Best for a personal website or a public bio</p>
+            </div>
+            <div class="Cont filter-item" data-category="business" style="margin: 0;">
+                <h3></h3>
+                <p>Best for small E-commerce businesses</p>
+            </div>
         </div>
     </div>
 </body>
