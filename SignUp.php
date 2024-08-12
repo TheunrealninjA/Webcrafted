@@ -28,9 +28,10 @@ if ($is_logged_in) {
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
+    <script src="JavaScript/CAPTCHA.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
-    </style>
+        </style>
 </head>
 
 <body>
@@ -68,9 +69,9 @@ if ($is_logged_in) {
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"><br><br>
 
                 <label for="Captcha">What is 5x2?</label>
-                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human"><br><br>
+                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
 
-                <input type="submit" value="Sign Up">
+                <input type="submit" id="submit" value="Sign Up" disabled>
             </form>
         </div>
 

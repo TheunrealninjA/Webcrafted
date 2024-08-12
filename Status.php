@@ -70,9 +70,9 @@ if ($is_logged_in) {
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
 
-    <link rel="prefetch" href="https://webcrafted.pro/Images/status/CheckMark.webp"> <!-- Change this -->
-    <link rel="prefetch" href="https://webcrafted.pro/Images/status/Error.webp"> <!-- Change this -->
-    <link rel="prefetch" href="https://webcrafted.pro/Images/status/QuestionMark.webp"> <!-- Change this -->
+    <link rel="prefetch" href="https://webcrafted.pro/images/status/CheckMark.webp"> <!-- Change this -->
+    <link rel="prefetch" href="https://webcrafted.pro/images/status/Error.webp"> <!-- Change this -->
+    <link rel="prefetch" href="https://webcrafted.pro/images/status/QuestionMark.webp"> <!-- Change this -->
 </head>
 
 <body>

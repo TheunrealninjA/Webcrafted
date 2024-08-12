@@ -30,9 +30,13 @@ $is_logged_in = isset($_SESSION['username']);
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
     <script src="JavaScript/ContactFormUpdate.js"></script>
+    <!-- <script src="JavaScript/CAPTCHA.js"></script> -->
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
+
+    <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ"></script>
 </head>
 
 <body>
@@ -60,13 +64,12 @@ $is_logged_in = isset($_SESSION['username']);
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="Cont">
+        <div class="Cont ContactCont">
             <div>
                 <h2>Contact Us</h2>
-                <form class="ContactForm" action="send_email.php" method="post">
+                <form class="ContactForm" id="ContactForm" action="send_email.php" method="post">
                     <label for="email">Email:</label><br>
-                    <input type="email" name="email" placeholder="Enter Your Email" required
-                        autocomplete="email"><br>
+                    <input type="email" name="email" placeholder="Enter Your Email" required autocomplete="email"><br>
 
                     <label for="subject">Subject:</label><br>
                     <select id="subject" name="subject" required onchange="showOther()">
@@ -97,8 +100,18 @@ $is_logged_in = isset($_SESSION['username']);
                     <label for="message">Message:</label><br>
                     <textarea id="message" name="message" placeholder="Add Some Extra Details You Would Like Us To Know"
                         required></textarea><br>
-                    <input type="submit" value="Submit">
+
+                    <!-- <label for="Captcha">What is 5x2?</label>
+                    <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
+
+                    <input type="submit" value="Submit" class="g-recaptcha" data-sitekey="6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ"
+                        data-callback='onSubmit' data-action='submit'>
                 </form>
+                <script>
+                    function onSubmit(token) {
+                        document.getElementById("ContactForm").submit();
+                    }
+                </script>
             </div>
         </div>
     </div>
