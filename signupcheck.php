@@ -28,7 +28,7 @@ if ($pass !== $confirm_pass) {
 }
 
 // Verify Cloudflare Turnstile
-$turnstile_secret = 'YOUR_SECRET_KEY'; // Replace with your Turnstile secret key
+$turnstile_secret = '0x4AAAAAAAhCYlYwgTIrwevaM5AtVvDhAgQ'; // Replace with your Turnstile secret key
 $turnstile_response = $_POST['cf-turnstile-response'];
 
 $ch = curl_init();
