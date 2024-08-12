@@ -27,6 +27,30 @@ if ($pass !== $confirm_pass) {
     die("Passwords do not match.");
 }
 
+// Verify Cloudflare Turnstile
+$turnstile_secret = '0x4AAAAAAAhCYlYwgTIrwevaM5AtVvDhAgQ'; // Replace with your Turnstile secret key
+$turnstile_response = $_POST['cf-turnstile-response'];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "https://challenges.cloudflare.com/turnstile/v0/siteverify");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, [
+    'secret' => $turnstile_secret,
+    'response' => $turnstile_response,
+    'remoteip' => $_SERVER['REMOTE_ADDR']
+]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+$response_data = json_decode($response, true);
+
+if (!$response_data['success']) {
+    // Turnstile verification failed
+    header("Location: SignUp.php");
+    exit;
+}
+
 // Hash the password
 $hashed_password = password_hash($pass, PASSWORD_BCRYPT);
 
@@ -44,3 +68,4 @@ if ($stmt->execute()) {
 // Close connection
 $stmt->close();
 $conn->close();
+?>

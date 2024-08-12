@@ -23,7 +23,6 @@ if ($is_logged_in) {
     <link rel="icon" href="images/WCLogo.webp">
 
     <link rel="stylesheet" href="CSS/Footer.css">
-    <link rel="stylesheet" href="CSS/SignUp/Main.css">
     <link rel="stylesheet" href="CSS/Nav.css">
     <link rel="stylesheet" href="CSS/all.css">
     <link rel="stylesheet" href="CSS/Animate.css">
@@ -32,7 +31,7 @@ if ($is_logged_in) {
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 
 <body>
@@ -56,29 +55,25 @@ if ($is_logged_in) {
 
         <div class="Cont">
             <h3>Sign Up</h3>
-            <script>
-                function onSubmit(token) {
-                    document.getElementById("form").submit();
-                }
-            </script>
-            <form class="signup" action="signupcheck.php" method="post" id="form">
-                <label for="username">Username:</label><br>
+            <form class="signup" action="signupcheck.php" method="post">
+                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required><br><br>
 
-                <label for="email">Email:</label><br>
+                <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required><br><br>
 
-                <label for="password">Password:</label><br>
+                <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br><br>
 
-                <label for="confirm_password">Confirm Password:</label><br>
+                <label for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password"><br><br>
 
-                <input type="submit" value="Sign Up" class="g-recaptcha"
-                    data-sitekey="6LcnGSQqAAAAAJg8PHzFcNFfhkhv-oX1lKZ38pBm" data-callback='onSubmit'
-                    data-action='submit required'>
-            </form>
 
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAhCYrzYXdN6Po6G"></div>
+                <br>
+
+                <input type="submit" value="Sign Up">
+            </form>
         </div>
 
     </div>
