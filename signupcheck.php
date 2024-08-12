@@ -23,7 +23,7 @@ $pass = htmlspecialchars($_POST['password']);
 $confirm_pass = htmlspecialchars($_POST['confirm_password']);
 $answer = htmlspecialchars($_POST['answer']);
 
-if($answer !== "10"){
+if($answer != "10"){
     header("Location: Status.php?page=signup&status=robot");
     exit();
 }
