@@ -28,7 +28,7 @@ if ($pass !== $confirm_pass) {
 }
 
 // Verify Cloudflare Turnstile
-$turnstile_secret = '0x4AAAAAAAhCYlYwgTIrwevaM5AtVvDhAgQ'; // Replace with your Turnstile secret key
+$turnstile_secret = 'YOUR_SECRET_KEY'; // Replace with your Turnstile secret key
 $turnstile_response = $_POST['cf-turnstile-response'];
 
 $ch = curl_init();
@@ -45,6 +45,7 @@ $response = curl_exec($ch);
 curl_close($ch);
 $response_data = json_decode($response, true);
 
+// Check if verification was successful
 if (!$response_data['success']) {
     // Turnstile verification failed
     header("Location: SignUp.php");
@@ -68,4 +69,3 @@ if ($stmt->execute()) {
 // Close connection
 $stmt->close();
 $conn->close();
-?>
