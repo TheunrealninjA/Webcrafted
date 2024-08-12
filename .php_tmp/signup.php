@@ -31,7 +31,6 @@ if ($is_logged_in) {
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 
 <body>
@@ -57,20 +56,19 @@ if ($is_logged_in) {
             <h3>Sign Up</h3>
             <form class="signup" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required><br><br>
+                <input type="text" id="username" name="username" placeholder="Username" required><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                <input type="email" id="email" name="email" placeholder="Email" required><br><br>
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
+                <input type="password" id="password" name="password" required placeholder="Input Password"><br><br>
 
                 <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password"><br><br>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"><br><br>
 
-
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAhCYrzYXdN6Po6G"></div>
-                <br>
+                <label for="Captcha">What is 5x2?</label>
+                <input type="Answer" name="answer" placeholder="Prove You Are Human"><br><br>
 
                 <input type="submit" value="Sign Up">
             </form>

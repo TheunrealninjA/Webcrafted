@@ -28,6 +28,9 @@ if ($is_logged_in) {
             case 'error':
                 echo '<title>Failed Sign Up</title>';
                 break;
+            case 'robot':
+                echo '<title>Failed Captcha</title>';
+                break;
             case '':
                 echo '<title>Missing Status</title>';
                 break;
@@ -110,6 +113,9 @@ if ($is_logged_in) {
                     break;
                 case 'error':
                     displayMessage('Error.webp', 'Sign Up Failed', 'Go Back', 'SignUp.php');
+                    break;
+                case 'robot':
+                    displayMessage('Error.webp', 'Failed Captcha', 'Go Back', 'SignUp.php');
                     break;
                 default:
                     displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');
