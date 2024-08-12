@@ -68,7 +68,7 @@ if ($is_logged_in) {
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"><br><br>
 
                 <label for="Captcha">What is 5x2?</label>
-                <input type="Answer" name="answer" placeholder="Prove You Are Human"><br><br>
+                <input type="Answer" id="answer" name="answer" placeholder="Prove You Are Human"><br><br>
 
                 <input type="submit" value="Sign Up">
             </form>
