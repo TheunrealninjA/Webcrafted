@@ -73,12 +73,9 @@ if ($is_logged_in) {
                 <!-- <label for="Captcha">What is 5x2?</label>
                 <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
 
-                <div class="g-recaptcha" data-sitekey="6LefsiUqAAAAAJ2UI2NypDNe6KoxPsWB7kmPEB9p" data-action="LOGIN">
-                </div><br>
+                <div class="g-recaptcha" data-sitekey="6LefsiUqAAAAAJ2UI2NypDNe6KoxPsWB7kmPEB9p" data-action="LOGIN"></div><br>
 
-                <button type="submit" name="Sign_Up">
-                    Sign Up
-                </button>
+                <button type="submit" name="Sign_Up">Sign Up</button>
             </form>
         </div>
     </div>
