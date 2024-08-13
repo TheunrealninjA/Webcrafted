@@ -5,7 +5,7 @@ $is_logged_in = isset($_SESSION['username']);
 
 // Check if user is logged in
 if (!$is_logged_in) {
-    header("Location: LoginPage.php");
+    header("Location: Login.php");
     exit();
 }
 

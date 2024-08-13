@@ -28,10 +28,13 @@ if ($is_logged_in) {
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
-    <script src="JavaScript/CAPTCHA.js"></script>
+    <!-- <script src="JavaScript/CAPTCHA.js"></script> -->
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
-        </style>
+    </style>
+    <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ">
+    </script>
 </head>
 
 <body>
@@ -55,7 +58,7 @@ if ($is_logged_in) {
 
         <div class="Cont">
             <h3>Sign Up</h3>
-            <form class="signup" action="signupcheck.php" method="post">
+            <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Username" required><br><br>
 
@@ -68,11 +71,17 @@ if ($is_logged_in) {
                 <label for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"><br><br>
 
-                <label for="Captcha">What is 5x2?</label>
-                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
+                <!-- <label for="Captcha">What is 5x2?</label>
+                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
 
-                <input type="submit" id="submit" value="Sign Up" disabled>
-            </form>
+                <input type="submit" value="Sign Up" class="g-recaptcha" data-sitekey="6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ"
+                        data-callback='onSubmit' data-action='signup'>
+                </form>
+                <script>
+                    function onSubmit(token) {
+                        document.getElementById("SignUpForm").submit();
+                    }
+                </script>
         </div>
 
     </div>

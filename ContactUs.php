@@ -36,7 +36,8 @@ $is_logged_in = isset($_SESSION['username']);
     </style>
 
     <script
-        src="https://www.google.com/recaptcha/enterprise.js?render=6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ"></script>
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ">
+    </script>
 </head>
 
 <body>
