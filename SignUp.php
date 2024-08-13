@@ -28,11 +28,10 @@ if ($is_logged_in) {
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
-    <!-- <script src="JavaScript/CAPTCHA.js"></script> -->
+    <script src="JavaScript/CAPTCHA.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
 <body>
@@ -56,7 +55,7 @@ if ($is_logged_in) {
 
         <div class="Cont">
             <h3>Sign Up</h3>
-            <form class="signup" id="SignUpForm" action="recaptcha.php" method="POST">
+            <form class="signup" id="SignUpForm" action="signupcheck.php" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Username" required><br><br>
 
@@ -70,12 +69,10 @@ if ($is_logged_in) {
                 <input type="password" id="confirm_password" name="confirm_password"
                     placeholder="Input Password Again"><br><br>
 
-                <!-- <label for="Captcha">What is 5x2?</label>
-                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
+                <label for="Captcha">What is 5x2?</label>
+                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
 
-                <div class="g-recaptcha" data-sitekey="6LefsiUqAAAAAJ2UI2NypDNe6KoxPsWB7kmPEB9p" data-action="LOGIN"></div><br>
-
-                <button type="submit" name="Sign_Up">Sign Up</button>
+                <input type="submit" Value="Sign Up" disabled>
             </form>
         </div>
     </div>

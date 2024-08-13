@@ -56,4 +56,3 @@ if ($mail_sent) {
     header("Location: Status.php?page=Contact&status=error");
     exit();
 }
-?>
