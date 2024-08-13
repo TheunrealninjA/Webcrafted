@@ -76,7 +76,9 @@ if ($is_logged_in) {
                 <div class="g-recaptcha" data-sitekey="6LefsiUqAAAAAJ2UI2NypDNe6KoxPsWB7kmPEB9p" data-action="LOGIN">
                 </div><br>
 
-                <input type="submit" value="Sign Up">
+                <button type="submit" name="Sign_Up">
+                    Sign Up
+                </button>
             </form>
         </div>
     </div>
