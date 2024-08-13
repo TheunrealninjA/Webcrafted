@@ -32,8 +32,7 @@ if ($is_logged_in) {
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-    <script
-        src="https://www.google.com/recaptcha/enterprise.js?render=6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ">
+    <script <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     </script>
 </head>
 
@@ -69,21 +68,18 @@ if ($is_logged_in) {
                 <input type="password" id="password" name="password" required placeholder="Input Password"><br><br>
 
                 <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"><br><br>
+                <input type="password" id="confirm_password" name="confirm_password"
+                    placeholder="Input Password Again"><br><br>
 
                 <!-- <label for="Captcha">What is 5x2?</label>
                 <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
 
-                <input type="submit" value="Sign Up" class="g-recaptcha" data-sitekey="6LcKgCQqAAAAAIhPaywsjSayGud7KppI9X67OAhZ"
-                        data-callback='onSubmit' data-action='signup'>
-                </form>
-                <script>
-                    function onSubmit(token) {
-                        document.getElementById("SignUpForm").submit();
-                    }
-                </script>
-        </div>
+                <div class="g-recaptcha" data-sitekey="6LefsiUqAAAAAJ2UI2NypDNe6KoxPsWB7kmPEB9p" data-action="LOGIN">
+                </div><br>
 
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
     </div>
 </body>
 

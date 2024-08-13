@@ -1,7 +1,7 @@
 <?php
   
 // Checking valid form is submitted or not
-if (isset($_POST['submit_btn'])) {
+if (isset($_POST['submit'])) {
     
     // Storing name in $name variable
     $name = $_POST['name'];
@@ -12,7 +12,7 @@ if (isset($_POST['submit_btn'])) {
 
     // Put secret key here, which we get
     // from google console
-    $secret_key = '6LcKgCQqAAAAAJOpBQVpdwylsOUheCPP2vlmRtwm';
+    $secret_key = '6LefsiUqAAAAAKWekDhAa-FdPlv6n0iu1DIIXuTz';
 
     // Hitting request to the URL, Google will
     // respond with success or error scenario
