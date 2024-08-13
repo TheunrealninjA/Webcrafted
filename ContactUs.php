@@ -101,7 +101,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <label for="Captcha">What is 5x2?</label>
                     <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> 
 
-                    <input type="submit" value="Submit" disabled>
+                    <input type="submit" id="submit" value="Submit" disabled>
                 </form>
             </div>
         </div>
