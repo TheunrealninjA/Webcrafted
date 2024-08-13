@@ -29,9 +29,9 @@ if (isset($_POST['submit_btn'])) {
 
     // Checking, if response is true or not
     if ($response->success == true) {
-        echo '<script>alert("Google reCAPTACHA verified")</script>';
+        echo 'Google reCAPTACHA verified';
     } else {
-        echo '<script>alert("Error in Google reCAPTACHA")</script>';
+        echo 'Error in Google reCAPTACHA';
     }
 }
 
