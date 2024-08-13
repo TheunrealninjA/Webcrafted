@@ -32,8 +32,7 @@ if ($is_logged_in) {
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-    <script <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
-    </script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
 <body>
