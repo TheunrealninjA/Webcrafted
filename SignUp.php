@@ -55,7 +55,7 @@ if ($is_logged_in) {
 
         <div class="Cont">
             <h3>Sign Up</h3>
-            <form class="signup" id="SignUpForm" action="signupcheck.php" method="POST">
+            <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Username" required><br><br>
 

@@ -151,7 +151,8 @@ $is_logged_in = isset($_SESSION['username']);
                         <h4>From £35</h4>
                         <div class="two-grid">
                             <div>
-                                <img style="width: auto;" src="images/Pricing/PerWebsite.webp" alt="">
+                                <img style="width: auto;" src="images/Pricing/PerWebsite.webp"
+                                    alt="Laptop with html and css code">
                             </div>
                             <ul>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> 2 webpages</li>
@@ -170,17 +171,23 @@ $is_logged_in = isset($_SESSION['username']);
                     <div class="serviceBox">
                         <h3 class="packtext">E-commerce website</h3>
                         <h4>From £60</h4>
-                        <ul>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> 5 webpages (Doesn't include
-                                products)
-                            </li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> E-commerce</li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> PHP included</li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
-                            <li><img src="images/tickemoji.webp" alt="Tick emoji"> 5-7 day delivery</li>
-                            <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                        </ul>
+                        <div class="two-grid">
+                            <div>
+                                <img style="width: auto;" src="images/Pricing/ComWebsite.webp"
+                                    alt="Laptop with php, html and css code">
+                            </div>
+                            <ul>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> 5 webpages (Doesn't include
+                                    products)
+                                </li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> E-commerce</li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> PHP included</li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
+                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 5-7 day delivery</li>
+                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -188,17 +195,23 @@ $is_logged_in = isset($_SESSION['username']);
                     <div class="serviceBox">
                         <h3 class="packtext">Business website</h3>
                         <h4>From £100</h4>
-                        <ul>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> 10 webpages (Doesn't include
-                                products)
-                            </li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> E-commerce</li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> PHP included</li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
-                            <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
-                            <li><img src="images/tickemoji.webp" alt="Tick emoji"> 7-10 day delivery</li>
-                            <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                        </ul>
+                        <div class="two-grid">
+                            <div>
+                                <img style="width: auto;" src="images/Pricing/Com+Website.webp"
+                                    alt="Laptop with php, html and css code">
+                            </div>
+                            <ul>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> 10 webpages (Doesn't include
+                                    products)
+                                </li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> E-commerce</li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> PHP included</li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
+                                <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
+                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 7-10 day delivery</li>
+                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <a class="prev" onclick="plusSlides(-1, 'slideshow2')">&#10094;</a>
@@ -214,21 +227,31 @@ $is_logged_in = isset($_SESSION['username']);
                 <div class="serviceBox">
                     <h3 class="packtext">Image Optimisation</h3>
                     <h4>*Free</h4>
-                    <ul>
-                        <li><img src="images/tickemoji.webp" alt="tick emoji"> Up To 50% Faster</li>
-                        <li><img src="images/minus.webp" alt="minus emoji"> 5 Free Images Daily</li>
-                        <li><img src="images/minus.webp" alt="minus emoji"> Unlimited Images for £5</li>
-                    </ul>
+                    <div class="two-grid">
+                        <div>
+                            <img style="width: auto;" src="images/Pricing/ImgOpt.webp" alt="Image Optimisation">
+                        </div>
+                        <ul>
+                            <li><img src="images/tickemoji.webp" alt="tick emoji"> Up To 50% Faster</li>
+                            <li><img src="images/minus.webp" alt="minus emoji"> 5 Free Images Daily</li>
+                            <li><img src="images/minus.webp" alt="minus emoji"> Unlimited Images for £5</li>
+                        </ul>
+                    </div>
                     <a href="">Get Started</a>
                 </div>
                 <div class="serviceBox">
                     <h3 class="packtext">Code Optimisation</h3>
                     <h4>from £10</h4>
-                    <ul>
-                        <li><img src="images/tickemoji.webp" alt="tick emoji"> HTML and CSS</li>
-                        <li><img src="images/minus.webp" alt="minus emoji"> JavaScript and PHP</li>
-                        <li><img src="images/tickemoji.webp" alt="tick emoji"> Up To 25% Faster</li>
-                    </ul>
+                    <div class="two-grid">
+                        <div>
+                            <img style="width: auto;" src="images/Pricing/CodOpt.webp" alt="Image Optimisation">
+                        </div>
+                        <ul>
+                            <li><img src="images/tickemoji.webp" alt="tick emoji"> HTML and CSS</li>
+                            <li><img src="images/minus.webp" alt="minus emoji"> JavaScript and PHP</li>
+                            <li><img src="images/tickemoji.webp" alt="tick emoji"> Up To 25% Faster</li>
+                        </ul>
+                    </div>
                     <a href="">Get Started</a>
                 </div>
             </div>

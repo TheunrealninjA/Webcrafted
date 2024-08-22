@@ -20,7 +20,7 @@ $is_logged_in = isset($_SESSION['username']);
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="stylesheet" href="CSS/Footer.css">
     <link rel="stylesheet" href="CSS/Nav.css">
-
+    <link rel="stylesheet" href="CSS/Templates/Main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
     <script src="JavaScript/Filter.js"></script>
@@ -54,24 +54,49 @@ $is_logged_in = isset($_SESSION['username']);
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="filter-options">
-            <label><input type="checkbox" class="filter-checkbox" value="personal"> Personal</label>
-            <label><input type="checkbox" class="filter-checkbox" value="small-business"> Small Business</label>
-            <label><input type="checkbox" class="filter-checkbox" value="business"> Business</label>
+
+        <div class="filter-background">
+            <img src="images/icons/Filter_icon.webp" alt="filter">
         </div>
+
+        <div class="filter-options">
+            <button class="close-filter">&times;</button>
+            <h3>Filters</h3>
+            <ul>
+                <li><label>Personal <input type="checkbox" class="filter-checkbox" value="personal"></label></li>
+                <li><label>Small Business <input type="checkbox" class="filter-checkbox" value="small-business"></label></li>
+                <li><label>Business <input type="checkbox" class="filter-checkbox" value="business"></label></li>
+            </ul>
+        </div>
+
+        <script>
+            const filterBackground = document.querySelector('.filter-background');
+            const filterOptions = document.querySelector('.filter-options');
+            const closeFilter = document.querySelector('.close-filter');
+
+            filterBackground.addEventListener('click', function () {
+                filterOptions.classList.toggle('open');
+            });
+
+            closeFilter.addEventListener('click', function () {
+                filterOptions.classList.remove('open');
+            });
+        </script>
 
         <div class="templates three-grid" id="items-container">
             <div class="Cont filter-item" data-category="small-business" style="margin: 0;">
-                <h3>E-commerce</h3>
+                <h3>Small E-commerce Light</h3>
+                <img src="images/Templates/SmallETemp.webp" alt="Small E-commerce Store">
                 <p>Best for small E-commerce businesses</p>
             </div>
             <div class="Cont filter-item" data-category="personal" style="margin: 0;">
                 <h3>Bio</h3>
+                <img src="images/Templates/BioTemp.webp" alt="Bio Template">
                 <p>Best for a personal website or a public bio</p>
             </div>
             <div class="Cont filter-item" data-category="business" style="margin: 0;">
                 <h3></h3>
-                <p>Best for small E-commerce businesses</p>
+                <p>Best for big E-commerce businesses</p>
             </div>
         </div>
     </div>

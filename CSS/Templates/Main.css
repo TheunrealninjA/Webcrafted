@@ -1,0 +1,90 @@
+.filter-background{
+    background-image: linear-gradient(135deg, #181818, #101010);
+    border: 1px solid white;
+    border-radius: 55px;
+    float: right;
+    padding: 10px 10px 1px;
+    cursor: pointer;
+    margin: 2px 75px 0 0;
+}
+
+.filter-options{
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 280px;
+    height: 100%;
+    background-color: rgb(10, 10, 10);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    display: none;
+    box-sizing: border-box;
+    padding: 20px;
+    background-position: center;
+    background-image:
+    linear-gradient(45deg, rgb(32, 32, 32) 0%, transparent 3%, transparent 51%, rgb(32, 32, 32) 42%, rgb(32, 32, 32) 50%, transparent 53%, transparent),
+    linear-gradient(-45deg, rgb(32, 32, 32) 0%, transparent 3%, transparent 51%, rgb(32, 32, 32) 42%, rgb(32, 32, 32) 50%, transparent 53%, transparent);
+    background-size: 80px 80px;
+    z-index: 1;
+}
+
+.filter-options.open {
+    display: block;
+    right: 0;
+    animation: FarRight 0.5s;
+}
+
+.close-filter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.filter-options h3 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+.filter-options label {
+    display: flex;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.filter-options input[type="checkbox"] {
+    transform: scale(1.3); /* Larger checkboxes for better visibility */
+    width: 100%;
+    margin-right: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.templates{ margin-top: 100px }
+
+.close-filter:hover { color: #f00; }
+
+.filter-options li:first-child input, .filter-options li:nth-child(3) input{ margin-left: 54px; }
+
+.filter-options label:hover { color: #ddd; }
+
+.filter-item{
+    transition: transform 0.5s;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.filter-item:hover{ transform: scale(1.05); }
+
+.filter-options .filter-checkbox:last-child { margin-bottom: 30px; }
+
