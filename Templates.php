@@ -64,7 +64,8 @@ $is_logged_in = isset($_SESSION['username']);
             <h3>Filters</h3>
             <ul>
                 <li><label>Personal <input type="checkbox" class="filter-checkbox" value="personal"></label></li>
-                <li><label>Small Business <input type="checkbox" class="filter-checkbox" value="small-business"></label></li>
+                <li><label>Small Business <input type="checkbox" class="filter-checkbox" value="small-business"></label>
+                </li>
                 <li><label>Business <input type="checkbox" class="filter-checkbox" value="business"></label></li>
             </ul>
         </div>
@@ -90,12 +91,13 @@ $is_logged_in = isset($_SESSION['username']);
                 <p>Best for small E-commerce businesses</p>
             </div>
             <div class="Cont filter-item" data-category="personal" style="margin: 0;">
-                <h3>Bio</h3>
+                <h3>Personal Bio</h3>
                 <img src="images/Templates/BioTemp.webp" alt="Bio Template">
-                <p>Best for a personal website or a public bio</p>
+                <p>Best for a personal website or a public bio for showing off and promoting your socials</p>
             </div>
             <div class="Cont filter-item" data-category="business" style="margin: 0;">
-                <h3></h3>
+                <h3>Large E-commerce Light</h3>
+                <img src="images/Templates/LargeETemp.webp" alt="Large E-commerce Store">
                 <p>Best for big E-commerce businesses</p>
             </div>
         </div>

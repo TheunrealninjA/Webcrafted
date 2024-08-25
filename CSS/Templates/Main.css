@@ -82,6 +82,7 @@
     transition: transform 0.5s;
     padding-left: 30px;
     padding-right: 30px;
+    cursor: pointer;
 }
 
 .filter-item:hover{ transform: scale(1.05); }
