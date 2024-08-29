@@ -1,15 +1,3 @@
-<?php
-// Start a session
-session_start();
-$is_logged_in = isset($_SESSION['username']);
-
-// Check if user is logged in
-if ($is_logged_in) {
-    header("Location: index.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
