@@ -1,8 +1,8 @@
 <?php
 // Database connection parameters
 $servername = "server330";
-$username = "webcsosl_Admin"; // Update this if your database username is different
-$password = "S*@zUCE.E[X*"; // Update this if your database password is different
+$username = "webcsosl_Admin"; 
+$password = "S*@zUCE.E[X*"; 
 $dbname = "webcsosl_Login-info";
 
 // Create connection
@@ -28,10 +28,12 @@ if ($pass !== $confirm_pass) {
 $hashed_password = password_hash($pass, PASSWORD_BCRYPT);
 
 // Prepare SQL statement
-$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES ('" . $user . "', '" . $email . "', '" . $hashed_password . "')");
+$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
+
+// Bind parameters
 $stmt->bind_param("sss", $user, $email, $hashed_password);
 
 // Execute the statement
@@ -44,4 +46,3 @@ if ($stmt->execute()) {
 // Close connection
 $stmt->close();
 $conn->close();
-?>
