@@ -45,10 +45,10 @@
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+                <input type="text" name="username" required><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+                <input type="email" name="email" required><br><br>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required placeholder="Input Password"><br><br>
