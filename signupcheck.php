@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 // Database connection parameters
 $servername = "server330";
 $username = "webcsosl_Admin"; // Update this if your database username is different
@@ -32,6 +29,9 @@ $hashed_password = password_hash($pass, PASSWORD_BCRYPT);
 
 // Prepare SQL statement
 $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+if ($stmt === false) {
+    die("Prepare failed: " . $conn->error);
+}
 $stmt->bind_param("sss", $user, $email, $hashed_password);
 
 // Execute the statement
