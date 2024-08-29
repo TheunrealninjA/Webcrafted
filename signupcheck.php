@@ -5,44 +5,39 @@ ini_set('display_errors', 1);
 session_start();
 include('dbconfig.php');
 
-if(isset($_POST['submit_button']))
-{
+if (isset($_POST['submit_button'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    if($password == $confirm_password)
-    {
+    if ($password == $confirm_password) {
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         // Check Email
+
         $checkemail = "SELECT email FROM users WHERE email='$email' LIMIT 1";
         $checkemail_run = mysqli_query($con, $checkemail);
 
-        if(mysqli_num_rows($checkemail_run) > 0)
-        {
+        if (mysqli_num_rows($checkemail_run) > 0) {
             header("Location: Status.php?page=signup&status=emailused");
             exit(0);
-        }
-        else
-        {
-            $user_query = "INSERT INTO users (username,email,password) VALUES ('$username','$email','$password')";
-            $user_query_run = mysqli_query($con, $user_query);
+        } else {
+            $stmt = $con->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
 
-            if($user_query_run)
-            {
+            // Bind the parameters and execute the query
+            $stmt->bind_param("sss", $username, $email, $hashed_password);
+            if ($stmt->execute()) {
                 header("Location: Status.php?page=signup&status=success");
-                exit(0);
-            }
-            else
-            {
+            } else {
                 header("Location: Status.php?page=signup&status=error");
-                exit(0);
             }
+
+            $stmt->close();
         }
-    }
-    else
-    {
+    } else {
         header("Location: Status.php?page=signup&status=password");
-        exit(0);
     }
+    exit(0);
 }
+
+$con->close();
