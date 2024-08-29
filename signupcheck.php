@@ -36,6 +36,6 @@ if (isset($_POST['submit_button'])) {
         }
     } else {
         header("Location: Status.php?page=signup&status=password");
+        exit(0);
     }
-    exit(0);
 }
