@@ -28,7 +28,7 @@ if ($pass !== $confirm_pass) {
 $hashed_password = password_hash($pass, PASSWORD_BCRYPT);
 
 // Prepare SQL statement
-$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES ('" . $user . "', '" . $email . "', '" . $hashed_password . "')");
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
