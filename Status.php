@@ -114,8 +114,11 @@ if ($is_logged_in) {
                 case 'error':
                     displayMessage('Error.webp', 'Sign Up Failed', 'Go Back', 'SignUp.php');
                     break;
-                case 'robot':
-                    displayMessage('Error.webp', 'Failed Captcha', 'Go Back', 'SignUp.php');
+                case 'emailused':
+                    displayMessage('Error.webp', 'Email Already In Use', 'Go Back', 'SignUp.php');
+                    break;
+                case 'password':
+                    displayMessage('Error.webp', 'Password isn`t the same', 'Go Back', 'SignUp.php');
                     break;
                 default:
                     displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');

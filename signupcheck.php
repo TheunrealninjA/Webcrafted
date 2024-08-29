@@ -1,46 +1,45 @@
 <?php
-// Database connection parameters
-$servername = "server330";
-$username = "webcsosl_Admin"; // Update this if your database username is different
-$password = "S*@zUCE.E[X*"; // Update this if your database password is different
-$dbname = "webcsosl_Login-info";
+session_start();
+include('dbconfig.php');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+if(isset($_POST['submit_button']))
+{
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+    $confirm_password = mysqli_real_escape_string($con, $_POST['confirm_password']);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    if($password == $confirm_password)
+    {
+        // Check Email
+        $checkemail = "SELECT email FROM users WHERE email='$email' LIMIT 1";
+        $checkemail_run = mysqli_query($con, $checkemail);
+
+        if(mysqli_num_rows($checkemail_run) > 0)
+        {
+            header("Location: Status.php?page=signup&status=emailused");
+            exit(0);
+        }
+        else
+        {
+            $user_query = "INSERT INTO users (username,email,password) VALUES ('$username','$email','$password')";
+            $user_query_run = mysqli_query($con, $user_query);
+
+            if($user_query_run)
+            {
+                header("Location: Status.php?page=signup&status=success");
+                exit(0);
+            }
+            else
+            {
+                header("Location: Status.php?page=signup&status=error");
+                exit(0);
+            }
+        }
+    }
+    else
+    {
+        header("Location: Status.php?page=signup&status=password");
+        exit(0);
+    }
 }
-
-// Retrieve and sanitize user input
-$user = htmlspecialchars($_POST['username']);
-$email = htmlspecialchars($_POST['email']);
-$pass = htmlspecialchars($_POST['password']);
-$confirm_pass = htmlspecialchars($_POST['confirm_password']);
-
-// Check if passwords match
-if ($pass !== $confirm_pass) {
-    die("Passwords do not match.");
-}
-
-// Hash the password
-$hashed_password = password_hash($pass, PASSWORD_BCRYPT);
-
-// Prepare SQL statement
-$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-if ($stmt === false) {
-    die("Prepare failed: " . $conn->error);
-}
-$stmt->bind_param("sss", $user, $email, $hashed_password);
-
-// Execute the statement
-if ($stmt->execute()) {
-    header("Location: Status.php?page=signup&status=success");
-} else {
-    header("Location: Status.php?page=signup&status=error");
-}
-
-// Close connection
-$stmt->close();
-$conn->close();
