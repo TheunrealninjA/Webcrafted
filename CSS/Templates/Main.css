@@ -85,7 +85,9 @@
     cursor: pointer;
 }
 
-.filter-item:hover{ transform: scale(1.05); }
+.filter-item p{ max-width: 480px }
 
-.filter-options .filter-checkbox:last-child { margin-bottom: 30px; }
+.filter-item:hover{ transform: scale(1.05) }
+
+.filter-options .filter-checkbox:last-child { margin-bottom: 30px }
 
