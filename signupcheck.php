@@ -39,5 +39,3 @@ if (isset($_POST['submit_button'])) {
     }
     exit(0);
 }
-
-$con->close();
