@@ -2,36 +2,34 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (isset($_POST['submit_button'])) {
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
 
-    if ($password == $confirm_password) {
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+if ($password == $confirm_password) {
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        $mysqli = require(__DIR__ . "/dbconfig.php");
-        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+    $mysqli = require(__DIR__ . "/dbconfig.php");
+    $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
 
-        // Bind the parameters and execute the query
-        $stmt = $mysqli->stmt_init();
+    // Bind the parameters and execute the query
+    $stmt = $mysqli->stmt_init();
 
-        $stmt->prepare($sql);
+    $stmt->prepare($sql);
 
-        if (!$stmt->prepare($sql)) {
-            die("SQL Error: " . $mysqli->error);
-        }
+    if (!$stmt->prepare($sql)) {
+        die("SQL Error: " . $mysqli->error);
+    }
 
-        $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $hashed_password);
+    $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $hashed_password);
 
-        $stmt->execute();
+    $stmt->execute();
 
-        if ($stmt->execute()) {
-            header("Location: Status.php?page=signup&status=success");
-            exit(0);
-        } else {
-            header("Location: Status.php?page=signup&status=error");
-            exit(0);
-        }
+    if ($stmt->execute()) {
+        header("Location: Status.php?page=signup&status=success");
+        exit(0);
+    } else {
+        header("Location: Status.php?page=signup&status=error");
+        exit(0);
     }
 } else {
     header("Location: Status.php?page=signup&status=password");
