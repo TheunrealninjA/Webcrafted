@@ -2,7 +2,7 @@
 // register.php
 
 $servername = "server330";
-$dbname = "webcsosl_Login-info";
+$dbname = "webcsosl_SignUp";
 $username = "webcsosl_Admin";
 $password = "wJFTJo=o=iZ6";
 
