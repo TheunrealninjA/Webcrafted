@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+var_dump($_POST);
+
 print_r($_POST);
 
 $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);

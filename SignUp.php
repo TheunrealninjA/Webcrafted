@@ -60,7 +60,7 @@
                 <label for="Captcha">What is 5x2?</label>
                 <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
 
-                <input type="submit" name="submit_button" id="submit" Value="Sign Up">
+                <input type="submit" id="submit" Value="Sign Up">
             </form>
         </div>
     </div>
