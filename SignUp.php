@@ -45,10 +45,10 @@
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" name="username" required><br><br>
+                <input type="text" id="username" name="username" required><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" name="email" required><br><br>
+                <input type="email" id="email" name="email" required><br><br>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required placeholder="Input Password"><br><br>
@@ -56,11 +56,11 @@
                 <label for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password"
                     placeholder="Input Password Again"><br><br>
-
+<!-- 
                 <label for="Captcha">What is 5x2?</label>
-                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
+                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
 
-                <input type="submit" name="submit_button" id="submit" Value="Sign Up" disabled>
+                <input type="submit" name="submit_button" id="submit" Value="Sign Up">
             </form>
         </div>
     </div>
