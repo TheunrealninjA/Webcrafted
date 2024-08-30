@@ -1,10 +1,10 @@
 <?php
 // register.php
 
-$servername = "localhost";
-$dbname = "secure_password_db";
-$username = "root";
-$password = "";
+$servername = "server330";
+$dbname = "webcsosl_Login-info";
+$username = "webcsosl_Admin";
+$password = "wJFTJo=o=iZ6";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
