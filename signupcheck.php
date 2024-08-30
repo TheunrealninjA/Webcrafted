@@ -32,13 +32,15 @@ if (isset($_POST['submit_button'])) {
 
             $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $hashed_password);
 
+            $stmt->execute();
+
             if ($stmt->execute()) {
                 header("Location: Status.php?page=signup&status=success");
+                exit(0);
             } else {
                 header("Location: Status.php?page=signup&status=error");
+                exit(0);
             }
-
-            $stmt->close();
         }
     } else {
         header("Location: Status.php?page=signup&status=password");
