@@ -1,37 +1,43 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// register.php
 
-var_dump($_POST);
+$servername = "localhost";
+$dbname = "secure_password_db";
+$username = "root";
+$password = "";
 
-print_r($_POST);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-$mysqli = require(__DIR__ . "/dbconfig.php");
-$sql = "INSERT INTO users (username, email, password)
-        VALUES (?, ?, ?)";
-
-// Bind the parameters and execute the query
-$stmt = $mysqli->stmt_init();
-
-$stmt->prepare($sql);
-
-if (!$stmt->prepare($sql)) {
-    die("SQL Error: " . $mysqli->error);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$stmt->bind_param("sss",
-                  $_POST["username"],
-                  $_POST["email"], 
-                  $hashed_password);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = $_POST['username'];
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
 
-$stmt->execute();
+    // Validate the email address
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Invalid email format");
+    }
 
-if ($stmt->execute()) {
-    header("Location: Status.php?page=signup&status=success");
-    exit(0);
-} else {
-    header("Location: Status.php?page=signup&status=error");
-    exit(0);
+    // Hash the password using a strong algorithm (e.g., bcrypt)
+    $password_hash = password_hash($pass, PASSWORD_BCRYPT);
+
+    // Prepare and bind
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $user, $email, $password_hash);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
 }
