@@ -9,41 +9,31 @@ if (isset($_POST['submit_button'])) {
     if ($password == $confirm_password) {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        $mysqli = require( __DIR__ ."/dbconfig.php");
-        // Check Email
+        $mysqli = require(__DIR__ . "/dbconfig.php");
+        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
 
-        $checkemail = "SELECT email FROM users WHERE email='$email' LIMIT 1";
-        $checkemail_run = mysqli_query($con, $checkemail);
+        // Bind the parameters and execute the query
+        $stmt = $mysqli->stmt_init();
 
-        if (mysqli_num_rows($checkemail_run) > 0) {
-            header("Location: Status.php?page=signup&status=emailused");
+        $stmt->prepare($sql);
+
+        if (!$stmt->prepare($sql)) {
+            die("SQL Error: " . $mysqli->error);
+        }
+
+        $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $hashed_password);
+
+        $stmt->execute();
+
+        if ($stmt->execute()) {
+            header("Location: Status.php?page=signup&status=success");
             exit(0);
         } else {
-            $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-
-            // Bind the parameters and execute the query
-            $stmt = $mysqli->stmt_init();
-
-            $stmt->prepare($sql);
-
-            if ( ! $stmt->prepare($sql)) {
-                die("SQL Error: ". $mysqli->error);
-            }
-
-            $stmt->bind_param("sss", $_POST["username"], $_POST["email"], $hashed_password);
-
-            $stmt->execute();
-
-            if ($stmt->execute()) {
-                header("Location: Status.php?page=signup&status=success");
-                exit(0);
-            } else {
-                header("Location: Status.php?page=signup&status=error");
-                exit(0);
-            }
+            header("Location: Status.php?page=signup&status=error");
+            exit(0);
         }
-    } else {
-        header("Location: Status.php?page=signup&status=password");
-        exit(0);
     }
+} else {
+    header("Location: Status.php?page=signup&status=password");
+    exit(0);
 }
