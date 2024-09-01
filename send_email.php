@@ -10,7 +10,7 @@ if (!$is_logged_in) {
 }
 
 // Set recipient email address
-$to = "wyatthardy508@gmail.com"; // change this when done testing 
+$to = "wyattd@webcrafted.pro"; // change this when done testing 
 
 // Get form data and sanitize inputs
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
