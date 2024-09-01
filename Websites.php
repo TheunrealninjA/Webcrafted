@@ -41,7 +41,7 @@ $is_logged_in = isset($_SESSION['username']);
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/account.png" alt="Account"
+                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
                                 style="width:30px;height:30px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
