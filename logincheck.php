@@ -7,10 +7,10 @@ ini_set('display_errors', 1);
 session_start();
 
 // Database connection parameters
-$servername = "server330";
+$servername = "server330.web-hosting.com";
+$dbname = "webcsosl_SignUp";
 $username = "webcsosl_Admin";
-$password = "S*@zUCE.E[X*";
-$dbname = "webcsosl_Login-info";
+$password = "wJFTJo=o=iZ6";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
