@@ -1,13 +1,13 @@
 <?php
 // Start a session
-session_start();
-$is_logged_in = isset($_SESSION['username']);
+// session_start();
+// $is_logged_in = isset($_SESSION['username']);
 
-// Check if user is logged in
-if (!$is_logged_in) {
-    header("Location: Login.php");
-    exit();
-}
+// // Check if user is logged in
+// if (!$is_logged_in) {
+//     header("Location: Login.php");
+//     exit();
+// }
 
 // Set recipient email address
 $to = "wyattd@webcrafted.pro"; // change this when done testing 
@@ -19,8 +19,8 @@ $moreInfo = isset($_POST['moreInfo']) ? filter_var($_POST['moreInfo'], FILTER_SA
 $otherSubject = isset($_POST['otherSubject']) ? filter_var($_POST['otherSubject'], FILTER_SANITIZE_STRING) : '';
 $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
 
-// Set email subject
-$email_subject = "New Contact Form Submission From " . $_SESSION['username'];
+// // Set email subject
+// $email_subject = "New Contact Form Submission From " . $_SESSION['username'];
 
 // Construct HTML email message
 $body = "<html><body>";
