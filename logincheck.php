@@ -30,9 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if password matches
     if (password_verify($pass, $password_hash)) {
         echo "Login successful! Welcome, " . htmlspecialchars($user);
-        // Start the session or set up cookies if needed
-        // session_start();
-        // $_SESSION['username'] = $user;
+        session_start();
+        $_SESSION['username'] = $user;
     } else {
         echo "Invalid username or password";
     }
