@@ -31,6 +31,18 @@ if ($is_logged_in) {
             case 'robot':
                 echo '<title>Failed Captcha</title>';
                 break;
+            case 'format':
+                echo '<title>Wrong Format</title>';
+                break;
+            case 'user':
+                echo '<title>User Already Exists</title>';
+                break;
+            case 'emailused':
+                echo '<title>Email Used</title>';
+                break;
+            case 'password':
+                echo '<title>Password Error</title>';
+                break;
             case '':
                 echo '<title>Missing Status</title>';
                 break;
@@ -112,13 +124,22 @@ if ($is_logged_in) {
                     displayMessage('CheckMark.webp', 'Sign Up Successful', 'Back to home', 'index.php');
                     break;
                 case 'error':
-                    displayMessage('Error.webp', 'Sign Up Failed', 'Go Back', 'SignUp.php');
+                    displayMessage('Error.webp', 'Sign Up Failed', 'Try Again', 'SignUp.php');
                     break;
                 case 'emailused':
                     displayMessage('Error.webp', 'Email Already In Use', 'Go Back', 'SignUp.php');
                     break;
+                case 'format':
+                    displayMessage('Error.webp', 'Email Format Is Incorrect', 'Go Back', 'SignUp.php');
+                    break;
+                case 'user':
+                    displayMessage('Error.webp', 'Username Already In Use', 'Go Back', 'SignUp.php');
+                    break;
                 case 'password':
                     displayMessage('Error.webp', 'Password isn`t the same', 'Go Back', 'SignUp.php');
+                    break;
+                case 'connerror':
+                    displayMessage('QuestionMark.webp', 'Connection Error. Check Internet And Try Again', 'Go Back', 'SignUp.php');
                     break;
                 default:
                     displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');

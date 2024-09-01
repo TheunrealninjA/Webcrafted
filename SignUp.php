@@ -20,6 +20,39 @@
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
+
+    <script>
+        function checkUsername() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            if (username.length > 0) {
+                fetch('check_form.php?username=' + encodeURIComponent(username))
+                    .then(response => response.text())
+                    .then(data => {
+                        const usernameField = document.getElementById('username');
+                        if (data === 'taken') {
+                            usernameField.setCustomValidity('Username is already taken');
+                            usernameField.reportValidity();
+                        } else {
+                            usernameField.setCustomValidity('');
+                        }
+                    });
+            }
+            if (email.length > 0) {
+                fetch('check_form.php?email=' + encodeURIComponent(email))
+                    .then(response => response.text())
+                    .then(data => {
+                        const emailField = document.getElementById('email');
+                        if (data === 'taken') {
+                            emailField.setCustomValidity('Email is already in use')
+                            emailField.reportValidity();
+                        }else {
+                            emailField.setCustomValidity('');
+                        }
+                    });
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -55,9 +88,9 @@
             <label for="confirm_password">Confirm Password:</label>
             <input type="password" id="confirm_password" name="confirm_password"
                 placeholder="Input Password Again"><br><br>
-            <!-- 
-                <label for="Captcha">What is 5x2?</label>
-                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> -->
+
+            <label for="Captcha">What is 5x2?</label>
+            <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
 
             <input type="submit" id="submit" Value="Sign Up">
         </form>

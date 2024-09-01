@@ -1,18 +1,20 @@
 <?php
-    $host = "server330";
-    $username = "webcsosl_Admin";
-    $password = "S*@zUCE.E[X*";
-    $dbname = "webcsosl_Login-info";
+$host = "server330";
+$username = "webcsosl_Admin";
+$password = "S*@zUCE.E[X*";
+$dbname = "webcsosl_Login-info";
 
-    // Create DB Connection
-    $mysqli = new mysqli(hostname:$host,
-                         username:$username,
-                         password:$password,
-                         database:$dbname);
+// Create DB Connection
+$conn = new mysqli(
+    hostname: $host,
+    username: $username,
+    password: $password,
+    database: $dbname
+);
 
-    // Check connection
-    if ($mysqli->connect_errno) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
+// Check connection
+if ($conn->connect_errno) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    return $mysqli;
+return $conn;
