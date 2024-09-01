@@ -1,12 +1,6 @@
 <?php
-// Enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// login.php
 
-// Start a session
-session_start();
-
-// Database connection parameters
 $servername = "server330.web-hosting.com";
 $dbname = "webcsosl_SignUp";
 $username = "webcsosl_Admin";
@@ -20,32 +14,31 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve and sanitize user input
-    $user = htmlspecialchars($_POST['username']);
-    $pass = htmlspecialchars($_POST['password']);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
 
-    // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
+    // Prepare and bind
+    $stmt = $conn->prepare("SELECT password_hash FROM users WHERE username = ?");
     $stmt->bind_param("s", $user);
+
+    // Execute the statement
     $stmt->execute();
-    $stmt->bind_result($hashed_password);
+    $stmt->bind_result($password_hash);
     $stmt->fetch();
-    $stmt->close();
 
-    // Verify password
-    if (password_verify($pass, $hashed_password)) {
-        // Set session variables
-        $_SESSION['username'] = $user;
-        echo "Login successful!";
-        // Redirect to a protected page
-        header("Location: index.php");
-        exit();
+    // Check if password matches
+    if (password_verify($pass, $password_hash)) {
+        echo "Login successful! Welcome, " . htmlspecialchars($user);
+        // Start the session or set up cookies if needed
+        // session_start();
+        // $_SESSION['username'] = $user;
     } else {
-        echo "Invalid username or password.";
+        echo "Invalid username or password";
     }
-}
 
-// Close connection
-$conn->close();
+    $stmt->close();
+    $conn->close();
+} else {
+    echo "No Post";
+}
