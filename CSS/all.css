@@ -61,25 +61,12 @@ body{
 .Cont{
     border: 1px solid white;
     text-align: center;
-    margin: 11vh 35vw 0;
+    margin: 5vh 35vw 0;
     border-radius: 16px;
     box-shadow: 0 0 10px 5px white;
     padding: 60px 0;
     background-image: linear-gradient(135deg, #181818, #101010);
     animation: Down 1.2s;
-}
-
-.login{
-    padding: 8px 13px !important;
-    background-color: #101010;
-    color: #fff;
-    border: 1px solid white;
-    box-shadow: inset 0 0 4px 2px black;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.6s;
-    margin-left: 18vw;
-    width: auto;
 }
 
 .filter-item{

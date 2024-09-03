@@ -46,7 +46,7 @@
                         if (data === 'taken') {
                             emailField.setCustomValidity('Email is already in use')
                             emailField.reportValidity();
-                        }else {
+                        } else {
                             emailField.setCustomValidity('');
                         }
                     });
@@ -74,26 +74,28 @@
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <h3>Sign Up</h3>
-        <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
+        <div class="Cont">
+            <h3>Sign Up</h3>
+            <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Input Username" required><br><br>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Input Email" required><br><br>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="Input Password"><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Input Password" required><br><br>
 
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password"
-                placeholder="Input Password Again"><br><br>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password"
+                    placeholder="Input Password Again" required><br><br>
 
-            <label for="Captcha">What is 5x2?</label>
-            <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
+                <label for="Captcha">What is 5x2?</label>
+                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
 
-            <input type="submit" id="submit" Value="Sign Up">
-        </form>
+                <input type="submit" id="submit" Value="Sign Up">
+            </form>
+        </div>
     </div>
 </body>
 
