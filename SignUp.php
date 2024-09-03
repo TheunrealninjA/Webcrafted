@@ -101,8 +101,8 @@
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"
                     required><br><br>
 
-                <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
-                
+                <div class="g-recaptcha" name="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
+
                 <input type="submit" id="submit" grecaptcha.execute Value="Sign Up">
             </form>
         </div>
