@@ -80,7 +80,7 @@
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Input Username" required oninput="checkusername()"><br><br>
+                <input type="text" id="username" name="username" placeholder="Input Username" required oninput="checkUsername()"><br><br>
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Input Email" required oninput="checkEmail()"><br><br>
