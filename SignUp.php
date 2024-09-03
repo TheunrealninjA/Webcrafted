@@ -20,22 +20,23 @@
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 
     <script>
         function checkUsername() {
             const username = document.getElementById('username').value;
             if (username.length > 0) {
                 fetch('check_form.php?username=' + encodeURIComponent(username))
-                .then(response => response.text())
-                .then(data => {
-                    const usernameField = document.getElementById('username');
-                    if (data === 'taken') {
-                        usernameField.setCustomValidity('Username is already taken');
-                        usernameField.reportValidity();
-                    } else {
-                        usernameField.setCustomValidity('');
-                    }
-                });
+                    .then(response => response.text())
+                    .then(data => {
+                        const usernameField = document.getElementById('username');
+                        if (data === 'taken') {
+                            usernameField.setCustomValidity('Username is already taken');
+                            usernameField.reportValidity();
+                        } else {
+                            usernameField.setCustomValidity('');
+                        }
+                    });
             }
         }
         function checkEmail() {
@@ -53,6 +54,12 @@
                         }
                     });
             }
+        }
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6Le_1jUqAAAAAF7B27qGaitWCkmzrfMsq4b0Hkdq', { action: 'LOGIN' });
+            });
         }
     </script>
 </head>
@@ -80,23 +87,29 @@
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Input Username" required oninput="checkUsername()"><br><br>
+                <input type="text" id="username" name="username" placeholder="Input Username" required
+                    oninput="checkUsername()"><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Input Email" required oninput="checkEmail()"><br><br>
+                <input type="email" id="email" name="email" placeholder="Input Email" required
+                    oninput="checkEmail()"><br><br>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Input Password" required><br><br>
 
                 <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password"
-                    placeholder="Input Password Again" required><br><br>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"
+                    required><br><br>
 
-                <label for="Captcha">What is 5x2?</label>
-                <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br>
+                <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN">
+                </div>
+                <br />
 
-                <input type="submit" id="submit" Value="Sign Up">
+                <input type="submit" id="submit" grecaptcha.execute Value="Sign Up">
             </form>
+
+
+
         </div>
     </div>
 </body>
