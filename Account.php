@@ -2,6 +2,7 @@
 // Start a session
 session_start();
 $is_logged_in = isset($_SESSION['username']);
+$username = htmlspecialchars($_SESSION['username']);
 
 // Check if user is logged in - enable when done making page 
 // if (!$is_logged_in) {
@@ -66,11 +67,12 @@ $is_logged_in = isset($_SESSION['username']);
         <div class="Cont">
             <?php
             if ($is_logged_in){
-                echo '<h3>Hello, ' . htmlspecialchars($_SESSION['username']) . '!</h3>';
+                echo '<h3>Hello, ' . $username . '!</h3>';
             }else{
                 echo '<h3>User Not Found</h3>';
             }
-            if ($is_logged_in === 'admin'){
+            
+            if ($username === 'admin'){
                 echo '<a href="">Control Center</a>';
             }
             ?>
