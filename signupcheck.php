@@ -1,5 +1,5 @@
 <?php
-
+require_once '/recaptcha-master/src/autoload.php';
 function redirectWithStatus($status)
 {
     header("Location: Status.php?page=signup&status=$status");
@@ -14,8 +14,22 @@ function validatePostFields($requiredFields)
     }
     return true;
 }
-
-require_once '/recaptcha-master/src/autoload.php';
+function checkUsernameExists($conn, $username) {
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+    $exists = $stmt->num_rows > 0;
+    $stmt->close();
+    return $exists;
+}
+function insertNewUser($conn, $username, $email, $password_hash) {
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $email, $password_hash);
+    $success = $stmt->execute();
+    $stmt->close();
+    return $success;
+}
 
 $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
 $remoteIp = $_SERVER['REMOTE_ADDR'];
@@ -53,38 +67,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST['password'];
     $confirm_pass = $_POST['confirm_password'];
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->close();
+    if (checkUsernameExists($conn, $user)) {
         $conn->close();
         redirectWithStatus('user');
     }
     if ($confirm_pass !== $pass) {
-        $stmt->close();
         $conn->close();
         redirectWithStatus('password');
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $stmt->close();
         $conn->close();
         redirectWithStatus('format');
     }
+
     $password_hash = password_hash($pass, PASSWORD_BCRYPT);
-    $stmt->close();
 
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $user, $email, $password_hash);
-
-    if ($stmt->execute()) {
-        $stmt->close();
+    if (insertNewUser($conn, $user, $email, $password_hash)) {
         $conn->close();
         redirectWithStatus('success');
     } else {
-        $stmt->close();
         $conn->close();
         redirectWithStatus('error');
     }
