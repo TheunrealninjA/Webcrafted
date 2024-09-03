@@ -19,18 +19,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->num_rows > 0) {
         header("Location: Status.php?page=signup&status=user");
+        $stmt->close();
+        $conn->close();
         exit();
     }
 
     if ($confirm_pass !== $pass){
         header("Location: Status.php?page=signup&status=password");
+        $stmt->close();
+        $conn->close();
         exit();
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: Status.php?page=signup&status=format");
+        $stmt->close();
+        $conn->close();
         exit();
     }
+
+    $stmt->close();
 
     $password_hash = password_hash($pass, PASSWORD_BCRYPT);
 
