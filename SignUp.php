@@ -103,7 +103,7 @@
 
                 <div class="g-recaptcha" id="g-recaptcha" name="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
 
-                <input type="submit" id="submit" grecaptcha.execute Value="Sign Up">
+                <input type="submit" id="submit" Value="Sign Up">
             </form>
         </div>
     </div>
