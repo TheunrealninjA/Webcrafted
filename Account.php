@@ -66,7 +66,7 @@ $is_logged_in = isset($_SESSION['username']);
         <div class="Cont">
             <?php
             if ($is_logged_in){
-                echo '<h3>Hello, ' . $is_logged_in . '!</h3>';
+                echo '<h3>Hello, ' . htmlspecialchars($_SESSION['username']) . '!</h3>';
             }else{
                 echo '<h3>User Not Found</h3>';
             }
