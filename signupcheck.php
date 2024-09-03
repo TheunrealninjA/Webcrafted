@@ -47,7 +47,8 @@ if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)){
 
     if (!$resp->isSuccess()) {
         $errors = $resp->getErrorCodes();
-        redirectWithStatus('robot');
+        var_dump($gRecaptchaResponse);
+        var_dump($resp);
     }else{
         redirectWithStatus('misrobot');
     }    
