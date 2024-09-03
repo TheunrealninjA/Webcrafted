@@ -24,20 +24,22 @@
     <script>
         function checkUsername() {
             const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
             if (username.length > 0) {
                 fetch('check_form.php?username=' + encodeURIComponent(username))
-                    .then(response => response.text())
-                    .then(data => {
-                        const usernameField = document.getElementById('username');
-                        if (data === 'taken') {
-                            usernameField.setCustomValidity('Username is already taken');
-                            usernameField.reportValidity();
-                        } else {
-                            usernameField.setCustomValidity('');
-                        }
-                    });
+                .then(response => response.text())
+                .then(data => {
+                    const usernameField = document.getElementById('username');
+                    if (data === 'taken') {
+                        usernameField.setCustomValidity('Username is already taken');
+                        usernameField.reportValidity();
+                    } else {
+                        usernameField.setCustomValidity('');
+                    }
+                });
             }
+        }
+        function checkEmail() {
+            const email = document.getElementById('email').value;
             if (email.length > 0) {
                 fetch('check_form.php?email=' + encodeURIComponent(email))
                     .then(response => response.text())
@@ -78,10 +80,10 @@
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Input Username" required><br><br>
+                <input type="text" id="username" name="username" placeholder="Input Username" required oninput="checkusername()"><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Input Email" required><br><br>
+                <input type="email" id="email" name="email" placeholder="Input Email" required oninput="checkEmail()"><br><br>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Input Password" required><br><br>

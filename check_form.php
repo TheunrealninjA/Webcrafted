@@ -27,6 +27,24 @@ if (isset($_GET['username'])) {
     }
 
     $stmt->close();
+}elseif (isset($_GET['email'])) {
+    $email = $_GET['email'];
+
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo 'taken';
+    }else{
+        echo 'available';
+    }
+
+    $stmt->close();
+}else{
+    header("Location: Status.php?page=signup&status=");
+    exit();
 }
 
 $conn->close();
