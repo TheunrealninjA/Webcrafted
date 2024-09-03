@@ -1,8 +1,15 @@
 <?php
-$conn = require(__DIR__ . "/dbconfig.php");
+$servername = "server330.web-hosting.com";
+$dbname = "webcsosl_SignUp";
+$username = "webcsosl_Admin";
+$password = "wJFTJo=o=iZ6";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    header("Location: Status.php?page=signup&status=connerror");
+    exit();
 }
 
 if (isset($_GET['username'])) {
