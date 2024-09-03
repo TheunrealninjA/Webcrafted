@@ -35,7 +35,7 @@ function insertNewUser($conn, $username, $email, $password_hash) {
     return $success;
 }
 
-$gRecaptchaResponse = $_POST['g-recaptcha'];
+$gRecaptchaResponse = $_POST['g-recaptcha-response'];
 
 $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
 $remoteIp = $_SERVER['REMOTE_ADDR'];
