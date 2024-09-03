@@ -138,6 +138,12 @@ if ($is_logged_in) {
                 case 'password':
                     displayMessage('Error.webp', 'Password isn`t the same', 'Go Back', 'SignUp.php');
                     break;
+                case 'robot':
+                    displayMessage('Error.webp', 'Failed Recaptcha', 'Go Back', 'SignUp.php');
+                    break;
+                case 'misrobot':
+                    displayMessage('QuestionMark.webp', 'Recaptcha isn`t complete', 'Go Back', 'SignUp.php');
+                    break;
                 case 'connerror':
                     displayMessage('QuestionMark.webp', 'Connection Error. Check Internet And Try Again', 'Go Back', 'SignUp.php');
                     break;

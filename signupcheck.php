@@ -35,17 +35,23 @@ function insertNewUser($conn, $username, $email, $password_hash) {
     return $success;
 }
 
+$gRecaptchaResponse = $_POST['g-recaptcha'];
+
 $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
 $remoteIp = $_SERVER['REMOTE_ADDR'];
 
-$recaptcha = new \ReCaptcha\ReCaptcha($secret);
-$resp = $recaptcha->setExpectedHostname('webcrafted.pro')
-    ->verify($gRecaptchaResponse, $remoteIp);
+if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)){
+    $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+    $resp = $recaptcha->setExpectedHostname('webcrafted.pro')
+        ->verify($gRecaptchaResponse, $remoteIp);
 
-if (!$resp->isSuccess()) {
-    $errors = $resp->getErrorCodes();
-    exit();
-}
+    if (!$resp->isSuccess()) {
+        $errors = $resp->getErrorCodes();
+        redirectWithStatus('robot');
+    }else{
+        redirectWithStatus('misrobot');
+    }    
+}    
 
 $servername = "server330.web-hosting.com";
 $dbname = "webcsosl_SignUp";
