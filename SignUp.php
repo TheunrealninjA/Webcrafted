@@ -10,6 +10,7 @@
 
     <link rel="icon" href="images/WCLogo.webp">
 
+    <link rel="stylesheet" href="CSS/SignUp/Main.css">
     <link rel="stylesheet" href="CSS/Footer.css">
     <link rel="stylesheet" href="CSS/Nav.css">
     <link rel="stylesheet" href="CSS/all.css">
@@ -96,6 +97,10 @@
                     required><br><br>
 
                 <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
+
+                <div class="check">
+                    <input type="checkbox" id="checkbox" name="checkbox" require><p class="confmes">By ticking this box you agree to our <a class="clicktext" href="Terms.html">Terms & Conditions</a> and our <a class="clicktext" href="Privacy.html">Privacy Policy</a>.</p>
+                </div>
 
                 <input type="submit" id="submit" Value="Sign Up">
             </form>

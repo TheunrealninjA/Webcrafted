@@ -26,7 +26,6 @@ $username = htmlspecialchars($_SESSION['username']);
     ?>
 
     <link rel="icon" href="images/WCLogo.webp">
-
     <link rel="stylesheet" href="CSS/all.css">
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="stylesheet" href="CSS/Footer.css">
@@ -52,8 +51,7 @@ $username = htmlspecialchars($_SESSION['username']);
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
-                                style="width:30px;height:30px;"></a></li>
+                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
@@ -67,17 +65,17 @@ $username = htmlspecialchars($_SESSION['username']);
         <div class="Cont">
             <?php
             if ($is_logged_in){
-                echo '<h3>Hello, ' . $username . '!</h3>';
+                echo '<h3 class="Welcome">Hello, ' . $username . '!</h3>';
             }else{
-                echo '<h3>User Not Found</h3>';
+                echo '<h3 class="Welcome">User Not Found</h3>';
             }
             
             if ($username === 'admin'){
-                echo '<a href="">Control Center</a>';
+                echo '<a href="" class="ControlBtn">Control Center</a>';
             }
             ?>
-            <a href="">Change Password</a>
-            <a href="logout.php" class="logout">Log Out</a>
+            <a href="" class="ControlBtn">Change Password</a>
+            <a href="logout.php" class="ControlBtn">Log Out</a>
         </div>
     </div>
 </body>

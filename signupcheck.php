@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once __DIR__ . '/recaptcha-master/src/autoload.php';
 function redirectWithStatus($status)
 {
@@ -36,7 +32,6 @@ function insertNewUser($conn, $username, $email, $password_hash) {
 }
 
 $gRecaptchaResponse = $_POST['g-recaptcha-response'];
-
 $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
 $remoteIp = $_SERVER['REMOTE_ADDR'];
 
@@ -47,9 +42,7 @@ if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)){
 
     if (!$resp->isSuccess()) {
         $errors = $resp->getErrorCodes();
-        var_dump($gRecaptchaResponse);
-        var_dump($resp);
-        exit();
+        redirectWithStatus('robot');
     }else{
         redirectWithStatus('misrobot');
     }    

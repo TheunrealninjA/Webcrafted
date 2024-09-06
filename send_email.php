@@ -14,13 +14,13 @@ $to = "wyattd@webcrafted.pro"; // change this when done testing
 
 // Get form data and sanitize inputs
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-$subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
-$moreInfo = isset($_POST['moreInfo']) ? filter_var($_POST['moreInfo'], FILTER_SANITIZE_STRING) : '';
-$otherSubject = isset($_POST['otherSubject']) ? filter_var($_POST['otherSubject'], FILTER_SANITIZE_STRING) : '';
-$message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+$subject = htmlspecialchars($_POST['subject']);
+$moreInfo = isset($_POST['moreInfo']) ? htmlspecialchars($_POST['moreInfo']) : '';
+$otherSubject = isset($_POST['otherSubject']) ? htmlspecialchars($_POST['otherSubject']) : '';
+$message = htmlspecialchars($_POST['message']);
 
 // // Set email subject
-// $email_subject = "New Contact Form Submission From " . $_SESSION['username'];
+$email_subject = "New Contact Form Submission From " . $_SESSION['username'];
 
 // Construct HTML email message
 $body = "<html><body>";
