@@ -150,18 +150,24 @@ if ($is_logged_in) {
                 default:
                     displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');
                     break;
-            }
-        } elseif($page === 'Contact') {
-            switch ($status) {
-                case 'success':
-                    displayMessage('CheckMark.webp', 'Sent Sucessfully', 'Back to home', 'index.php');
-                    break;
-                case 'error':
-                    displayMessage('Error.webp', 'Something Went Wrong', 'Try Again', 'ContactUs.php');
-                    break;
-                default:
-                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'ContactUs.php');
-                    break;
+                }
+            } elseif($page === 'Contact') {
+                switch ($status) {
+                    case 'success':
+                        displayMessage('CheckMark.webp', 'Sent Sucessfully', 'Back to home', 'index.php');
+                        break;
+                    case 'error':
+                        displayMessage('Error.webp', 'Something Went Wrong', 'Try Again', 'ContactUs.php');
+                        break;
+                    case 'robot':
+                        displayMessage('Error.webp', 'Failed Recaptcha', 'Go Back', 'SignUp.php');
+                        break;
+                    case 'misrobot':
+                        displayMessage('QuestionMark.webp', 'Recaptcha isn`t complete', 'Go Back', 'SignUp.php');
+                        break;
+                    default:
+                        displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'ContactUs.php');
+                        break;
             }
         }else {
             displayMessage('QuestionMark.webp', 'Invalid Redirect', 'Back to home', 'index.php');

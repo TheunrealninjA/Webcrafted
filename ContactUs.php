@@ -30,7 +30,7 @@ $is_logged_in = isset($_SESSION['username']);
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
     <script src="JavaScript/ContactFormUpdate.js"></script>
-    <script src="JavaScript/CAPTCHA.js"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
@@ -61,7 +61,7 @@ $is_logged_in = isset($_SESSION['username']);
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="Cont ContactCont">
+        <div class="Cont ContactCont snap">
             <div>
                 <h2>Contact Us</h2>
                 <form class="ContactForm" id="ContactForm" action="send_email.php" method="post">
@@ -98,8 +98,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <textarea id="message" name="message" placeholder="Add Some Extra Details You Would Like Us To Know"
                         required></textarea><br>
 
-                    <label for="Captcha">What is 5x2?</label>
-                    <input type="text" id="answer" name="answer" placeholder="Prove You Are Human" required><br><br> 
+                    <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
 
                     <input type="submit" id="submit" value="Submit" disabled>
                 </form>

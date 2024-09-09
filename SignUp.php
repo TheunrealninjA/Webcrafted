@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
-    <script src="JavaScript/CAPTCHA.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
@@ -81,18 +80,18 @@
         <div class="Cont">
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
-                <label for="username">Username:</label>
+                <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" placeholder="Input Username" required
-                    oninput="checkUsername()"><br><br>
+                    oninput="checkUsername()"><br>
 
-                <label for="email">Email:</label>
+                <label for="email">Email:</label><br>
                 <input type="email" id="email" name="email" placeholder="Input Email" required
-                    oninput="checkEmail()"><br><br>
+                    oninput="checkEmail()"><br>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Input Password" required><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="Input Password" required><br>
 
-                <label for="confirm_password">Confirm Password:</label>
+                <label for="confirm_password">Confirm Password:</label><br>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"
                     required><br><br>
 

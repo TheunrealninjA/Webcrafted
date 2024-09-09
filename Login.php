@@ -1,9 +1,8 @@
 <?php
-// Start a session
-session_start();
+//include 'PHPScripts/session_manager.php';
+
 $is_logged_in = isset($_SESSION['username']);
 
-// Check if user is logged in
 if ($is_logged_in) {
     header("Location: index.php");
     exit();
@@ -51,16 +50,50 @@ if ($is_logged_in) {
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="Cont"> 
+        <div class="Cont">
             <div class="signup">
+                <?php
+                $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
+
+                switch ($status){
+                    case 'invalid':
+                        echo '<div class="errorbox">';
+                        echo '<img src="images/status/error.webp" style="width: 30px;" alt="error">';
+                        echo '<h5>Username Or Password Is Invalid</h5>';
+                        echo '</div>';
+                        break;
+                    case 'username':
+                        echo '<div class="warnbox">';
+                        echo '<img src="images/status/warning.webp" style="width: 30px;" alt="warning">';
+                        echo '<h5>Username Doesnt Exist</h5>';
+                        echo '</div>';
+                        break;
+                    case 'unexpected':
+                        echo '<div class="errorbox">';
+                        echo '<img src="images/status/error.webp" style="width: 30px;" alt="error">';
+                        echo '<h5>Unexpected Error</h5>';
+                        echo '</div>';
+                        break;
+                    case 'conn':
+                        echo '<div class="errorbox">';
+                        echo '<img src="images/status/error.webp" style="width: 30px;" alt="error">';
+                        echo '<h5>Connection Error</h5>';
+                        echo '</div>';
+                        break;
+                    }
+                    ?>
                 <h2>Login</h2>
                 <form action="logincheck.php" method="post">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required><br><br>
-        
+
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required><br><br>
-        
+
+                    <div class="check" style="margin-left:3%;">
+                        <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox"><p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
+                    </div>
+
                     <input class="login" type="submit" value="Login">
                 </form>
             </div>

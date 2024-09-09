@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 ?>
 

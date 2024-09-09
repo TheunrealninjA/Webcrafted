@@ -28,7 +28,7 @@ footer{
 }
 
 .footerlist h4 a {
-    color: rgb(34, 181, 255);
+    color: rgb(203, 173, 3);
 }
 
 .Copyright p{
@@ -40,7 +40,7 @@ footer{
 }
 
 .Copyright p a{
-    color: rgb(34, 181, 255);
+    color: rgb(203, 173, 3);
 }
 
 @media(max-width: 768px){

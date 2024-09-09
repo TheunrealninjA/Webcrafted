@@ -1,14 +1,39 @@
 <?php
 // Start a session
 // session_start();
+
 // $is_logged_in = isset($_SESSION['username']);
 
 // // Check if user is logged in
 // if (!$is_logged_in) {
-//     header("Location: Login.php");
-//     exit();
-// }
+    //     header("Location: Login.php");
+    //     exit();
+    // }
+require_once __DIR__ . '/recaptcha-master/src/autoload.php';
 
+function redirectWithStatus($status)
+{
+    header("Location: Status.php?page=Contact&status=$status");
+    exit();
+}
+
+$gRecaptchaResponse = $_POST['g-recaptcha-response'];
+$secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
+$remoteIp = $_SERVER['REMOTE_ADDR'];
+
+if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)){
+    $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+    $resp = $recaptcha->setExpectedHostname('webcrafted.pro')
+        ->verify($gRecaptchaResponse, $remoteIp);
+
+    if (!$resp->isSuccess()) {
+        $errors = $resp->getErrorCodes();
+        redirectWithStatus('robot');
+    }else{
+        redirectWithStatus('misrobot');
+    }    
+}    
+    
 // Set recipient email address
 $to = "wyattd@webcrafted.pro"; // change this when done testing 
 
