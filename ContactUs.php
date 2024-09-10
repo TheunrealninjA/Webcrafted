@@ -1,6 +1,5 @@
 <?php
-// Start a session
-session_start();
+include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 
 // Check if user is logged in - enable when done making page 
@@ -72,7 +71,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <select id="subject" name="subject" required onchange="showOther()">
                         <option value="" disabled selected>Select One...</option>
                         <option value="Private Hire">Private Hire</option>
-                        <option value=""></option>
+                        <option value="Question">Question</option>
                         <option value="Support">Support</option>
                         <option value="Other">Other</option>
                     </select><br>
@@ -81,10 +80,10 @@ $is_logged_in = isset($_SESSION['username']);
                         <label for="moreInfo">What Is The Issue:</label><br>
                         <select id="moreInfo" name="moreInfo" onchange="showOther()">
                             <option value="" disabled selected>Select One...</option>
-                            <option value="">My website isnt online</option>
-                            <option value="">Website is loading slow</option>
-                            <option value="">There is a bug on my website</option>
-                            <option value="">How do I host the website</option>
+                            <option value="Website is offline">My website isnt online</option>
+                            <option value="Website slow">Website is loading slow</option>
+                            <option value="Bugs on website">There is a bug on my website</option>
+                            <option value="Help hosting website">How do I host the website</option>
                             <option value="Other">Other</option>
                         </select><br>
                     </div>
