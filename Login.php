@@ -53,35 +53,33 @@ if ($is_logged_in) {
         <div class="Cont">
             <div class="signup">
                 <?php
+                function displayMessage($classname, $image, $message){
+                    echo '<div class="' . $classname . '">';
+                    echo '<img style="width: 30px;" src="images/status/' . $image . '" alt="' . $message . '">';
+                    echo '<h5>' . $message . '</h5>';
+                    echo '</div>';
+                }
+
                 $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
 
-                switch ($status){
+                switch ($status) {
                     case 'invalid':
-                        echo '<div class="errorbox">';
-                        echo '<img src="images/status/error.webp" style="width: 30px;" alt="error">';
-                        echo '<h5>Username Or Password Is Invalid</h5>';
-                        echo '</div>';
+                        displayMessage('errorbox', 'Error.webp', 'Invalid Username or Password');
                         break;
                     case 'username':
-                        echo '<div class="warnbox">';
-                        echo '<img src="images/status/warning.webp" style="width: 30px;" alt="warning">';
-                        echo '<h5>Username Doesnt Exist</h5>';
-                        echo '</div>';
+                        displayMessage('warnbox', 'warning.webp', 'Username does not exist');
                         break;
                     case 'unexpected':
-                        echo '<div class="errorbox">';
-                        echo '<img src="images/status/error.webp" style="width: 30px;" alt="error">';
-                        echo '<h5>Unexpected Error</h5>';
-                        echo '</div>';
+                        displayMessage('errorbox', 'warning.webp', 'An unexpected error occurred');
                         break;
                     case 'conn':
-                        echo '<div class="errorbox">';
-                        echo '<img src="images/status/error.webp" style="width: 30px;" alt="error">';
-                        echo '<h5>Connection Error</h5>';
-                        echo '</div>';
+                        displayMessage('errorbox', 'Error.webp', 'Connection Error');
                         break;
-                    }
-                    ?>
+                    default:
+                        displayMessage('warnbox', 'warning.webp', 'Invalid Status');
+                        break;
+                }
+                ?>
                 <h2>Login</h2>
                 <form action="logincheck.php" method="post">
                     <label for="username">Username:</label>
@@ -91,7 +89,8 @@ if ($is_logged_in) {
                     <input type="password" id="password" name="password" required><br><br>
 
                     <div class="check" style="margin-left:3%;">
-                        <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox"><p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
+                        <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox">
+                        <p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
                     </div>
 
                     <input class="login" type="submit" value="Login">

@@ -50,7 +50,7 @@ if ($is_logged_in) {
                 echo '<title>Invalid Status</title>';
                 break;
         }
-    }elseif ($page === 'Contact') {
+    } elseif ($page === 'Contact') {
         switch ($status) {
             case 'success':
                 echo '<title>Sent Sucessfully</title>';
@@ -65,7 +65,7 @@ if ($is_logged_in) {
                 echo '<title>Invalid Status</title>';
                 break;
         }
-    }else {
+    } else {
         echo $page === '' ? '<title>Missing Page</title>' : '<title>Invalid Page</title>';
     }
     ?>
@@ -115,28 +115,14 @@ if ($is_logged_in) {
             echo '</div>';
         }
 
-        $page = htmlspecialchars($_GET['page'] ?? '', ENT_QUOTES, 'UTF-8');
         $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
-
-        if ($page === 'signup') {
+        if ($page === 'Contact') {
             switch ($status) {
                 case 'success':
-                    displayMessage('CheckMark.webp', 'Sign Up Successful', 'Back to home', 'index.php');
+                    displayMessage('CheckMark.webp', 'Sent Sucessfully', 'Back to home', 'index.php');
                     break;
                 case 'error':
-                    displayMessage('Error.webp', 'Sign Up Failed', 'Try Again', 'SignUp.php');
-                    break;
-                case 'emailused':
-                    displayMessage('Error.webp', 'Email Already In Use', 'Go Back', 'SignUp.php');
-                    break;
-                case 'format':
-                    displayMessage('Error.webp', 'Email Format Is Incorrect', 'Go Back', 'SignUp.php');
-                    break;
-                case 'user':
-                    displayMessage('Error.webp', 'Username Already In Use', 'Go Back', 'SignUp.php');
-                    break;
-                case 'password':
-                    displayMessage('Error.webp', 'Password isn`t the same', 'Go Back', 'SignUp.php');
+                    displayMessage('Error.webp', 'Something Went Wrong', 'Try Again', 'ContactUs.php');
                     break;
                 case 'robot':
                     displayMessage('Error.webp', 'Failed Recaptcha', 'Go Back', 'SignUp.php');
@@ -144,32 +130,11 @@ if ($is_logged_in) {
                 case 'misrobot':
                     displayMessage('QuestionMark.webp', 'Recaptcha isn`t complete', 'Go Back', 'SignUp.php');
                     break;
-                case 'connerror':
-                    displayMessage('QuestionMark.webp', 'Connection Error. Check Internet And Try Again', 'Go Back', 'SignUp.php');
-                    break;
                 default:
-                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'SignUp.php');
+                    displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'ContactUs.php');
                     break;
-                }
-            } elseif($page === 'Contact') {
-                switch ($status) {
-                    case 'success':
-                        displayMessage('CheckMark.webp', 'Sent Sucessfully', 'Back to home', 'index.php');
-                        break;
-                    case 'error':
-                        displayMessage('Error.webp', 'Something Went Wrong', 'Try Again', 'ContactUs.php');
-                        break;
-                    case 'robot':
-                        displayMessage('Error.webp', 'Failed Recaptcha', 'Go Back', 'SignUp.php');
-                        break;
-                    case 'misrobot':
-                        displayMessage('QuestionMark.webp', 'Recaptcha isn`t complete', 'Go Back', 'SignUp.php');
-                        break;
-                    default:
-                        displayMessage('QuestionMark.webp', 'Invalid Status', 'Go Back', 'ContactUs.php');
-                        break;
             }
-        }else {
+        } else {
             displayMessage('QuestionMark.webp', 'Invalid Redirect', 'Back to home', 'index.php');
         }
         ?>

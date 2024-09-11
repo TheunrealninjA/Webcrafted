@@ -39,6 +39,7 @@
                     });
             }
         }
+
         function checkEmail() {
             const email = document.getElementById('email').value;
             if (email.length > 0) {
@@ -78,6 +79,52 @@
         </header>
 
         <div class="Cont">
+            <?php
+            function displayMessage($classname, $image, $message) {
+                echo '<div class="' . $classname . '">';
+                echo '<img style="width: 30px;" src="images/status/' . $image . '" alt="' . $message . '">';
+                echo '<h5>' . $message . '</h5>';
+                echo '</div>';
+            }
+
+            $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
+
+            switch ($status) {
+                case 'robot':
+                    displayMessage('errorbox', 'error.webp', 'Failed Recaptcha');
+                    break;
+                case 'misrobot':
+                    displayMessage('errorbox', 'questionmark.webp', 'Recaptcha isn`t complete');
+                    break;
+                case 'missing':
+                    displayMessage('errorbox', 'error.webp', 'Please fill in all fields');
+                    break;
+                case 'user':
+                    displayMessage('warnbox', 'warning.webp', 'Username Already In Use');
+                    break;
+                case 'password':
+                    displayMessage('errorbox', 'error.webp', 'Password isn`t the same');
+                    break;
+                case 'Format':
+                    displayMessage('errorbox', 'error.webp', 'Email Format Is Incorrect');
+                    break;
+                case 'success':
+                    displayMessage('successbox', 'checkmark.webp', 'Sign Up Successful');
+                    break;
+                case 'error':
+                    displayMessage('errorbox', 'error.webp', 'Sign Up Failed');
+                    break;
+                case 'unexpected':
+                    displayMessage('errorbox', 'error.webp', 'Unexpected Error');
+                    break;
+                case 'conn':
+                    displayMessage('errorbox', 'error.webp', 'Connection Error');
+                    break;
+                default:
+                    displayMessage('warnbox','QuestionMark.webp', 'Invalid Status');
+                    break;
+            }
+            ?>
             <h3>Sign Up</h3>
             <form class="signup" id="SignUpForm" action="signupcheck.php" method="post">
                 <label for="username">Username:</label><br>
@@ -95,10 +142,11 @@
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Input Password Again"
                     required><br><br>
 
-                <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
+                <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br />
 
                 <div class="check">
-                    <input type="checkbox" id="checkbox" name="checkbox" require><p class="confmes">By ticking this box you agree to our <a class="clicktext" href="Terms.html">Terms & Conditions</a> and our <a class="clicktext" href="Privacy.html">Privacy Policy</a>.</p>
+                    <input type="checkbox" id="checkbox" name="checkbox" require>
+                    <p class="confmes">By ticking this box you agree to our <a class="clicktext" href="Terms.html">Terms & Conditions</a> and our <a class="clicktext" href="Privacy.html">Privacy Policy</a>.</p>
                 </div>
 
                 <input type="submit" id="submit" Value="Sign Up">
@@ -106,4 +154,5 @@
         </div>
     </div>
 </body>
+
 </html>

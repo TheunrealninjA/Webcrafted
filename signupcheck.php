@@ -2,7 +2,7 @@
 require_once __DIR__ . '/recaptcha-master/src/autoload.php';
 function redirectWithStatus($status)
 {
-    header("Location: Status.php?page=signup&status=$status");
+    header("Location: SignUp.php?status=$status");
     exit();
 }
 function validatePostFields($requiredFields)
