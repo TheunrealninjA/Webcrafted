@@ -53,7 +53,8 @@ if ($is_logged_in) {
         <div class="Cont">
             <div class="signup">
                 <?php
-                function displayMessage($classname, $image, $message){
+                function displayMessage($classname, $image, $message)
+                {
                     echo '<div class="' . $classname . '">';
                     echo '<img style="width: 30px;" src="images/status/' . $image . '" alt="' . $message . '">';
                     echo '<h5>' . $message . '</h5>';
@@ -75,8 +76,9 @@ if ($is_logged_in) {
                     case 'conn':
                         displayMessage('errorbox', 'Error.webp', 'Connection Error');
                         break;
-                    default:
+                    case '':
                         displayMessage('warnbox', 'warning.webp', 'Invalid Status');
+                    default:
                         break;
                 }
                 ?>
