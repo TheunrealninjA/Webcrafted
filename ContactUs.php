@@ -86,8 +86,6 @@ $is_logged_in = isset($_SESSION['username']);
                     case 'error':
                         displayMessage('errorbox', 'Error.webp', 'Email Failed To Send');
                         break;
-                    case '':
-                        displayMessage('warnbox', 'warning.webp', 'Invalid Status');
                     default:
                         break;
                 }

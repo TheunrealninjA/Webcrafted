@@ -120,8 +120,6 @@
                 case 'conn':
                     displayMessage('errorbox', 'error.webp', 'Connection Error');
                     break;
-                case '':
-                    displayMessage('warnbox', 'warning.webp', 'Invalid Status');
                 default:
                     break;
             }
