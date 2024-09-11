@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST['username'];
     $pass = $_POST['password'];
     $remember_me = isset($_POST['remember_me']);
+
     $stmt = $conn->prepare("SELECT password_hash FROM users WHERE username = ?");
     $stmt->bind_param("s", $user);
     $stmt->execute();
@@ -33,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (password_verify($pass, $password_hash)) {
         $_SESSION['username'] = $user;
+
+        $stmt->close();
 
         if ($remember_me) {
             do {
