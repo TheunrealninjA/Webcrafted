@@ -62,6 +62,35 @@ $is_logged_in = isset($_SESSION['username']);
 
         <div class="Cont ContactCont snap">
             <div>
+                <?php
+                function displayMessage($classname, $image, $message)
+                {
+                    echo '<div class="' . $classname . '">';
+                    echo '<img style="width: 30px;" src="images/status/' . $image . '" alt="' . $message . '">';
+                    echo '<h5>' . $message . '</h5>';
+                    echo '</div>';
+                }
+
+                $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
+
+                switch ($status) {
+                    case 'robot':
+                        displayMessage('errorbox', 'Error.webp', 'You are a robot');
+                        break;
+                    case 'misrobot':
+                        displayMessage('warnbox', 'warning.webp', 'Recaptcha Not Completed');
+                        break;
+                    case 'success':
+                        displayMessage('successbox', 'CheckMark.webp', 'Email Sent Successfully');
+                        break;
+                    case 'error':
+                        displayMessage('errorbox', 'Error.webp', 'Email Failed To Send');
+                        break;
+                    default:
+                        displayMessage('warnbox', 'warning.webp', 'Invalid Status');
+                        break;
+                }
+                ?>
                 <h2>Contact Us</h2>
                 <form class="ContactForm" id="ContactForm" action="send_email.php" method="post">
                     <label for="email">Email:</label><br>
@@ -97,7 +126,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <textarea id="message" name="message" placeholder="Add Some Extra Details You Would Like Us To Know"
                         required></textarea><br>
 
-                    <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
+                    <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br />
 
                     <input type="submit" id="submit" value="Submit" disabled>
                 </form>
@@ -105,5 +134,4 @@ $is_logged_in = isset($_SESSION['username']);
         </div>
     </div>
 </body>
-
 </html>

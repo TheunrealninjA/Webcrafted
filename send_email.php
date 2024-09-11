@@ -1,6 +1,6 @@
 <?php
 // Start a session
-// session_start();
+//include 'PHPScripts/session_manager.php';
 
 // $is_logged_in = isset($_SESSION['username']);
 
@@ -13,7 +13,7 @@ require_once __DIR__ . '/recaptcha-master/src/autoload.php';
 
 function redirectWithStatus($status)
 {
-    header("Location: Status.php?page=Contact&status=$status");
+    header("Location: ContactUs.php?status=$status");
     exit();
 }
 
@@ -48,8 +48,9 @@ $message = htmlspecialchars($_POST['message']);
 $email_subject = "New Contact Form Submission From " . $_SESSION['username'];
 
 // Construct HTML email message
-$body = "<html><body>";
-$body .= "<h2 style='color: #333;'>New Contact Form Submission</h2>";
+$body = '<html><body style="background-color: rgb(10, 10, 10); background-size: 80px 80px; background-image: linear-gradient(to right, rgb(32,32,32) 1px, transparent 1px), linear-gradient(to bottom, rgb(32,32,32) 1px, transparent 1px);">';
+$body .= '<img style="text-align: center;" src="/images/MiniWCLogo.webp" alt="WebCrafted.Pro Logo">';
+$body .= '<h2 style="color: #fff;">New Contact Form Submission</h2>';
 $body .= "<p><strong>Email:</strong> $email</p>";
 $body .= "<p><strong>Subject:</strong> ";
 if ($subject !== "Other") {
@@ -75,9 +76,7 @@ $mail_sent = mail($to, $email_subject, $body, $headers);
 
 // Redirect page
 if ($mail_sent) {
-    header("Location: Status.php?page=Contact&status=success");
-    exit();
+    redirectWithStatus('success');
 }else{
-    header("Location: Status.php?page=Contact&status=error");
-    exit();
+    redirectWithStatus('error');
 }
