@@ -69,13 +69,17 @@ $username = htmlspecialchars($_SESSION['username']);
             }else{
                 echo '<h3 class="Welcome">User Not Found</h3>';
             }
-            
-            if ($username === 'admin'){
-                echo '<a href="" class="ControlBtn">Control Center</a>';
-            }
             ?>
-            <a href="" class="ControlBtn">Change Password</a>
-            <a href="logout.php" class="ControlBtn">Log Out</a>
+
+            <div>
+                <?php
+                if ($username === 'admin'){
+                    echo '<a href="" class="ControlBtn">Control Center</a>';
+                }
+                ?>
+                <a href="" class="ControlBtn">Change Password</a>
+                <a href="logout.php" class="ControlBtn">Log Out</a>
+            </div>
         </div>
     </div>
 </body>
