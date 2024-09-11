@@ -64,6 +64,9 @@ if ($is_logged_in) {
                 $status = htmlspecialchars($_GET['status'] ?? '', ENT_QUOTES, 'UTF-8');
 
                 switch ($status) {
+                    case 'success':
+                        displayMessage('successbox', 'CheckMark.webp', 'Login Successful');
+                        break;
                     case 'invalid':
                         displayMessage('errorbox', 'Error.webp', 'Invalid Username or Password');
                         break;
@@ -76,8 +79,6 @@ if ($is_logged_in) {
                     case 'conn':
                         displayMessage('errorbox', 'Error.webp', 'Connection Error');
                         break;
-                    case '':
-                        displayMessage('warnbox', 'warning.webp', 'Invalid Status');
                     default:
                         break;
                 }

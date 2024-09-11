@@ -1,8 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
+
+function redirectWithStatus($status)
+{
+    header("Location: Login.php?status=$status");
+    exit();
+}
 
 $servername = "server330.web-hosting.com";
 $dbname = "webcsosl_SignUp";
@@ -12,7 +15,7 @@ $password = "wJFTJo=o=iZ6";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    header("Location: Login.php?status=conn");
+    redirectWithStatus('conn');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -48,15 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             setcookie('remember_me', $token, time() + (86400 * 30), "/", "", true, true);
         }
-        header("Location: Status.php?page=login&status=success");
-        exit();
+        redirectWithStatus('success');
     } else {
-        header("Login.php?stastus=invalid");
-        exit();
+        redirectWithStatus('invalid');
     }
     $stmt->close();
 } else {
-    header("Location: Login.php?status=unexpected");
-    exit();
+    redirectWithStatus('unexpected');
 }
 $conn->close();
