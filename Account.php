@@ -18,7 +18,7 @@ if (!$is_logged_in) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
     if ($is_logged_in) {
-        echo '<title>' . $is_logged_in . ' - WebCrafted Pro</title>';
+        echo '<title>' . $username . ' - WebCrafted Pro</title>';
     } else {
         echo '<title>Not Logged In - WebCrafted Pro';
     }
@@ -51,7 +51,7 @@ if (!$is_logged_in) {
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"></a></li>
+                    <li><a href="Account.php" style="margin-bottom: 20px;"><img src="images/icons/Account.webp" alt="Account"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
@@ -71,7 +71,7 @@ if (!$is_logged_in) {
             }
             ?>
 
-            <div>
+            <div class="controls">
                 <?php
                 if ($username === 'admin') {
                     echo '<a href="" class="ControlBtn">Control Center</a>';
