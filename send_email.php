@@ -1,14 +1,13 @@
 <?php
-// Start a session
-//include 'PHPScripts/session_manager.php';
+include 'PHPScripts/session_manager.php';
 
-// $is_logged_in = isset($_SESSION['username']);
+$is_logged_in = isset($_SESSION['username']);
 
-// // Check if user is logged in
-// if (!$is_logged_in) {
-    //     header("Location: Login.php");
-    //     exit();
-    // }
+//Check if user is logged in
+if (!$is_logged_in) {
+    header("Location: Login.php");
+    exit();
+    }
 require_once __DIR__ . '/recaptcha-master/src/autoload.php';
 
 function redirectWithStatus($status)
@@ -49,7 +48,7 @@ $email_subject = "New Contact Form Submission From " . htmlspecialchars($_SESSIO
 
 // Construct HTML email message
 $body = '<html><body style="background-color: rgb(10, 10, 10); background-size: 80px 80px; background-image: linear-gradient(to right, rgb(32,32,32) 1px, transparent 1px), linear-gradient(to bottom, rgb(32,32,32) 1px, transparent 1px);">';
-$body .= '<div style="text-align: center;">';
+$body .= '<div style="text-align: center; padding: 5px;">';
 $body .= '<img src="https://webcrafted.pro/images/MiniWCLogo.webp" alt="WebCrafted.Pro Logo">';
 $body .= '<h2 style="color: #fff;">New Contact Form Submission</h2>';
 $body .= '<p style="color: #fff;"><strong>Email: </strong>'. $email .'</p>';
