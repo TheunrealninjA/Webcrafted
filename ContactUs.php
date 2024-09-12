@@ -127,7 +127,7 @@ $is_logged_in = isset($_SESSION['username']);
 
                     <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br />
 
-                    <input type="submit" id="submit" value="Submit" disabled>
+                    <input type="submit" id="submit" value="Submit">
                 </form>
             </div>
         </div>
