@@ -1,14 +1,13 @@
 <?php
-// Start a session
 include 'PHPScripts/session_manager.php';
+
 $is_logged_in = isset($_SESSION['username']);
 $username = htmlspecialchars($_SESSION['username']);
 
-// Check if user is logged in - enable when done making page 
-// if (!$is_logged_in) {
-//     header("Location: LoginPage.php");
-//     exit();
-// }
+if (!$is_logged_in) {
+    header("Location: LoginPage.php?status=noaccess");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +17,17 @@ $username = htmlspecialchars($_SESSION['username']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
-    //if ($is_logged_in){
-    //    echo '<title>' . $is_logged_in . ' - WebCrafted Pro</title>';
-    //}else{
-    //    echo '<title>Not Logged In - WebCrafted Pro';
-    //}
+    if ($is_logged_in) {
+        echo '<title>' . $is_logged_in . ' - WebCrafted Pro</title>';
+    } else {
+        echo '<title>Not Logged In - WebCrafted Pro';
+    }
     ?>
 
     <link rel="icon" href="images/WCLogo.webp">
     <link rel="stylesheet" href="CSS/all.css">
     <link rel="stylesheet" href="CSS/Animate.css">
+    <link rel="stylesheet" href="CSS/Account/Main.css">
     <link rel="stylesheet" href="CSS/Footer.css">
     <link rel="stylesheet" href="CSS/Nav.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -64,16 +64,16 @@ $username = htmlspecialchars($_SESSION['username']);
 
         <div class="Cont">
             <?php
-            if ($is_logged_in){
+            if ($is_logged_in) {
                 echo '<h3 class="Welcome">Hello, ' . $username . '!</h3>';
-            }else{
+            } else {
                 echo '<h3 class="Welcome">User Not Found</h3>';
             }
             ?>
 
             <div>
                 <?php
-                if ($username === 'admin'){
+                if ($username === 'admin') {
                     echo '<a href="" class="ControlBtn">Control Center</a>';
                 }
                 ?>

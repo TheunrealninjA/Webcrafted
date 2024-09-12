@@ -5,7 +5,7 @@ $is_logged_in = isset($_SESSION['username']);
 
 //Check if user is logged in
 if (!$is_logged_in) {
-    header("Location: Login.php");
+    header("Location: Login.php?status=noaccess");
     exit();
     }
 require_once __DIR__ . '/recaptcha-master/src/autoload.php';

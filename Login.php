@@ -1,5 +1,5 @@
 <?php
-//include 'PHPScripts/session_manager.php';
+include 'PHPScripts/session_manager.php';
 
 $is_logged_in = isset($_SESSION['username']);
 
@@ -78,6 +78,9 @@ if ($is_logged_in) {
                         break;
                     case 'conn':
                         displayMessage('errorbox', 'Error.webp', 'Connection Error');
+                        break;
+                    case 'noaccess':
+                        displayMessage('errorbox', 'Error.webp', 'You must be logged in to access that page');
                         break;
                     default:
                         break;

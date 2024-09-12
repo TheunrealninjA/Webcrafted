@@ -2,11 +2,10 @@
 include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 
-// Check if user is logged in - enable when done making page 
-// if (!$is_logged_in) {
-//     header("Location: LoginPage.php");
-//     exit();
-// }
+if (!$is_logged_in) {
+    header("Location: LoginPage.php?status=noaccess");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +47,7 @@ $is_logged_in = isset($_SESSION['username']);
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
-                                style="width:30px;height:30px;"></a></li>
+                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
