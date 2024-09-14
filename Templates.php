@@ -25,6 +25,54 @@ $is_logged_in = isset($_SESSION['username']);
     <script src="JavaScript/Filter.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -72,6 +120,10 @@ $is_logged_in = isset($_SESSION['username']);
             const filterBackground = document.querySelector('.filter-background');
             const filterOptions = document.querySelector('.filter-options');
             const closeFilter = document.querySelector('.close-filter');
+            const modal = document.getElementById('template-modal');
+            const modalImg = document.getElementById('modal-image');
+            const captionText = document.getElementById('caption');
+            const closeModal = document.querySelector('.close-modal');
 
             filterBackground.addEventListener('click', function () {
                 filterOptions.classList.toggle('open');
@@ -79,6 +131,18 @@ $is_logged_in = isset($_SESSION['username']);
 
             closeFilter.addEventListener('click', function () {
                 filterOptions.classList.remove('open');
+            });
+
+            document.querySelectorAll('.filter-item img').forEach(item => {
+                item.addEventListener('click', function () {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                    captionText.innerHTML = this.alt;
+                });
+            });
+
+            closeModal.addEventListener('click', function () {
+                modal.style.display = "none";
             });
         </script>
 
@@ -101,6 +165,11 @@ $is_logged_in = isset($_SESSION['username']);
             <div class="Cont filter-item" data-category="" style="margin: 0;">
                 
             </div>
+        </div>
+        <div id="template-modal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modal-images">
+            <div id="caption"></div>
         </div>
     </div>
 </body>

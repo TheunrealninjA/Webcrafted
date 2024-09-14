@@ -3,7 +3,7 @@ include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 
 if (!$is_logged_in) {
-    header("Location: LoginPage.php?status=noaccess");
+    header("Location: Login.php?status=noaccess");
     exit();
 }
 ?>

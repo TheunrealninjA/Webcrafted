@@ -7,7 +7,7 @@ $is_logged_in = isset($_SESSION['username']);
 if (!$is_logged_in) {
     header("Location: Login.php?status=noaccess");
     exit();
-    }
+}
 require_once __DIR__ . '/recaptcha-master/src/autoload.php';
 
 function redirectWithStatus($status)
