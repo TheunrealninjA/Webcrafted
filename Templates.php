@@ -51,7 +51,7 @@ $is_logged_in = isset($_SESSION['username']);
         #modal-content-container {
             margin: auto;
             display: block;
-            width: 100%;
+            width: 80%;
             height: 80%;
             background-image: linear-gradient(135deg, #181818, #101010);
             padding: 20px;
@@ -141,9 +141,11 @@ $is_logged_in = isset($_SESSION['username']);
                         modalContentContainer.innerHTML = ''; // Clear previous content
                         const clonedItem = item.cloneNode(true);
                         clonedItem.style.height = '100%';
+                        clonedItem.style.width = '100%';
                         clonedItem.style.animation = 'none';
                         clonedItem.style.transition = 'none';
                         clonedItem.style.boxSizing = 'border-box';
+                        clonedItem.style.transform = 'none';
                         modalContentContainer.appendChild(clonedItem);
                     });
                 });
