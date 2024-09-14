@@ -44,15 +44,15 @@ $is_logged_in = isset($_SESSION['username']);
             margin: auto;
             display: block;
             width: 80%;
-            max-width: 700px;
+            max-width: 90%;
         }
 
         #modal-content-container {
             margin: auto;
             display: block;
             width: 80%;
-            max-width: 700px;
-            background-color: white;
+            max-width: 90%;
+            background-image: linear-gradient(135deg, #181818, #101010);
             padding: 20px;
             border-radius: 10px;
         }
