@@ -47,14 +47,14 @@ $is_logged_in = isset($_SESSION['username']);
             max-width: 700px;
         }
 
-        #caption {
+        #modal-content-container {
             margin: auto;
             display: block;
             width: 80%;
             max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .close-modal {
@@ -123,8 +123,7 @@ $is_logged_in = isset($_SESSION['username']);
                 const filterOptions = document.querySelector('.filter-options');
                 const closeFilter = document.querySelector('.close-filter');
                 const modal = document.getElementById('template-modal');
-                const modalImg = document.getElementById('modal-image');
-                const captionText = document.getElementById('caption');
+                const modalContentContainer = document.getElementById('modal-content-container'); // Updated id
                 const closeModal = document.querySelector('.close-modal');
 
                 filterBackground.addEventListener('click', function () {
@@ -135,11 +134,12 @@ $is_logged_in = isset($_SESSION['username']);
                     filterOptions.classList.remove('open');
                 });
 
-                document.querySelectorAll('.filter-item img').forEach(item => {
+                document.querySelectorAll('.filter-item').forEach(item => {
                     item.addEventListener('click', function () {
                         modal.style.display = "block";
-                        modalImg.src = this.src;
-                        captionText.innerHTML = this.alt;
+                        modalContentContainer.innerHTML = ''; // Clear previous content
+                        const clonedItem = item.cloneNode(true);
+                        modalContentContainer.appendChild(clonedItem);
                     });
                 });
 
@@ -171,8 +171,7 @@ $is_logged_in = isset($_SESSION['username']);
         </div>
         <div id="template-modal" class="modal">
             <span class="close-modal">&times;</span>
-            <img class="modal-content" id="modal-image">
-            <div id="caption"></div>
+            <div id="modal-content-container"></div>
         </div>
     </div>
 </body>
