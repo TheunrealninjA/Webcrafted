@@ -51,8 +51,7 @@ $is_logged_in = isset($_SESSION['username']);
         #modal-content-container {
             margin: auto;
             display: block;
-            width: 80%;
-            max-width: 90%;
+            width: 100%;
             height: 80%;
             background-image: linear-gradient(135deg, #181818, #101010);
             padding: 20px;
@@ -142,6 +141,8 @@ $is_logged_in = isset($_SESSION['username']);
                         modalContentContainer.innerHTML = ''; // Clear previous content
                         const clonedItem = item.cloneNode(true);
                         clonedItem.style.height = '100%';
+                        clonedItem.style.animation = 'none';
+                        clonedItem.style.transition = 'none';
                         clonedItem.style.boxSizing = 'border-box';
                         modalContentContainer.appendChild(clonedItem);
                     });
