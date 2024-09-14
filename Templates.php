@@ -171,7 +171,7 @@ $is_logged_in = isset($_SESSION['username']);
         </div>
         <div id="template-modal" class="modal">
             <span class="close-modal">&times;</span>
-            <img class="modal-content" id="modal-images">
+            <img class="modal-content" id="modal-image">
             <div id="caption"></div>
         </div>
     </div>
