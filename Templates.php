@@ -56,7 +56,7 @@ $is_logged_in = isset($_SESSION['username']);
             color: #ccc;
             padding: 10px 0;
         }
-        
+
         .close-modal {
             position: absolute;
             top: 15px;
@@ -111,38 +111,41 @@ $is_logged_in = isset($_SESSION['username']);
             <h3>Filters</h3>
             <ul>
                 <li><label>Personal <input type="checkbox" class="filter-checkbox" value="personal"></label></li>
-                <li><label>Small Business <input type="checkbox" class="filter-checkbox" value="small-business"></label></li>
+                <li><label>Small Business <input type="checkbox" class="filter-checkbox" value="small-business"></label>
+                </li>
                 <li><label>Business <input type="checkbox" class="filter-checkbox" value="business"></label></li>
             </ul>
         </div>
 
         <script>
-            const filterBackground = document.querySelector('.filter-background');
-            const filterOptions = document.querySelector('.filter-options');
-            const closeFilter = document.querySelector('.close-filter');
-            const modal = document.getElementById('template-modal');
-            const modalImg = document.getElementById('modal-image');
-            const captionText = document.getElementById('caption');
-            const closeModal = document.querySelector('.close-modal');
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterBackground = document.querySelector('.filter-background');
+                const filterOptions = document.querySelector('.filter-options');
+                const closeFilter = document.querySelector('.close-filter');
+                const modal = document.getElementById('template-modal');
+                const modalImg = document.getElementById('modal-image');
+                const captionText = document.getElementById('caption');
+                const closeModal = document.querySelector('.close-modal');
 
-            filterBackground.addEventListener('click', function () {
-                filterOptions.classList.toggle('open');
-            });
-
-            closeFilter.addEventListener('click', function () {
-                filterOptions.classList.remove('open');
-            });
-
-            document.querySelectorAll('.filter-item img').forEach(item => {
-                item.addEventListener('click', function () {
-                    modal.style.display = "block";
-                    modalImg.src = this.src;
-                    captionText.innerHTML = this.alt;
+                filterBackground.addEventListener('click', function () {
+                    filterOptions.classList.toggle('open');
                 });
-            });
 
-            closeModal.addEventListener('click', function () {
-                modal.style.display = "none";
+                closeFilter.addEventListener('click', function () {
+                    filterOptions.classList.remove('open');
+                });
+
+                document.querySelectorAll('.filter-item img').forEach(item => {
+                    item.addEventListener('click', function () {
+                        modal.style.display = "block";
+                        modalImg.src = this.src;
+                        captionText.innerHTML = this.alt;
+                    });
+                });
+
+                closeModal.addEventListener('click', function () {
+                    modal.style.display = "none";
+                });
             });
         </script>
 
@@ -163,7 +166,7 @@ $is_logged_in = isset($_SESSION['username']);
                 <p>Best for big E-commerce businesses</p>
             </div>
             <div class="Cont filter-item" data-category="" style="margin: 0;">
-                
+
             </div>
         </div>
         <div id="template-modal" class="modal">
