@@ -141,6 +141,8 @@ $is_logged_in = isset($_SESSION['username']);
                         modal.style.display = "block";
                         modalContentContainer.innerHTML = ''; // Clear previous content
                         const clonedItem = item.cloneNode(true);
+                        clonedItem.style.width = '100%';
+                        clonedItem.style.boxSizing = 'border-box';
                         modalContentContainer.appendChild(clonedItem);
                     });
                 });
@@ -172,8 +174,9 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
         </div>
         <div id="template-modal" class="modal">
-            <span class="close-modal">&times;</span>
-            <div id="modal-content-container"></div>
+            <div id="modal-content-container">
+                <span class="close-modal">&times;</span>
+            </div>
         </div>
     </div>
 </body>
