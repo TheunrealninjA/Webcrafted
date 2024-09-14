@@ -53,7 +53,7 @@ $is_logged_in = isset($_SESSION['username']);
             display: block;
             width: 80%;
             height: 80%;
-            background-image: linear-gradient(135deg, #181818, #101010);
+            background-color: transparent;
             padding: 20px;
             border-radius: 10px;
         }
@@ -146,6 +146,7 @@ $is_logged_in = isset($_SESSION['username']);
                         clonedItem.style.transition = 'none';
                         clonedItem.style.boxSizing = 'border-box';
                         clonedItem.style.transform = 'none';
+                        clonedItem.style.textAlign = 'left';
                         modalContentContainer.appendChild(clonedItem);
                     });
                 });
@@ -178,7 +179,7 @@ $is_logged_in = isset($_SESSION['username']);
         </div>
         <div id="template-modal" class="modal">
             <span class="close-modal">&times;</span>
-            <div id="modal-content-container"></div>
+            <div class="two-grid" id="modal-content-container"></div>
         </div>
     </div>
 </body>
