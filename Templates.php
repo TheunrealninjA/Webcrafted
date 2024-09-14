@@ -174,9 +174,8 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
         </div>
         <div id="template-modal" class="modal">
-            <div id="modal-content-container">
-                <span class="close-modal">&times;</span>
-            </div>
+            <span class="close-modal">&times;</span>
+            <div id="modal-content-container"></div>
         </div>
     </div>
 </body>
