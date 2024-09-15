@@ -1,5 +1,5 @@
 <?php
-include 'PHPScripts/session_manager.php';
+//include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 ?>
 
@@ -49,13 +49,50 @@ $is_logged_in = isset($_SESSION['username']);
         }
 
         #modal-content-container {
+            border: 1px solid white;
+            text-align: center;
+            gap: 20px;
             margin: auto;
-            display: block;
+            border-radius: 16px;
+            box-shadow: 0 0 10px 5px white;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #181818, #101010);
             width: 80%;
             height: 80%;
-            background-color: transparent;
-            padding: 20px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
             border-radius: 10px;
+        }
+
+        .modal-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-info h3 {
+            margin-top: 0;
+        }
+
+        .modal-info p {
+            flex-grow: 1;
+        }
+
+        .choose-theme-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .choose-theme-button:hover {
+            background-color: #0056b3;
         }
 
         .close-modal {
@@ -124,7 +161,7 @@ $is_logged_in = isset($_SESSION['username']);
                 const filterOptions = document.querySelector('.filter-options');
                 const closeFilter = document.querySelector('.close-filter');
                 const modal = document.getElementById('template-modal');
-                const modalContentContainer = document.getElementById('modal-content-container'); // Updated id
+                const modalContentContainer = document.getElementById('modal-content-container');
                 const closeModal = document.querySelector('.close-modal');
 
                 filterBackground.addEventListener('click', function () {
@@ -139,15 +176,37 @@ $is_logged_in = isset($_SESSION['username']);
                     item.addEventListener('click', function () {
                         modal.style.display = "block";
                         modalContentContainer.innerHTML = ''; // Clear previous content
-                        const clonedItem = item.cloneNode(true);
-                        clonedItem.style.height = '100%';
-                        clonedItem.style.width = '100%';
-                        clonedItem.style.animation = 'none';
-                        clonedItem.style.transition = 'none';
-                        clonedItem.style.boxSizing = 'border-box';
-                        clonedItem.style.transform = 'none';
-                        clonedItem.style.textAlign = 'left';
-                        modalContentContainer.appendChild(clonedItem);
+
+                        const imgSrc = item.querySelector('img').src;
+                        const title = item.querySelector('h3').innerText;
+                        const description = item.querySelector('p').innerText;
+
+                        const modalImage = document.createElement('img');
+                        modalImage.src = imgSrc;
+                        modalImage.classList.add('modal-image');
+
+                        const modalInfo = document.createElement('div');
+                        modalInfo.classList.add('modal-info');
+
+                        const modalTitle = document.createElement('h3');
+                        modalTitle.innerText = title;
+
+                        const modalSubtitle = document.createElement('h4');
+                        modalSubtitle.innerText = 'Product Description:';
+
+                        const modalDescription = document.createElement('p');
+                        modalDescription.innerText = description;
+
+                        const chooseThemeButton = document.createElement('button');
+                        chooseThemeButton.innerText = 'Choose Template';
+                        chooseThemeButton.classList.add('choose-theme-button');
+
+                        modalInfo.appendChild(modalTitle);
+                        modalInfo.appendChild(modalDescription);
+                        modalInfo.appendChild(chooseThemeButton);
+
+                        modalContentContainer.appendChild(modalImage);
+                        modalContentContainer.appendChild(modalInfo);
                     });
                 });
 
