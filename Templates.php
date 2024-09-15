@@ -21,6 +21,7 @@ $is_logged_in = isset($_SESSION['username']);
     <link rel="stylesheet" href="CSS/Nav.css">
     <link rel="stylesheet" href="CSS/Templates/Main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
     <script src="JavaScript/AnimationWait.js"></script>
     <script src="JavaScript/Filter.js"></script>
     <style>
@@ -50,7 +51,6 @@ $is_logged_in = isset($_SESSION['username']);
 
         #modal-content-container {
             border: 1px solid white;
-            text-align: center;
             gap: 20px;
             margin: auto;
             border-radius: 16px;
@@ -71,28 +71,41 @@ $is_logged_in = isset($_SESSION['username']);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-align: left;
+            width: 100%;
         }
 
         .modal-info h3 {
-            margin-top: 0;
+            font-size: 24px
+        }
+
+        .modal-info h4 {
+            margin-top: 10px;
+            font-size: 18px;
         }
 
         .modal-info p {
+            margin-top: 5px;
             flex-grow: 1;
         }
 
         .choose-theme-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            padding: 10px 15px;
+            background-color: #101010;
+            color: #fff;
+            border: 1px solid white;
+            box-shadow: inset 0 0 4px 2px black;
+            border-radius: 8px;
             cursor: pointer;
-            text-align: center;
+            transition: background-color 0.6s, transform 0.6s, color 0.3s;
+            margin-left: 18vw;
+            width: auto;
         }
 
         .choose-theme-button:hover {
-            background-color: #0056b3;
+            background-color: white;
+            transform: scale(1.05);
+            color: black;
         }
 
         .close-modal {
@@ -149,9 +162,14 @@ $is_logged_in = isset($_SESSION['username']);
             <h3>Filters</h3>
             <ul>
                 <li><label>Personal <input type="checkbox" class="filter-checkbox" value="personal"></label></li>
-                <li><label>Small Business <input type="checkbox" class="filter-checkbox" value="small-business"></label>
+                <li><label>All-round <input type="checkbox" class="filter-checkbox" value="all-round"></label>
                 </li>
                 <li><label>Business <input type="checkbox" class="filter-checkbox" value="business"></label></li>
+            </ul>
+
+            <h3>Business Type</h3>
+            <ul>
+                <li><label>AI <input type="checkbox" class="filter-checkbox" value="business"></label></li>
             </ul>
         </div>
 
@@ -175,9 +193,10 @@ $is_logged_in = isset($_SESSION['username']);
                 document.querySelectorAll('.filter-item').forEach(item => {
                     item.addEventListener('click', function () {
                         modal.style.display = "block";
-                        modalContentContainer.innerHTML = ''; // Clear previous content
+                        modalContentContainer.innerHTML = '';
 
-                        const imgSrc = item.querySelector('img').src;
+                        const imgElement = item.querySelector('img');
+                        const imgSrc = imgElement.getAttribute('data-highres') || imgElement.src;
                         const title = item.querySelector('h3').innerText;
                         const description = item.querySelector('p').innerText;
 
@@ -202,6 +221,7 @@ $is_logged_in = isset($_SESSION['username']);
                         chooseThemeButton.classList.add('choose-theme-button');
 
                         modalInfo.appendChild(modalTitle);
+                        modalInfo.appendChild(modalSubtitle);
                         modalInfo.appendChild(modalDescription);
                         modalInfo.appendChild(chooseThemeButton);
 
@@ -217,19 +237,19 @@ $is_logged_in = isset($_SESSION['username']);
         </script>
 
         <div class="templates three-grid" id="items-container">
-            <div class="Cont filter-item" data-category="small-business" style="margin: 0;">
+            <div class="Cont filter-item" data-category="business" style="margin: 0;">
                 <h3>Small E-commerce Light</h3>
-                <img src="images/Templates/SmallETemp.webp" alt="Small E-commerce Store">
+                <img src="images/Templates/SmallETemp.webp" data-highres="images/Templates/Upscaled/SmallETemp_AI.webp" alt="Small E-commerce Store">
                 <p>Best for small E-commerce businesses</p>
             </div>
             <div class="Cont filter-item" data-category="personal" style="margin: 0;">
                 <h3>Personal Bio</h3>
-                <img src="images/Templates/BioTemp.webp" alt="Bio Template">
+                <img src="images/Templates/BioTemp.webp" data-highres="images/Templates/Upscaled/BioTemp_AI.webp" alt="Bio Template">
                 <p>Best for a personal website or a public bio for showing off and promoting your socials</p>
             </div>
             <div class="Cont filter-item" data-category="business" style="margin: 0;">
                 <h3>Large E-commerce Light</h3>
-                <img src="images/Templates/LargeETemp.webp" alt="Large E-commerce Store">
+                <img src="images/Templates/LargeETemp.webp" data-highres="images/Templates/Upscaled/LargeETemp_AI.webp" alt="Large E-commerce Store">
                 <p>Best for big E-commerce businesses</p>
             </div>
             <div class="Cont filter-item" data-category="" style="margin: 0;">
