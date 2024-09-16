@@ -164,13 +164,21 @@ $is_logged_in = isset($_SESSION['username']);
                 <li><label>Personal <input type="checkbox" class="filter-checkbox" value="personal"></label></li>
                 <li><label>All-round <input type="checkbox" class="filter-checkbox" value="all-round"></label>
                 </li>
-                <li><label>Business <input type="checkbox" class="filter-checkbox" value="business"></label></li>
+                <li><label>Business <input type="checkbox" class="filter-checkbox" value="business" id="business-checkbox"></label></li>
             </ul>
 
-            <h3>Business Type</h3>
-            <ul>
-                <li><label>AI <input type="checkbox" class="filter-checkbox" value="business"></label></li>
-            </ul>
+            <div id="business-type-container" style="display: none;">
+                <h3>Business Type</h3>
+                <ul>
+                    <li><label>AI <input type="checkbox" class="filter-checkbox" value="AI"></label></li>
+                    <li><label>Construction <input type="checkbox" class="filter-checkbox" value="Construction"></label></li>
+                    <li><label>E-Commerce <input type="checkbox" class="filter-checkbox" value="E-Commerce"></label></li>
+                    <li><label>Law <input type="checkbox" class="filter-checkbox" value="Law"></label></li>
+                    <li><label>Charity <input type="checkbox" class="filter-checkbox" value="Charity"></label></li>
+                    <li><label>Forms <input type="checkbox" class="filter-checkbox" value="Forms"></label></li>
+                    <li><label>Blogs <input type="checkbox" class="filter-checkbox" value="Blogs"></label></li>
+                </ul>
+            </div>
         </div>
 
         <script>
@@ -237,7 +245,7 @@ $is_logged_in = isset($_SESSION['username']);
         </script>
 
         <div class="templates three-grid" id="items-container">
-            <div class="Cont filter-item" data-category="business" style="margin: 0;">
+            <div class="Cont filter-item" data-category="business" data-business-type="E-Commerce" style="margin: 0;">
                 <h3>Small E-commerce Light</h3>
                 <img src="images/Templates/SmallETemp.webp" data-highres="images/Templates/Upscaled/SmallETemp_AI.webp" alt="Small E-commerce Store">
                 <p>Best for small E-commerce businesses</p>
@@ -247,7 +255,7 @@ $is_logged_in = isset($_SESSION['username']);
                 <img src="images/Templates/BioTemp.webp" data-highres="images/Templates/Upscaled/BioTemp_AI.webp" alt="Bio Template">
                 <p>Best for a personal website or a public bio for showing off and promoting your socials</p>
             </div>
-            <div class="Cont filter-item" data-category="business" style="margin: 0;">
+            <div class="Cont filter-item" data-category="business" data-business-type="AI" style="margin: 0;">
                 <h3>Large E-commerce Light</h3>
                 <img src="images/Templates/LargeETemp.webp" data-highres="images/Templates/Upscaled/LargeETemp_AI.webp" alt="Large E-commerce Store">
                 <p>Best for big E-commerce businesses</p>

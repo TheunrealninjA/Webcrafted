@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll('.filter-checkbox');
+    const businessCheckbox = document.getElementById('business-checkbox');
+    const businessTypeContainer = document.getElementById('business-type-container');
     let selectedCheckboxes = [];
 
     checkboxes.forEach(checkbox => {
@@ -8,8 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function handleCheckboxChange(event) {
         const checked = event.target.checked;
+        const value = event.target.value;
+
+        if (value === 'business') {
+            businessTypeContainer.style.display = checked ? 'block' : 'none';
+        }
+
         if (checked) {
-            if (selectedCheckboxes.length >= 2) {
+            if (selectedCheckboxes.length >= 2 && value !== 'business') {
                 const firstCheckbox = selectedCheckboxes.shift();
                 firstCheckbox.checked = false;
             }
@@ -22,14 +30,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         filterItems();
     }
-    
+
     function filterItems() {
         const activeFilters = selectedCheckboxes.map(checkbox => checkbox.value);
         const items = document.querySelectorAll('.filter-item');
 
         items.forEach(item => {
             const category = item.getAttribute('data-category');
-            if (activeFilters.includes(category)) {
+            const businessType = item.getAttribute('data-business-type');
+
+            console.warn(activeFilters);
+            
+
+            if (activeFilters.includes('business')) {
+                if (activeFilters.includes(businessType)){
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            } else if (activeFilters.includes('business')) {
                 item.style.display = 'block';
             } else {
                 item.style.display = 'none';
@@ -42,5 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
+
     filterItems();
 });
