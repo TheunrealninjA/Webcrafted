@@ -1,5 +1,5 @@
 <?php
-//include 'PHPScripts/session_manager.php';
+include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 ?>
 
@@ -260,7 +260,7 @@ $is_logged_in = isset($_SESSION['username']);
                 <p>Best for a Professional Bio for showing off your achievements and promoting your socials to a wider audience</p>
             </div>
             <div class="Cont filter-item" data-category="all" style="margin: 25px 0;">
-                <h3>Not Found What Your Looking For?</h3>
+                <h3>Can't Find What Your Looking For?</h3>
                 <img src="images/QuestionMark.webp" alt="Not Found" style="margin: 16% 0;height: 110px;">
                 <p>Tell us what You want us to add to the Templates by sending an email to use at <a class="LinkText" href="mailto:wyattd@webcrafted.pro">wyattd@webcrafted.pro</a> or Explain to our team what you want to your Website to look like in our <a class="LinkText" href="ContactUs.php">Contact Us</a> Page</p>
             </div>
