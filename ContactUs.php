@@ -98,6 +98,7 @@ if (!$is_logged_in) {
                         <option value="" disabled selected>Select One...</option>
                         <option value="Private Hire">Private Hire</option>
                         <option value="Question">Question</option>
+                        <option value="Custom Template">Custom Template</option>
                         <option value="Support">Support</option>
                         <option value="Other">Other</option>
                     </select><br>

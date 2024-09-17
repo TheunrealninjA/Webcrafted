@@ -172,3 +172,10 @@ input[type="submit"]:hover{
     transform: scale(1.05);
     color: black;
 }
+
+/* Other */
+
+.LinkText{
+    color:rgb(203, 173, 3);
+    text-decoration: underline;
+}

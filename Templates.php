@@ -162,27 +162,13 @@ $is_logged_in = isset($_SESSION['username']);
             <h3>Filters</h3>
             <ul>
                 <li><label>Personal <input type="checkbox" class="filter-checkbox" value="personal"></label></li>
-                <li><label>All-round <input type="checkbox" class="filter-checkbox" value="all-round"></label>
-                </li>
+                <li><label>All-round <input type="checkbox" class="filter-checkbox" value="all-round"></label></li>
                 <li><label>Business <input type="checkbox" class="filter-checkbox" value="business" id="business-checkbox"></label></li>
             </ul>
-
-            <div id="business-type-container" style="display: none;">
-                <h3>Business Type</h3>
-                <ul>
-                    <li><label>AI <input type="checkbox" class="filter-checkbox" value="AI"></label></li>
-                    <li><label>Construction <input type="checkbox" class="filter-checkbox" value="Construction"></label></li>
-                    <li><label>E-Commerce <input type="checkbox" class="filter-checkbox" value="E-Commerce"></label></li>
-                    <li><label>Law <input type="checkbox" class="filter-checkbox" value="Law"></label></li>
-                    <li><label>Charity <input type="checkbox" class="filter-checkbox" value="Charity"></label></li>
-                    <li><label>Forms <input type="checkbox" class="filter-checkbox" value="Forms"></label></li>
-                    <li><label>Blogs <input type="checkbox" class="filter-checkbox" value="Blogs"></label></li>
-                </ul>
-            </div>
         </div>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 const filterBackground = document.querySelector('.filter-background');
                 const filterOptions = document.querySelector('.filter-options');
                 const closeFilter = document.querySelector('.close-filter');
@@ -190,78 +176,93 @@ $is_logged_in = isset($_SESSION['username']);
                 const modalContentContainer = document.getElementById('modal-content-container');
                 const closeModal = document.querySelector('.close-modal');
 
-                filterBackground.addEventListener('click', function () {
+                filterBackground.addEventListener('click', function() {
                     filterOptions.classList.toggle('open');
                 });
 
-                closeFilter.addEventListener('click', function () {
+                closeFilter.addEventListener('click', function() {
                     filterOptions.classList.remove('open');
                 });
 
                 document.querySelectorAll('.filter-item').forEach(item => {
-                    item.addEventListener('click', function () {
-                        modal.style.display = "block";
-                        modalContentContainer.innerHTML = '';
+                    item.addEventListener('click', function() {
+                        const category = item.getAttribute('data-category');
+                        if (category !== 'all') {
+                            modal.style.display = "block";
+                            modalContentContainer.innerHTML = '';
 
-                        const imgElement = item.querySelector('img');
-                        const imgSrc = imgElement.getAttribute('data-highres') || imgElement.src;
-                        const title = item.querySelector('h3').innerText;
-                        const description = item.querySelector('p').innerText;
+                            const imgElement = item.querySelector('img');
+                            const imgSrc = imgElement.getAttribute('data-highres') || imgElement.src;
+                            const title = item.querySelector('h3').innerText;
+                            const description = item.querySelector('p').innerText;
 
-                        const modalImage = document.createElement('img');
-                        modalImage.src = imgSrc;
-                        modalImage.classList.add('modal-image');
+                            const modalImage = document.createElement('img');
+                            modalImage.src = imgSrc;
+                            modalImage.classList.add('modal-image');
 
-                        const modalInfo = document.createElement('div');
-                        modalInfo.classList.add('modal-info');
+                            const modalInfo = document.createElement('div');
+                            modalInfo.classList.add('modal-info');
 
-                        const modalTitle = document.createElement('h3');
-                        modalTitle.innerText = title;
+                            const modalTitle = document.createElement('h3');
+                            modalTitle.innerText = title;
 
-                        const modalSubtitle = document.createElement('h4');
-                        modalSubtitle.innerText = 'Product Description:';
+                            const modalSubtitle = document.createElement('h4');
+                            modalSubtitle.innerText = 'Product Description:';
 
-                        const modalDescription = document.createElement('p');
-                        modalDescription.innerText = description;
+                            const modalDescription = document.createElement('p');
+                            modalDescription.innerText = description;
 
-                        const chooseThemeButton = document.createElement('button');
-                        chooseThemeButton.innerText = 'Choose Template';
-                        chooseThemeButton.classList.add('choose-theme-button');
+                            const chooseThemeButton = document.createElement('button');
+                            chooseThemeButton.innerText = 'Choose Template';
+                            chooseThemeButton.classList.add('choose-theme-button');
 
-                        modalInfo.appendChild(modalTitle);
-                        modalInfo.appendChild(modalSubtitle);
-                        modalInfo.appendChild(modalDescription);
-                        modalInfo.appendChild(chooseThemeButton);
+                            modalInfo.appendChild(modalTitle);
+                            modalInfo.appendChild(modalSubtitle);
+                            modalInfo.appendChild(modalDescription);
+                            modalInfo.appendChild(chooseThemeButton);
 
-                        modalContentContainer.appendChild(modalImage);
-                        modalContentContainer.appendChild(modalInfo);
+                            modalContentContainer.appendChild(modalImage);
+                            modalContentContainer.appendChild(modalInfo);
+                        }
                     });
                 });
 
-                closeModal.addEventListener('click', function () {
+                closeModal.addEventListener('click', function() {
                     modal.style.display = "none";
                 });
             });
         </script>
 
-        <div class="templates three-grid" id="items-container">
-            <div class="Cont filter-item" data-category="business" data-business-type="E-Commerce" style="margin: 0;">
+        <div class="snap templates three-grid" id="items-container">
+            <div class="Cont filter-item" data-category="business" style="margin: 25px 0;">
                 <h3>Small E-commerce Light</h3>
                 <img src="images/Templates/SmallETemp.webp" data-highres="images/Templates/Upscaled/SmallETemp_AI.webp" alt="Small E-commerce Store">
-                <p>Best for small E-commerce businesses</p>
+                <p>Best for small E-commerce Businesses</p>
             </div>
-            <div class="Cont filter-item" data-category="personal" style="margin: 0;">
+            <div class="Cont filter-item" data-category="personal" style="margin: 25px 0;">
                 <h3>Personal Bio</h3>
                 <img src="images/Templates/BioTemp.webp" data-highres="images/Templates/Upscaled/BioTemp_AI.webp" alt="Bio Template">
-                <p>Best for a personal website or a public bio for showing off and promoting your socials</p>
+                <p>Best for a personal website or a Public Bio for showing off and promoting your socials</p>
             </div>
-            <div class="Cont filter-item" data-category="business" data-business-type="AI" style="margin: 0;">
+            <div class="Cont filter-item" data-category="business" style="margin: 25px 0;">
                 <h3>Large E-commerce Light</h3>
                 <img src="images/Templates/LargeETemp.webp" data-highres="images/Templates/Upscaled/LargeETemp_AI.webp" alt="Large E-commerce Store">
-                <p>Best for big E-commerce businesses</p>
+                <p>Best for big E-commerce Businesses</p>
             </div>
-            <div class="Cont filter-item" data-category="" style="margin: 0;">
-
+            <div class="Cont filter-item" data-category="business" style="margin: 25px 0;">
+                <h3>Construction Template</h3>
+                <img src="images/Templates/ConstructionTemp.webp" data-highres="images/Templates/Upscaled/ConstructionTemp_AI.webp" alt="Construction Template">
+                <p>Best for Construction Companies</p>
+            </div>
+            <div class="Cont filter-item" data-category="personal" style="margin: 25px 0;">
+                <h3>Personal Bio</h3>
+                <img src="images/Templates/PersonalBlogTemp.webp" data-highres="images/Templates/Upscaled/PersonalBlogTemp_AI.webp" alt="Personal Blog Template">
+                <p>Best for a Professional Bio for showing off your achievements and promoting your socials to a wider audience</p>
+            </div>
+            <div class="Cont filter-item" data-category="all" style="margin: 25px 0;">
+                <h3>Not Found What Your Looking For?</h3>
+                <img src="images/QuestionMark.webp" alt="Not Found" style="margin: 16% 0;height: 110px;">
+                <p>Tell us what You want us to add to the Templates by sending an email to use at <a class="LinkText" href="mailto:wyattd@webcrafted.pro">wyattd@webcrafted.pro</a> or Explain to our team what you want to your Website to look like in our <a class="LinkText" href="ContactUs.php">Contact Us</a> Page</p>
             </div>
         </div>
         <div id="template-modal" class="modal">
