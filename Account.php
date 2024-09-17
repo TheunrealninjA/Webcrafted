@@ -51,7 +51,7 @@ if (!$is_logged_in) {
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php" style="margin-bottom: 20px;"><img src="images/icons/Account.webp" alt="Account"></a></li>
+                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account" style="margin-top: -8px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
@@ -71,14 +71,22 @@ if (!$is_logged_in) {
             }
             ?>
 
-            <div class="controls">
-                <?php
-                if ($username === 'admin') {
-                    echo '<a href="" class="ControlBtn">Control Center</a>';
-                }
-                ?>
-                <a href="" class="ControlBtn">Change Password</a>
-                <a href="logout.php" class="ControlBtn">Log Out</a>
+            <div class="controls two-grid">
+                <div>
+                    Account ID: <span class="AccountID"><?php echo $_SESSION['id']; ?></span>
+                    <br>
+                    Date Created: <span class="DateCreated"><?php echo $_SESSION['date_created']; ?></span>
+                    <br>
+                </div>
+                <div>
+                    <?php
+                    if ($username === 'admin') {
+                        echo '<a href="" class="ControlBtn">Control Center</a>';
+                    }
+                    ?>
+                    <a href="" class="ControlBtn">Change Password</a>
+                    <a href="logout.php" class="ControlBtn">Log Out</a>
+                </div>
             </div>
         </div>
     </div>
