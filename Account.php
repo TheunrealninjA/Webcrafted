@@ -69,13 +69,17 @@ if (!$is_logged_in) {
             } else {
                 echo '<h3 class="Welcome">User Not Found</h3>';
             }
+
+
             ?>
 
             <div class="controls two-grid">
                 <div>
-                    Account ID: <span class="AccountID"><?php echo $_SESSION['id']; ?></span>
+                    Email: <span class="Email"><?php echo isset($_SESSION['email']); ?></span>
                     <br>
-                    Date Created: <span class="DateCreated"><?php echo $_SESSION['date_created']; ?></span>
+                    Account ID: <span class="AccountID"><?php echo isset($_SESSION['id']); ?></span>
+                    <br>
+                    Date Created: <span class="DateCreated"><?php echo isset($_SESSION['created_at']); ?></span>
                     <br>
                 </div>
                 <div>
