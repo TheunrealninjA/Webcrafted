@@ -73,7 +73,7 @@ if (!$is_logged_in) {
 
             ?>
 
-            <div class="controls two-grid">
+            <div  class="two-grid">
                 <div>
                     Email: <span class="Email"><?php echo isset($_SESSION['email']); ?></span>
                     <br>
@@ -82,7 +82,7 @@ if (!$is_logged_in) {
                     Date Created: <span class="DateCreated"><?php echo isset($_SESSION['created_at']); ?></span>
                     <br>
                 </div>
-                <div>
+                <div class="controls">
                     <?php
                     if ($username === 'admin') {
                         echo '<a href="" class="ControlBtn">Control Center</a>';
