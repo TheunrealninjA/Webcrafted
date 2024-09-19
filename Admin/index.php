@@ -41,10 +41,10 @@ if ($stmt->num_rows > 0) {
     }
 }
 
+var_dump($active_orders);
+
 $stmt->close();
 $conn->close();
-
-var_dump($active_orders);
 ?>
 
 <!DOCTYPE html>
