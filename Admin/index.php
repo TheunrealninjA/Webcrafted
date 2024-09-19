@@ -23,21 +23,14 @@ $order_status = 'active';
 $stmt = $conn->prepare("SELECT order_id, customer_name, customer_email, order_date, total_amount, order_status FROM orders WHERE order_status = ?");
 $stmt->bind_param("s", $order_status);
 $stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($order_id, $customer_name, $customer_email, $order_date, $total_amount, $order_status);
+
+$result = $stmt->get_result();
 
 $active_orders = [];
 
 if ($stmt->num_rows > 0) {
-    while ($stmt->fetch()) {
-        $active_orders[] = [
-            'order_id' => $order_id,
-            'customer_name' => $customer_name,
-            'customer_email' => $customer_email,
-            'order_date' => $order_date,
-            'total_amount' => $total_amount,
-            'order_status' => $order_status
-        ];
+    while ($row = $result->fetch_assoc()) {
+        $active_orders[] = $row;
     }
 }
 
