@@ -29,8 +29,8 @@ $stmt->bind_result($order_id, $customer_name, $customer_email, $order_date, $tot
 $active_orders = [];
 
 if ($stmt->num_rows > 0) {
-    while ($row = $stmt->fetch()) {
-        $active_orders = [
+    while ($stmt->fetch()) {
+        $active_orders[] = [
             'order_id' => $order_id,
             'customer_name' => $customer_name,
             'customer_email' => $customer_email,
