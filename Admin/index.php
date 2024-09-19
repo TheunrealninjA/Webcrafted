@@ -40,6 +40,8 @@ if ($stmt->num_rows > 0) {
         ];
     }
 }
+
+var_dump($active_orders);
 ?>
 
 <!DOCTYPE html>
