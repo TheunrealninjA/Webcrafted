@@ -85,7 +85,7 @@ if (!$is_logged_in) {
                 <div class="controls">
                     <?php
                     if ($username === 'admin') {
-                        echo '<a href="" class="ControlBtn">Control Center</a>';
+                        echo '<a href="Admin/index.php" class="ControlBtn">Control Center</a>';
                     }
                     ?>
                     <a href="" class="ControlBtn">Change Password</a>

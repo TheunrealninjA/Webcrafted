@@ -7,7 +7,7 @@ include('PHPScripts/session_manager.php');
 $is_logged_in = isset($_SESSION['username']);
 $user = htmlspecialchars($_SESSION['username']);
 
-if (!$is_logged_in && $user !== 'admin') {
+if ($user !== 'admin') {
     header("Location: Login.php?status=noaccess");
     exit();
 }
