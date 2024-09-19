@@ -46,22 +46,34 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Admin Panal For Staff">
     <title>Control Panal - WebCrafted Pro</title>
+    <link rel="icon" href="../../images/WCLogo.webp">
+
+    <link rel="stylesheet" href="CSS/Main.css">
+    <link rel="stylesheet" href="../../CSS/Footer.css">
+    <link rel="stylesheet" href="../../CSS/Nav.css">
+    <link rel="stylesheet" href="../../CSS/all.css">
+    <link rel="stylesheet" href="../../CSS/Animate.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="../../JavaScript/AnimationWait.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins");
+    </style>
 </head>
 
 <body>
     <div class="main-body">
         <header class="snap">
             <ul class="Top-Buttons">
-                <li id="templates"><a href="Templates.php">Templates</a></li>
-                <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a></li>
-                <li class="First-Layer"><a href="index.php">Home</a></li>
-                <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
-                <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
+                <li id="templates"><a href="../../Templates.php">Templates</a></li>
+                <li id="services" class="Second-Layer"><a href="../../Pricing.php">Pricing</a></li>
+                <li class="First-Layer"><a href="../../index.php">Home</a></li>
+                <li id="websites" class="Second-Layer"><a href="../../Websites.php">Websites</a></li>
+                <li id="contact"><a href="../../ContactUs.php">Contact Us</a></li>
             </ul>
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"></a></li>
+                    <li><a href="Account.php"><img src="../../images/icons/Account.webp" alt="Account"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
@@ -69,7 +81,7 @@ $conn->close();
                 <?php endif; ?>
             </ul>
 
-            <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="index.php"><img src="../../images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
         <div class="Cont">
