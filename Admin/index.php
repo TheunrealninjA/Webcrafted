@@ -84,7 +84,7 @@ $conn->close();
             <a class="MiniWCLogo" href="index.php"><img src="../../images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="Cont">
+        <div class="Cont" style="margin: 3vh 30vw 0;">
             <?php
             echo "<h3>Welcome to the Control Panal, $user</h3>";
             ?>
@@ -92,8 +92,8 @@ $conn->close();
                 <h4>Active Orders</h4>
                 <div class="active">
                     <?php if (!empty($active_orders)): ?>
-                        <table style="border: 1px white solid;">
-                            <tr>
+                        <table>
+                            <tr class="tr1">
                                 <th>Order ID</th>
                                 <th>Customer Name</th>
                                 <th>Customer Email</th>
@@ -102,7 +102,7 @@ $conn->close();
                                 <th>Order Status</th>
                             </tr>
                             <?php foreach ($active_orders as $order): ?>
-                                <tr>
+                                <tr class="tr2">
                                     <td><?php echo $order['order_id']; ?></td>
                                     <td><?php echo $order['customer_name']; ?></td>
                                     <td><?php echo $order['customer_email']; ?></td>
