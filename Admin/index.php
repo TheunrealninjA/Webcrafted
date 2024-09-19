@@ -7,10 +7,6 @@ include('PHPScripts/session_manager.php');
 $is_logged_in = isset($_SESSION['username']);
 $user = htmlspecialchars($_SESSION['username']);
 
-if ($user !== 'admin') {
-    header("Location: Login.php?status=noaccess");
-    exit();
-}
 
 $servername = "server330"; # make the database and make a better way to hide this.
 $username = "webcsosl_Admin";
