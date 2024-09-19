@@ -29,7 +29,7 @@ $stmt->bind_result($order_id, $customer_name, $customer_email, $order_date, $tot
 $active_orders = [];
 
 if ($stmt->num_rows > 0) {
-    while ($stmt->fetch()) {
+    while ($row = $stmt->fetch()) {
         $active_orders = [
             'order_id' => $order_id,
             'customer_name' => $customer_name,
@@ -40,6 +40,9 @@ if ($stmt->num_rows > 0) {
         ];
     }
 }
+
+$stmt->close();
+$conn->close();
 
 var_dump($active_orders);
 ?>
@@ -89,7 +92,8 @@ var_dump($active_orders);
                         <table style="border: 1px white solid;">
                             <tr>
                                 <th>Order ID</th>
-                                <th>Customer ID</th>
+                                <th>Customer Name</th>
+                                <th>Customer Email</th>
                                 <th>Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Order Status</th>
