@@ -67,7 +67,7 @@ $conn->close();
                     let newValue = this.textContent.trim();
 
                     // Send an AJAX request to update the database
-                    fetch('update_orders.php', {
+                    fetch('PHPScripts/update_orders.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
