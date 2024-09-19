@@ -58,6 +58,38 @@ $conn->close();
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
+    <script>
+        document.querySelectorAll('.editable').forEach(cell => {
+            cell.addEventListener('blur', function () {
+                let orderId = this.getAttribute('data-order-id');
+                let fieldName = this.getAttribute('data-name');
+                let newValue = this.textContent.trim();
+
+                // Send an AJAX request to update the database
+                fetch('update_orders.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        field_name: fieldName,
+                        new_value: newValue
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Order updated successfully');
+                        } else {
+                            console.error('Failed to update order');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -73,7 +105,8 @@ $conn->close();
 
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="../../images/icons/Account.webp" alt="Account"></a></li>
+                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
+                                style="margin-top: -8px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
@@ -84,7 +117,7 @@ $conn->close();
             <a class="MiniWCLogo" href="index.php"><img src="../../images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
-        <div class="Cont" style="margin: 3vh 30vw 0;">
+        <div class="Cont" style="margin: 3vh 28vw 0;">
             <?php
             echo "<h3>Welcome to the Control Panal, $user</h3>";
             ?>
@@ -92,26 +125,37 @@ $conn->close();
                 <h4>Active Orders</h4>
                 <div class="active">
                     <?php if (!empty($active_orders)): ?>
-                        <table>
-                            <tr class="tr1">
-                                <th>Order ID</th>
-                                <th>Customer Name</th>
-                                <th>Customer Email</th>
-                                <th>Order Date</th>
-                                <th>Total Amount</th>
-                                <th>Order Status</th>
-                            </tr>
-                            <?php foreach ($active_orders as $order): ?>
-                                <tr class="tr2">
-                                    <td><?php echo $order['order_id']; ?></td>
-                                    <td><?php echo $order['customer_name']; ?></td>
-                                    <td><?php echo $order['customer_email']; ?></td>
-                                    <td><?php echo $order['order_date']; ?></td>
-                                    <td><?php echo $order['total_amount']; ?></td>
-                                    <td><?php echo $order['order_status']; ?></td>
+                        <form id="order-form" method="POST" action="update_orders.php">
+                            <table>
+                                <tr class="tr1">
+                                    <th>Order ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Email</th>
+                                    <th>Order Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Order Status</th>
                                 </tr>
-                            <?php endforeach; ?>
-                        </table>
+                                <?php foreach ($active_orders as $order): ?>
+                                    <tr class="tr2">
+                                        <td><?php echo $order['order_id']; ?></td>
+                                        <td contenteditable="true" class="editable" data-name="customer_name"
+                                            data-order-id="<?php echo $order['order_id']; ?>">
+                                            <?php echo $order['customer_name']; ?>
+                                        </td>
+                                        <td contenteditable="true" class="editable" data-name="customer_email"
+                                            data-order-id="<?php echo $order['order_id']; ?>">
+                                            <?php echo $order['customer_email']; ?>
+                                        </td>
+                                        <td><?php echo $order['order_date']; ?></td> <!-- Not editable -->
+                                        <td><?php echo $order['total_amount']; ?></td> <!-- Not editable -->
+                                        <td contenteditable="true" class="editable" data-name="order_status"
+                                            data-order-id="<?php echo $order['order_id']; ?>">
+                                            <?php echo $order['order_status']; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </table>
+                        </form>
                     <?php else: ?>
                         <p>No Active Orders</p>
                     <?php endif; ?>
