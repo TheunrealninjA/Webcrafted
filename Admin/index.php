@@ -96,12 +96,12 @@ var_dump($active_orders);
                             </tr>
                             <?php foreach ($active_orders as $order): ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($order['order_id']); ?></td>
-                                    <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
-                                    <td><?php echo htmlspecialchars($order['customer_email']); ?></td>
-                                    <td><?php echo htmlspecialchars($order['order_date']); ?></td>
-                                    <td><?php echo htmlspecialchars($order['total_amount']); ?></td>
-                                    <td><?php echo htmlspecialchars($order['order_status']); ?></td>
+                                    <td><?php echo $order['order_id']; ?></td>
+                                    <td><?php echo $order['customer_name']; ?></td>
+                                    <td><?php echo $order['customer_email']; ?></td>
+                                    <td><?php echo $order['order_date']; ?></td>
+                                    <td><?php echo $order['total_amount']; ?></td>
+                                    <td><?php echo $order['order_status']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </table>
