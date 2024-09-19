@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include(__DIR__ . 'PHPScripts/session_manager.php');
+include(__DIR__ . '/PHPScripts/session_manager.php');
 
 $is_logged_in = isset($_SESSION['username']);
 $user = htmlspecialchars($_SESSION['username']);
