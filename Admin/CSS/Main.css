@@ -3,6 +3,17 @@ table{
     border-radius: 12px;
     margin: 0px 3%;
     padding: 5px 10px;
+    overflow: visible;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #222222;
 }
 
 .tr1{
