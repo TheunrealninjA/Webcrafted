@@ -10,9 +10,9 @@ if (!$is_logged_in && $user !== 'admin') {
 }
 
 $servername = "server330"; # make the database and make a better way to hide this.
-$username = "";
-$password = "";
-$dbname = "";
+$username = "webcsosl_Admin";
+$password = "wJFTJo=o=iZ6";
+$dbname = "webcsosl_orders";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -21,11 +21,11 @@ if ($conn->connect_error) {
 }
 
 $order_status = 'active';
-$stmt = $conn->prepare("SELECT order_id, customer_id, order_date, total_amount, order_status FROM orders WHERE order_status = ?");
+$stmt = $conn->prepare("SELECT order_id, customer_name, customer_email, order_date, total_amount, order_status FROM orders WHERE order_status = ?");
 $stmt->bind_param("s", $order_status);
 $stmt->execute();
 $stmt->store_result();
-$stmt->bind_result($order_id, $customer_id, $order_date, $total_amount, $order_status);
+$stmt->bind_result($order_id, $customer_name, $customer_email, $order_date, $total_amount, $order_status);
 
 $active_orders = [];
 
@@ -33,7 +33,8 @@ if ($stmt->num_rows > 0) {
     while ($stmt->fetch()) {
         $active_orders = [
             'order_id' => $order_id,
-            'customer_id' => $customer_id,
+            'customer_name' => $customer_name,
+            'customer_email' => $customer_email,
             'order_date' => $order_date,
             'total_amount' => $total_amount,
             'order_status' => $order_status
@@ -95,7 +96,8 @@ if ($stmt->num_rows > 0) {
                             <?php foreach ($active_orders as $order): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($order['order_id']); ?></td>
-                                    <td><?php echo htmlspecialchars($order['customer_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['customer_email']); ?></td>
                                     <td><?php echo htmlspecialchars($order['order_date']); ?></td>
                                     <td><?php echo htmlspecialchars($order['total_amount']); ?></td>
                                     <td><?php echo htmlspecialchars($order['order_status']); ?></td>
