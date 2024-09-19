@@ -19,8 +19,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$order_status = 'active';
-$stmt = $conn->prepare("SELECT order_id, customer_name, customer_email, order_date, total_amount, order_status FROM orders WHERE order_status = ?");
+$order_status = 'Completed';
+$stmt = $conn->prepare("SELECT order_id, customer_name, customer_email, order_date, total_amount, order_status FROM orders WHERE order_status != ?");
 $stmt->bind_param("s", $order_status);
 $stmt->execute();
 
