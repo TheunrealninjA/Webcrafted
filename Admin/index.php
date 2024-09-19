@@ -1,11 +1,13 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include(__DIR__ . '../../PHPScripts/session_manager.php');
 
 $is_logged_in = isset($_SESSION['username']);
 $user = htmlspecialchars($_SESSION['username']);
+
+if (!$is_logged_in && $_SESSION['username'] !== 'admin') {
+    header("Location: Login.php?status=noaccess");
+    exit();
+}
 
 
 $servername = "server330"; # make the database and make a better way to hide this.
@@ -31,9 +33,6 @@ $active_orders = [];
 while ($row = $result->fetch_assoc()) {
     $active_orders[] = $row;
 }
-
-
-var_dump($active_orders);
 
 $stmt->close();
 $conn->close();
