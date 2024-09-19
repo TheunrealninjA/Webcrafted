@@ -25,14 +25,6 @@ $is_logged_in = isset($_SESSION['username']);
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-
-    <script type="text/javascript">
-        var _iub = _iub || [];
-        _iub.csConfiguration = { "siteId": 3712696, "cookiePolicyId": 49640854, "lang": "en-GB" };
-    </script>
-    <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/3712696.js"></script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
 </head>
 
 <body>
@@ -189,7 +181,7 @@ $is_logged_in = isset($_SESSION['username']);
                 <div class="section">
                     <h3>Services</h3>
                     <h4><a href="">Image Optimisation</a></h4>
-                    <h4><a href="">Code Optimisation</a></h4>
+                    <h4><a href="Optimisations/Code">Code Optimisation</a></h4>
                     <h4><a href="">Hourly Hire</a></h4>
                 </div>
             </div>

@@ -8,7 +8,7 @@ $password = "wJFTJo=o=iZ6";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    header("Location: Status.php?page=signup&status=connerror");
+    header("Location: SignUp.php?status=conn");
     exit();
 }
 
@@ -43,7 +43,7 @@ if (isset($_GET['username'])) {
 
     $stmt->close();
 }else{
-    header("Location: Status.php?page=signup&status=");
+    header("Location: SignUp.php?status=");
     exit();
 }
 
