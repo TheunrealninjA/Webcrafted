@@ -28,11 +28,10 @@ $result = $stmt->get_result();
 
 $active_orders = [];
 
-if ($stmt->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $active_orders[] = $row;
-    }
+while ($row = $result->fetch_assoc()) {
+    $active_orders[] = $row;
 }
+
 
 var_dump($active_orders);
 
