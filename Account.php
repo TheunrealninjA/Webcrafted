@@ -108,7 +108,7 @@ $conn->close();
                 </div>
                 <div class="controls">
                     <?php
-                    if ($username === 'admin') {
+                    if ($session_username === 'admin') {
                         echo '<a href="Admin/index.php" class="ControlBtn">Control Center</a>';
                     }
                     ?>
