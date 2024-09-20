@@ -11,6 +11,25 @@ if (!$is_logged_in) {
     header("Location: LoginPage.php?status=noaccess");
     exit();
 }
+
+$servername = "server330";
+$username = "webcsosl_Admin";
+$password = "wJFTJo=o=iZ6";
+$dbname = "webcsosl_SignUp";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$stmt = $conn->prepare("SELECT id, email, created_at FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($id, $email, $created_at);
+
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
