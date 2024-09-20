@@ -98,12 +98,12 @@ $conn->close();
 
             <div class="two-grid">
                 <div>
-                    Email: <span class="Email"><?php echo htmlspecialchars($email); ?></span>
+                    <p>Email: <span class="Email"><?php echo htmlspecialchars($email); ?></span></p>
                     <br>
-                    Account ID: <span class="AccountID"><?php echo htmlspecialchars($id); ?></span>
+                    <p>Account ID: <span class="AccountID"><?php echo htmlspecialchars($id); ?></span></p>
                     <br>
-                    Date Created: <span
-                        class="DateCreated"><?php echo htmlspecialchars($created_at); ?></span>
+                    <p>Date Created: <span
+                        class="DateCreated"><?php echo htmlspecialchars($created_at); ?></span></p>
                     <br>
                 </div>
                 <div class="controls">
