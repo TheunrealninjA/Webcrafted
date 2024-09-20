@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 include 'PHPScripts/session_manager.php';
 
 $is_logged_in = isset($_SESSION['username']);
-$username = htmlspecialchars($_SESSION['username']);
+$session_username = htmlspecialchars($_SESSION['username']);
 
 if (!$is_logged_in) {
     header("Location: LoginPage.php?status=noaccess");
@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 }
 
 $stmt = $conn->prepare("SELECT id, email, created_at FROM users WHERE username = ?");
-$stmt->bind_param("s", $username);
+$stmt->bind_param("s", $session_username);
 $stmt->execute();
 $stmt->bind_result($id, $email, $created_at);
 $stmt->store_result();
@@ -73,13 +73,9 @@ $conn->close();
             </ul>
 
             <ul class="account">
-                <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account" style="margin-top: -8px;"></a></li>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="Login.php">Login</a></li>
-                    <li><a href="SignUp.php">Sign Up</a></li>
-                <?php endif; ?>
+                <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
+                            style="margin-top: -8px;"></a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
 
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
@@ -88,19 +84,20 @@ $conn->close();
         <div class="Cont">
             <?php
             if ($is_logged_in) {
-                echo '<h3 class="Welcome">Hello, ' . $username . '!</h3>';
+                echo '<h3 class="Welcome">Hello, ' . $session_username . '!</h3>';
             } else {
                 echo '<h3 class="Welcome">User Not Found</h3>';
             }
             ?>
 
-            <div  class="two-grid">
+            <div class="two-grid">
                 <div>
                     Email: <span class="Email"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
                     <br>
                     Account ID: <span class="AccountID"><?php echo htmlspecialchars($_SESSION['id']); ?></span>
                     <br>
-                    Date Created: <span class="DateCreated"><?php echo htmlspecialchars($_SESSION['created_at']); ?></span>
+                    Date Created: <span
+                        class="DateCreated"><?php echo htmlspecialchars($_SESSION['created_at']); ?></span>
                     <br>
                 </div>
                 <div class="controls">
