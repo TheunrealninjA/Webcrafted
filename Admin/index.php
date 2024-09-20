@@ -5,7 +5,7 @@ $is_logged_in = isset($_SESSION['username']);
 $user = htmlspecialchars($_SESSION['username']);
 
 if (!$is_logged_in && $_SESSION['username'] !== 'admin') {
-    header("Location: Login.php?status=noaccess");
+    header("Location: " . __DIR__ . "../../Login.php?status=noaccess");
     exit();
 }
 
