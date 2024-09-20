@@ -29,6 +29,12 @@ $stmt->execute();
 $stmt->bind_result($id, $email, $created_at);
 $stmt->store_result();
 
+if ($stmt->fetch()) {
+    $_SESSION['id'] = $id;
+    $_SESSION['email'] = $email;
+    $_SESSION['created_at'] = $created_at;
+}
+
 $stmt->close();
 $conn->close();
 ?>
@@ -92,12 +98,12 @@ $conn->close();
 
             <div class="two-grid">
                 <div>
-                    Email: <span class="Email"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+                    Email: <span class="Email"><?php echo htmlspecialchars($email); ?></span>
                     <br>
-                    Account ID: <span class="AccountID"><?php echo htmlspecialchars($_SESSION['id']); ?></span>
+                    Account ID: <span class="AccountID"><?php echo htmlspecialchars($id); ?></span>
                     <br>
                     Date Created: <span
-                        class="DateCreated"><?php echo htmlspecialchars($_SESSION['created_at']); ?></span>
+                        class="DateCreated"><?php echo htmlspecialchars($created_at); ?></span>
                     <br>
                 </div>
                 <div class="controls">
