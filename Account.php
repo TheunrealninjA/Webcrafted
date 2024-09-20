@@ -97,7 +97,7 @@ $conn->close();
             ?>
 
             <div class="two-grid">
-                <div>
+                <div class="info">
                     <p>Email: <span class="Email"><?php echo htmlspecialchars($email); ?></span></p>
                     <br>
                     <p>Account ID: <span class="AccountID"><?php echo htmlspecialchars($id); ?></span></p>

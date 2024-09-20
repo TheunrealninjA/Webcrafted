@@ -8,8 +8,10 @@
     flex-direction: column;
 }
 
-p{
-    margin: 10px 0;
+.info{
+    margin-top: 20px;
+    display: inline-flex;
+    flex-direction: column;
 }
 
 .ControlBtn {
