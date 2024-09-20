@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+p{
+    margin: 10px 0;
+}
+
 .ControlBtn {
     padding: 10px 15px;
     background-color: #101010;
