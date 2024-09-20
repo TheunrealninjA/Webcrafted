@@ -58,40 +58,7 @@ $conn->close();
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll('.editable').forEach(cell => {
-                cell.addEventListener('blur', function() {
-                    let orderId = this.getAttribute('data-order-id');
-                    let fieldName = this.getAttribute('data-name');
-                    let newValue = this.textContent.trim();
-
-                    // Send an AJAX request to update the database
-                    fetch('PHPScripts/update_orders.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                order_id: orderId,
-                                field_name: fieldName,
-                                new_value: newValue
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                console.log('Order updated successfully');
-                            } else {
-                                console.error('Failed to update order');
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
-                });
-            });
-        });
-    </script>
-
+    <script src="JavaScript/Update.js"></script>
 </head>
 
 <body>
@@ -106,14 +73,9 @@ $conn->close();
             </ul>
 
             <ul class="account">
-                <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="../../images/icons/Account.webp" alt="Account"
-                                style="margin-top: -8px;"></a></li>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="Login.php">Login</a></li>
-                    <li><a href="SignUp.php">Sign Up</a></li>
-                <?php endif; ?>
+                <li><a href="../../Account.php"><img src="../../images/icons/Account.webp" alt="Account"
+                            style="margin-top: -8px;"></a></li>
+                <li><a href="../../logout.php">Logout</a></li>
             </ul>
 
             <a class="MiniWCLogo" href="index.php"><img src="../../images/MiniWCLogo.webp" alt="Logo"></a>
@@ -148,8 +110,8 @@ $conn->close();
                                             data-order-id="<?php echo $order['order_id']; ?>">
                                             <?php echo $order['customer_email']; ?>
                                         </td>
-                                        <td><?php echo $order['order_date']; ?></td> <!-- Not editable -->
-                                        <td><?php echo $order['total_amount']; ?></td> <!-- Not editable -->
+                                        <td><?php echo $order['order_date']; ?></td>
+                                        <td><?php echo $order['total_amount']; ?></td>
                                         <td contenteditable="true" class="editable" data-name="order_status"
                                             data-order-id="<?php echo $order['order_id']; ?>">
                                             <?php echo $order['order_status']; ?>
