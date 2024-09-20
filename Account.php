@@ -41,7 +41,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
     if ($is_logged_in) {
-        echo '<title>' . $username . ' - WebCrafted Pro</title>';
+        echo '<title>' . $session_username . ' - WebCrafted Pro</title>';
     } else {
         echo '<title>Not Logged In - WebCrafted Pro';
     }
