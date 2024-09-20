@@ -22,7 +22,7 @@ $dbname = "webcsosl_SignUp";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $token = $_POST['token'];
-    $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $new_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     // Verify if the token exists
     $stmt = $conn->prepare("SELECT * FROM users WHERE reset_token = ?");
