@@ -27,6 +27,7 @@ $stmt = $conn->prepare("SELECT id, email, created_at FROM users WHERE username =
 $stmt->bind_param("s", $username);
 $stmt->execute();
 $stmt->bind_result($id, $email, $created_at);
+$stmt->store_result();
 
 $stmt->close();
 $conn->close();
