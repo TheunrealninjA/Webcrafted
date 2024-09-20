@@ -78,7 +78,7 @@ $conn->close();
                 <li><a href="../../logout.php">Logout</a></li>
             </ul>
 
-            <a class="MiniWCLogo" href="index.php"><img src="../../images/MiniWCLogo.webp" alt="Logo"></a>
+            <a class="MiniWCLogo" href="../../index.php"><img src="../../images/MiniWCLogo.webp" alt="Logo"></a>
         </header>
 
         <div class="Cont" style="margin: 3vh 28vw 0;">
