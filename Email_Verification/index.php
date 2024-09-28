@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
-    $user = $stmt->fetch();
+    $result = $stmt->get_result();
 
-    if ($user) {
+    if ($result->num_rows > 0) {
         // Generate a unique token
         $token = bin2hex(random_bytes(50));
         $reset_link = "https://webcrafted.pro/Reset_password?token=" . $token;
@@ -65,7 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "No account found with that email.";
     }
+
+    $stmt->close();
+    $update->close();
 }
+$conn->close();
 ?>
 
 <!-- HTML Form for email input -->
