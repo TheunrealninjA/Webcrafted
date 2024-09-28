@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Update the password
         $update = $conn->prepare("UPDATE users SET password_hash = ?, reset_token = NULL WHERE reset_token = ?");
         $update->bind_param("ss", $new_password, $token);
-        $update->execute(['password' => $new_password, 'token' => $token]);
+        $update->execute();
 
         echo "Your password has been successfully updated.";
     } else {
