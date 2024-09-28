@@ -37,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("SELECT * FROM users WHERE reset_token = ?");
     $stmt->bind_param("s", $token);
     $stmt->execute();
-    $user = $stmt->fetch();
+    $result = $stmt->get_result();
 
-    if ($user) {
+    if ($result->num_rows > 0) {
         // Update the password
         $update = $conn->prepare("UPDATE users SET password = ?, reset_token = NULL WHERE reset_token = ?");
         $update->bind_param("ss", $new_password, $token);
@@ -49,7 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Invalid or expired token.";
     }
+    $stmt->close();
+    $update->close();
 }
+$conn->close();
 ?>
 
 <!-- HTML Form for password input -->
