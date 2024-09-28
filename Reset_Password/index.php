@@ -15,6 +15,9 @@
 </head>
 <body>
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $servername = "server330";
 $username = "webcsosl_Admin";
 $password = "wJFTJo=o=iZ6";
@@ -44,12 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!-- HTML Form for password input -->
-<form method="POST">
-    <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
-    <label for="password">Enter your new password:</label>
-    <input type="password" name="password" id="password" required>
-    <button type="submit">Reset Password</button>
-</form>
+<div class="Cont">
+    <form method="POST">
+        <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
+        <label for="password">Enter your new password:</label>
+        <input type="password" name="password" id="password" required>
+        <button type="submit">Reset Password</button>
+    </form>
+</div>
 
 </body>
 </html>
