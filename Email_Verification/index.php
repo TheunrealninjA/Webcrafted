@@ -69,11 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!-- HTML Form for email input -->
-<form method="POST">
-    <label for="email">Enter your email to reset your password:</label>
-    <input type="email" name="email" id="email" required>
-    <button type="submit">Send Reset Link</button>
-</form>
+<div class="Cont">
+    <form method="POST">
+        <label for="email">Enter your email to reset your password:</label>
+        <input type="email" name="email" id="email" required>
+        <button type="submit">Send Reset Link</button>
+    </form>
+</div>
 
 </body>
 </html>
