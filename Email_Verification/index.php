@@ -19,9 +19,6 @@
 </head>
 <body>
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 $servername = "server330";
 $username = "webcsosl_Admin";
 $password = "wJFTJo=o=iZ6";
