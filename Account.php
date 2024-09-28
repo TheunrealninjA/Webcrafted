@@ -109,7 +109,7 @@ $conn->close();
                         echo '<a href="Admin/index.php" class="ControlBtn">Control Center</a>';
                     }
                     ?>
-                    <a href="" class="ControlBtn">Change Password</a>
+                    <a href="Email_Verification" class="ControlBtn">Change Password</a>
                     <a href="logout.php" class="ControlBtn">Log Out</a>
                 </div>
             </div>
