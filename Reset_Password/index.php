@@ -23,6 +23,12 @@ $username = "webcsosl_Admin";
 $password = "wJFTJo=o=iZ6";
 $dbname = "webcsosl_SignUp";
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $token = $_POST['token'];
     $new_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
