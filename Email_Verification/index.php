@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user) {
         // Generate a unique token
         $token = bin2hex(random_bytes(50));
-        $reset_link = "https://webcrafted.pro/reset_password.php?token=" . $token;
+        $reset_link = "https://webcrafted.pro/Reset_password?token=" . $token;
 
         // Store the token in the database
         $update = $conn->prepare("UPDATE users SET reset_token = ? WHERE email = ?");
