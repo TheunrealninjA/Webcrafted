@@ -19,6 +19,14 @@
 </head>
 <body>
 <?php
+function displayMessage($classname, $image, $message)
+{
+    echo '<div class="' . $classname . '">';
+    echo '<img style="width: 30px;" src="../../images/status/' . $image . '" alt="' . $message . '">';
+    echo '<h5>' . $message . '</h5>';
+    echo '</div>';
+}
+
 $servername = "server330";
 $username = "webcsosl_Admin";
 $password = "wJFTJo=o=iZ6";
@@ -32,35 +40,31 @@ if ($conn->connect_error) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
-    
-    // Check if the email exists
+
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Generate a unique token
         $token = bin2hex(random_bytes(50));
         $reset_link = "https://webcrafted.pro/Reset_Password?token=" . $token;
 
-        // Store the token in the database
         $update = $conn->prepare("UPDATE users SET reset_token = ? WHERE email = ?");
         $update->bind_param("ss", $token, $email);
         $update->execute();
 
-        // Send the reset link via email
         $subject = "Password Reset Request";
         $message = "Click the following link to reset your password: $reset_link";
         $headers = "From: no-reply@webcrafted.pro";
 
         if (mail($email, $subject, $message, $headers)) {
-            echo "A password reset link has been sent to your email.";
+            displayMessage("success", "CheckMark.webp", "Reset link sent to your email.");
         } else {
-            echo "Failed to send email.";
+            displayMessage("error", "Error.webp", "Failed to send reset link.");
         }
     } else {
-        echo "No account found with that email.";
+        displayMessage("error", "Error.webp", "Email not found.");
     }
 
     $stmt->close();
@@ -69,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $conn->close();
 ?>
 
-<!-- HTML Form for email input -->
 <div class="Cont">
     <form method="POST">
         <label for="email">Enter your email to reset your password:</label>

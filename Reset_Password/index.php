@@ -15,8 +15,13 @@
 </head>
 <body>
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+function displayMessage($classname, $image, $message)
+{
+    echo '<div class="' . $classname . '">';
+    echo '<img style="width: 30px;" src="../../images/status/' . $image . '" alt="' . $message . '">';
+    echo '<h5>' . $message . '</h5>';
+    echo '</div>';
+}
 
 $servername = "server330";
 $username = "webcsosl_Admin";
@@ -26,7 +31,7 @@ $dbname = "webcsosl_SignUp";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    displayMessage("error", "Error.webp", "Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -45,9 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $update->bind_param("ss", $new_password, $token);
         $update->execute();
 
-        echo "Your password has been successfully updated.";
+        displayMessage("success", "CheckMark.webp", "Password reset successfully.");
     } else {
-        echo "Invalid or expired token.";
+        displayMessage("error", "Error.webp", "Expired or Invalid token.");
     }
     $stmt->close();
     $update->close();
@@ -57,6 +62,7 @@ $conn->close();
 
 <!-- HTML Form for password input -->
 <div class="Cont">
+    <h2>Reset Passoword</h2>
     <form method="POST">
         <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
         <label for="password">Enter your new password:</label>
