@@ -94,7 +94,7 @@ if ($is_logged_in) {
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required><br><br>
 
-                    <div class="two-grid" style="display:flex;">
+                    <div class="two-grid options" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                         <div class="check">
                             <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox">
                             <p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
