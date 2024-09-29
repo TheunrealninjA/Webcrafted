@@ -94,9 +94,12 @@ if ($is_logged_in) {
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required><br><br>
 
-                    <div class="check" style="margin-left:3%;">
-                        <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox">
-                        <p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
+                    <div class="two-grid" style="display:flex;">
+                        <div class="check">
+                            <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox">
+                            <p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
+                        </div>
+                        <a href="ForgotPassword.php">Forgot Password?</a>
                     </div>
 
                     <input class="login" type="submit" value="Login">
