@@ -228,6 +228,7 @@ $is_logged_in = isset($_SESSION['username']);
                             modalInfo.appendChild(modalTitle);
                             modalInfo.appendChild(modalSubtitle);
                             modalInfo.appendChild(modalDescription);
+                            modalInfo.appendChild(dropdown);
                             modalInfo.appendChild(backgroundColorDropdown);
                             modalInfo.appendChild(headerColorDropdown);
                             modalInfo.appendChild(fontDropdown);
