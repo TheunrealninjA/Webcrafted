@@ -99,7 +99,7 @@ if ($is_logged_in) {
                             <input style="width: auto; transform:scale(1.2);" id="remember_me" name="remember_me" type="checkbox">
                             <p style="margin:0; padding-left: 10px;" class="confmes">Remember Me?</p>
                         </div>
-                        <a href="ForgotPassword.php">Forgot Password?</a>
+                        <a href="Email_Verification">Forgot Password?</a>
                     </div>
 
                     <input class="login" type="submit" value="Login">

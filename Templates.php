@@ -211,6 +211,10 @@ $is_logged_in = isset($_SESSION['username']);
                             const modalDescription = document.createElement('p');
                             modalDescription.innerText = description;
 
+                            const backgroundColorDropdown = createDropdown('Background Color', ['White', 'Black', 'Blue', 'Red', 'Green']);
+                            const headerColorDropdown = createDropdown('Header Color', ['White', 'Black', 'Blue', 'Red', 'Green']);
+                            const fontDropdown = createDropdown('Font Style', ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia', 'Comic Sans MS', 'Poppins'], true);
+
                             const chooseThemeButton = document.createElement('button');
                             chooseThemeButton.innerText = 'Choose Template';
                             chooseThemeButton.classList.add('choose-theme-button');
@@ -218,6 +222,9 @@ $is_logged_in = isset($_SESSION['username']);
                             modalInfo.appendChild(modalTitle);
                             modalInfo.appendChild(modalSubtitle);
                             modalInfo.appendChild(modalDescription);
+                            modalInfo.appendChild(backgroundColorDropdown);
+                            modalInfo.appendChild(headerColorDropdown);
+                            modalInfo.appendChild(fontDropdown);
                             modalInfo.appendChild(chooseThemeButton);
 
                             modalContentContainer.appendChild(modalImage);
@@ -229,6 +236,29 @@ $is_logged_in = isset($_SESSION['username']);
                 closeModal.addEventListener('click', function() {
                     modal.style.display = "none";
                 });
+
+                function createDropdown(labelText, options, isFontDropdown = false) {
+                    const container = document.createElement('div');
+                    container.classList.add('dropdown-container');
+
+                    const label = document.createElement('label');
+                    label.innerText = labelText;
+                    container.appendChild(label);
+
+                    const select = document.createElement('select');
+                    options.forEach(optionText => {
+                        const option = document.createElement('option');
+                        option.value = optionText.toLowerCase();
+                        option.innerText = optionText;
+                        if (isFontDropdown) {
+                            option.style.fontFamily = optionText;
+                        }
+                        select.appendChild(option);
+                    });
+                    container.appendChild(select);
+
+                    return container;
+                }
             });
         </script>
 
