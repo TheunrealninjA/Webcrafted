@@ -219,7 +219,7 @@ $is_logged_in = isset($_SESSION['username']);
 
                             const backgroundColorDropdown = createDropdown('Background Color', ['White', 'Black', 'Blue', 'Red', 'Green']);
                             const headerColorDropdown = createDropdown('Header Color', ['White', 'Black', 'Blue', 'Red', 'Green']);
-                            const fontDropdown = createDropdown('Font Style', ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia', 'Comic Sans MS', 'Poppins'], true);
+                            const fontDropdown = createDropdown('Font Style', ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia', 'Comic Sans MS', 'Poppins', 'Brush Script MT', 'Tahoma'], true);
 
                             const chooseThemeButton = document.createElement('button');
                             chooseThemeButton.innerText = 'Choose Template';
