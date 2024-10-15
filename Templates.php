@@ -86,6 +86,9 @@ $is_logged_in = isset($_SESSION['username']);
 
         .modal-info p {
             margin-top: 5px;
+        }
+
+        .dropcont{
             flex-grow: 1;
         }
 
@@ -210,6 +213,9 @@ $is_logged_in = isset($_SESSION['username']);
 
                             const modalDescription = document.createElement('p');
                             modalDescription.innerText = description;
+
+                            const dropdown = document.createElement('div');
+                            dropdown.classList.add('dropcont');
 
                             const backgroundColorDropdown = createDropdown('Background Color', ['White', 'Black', 'Blue', 'Red', 'Green']);
                             const headerColorDropdown = createDropdown('Header Color', ['White', 'Black', 'Blue', 'Red', 'Green']);
