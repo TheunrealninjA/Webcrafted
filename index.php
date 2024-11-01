@@ -22,6 +22,7 @@ $is_logged_in = isset($_SESSION['username']);
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
+    <script src="JavaScript/HamBurger.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
@@ -38,9 +39,27 @@ $is_logged_in = isset($_SESSION['username']);
                 <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
 
+            <span class="open-slide">
+                <a class="hamburger" href="#" onclick="openSideMenu()">
+                    <p> &#9776;</p>
+                </a>
+            </span>
+
+            <div id="side-menu" class="side-nav">
+                <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
+                <div class="mobile-nav-buttons">
+                    <a href="webcrafted.pro">Home</a>
+                    <a href="Websites.php">Websites</a>
+                    <a href="Pricing.php">Pricing</a>
+                    <a href="Templates.php">Templates</a>
+                    <a href="ContactUs.php">Contact Us</a>
+                </div>
+            </div>
+
             <ul class="account">
                 <?php if ($is_logged_in): ?>
-                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account" style="margin-top: -8px;"></a></li>
+                    <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
+                                style="margin-top: -8px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
@@ -192,4 +211,5 @@ $is_logged_in = isset($_SESSION['username']);
         </footer>
     </div>
 </body>
+
 </html>

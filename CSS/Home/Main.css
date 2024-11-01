@@ -178,3 +178,7 @@ header{ height: 100vh }
 .iubenda-cs-brand-badge{
     display: none !important;
 }
+
+@media screen and (max-width: 1060px) {
+    
+}
