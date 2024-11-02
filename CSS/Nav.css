@@ -86,7 +86,7 @@
 .account{
     float: right;
     margin-right: 50px;
-    margin-top: -37px;
+    margin-top: -38.4px;
 }
 
 .account li{
@@ -152,13 +152,17 @@
     top: 0
 }
 
-@media screen and (max-width: 1060px) {
-    .Top-Buttons li {
-        margin-left: 50px;
-    }
+@media screen and (max-width: 1250px) {
+    .Top-Buttons li { margin-left: 50px;}
+
+    .MiniWCLogo{ margin-left: 3vw; }
+
+    .account{ margin-right: 30px; }
+    
+    .account li{ margin-left: 40px; }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
     .Top-Buttons {
         display: none
     }
