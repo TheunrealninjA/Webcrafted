@@ -97,25 +97,30 @@
                 <html>
                 <head>
                     <style>
-                        .email-container {
+                        .email-background {
                             font-family: Arial, sans-serif;
-                            background-color: #f4f4f4;
+                            background-color: rgb(10, 10, 10);
+                            background-size: 80px 80px;
+                            background-image:
+                            linear-gradient(to right, rgb(32,32,32) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgb(32,32,32) 1px, transparent 1px);
                             padding: 20px;
                             border-radius: 10px;
                             max-width: 600px;
                             margin: auto;
                         }
-                        .email-header {
-                            background-color: #0073e6;
-                            color: white;
-                            padding: 10px;
-                            border-radius: 10px 10px 0 0;
+                        .email-cont {
+                            border: 1px solid white;
                             text-align: center;
+                            margin: 3vh 35vw 0;
+                            border-radius: 16px;
+                            box-shadow: 0 0 10px 5px white;
+                            padding: 30px 0;
+                            background-image: linear-gradient(135deg, #181818, #101010);
+                            color: white;
                         }
                         .email-body {
                             padding: 20px;
-                            background-color: white;
-                            border-radius: 0 0 10px 10px;
                         }
                         .email-footer {
                             text-align: center;
@@ -124,28 +129,29 @@
                             color: #777;
                         }
                         .reset-button {
-                            display: inline-block;
-                            padding: 10px 20px;
-                            margin: 20px 0;
-                            background-color: #0073e6;
-                            color: white;
-                            text-decoration: none;
-                            border-radius: 5px;
+                            padding: 10px 15px;
+                            margin-top: 20px;
+                            background-color: #101010;
+                            border: 1px solid white;
+                            box-shadow: inset 0 0 4px 2px black;
+                            border-radius: 8px;
+                            margin-left: 18vw;
+                            width: auto;
                         }
                     </style>
                 </head>
                 <body>
-                    <div class="email-container">
-                        <div class="email-header">
+                    <div class="email-background">
+                        <div class="email-cont">
                             <h2>Password Reset Request</h2>
-                        </div>
-                        <div class="email-body">
-                            <p>We received a request to reset your password. Click the button below to reset your password:</p>
-                            <a href="' . $reset_link . '" class="reset-button">Reset Password</a>
-                            <p>If you did not request a password reset, please ignore this email.</p>
-                        </div>
-                        <div class="email-footer">
-                            <p>&copy; 2024 WebCrafted Pro. All rights reserved.</p>
+                            <div class="email-body">
+                                <p>We received a request to reset your password. Click the button below to reset your password:</p>
+                                <a href="' . $reset_link . '" class="reset-button">Reset Password</a>
+                                <p>If you did not request a password reset, please ignore this email.</p>
+                            </div>
+                            <div class="email-footer">
+                                <p>&copy; 2024 WebCrafted Pro. All rights reserved.</p>
+                            </div>
                         </div>
                     </div>
                 </body>

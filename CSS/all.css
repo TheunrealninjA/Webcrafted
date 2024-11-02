@@ -135,7 +135,6 @@ label {
 
 input[type="submit"] {
     padding: 10px 15px;
-    margin-top: 20px;
     background-color: #101010;
     color: #fff;
     border: 1px solid white;
@@ -167,6 +166,7 @@ textarea {
 
 button{
     padding: 10px 15px;
+    margin-top: 20px;
     background-color: #101010;
     color: #fff;
     border: 1px solid white;
