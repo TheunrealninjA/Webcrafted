@@ -10,7 +10,7 @@ $is_logged_in = isset($_SESSION['username']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Welcome to WebCrafted.Pro, where you can get hand-crafted custom websites for your businesses specific needs. We have competive prices and exclusive features that elevate your website to the next level.">
+        content="Welcome to WebCrafted.Pro, where you can get hand-crafted custom websites for your businesses specific needs. We have competitive prices and exclusive features that elevate your website to the next level.">
     <title>Home - WebCrafted Pro</title>
 
     <link rel="icon" href="images/WCLogo.webp">
