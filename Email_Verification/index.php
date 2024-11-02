@@ -55,7 +55,7 @@
     </header>
 
     <div class="Cont">
-        <h1>Password Reset</h1>
+        <h3>Password Reset</h3>
         <?php
         function displayMessage($classname, $image, $message)
         {
@@ -93,8 +93,68 @@
                 $update->execute();
 
                 $subject = "Password Reset Request";
-                $message = "Click the following link to reset your password: $reset_link";
-                $headers = "From: no-reply@webcrafted.pro";
+                $message = '
+                <html>
+                <head>
+                    <style>
+                        .email-container {
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            padding: 20px;
+                            border-radius: 10px;
+                            max-width: 600px;
+                            margin: auto;
+                        }
+                        .email-header {
+                            background-color: #0073e6;
+                            color: white;
+                            padding: 10px;
+                            border-radius: 10px 10px 0 0;
+                            text-align: center;
+                        }
+                        .email-body {
+                            padding: 20px;
+                            background-color: white;
+                            border-radius: 0 0 10px 10px;
+                        }
+                        .email-footer {
+                            text-align: center;
+                            padding: 10px;
+                            font-size: 12px;
+                            color: #777;
+                        }
+                        .reset-button {
+                            display: inline-block;
+                            padding: 10px 20px;
+                            margin: 20px 0;
+                            background-color: #0073e6;
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 5px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="email-container">
+                        <div class="email-header">
+                            <h2>Password Reset Request</h2>
+                        </div>
+                        <div class="email-body">
+                            <p>We received a request to reset your password. Click the button below to reset your password:</p>
+                            <a href="' . $reset_link . '" class="reset-button">Reset Password</a>
+                            <p>If you did not request a password reset, please ignore this email.</p>
+                        </div>
+                        <div class="email-footer">
+                            <p>&copy; 2024 WebCrafted Pro. All rights reserved.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+                ';
+                $headers = "From: no-reply@webcrafted.pro\r\n";
+                $headers .= "MIME-Version: 1.0\r\n";
+                $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+
 
                 if (mail($email, $subject, $message, $headers)) {
                     displayMessage("successbox", "CheckMark.webp", "Reset link sent to your email.");
