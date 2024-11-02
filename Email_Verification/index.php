@@ -109,7 +109,7 @@
                         .email-cont {
                             border: 1px solid white;
                             text-align: center;
-                            margin: 3vh 35vw 0;
+                            margin: 3vh 5vw 0;
                             border-radius: 16px;
                             box-shadow: 0 0 10px 5px white;
                             padding: 30px 0;
