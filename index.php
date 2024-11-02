@@ -110,7 +110,6 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
                     <li><img src="images/Xemoji.webp" alt="X emoji"> PHP included</li>
-                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> 3 day delivery</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                     <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
@@ -130,7 +129,6 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
                     <li><img src="images/tickemoji.webp" alt="X emoji"> PHP included</li>
-                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> 5 day delivery</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                     <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
@@ -150,7 +148,6 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
                     <li><img src="images/tickemoji.webp" alt="X emoji"> PHP included</li>
-                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> 7 day delivery</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                     <li><img src="images/minus.webp" alt="X emoji"> Domain included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
