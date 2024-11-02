@@ -97,6 +97,12 @@
                 <html>
                 <head>
                     <style>
+                        .icon{
+                            display: flex;
+                            justify-content: center;
+                            width: 40px;
+                            height: auto;
+                        }
                         .email-background {
                             font-family: Arial, sans-serif;
                             background-color: rgb(10, 10, 10);
@@ -109,7 +115,7 @@
                         .email-cont {
                             border: 1px solid white;
                             text-align: center;
-                            margin: 3vh 10vw 0;
+                            margin: 3vh 12vw 0;
                             border-radius: 16px;
                             box-shadow: 0 0 10px 5px white;
                             padding: 30px 0;
@@ -138,6 +144,7 @@
                     </style>
                 </head>
                 <body>
+                    img src="https://webcrafted.pro/images/MiniWCLogo.webp" alt="WebCrafted Pro" class="icon">
                     <div class="email-background">
                         <div class="email-cont">
                             <h2>Password Reset Request</h2>
