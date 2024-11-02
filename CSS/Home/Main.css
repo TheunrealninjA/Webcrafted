@@ -1,17 +1,18 @@
+header {
+    height: 100vh
+}
 
-header{ height: 100vh }
-
-.Title{
+.Title {
     text-align: center;
     padding-top: 80px;
 }
 
-.Title img{ 
+.Title img {
     animation: UpLogo 1s forwards;
     margin-top: 10vh;
 }
 
-.Title a{
+.Title a {
     animation: FarLeft 2.3s;
     border: 2px solid;
     border-radius: 12px;
@@ -22,57 +23,78 @@ header{ height: 100vh }
     transition: transform 0.5s, background-color 0.5s, color 0.5s;
 }
 
-.Title a:hover{
+.Title a:hover {
     transform: scale(1.2);
     background-color: white;
     color: black;
     transition: transform 0.5s, background-color 0.5s, color 0.5s;
 }
 
-.Title h1, h2{ animation: Up 1s forwards }
+.Title h1,
+h2 {
+    animation: Up 1s forwards
+}
 
-.Title h3{
+.Title h3 {
     color: rgb(200, 200, 200);
     margin-top: 16vh;
     animation: scrollanim 2.4s infinite;
 }
 
-.Title p{ display: inline }
+.Title p {
+    display: inline
+}
 
-.box h3, .lastbox h3{
+.box h3,
+.lastbox h3 {
     padding: 100px 50px 20px;
     font-size: 70px;
 }
 
-.box p, .lastbox p{
+.box p,
+.lastbox p {
     margin: 20px 50px;
     font-size: 25px;
 }
 
-.lastbox{
+.lastbox {
     height: 60vh;
     width: 100%;
 }
 
-.box li{
+.box li {
     font-size: 20px;
-    margin:5px 100px;
+    margin: 5px 100px;
     list-style: inside;
 }
 
-.box li:nth-child(1) { transition-duration: 1.4s }
-.box li:nth-child(2) { transition-duration: 1.8s }
-.box li:nth-child(3) { transition-duration: 2.2s }
-.box li:nth-child(4) { transition-duration: 2.6s }
-.box li:nth-child(5) { transition-duration: 3s }
+.box li:nth-child(1) {
+    transition-duration: 1.4s
+}
 
-.first p{
+.box li:nth-child(2) {
+    transition-duration: 1.8s
+}
+
+.box li:nth-child(3) {
+    transition-duration: 2.2s
+}
+
+.box li:nth-child(4) {
+    transition-duration: 2.6s
+}
+
+.box li:nth-child(5) {
+    transition-duration: 3s
+}
+
+.first p {
     text-align: left;
     padding-left: 20px;
     padding-top: 14px;
 }
 
-.purbar{
+.purbar {
     background-image: linear-gradient(179deg, rgb(196, 68, 222), rgb(130, 26, 156));
     margin-left: 100px;
     border-radius: 8px;
@@ -82,7 +104,7 @@ header{ height: 100vh }
 }
 
 
-.pinbar{
+.pinbar {
     background-image: linear-gradient(179deg, rgb(219, 50, 154), rgb(171, 27, 121));
     margin: 30px 100px;
     border-radius: 8px;
@@ -91,22 +113,23 @@ header{ height: 100vh }
     justify-content: space-between;
 }
 
-.pinbar:hover, .purbar:hover{
+.pinbar:hover,
+.purbar:hover {
     transform: scale(1.05);
     transition: transform 0.5s;
 }
 
-.plans{
+.plans {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
-.packtext{
+.packtext {
     font-size: 28px !important;
     padding-top: 50px !important
 }
 
-.pricebox{
+.pricebox {
     border: 1px solid white;
     border-radius: 32px;
     margin: 9vh 2.8vw;
@@ -117,26 +140,28 @@ header{ height: 100vh }
     transition: transform 0.8s;
 }
 
-.pricebox:hover{ transform: scale(1.05) }
+.pricebox:hover {
+    transform: scale(1.05)
+}
 
-.pricebox h4{
+.pricebox h4 {
     font-size: 26px;
     margin-left: 50px;
     margin-bottom: 30px;
 }
 
-.pricebox ul li{
+.pricebox ul li {
     font-size: 22px;
     list-style: none;
     margin: 10px 50px;
 }
 
-.pricebox img{
+.pricebox img {
     width: 22px;
     height: auto;
 }
 
-.pricebox a{
+.pricebox a {
     float: right;
     font-size: 22px;
     margin: 30px 32px 0px;
@@ -146,39 +171,112 @@ header{ height: 100vh }
     transition: background-color 0.5s, color 0.3s;
 }
 
-.pricebox a:hover{
+.pricebox a:hover {
     color: black;
     background-color: white;
 }
 
-.next{
+.next {
     display: inline-flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-.see-more{
+.see-more {
     font-size: 120px;
     margin-bottom: 6vh;
     transition: transform 0.8s;
 }
 
-.see-more p { margin: -4.5vh 1.03vw 0 0 }
+.see-more p {
+    margin: -4.5vh 1.03vw 0 0
+}
 
-.text{ display: flex }
+.text {
+    display: flex
+}
 
-.text img{
+.text img {
     margin-left: 100px;
     width: 150px;
     height: auto;
 }
 
-.text p{ width: 60vw }
-
-.iubenda-cs-brand-badge{
-    display: none !important;
+.text p {
+    width: 60vw
 }
 
 @media screen and (max-width: 1060px) {
-    
+    .Title { padding-top: 20px; }
+
+    .Title h3 {
+        margin-top: 9vh;
+    }
+
+    .box h3, .lastbox h3 { padding: 75px 50px 10px; }
+
+    .box p, .lastbox p { margin: 20px 45px; }
+
+    .box li { margin: 5px 90px; }
+
+    .purbar { margin-left: 80px; }
+
+    .purbar p, .pinbar p{ 
+        font-size: 21px;
+        margin-top: 22px; 
+    }
+
+    .pinbar { margin: 30px 80px; }
+
+    .packtext {
+        font-size: 18px !important;
+        padding: 1px 10px 4px;
+    }
+
+    .pricebox { margin: 12vh 2.3vw; }
+
+    .pricebox h3{
+        font-size: 18px;
+        padding: 0 10px 4px;
+    }
+
+    .pricebox h4 {
+        font-size: 19px;
+        margin-left: 14px;
+        margin-bottom: 30px;
+    }
+
+    .pricebox ul li {
+        font-size: 15px;
+        margin: 7px 6px;
+    }
+
+    .pricebox img { width: 15px; }
+
+    .pricebox a {
+        font-size: 19px;
+        margin: 18px 10px 0px;
+    }
+
+    .see-more {
+        font-size: 70px;
+        margin-bottom: 4vh;
+    }
+
+    .see-more p {
+        margin: -4.5vh 1.03vw 0 0;
+        font-size: 18px;
+    }
+
+    .text img {
+        margin-left: 60px;
+        width: auto;
+        height: 220px;
+    }
+
+    .text p {
+        font-size: 19px;
+        width: auto;
+    }
+
 }

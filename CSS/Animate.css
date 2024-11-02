@@ -140,3 +140,9 @@
     width: 40vw;
     transition: width 1s ease-in-out, transform 1s ease-in-out, opacity 0.8s ease-in !important;
 }
+
+@media screen and (max-width: 1060px){
+    .farleft{
+        transform: translateX(-50px);
+    }
+}
