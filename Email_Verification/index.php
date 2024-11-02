@@ -144,7 +144,7 @@
                     </style>
                 </head>
                 <body>
-                    img src="https://webcrafted.pro/images/MiniWCLogo.webp" alt="WebCrafted Pro" class="icon">
+                    <img src="https://webcrafted.pro/images/MiniWCLogo.webp" alt="WebCrafted Pro" class="icon">
                     <div class="email-background">
                         <div class="email-cont">
                             <h2>Password Reset Request</h2>
