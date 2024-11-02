@@ -52,7 +52,7 @@ if ($is_logged_in) {
             <div id="side-menu" class="side-nav">
                 <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
                 <div class="mobile-nav-buttons">
-                    <a href="webcrafted.pro">Home</a>
+                    <a href="/">Home</a>
                     <a href="Websites.php">Websites</a>
                     <a href="Pricing.php">Pricing</a>
                     <a href="Templates.php">Templates</a>
