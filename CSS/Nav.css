@@ -174,7 +174,6 @@
 
     .MiniWCLogo{
         display: flex;
-        margin: 0;
         justify-content: center;
     }
 
@@ -193,10 +192,16 @@
         padding-top: 40px
     }
 
-    .MiniWCLogo{
-        width: 50px;
-        height: 50px;
-        margin-top: -48px;
+    .MiniWCLogo img{
+       margin-top: -58px;
+       width: 75px;
+    }
+
+    .account{ margin-right: 10px; }
+
+    .account li{ 
+        margin-left: 20px; 
+        font-size: 15px;
     }
 
     .hamburger { margin-left: 0 }
@@ -204,12 +209,6 @@
 
 @media screen and (max-width: 415px) { 
     .open-slide a p { font-size: 35px }
-
-    .MiniWCLogo{
-        margin-top: -43px;
-    }
-
-    .account{ margin-right: 10px; }
 
     .account li{ 
         margin-left: 10px; 
