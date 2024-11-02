@@ -26,6 +26,7 @@ if ($is_logged_in) {
     <link rel="stylesheet" href="CSS/Animate.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="JavaScript/AnimationWait.js"></script>
+    <script src="JavaScript/HamBurger.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
@@ -41,6 +42,23 @@ if ($is_logged_in) {
                 <li id="websites" class="Second-Layer"><a href="Websites.php">Websites</a></li>
                 <li id="contact"><a href="ContactUs.php">Contact Us</a></li>
             </ul>
+
+            <span class="open-slide">
+                <a class="hamburger" href="#" onclick="openSideMenu()">
+                    <p> &#9776;</p>
+                </a>
+            </span>
+
+            <div id="side-menu" class="side-nav">
+                <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
+                <div class="mobile-nav-buttons">
+                    <a href="webcrafted.pro">Home</a>
+                    <a href="Websites.php">Websites</a>
+                    <a href="Pricing.php">Pricing</a>
+                    <a href="Templates.php">Templates</a>
+                    <a href="ContactUs.php">Contact Us</a>
+                </div>
+            </div>
 
             <ul class="account">
                 <li><a href="Login.php">Login</a></li>
