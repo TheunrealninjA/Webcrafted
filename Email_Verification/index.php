@@ -65,6 +65,23 @@
             echo '</div>';
         }
 
+        $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+        $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
+        $remoteIp = $_SERVER['REMOTE_ADDR'];
+
+        if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)) {
+            $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+            $resp = $recaptcha->setExpectedHostname('webcrafted.pro')
+                ->verify($gRecaptchaResponse, $remoteIp);
+
+            if (!$resp->isSuccess()) {
+                $errors = $resp->getErrorCodes();
+                displayMessage('errorbox', 'Error.webp', 'Failed Recaptcha');
+            } else {
+                displayMessage('warnbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
+            }
+        }
+
         $servername = "server330";
         $username = "webcsosl_Admin";
         $password = "wJFTJo=o=iZ6";
@@ -184,6 +201,7 @@
         <form method="POST">
             <label for="email">Enter your email to reset your password:</label>
             <input type="email" name="email" id="email" required>
+            <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br />
             <button type="submit">Send Reset Link</button>
         </form>
     </div>

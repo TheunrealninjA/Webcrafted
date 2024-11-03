@@ -63,6 +63,23 @@
             echo '</div>';
         }
 
+        $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+        $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
+        $remoteIp = $_SERVER['REMOTE_ADDR'];
+
+        if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)) {
+            $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+            $resp = $recaptcha->setExpectedHostname('webcrafted.pro')
+                ->verify($gRecaptchaResponse, $remoteIp);
+
+            if (!$resp->isSuccess()) {
+                $errors = $resp->getErrorCodes();
+                displayMessage('errorbox', 'Error.webp', 'You are a robot.');
+            } else {
+                displayMessage('warnbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
+            }
+        }
+
         $servername = "server330";
         $username = "webcsosl_Admin";
         $password = "wJFTJo=o=iZ6";
@@ -102,6 +119,7 @@
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
             <label for="password">Enter your new password:</label>
             <input type="password" name="password" id="password" required>
+            <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
             <button type="submit">Reset Password</button>
         </form>
     </div>

@@ -109,34 +109,34 @@
 
             switch ($status) {
                 case 'robot':
-                    displayMessage('errorbox', 'error.webp', 'Failed Recaptcha');
+                    displayMessage('errorbox', 'Error.webp', 'Failed Recaptcha');
                     break;
                 case 'misrobot':
-                    displayMessage('errorbox', 'questionmark.webp', 'Recaptcha isn`t complete');
+                    displayMessage('errorbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
                     break;
                 case 'missing':
-                    displayMessage('errorbox', 'error.webp', 'Please fill in all fields');
+                    displayMessage('errorbox', 'Error.webp', 'Please fill in all fields');
                     break;
                 case 'user':
                     displayMessage('warnbox', 'warning.webp', 'Username Already In Use');
                     break;
                 case 'password':
-                    displayMessage('errorbox', 'error.webp', 'Password isn`t the same');
+                    displayMessage('errorbox', 'Error.webp', 'Password isn`t the same');
                     break;
                 case 'Format':
-                    displayMessage('errorbox', 'error.webp', 'Email Format Is Incorrect');
+                    displayMessage('errorbox', 'Error.webp', 'Email Format Is Incorrect');
                     break;
                 case 'success':
-                    displayMessage('successbox', 'checkmark.webp', 'Sign Up Successful');
+                    displayMessage('successbox', 'CheckMark.webp', 'Sign Up Successful');
                     break;
                 case 'error':
-                    displayMessage('errorbox', 'error.webp', 'Sign Up Failed');
+                    displayMessage('errorbox', 'Error.webp', 'Sign Up Failed');
                     break;
                 case 'unexpected':
-                    displayMessage('errorbox', 'error.webp', 'Unexpected Error');
+                    displayMessage('errorbox', 'Error.webp', 'Unexpected Error');
                     break;
                 case 'conn':
-                    displayMessage('errorbox', 'error.webp', 'Connection Error');
+                    displayMessage('errorbox', 'Error.webp', 'Connection Error');
                     break;
                 default:
                     break;
