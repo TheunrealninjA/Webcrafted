@@ -58,6 +58,8 @@
     <div class="Cont">
         <h3>Password Reset</h3>
         <?php
+        require_once __DIR__ . '/recaptcha-master/src/autoload.php';
+        
         function displayMessage($classname, $image, $message)
         {
             echo '<div class="' . $classname . '">';
@@ -66,137 +68,136 @@
             echo '</div>';
         }
 
-        $gRecaptchaResponse = $_POST['g-recaptcha-response'];
-        $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
-        $remoteIp = $_SERVER['REMOTE_ADDR'];
-
-        if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)) {
-            $recaptcha = new \ReCaptcha\ReCaptcha($secret);
-            $resp = $recaptcha->setExpectedHostname('webcrafted.pro')
-                ->verify($gRecaptchaResponse, $remoteIp);
-
-            if (!$resp->isSuccess()) {
-                $errors = $resp->getErrorCodes();
-                displayMessage('errorbox', 'Error.webp', 'Failed Recaptcha');
-            } else {
-                displayMessage('warnbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
-            }
-        }
-
-        $servername = "server330";
-        $username = "webcsosl_Admin";
-        $password = "wJFTJo=o=iZ6";
-        $dbname = "webcsosl_SignUp";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            displayMessage("errorbox", "Error.webp", "Connection failed: " . $conn->connect_error);
-        }
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = $_POST['email'];
+            $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+            $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
+            $remoteIp = $_SERVER['REMOTE_ADDR'];
 
-            $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                $token = bin2hex(random_bytes(50));
-                $reset_link = "https://webcrafted.pro/Reset_Password?token=" . $token;
-
-                $update = $conn->prepare("UPDATE users SET reset_token = ? WHERE email = ?");
-                $update->bind_param("ss", $token, $email);
-                $update->execute();
-
-                $subject = "Password Reset Request";
-                $message = '
-                <html>
-                <head>
-                    <style>
-                        .icon{
-                            display: flex;
-                            justify-content: center;
-                            width: 40px;
-                            height: auto;
-                        }
-                        .email-background {
-                            font-family: Arial, sans-serif;
-                            background-color: rgb(10, 10, 10);
-                            background-size: 60px 60px;
-                            background-image:
-                            linear-gradient(to right, rgb(32,32,32) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgb(32,32,32) 1px, transparent 1px);
-                            padding: 20px;
-                        }
-                        .email-cont {
-                            border: 1px solid white;
-                            text-align: center;
-                            margin: 3vh 12vw;
-                            border-radius: 16px;
-                            box-shadow: 0 0 10px 5px white;
-                            padding: 30px 0;
-                            background-image: linear-gradient(135deg, #181818, #101010);
-                            color: white;
-                        }
-                        .email-body {
-                            padding: 20px;
-                        }
-                        .email-footer {
-                            text-align: center;
-                            padding: 10px;
-                            font-size: 12px;
-                            color: #888;
-                        }
-                        .reset-button {
-                            padding: 10px 15px;
-                            margin-top: 20px;
-                            background-color: #101010;
-                            border: 1px solid white;
-                            box-shadow: inset 0 0 4px 2px black;
-                            border-radius: 8px;
-                            width: auto;
-                            color: white;
-                        }
-                    </style>
-                </head>
-                <body>
-                <div class="email-background">
-                    <img src="https://webcrafted.pro/images/MiniWCLogo.webp" alt="WebCrafted Pro" class="icon">
-                        <div class="email-cont">
-                            <h2>Password Reset Request</h2>
-                            <div class="email-body">
-                                <p>We received a request to reset your password. Click the button below to reset your password:</p>
-                                <a href="' . $reset_link . '" class="reset-button">Reset Password</a>
-                                <p style="margin-top: 20px;">If you did not request a password reset, please ignore this email.</p>
-                            </div>
-                            <div class="email-footer">
-                                <p>&copy; 2024 WebCrafted Pro. All rights reserved.</p>
-                            </div>
-                        </div>
-                    </div>
-                </body>
-                </html>
-                ';
-                $headers = "From: no-reply@webcrafted.pro\r\n";
-                $headers .= "MIME-Version: 1.0\r\n";
-                $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-
-
-                if (mail($email, $subject, $message, $headers)) {
-                    displayMessage("successbox", "CheckMark.webp", "Reset link sent to your email.");
-                } else {
-                    displayMessage("errorbox", "Error.webp", "Failed to send reset link.");
-                }
+            if (empty($gRecaptchaResponse)) {
+                displayMessage('warnbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
             } else {
-                displayMessage("errorbox", "Error.webp", "Email not found.");
-            }
+                $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+                $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
 
-            $stmt->close();
-            $update->close();
+                if (!$resp->isSuccess()) {
+                    $errors = $resp->getErrorCodes();
+                    displayMessage('errorbox', 'Error.webp', 'Failed Recaptcha');
+                } else {
+                    // Proceed with the rest of the form processing
+                    $servername = "server330";
+                    $username = "webcsosl_Admin";
+                    $password = "wJFTJo=o=iZ6";
+                    $dbname = "webcsosl_SignUp";
+
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    if ($conn->connect_error) {
+                        displayMessage("errorbox", "Error.webp", "Connection failed: " . $conn->connect_error);
+                    }
+
+                    $email = $_POST['email'];
+
+                    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+                    $stmt->bind_param("s", $email);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+                    if ($result->num_rows > 0) {
+                        $token = bin2hex(random_bytes(50));
+                        $reset_link = "https://webcrafted.pro/Reset_Password?token=" . $token;
+
+                        $update = $conn->prepare("UPDATE users SET reset_token = ? WHERE email = ?");
+                        $update->bind_param("ss", $token, $email);
+                        $update->execute();
+
+                        $subject = "Password Reset Request";
+                        $message = '
+                        <html>
+                        <head>
+                            <style>
+                                .icon{
+                                    display: flex;
+                                    justify-content: center;
+                                    width: 40px;
+                                    height: auto;
+                                }
+                                .email-background {
+                                    font-family: Arial, sans-serif;
+                                    background-color: rgb(10, 10, 10);
+                                    background-size: 60px 60px;
+                                    background-image:
+                                    linear-gradient(to right, rgb(32,32,32) 1px, transparent 1px),
+                                    linear-gradient(to bottom, rgb(32,32,32) 1px, transparent 1px);
+                                    padding: 20px;
+                                }
+                                .email-cont {
+                                    border: 1px solid white;
+                                    text-align: center;
+                                    margin: 3vh 12vw;
+                                    border-radius: 16px;
+                                    box-shadow: 0 0 10px 5px white;
+                                    padding: 30px 0;
+                                    background-image: linear-gradient(135deg, #181818, #101010);
+                                    color: white;
+                                }
+                                .email-body {
+                                    padding: 20px;
+                                }
+                                .email-footer {
+                                    text-align: center;
+                                    padding: 10px;
+                                    font-size: 12px;
+                                    color: #888;
+                                }
+                                .reset-button {
+                                    padding: 10px 15px;
+                                    margin-top: 20px;
+                                    background-color: #101010;
+                                    border: 1px solid white;
+                                    box-shadow: inset 0 0 4px 2px black;
+                                    border-radius: 8px;
+                                    width: auto;
+                                    color: white;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                        <div class="email-background">
+                            <img src="https://webcrafted.pro/images/MiniWCLogo.webp" alt="WebCrafted Pro" class="icon">
+                                <div class="email-cont">
+                                    <h2>Password Reset Request</h2>
+                                    <div class="email-body">
+                                        <p>We received a request to reset your password. Click the button below to reset your password:</p>
+                                        <a href="' . $reset_link . '" class="reset-button">Reset Password</a>
+                                        <p style="margin-top: 20px;">If you did not request a password reset, please ignore this email.</p>
+                                    </div>
+                                    <div class="email-footer">
+                                        <p>&copy; 2024 WebCrafted Pro. All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </body>
+                        </html>
+                        ';
+                        $headers = "From: no-reply@webcrafted.pro\r\n";
+                        $headers .= "MIME-Version: 1.0\r\n";
+                        $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+
+                        if (mail($email, $subject, $message, $headers)) {
+                            displayMessage("successbox", "CheckMark.webp", "Reset link sent to your email.");
+                        } else {
+                            displayMessage("errorbox", "Error.webp", "Failed to send reset link.");
+                        }
+                    } else {
+                        displayMessage("errorbox", "Error.webp", "Email not found.");
+                    }
+
+                    $stmt->close();
+                    $update->close();
+                    $conn->close();
+                }
+            }
         }
-        $conn->close();
         ?>
 
         <form method="POST">
