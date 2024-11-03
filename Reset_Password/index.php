@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="../../JavaScript/AnimationWait.js"></script>
     <script src="../../JavaScript/HamBurger.js"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
 <body>

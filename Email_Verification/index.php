@@ -17,6 +17,7 @@
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
     </style>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
 <body>
