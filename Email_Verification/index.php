@@ -58,7 +58,7 @@
     <div class="Cont">
         <h3>Password Reset</h3>
         <?php
-        require_once __DIR__ . '/recaptcha-master/src/autoload.php';
+        require_once __DIR__ . '../../recaptcha-master/src/autoload.php';
         
         function displayMessage($classname, $image, $message)
         {
