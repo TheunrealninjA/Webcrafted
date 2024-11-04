@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="../../JavaScript/AnimationWait.js"></script>
     <script src="../../JavaScript/HamBurger.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins");
+    </style>
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
@@ -106,6 +109,10 @@
                         $update->execute();
         
                         displayMessage("successbox", "CheckMark.webp", "Password reset successfully.");
+                        header("Location: https://webcrafted.pro/");
+                        sleep(2);
+                        exit();
+
                     } else {
                         displayMessage("errorbox", "Error.webp", "Expired or Invalid token.");
                     }
