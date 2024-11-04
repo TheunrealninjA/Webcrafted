@@ -10,6 +10,7 @@ header {
 .Title img {
     animation: UpLogo 1s forwards;
     margin-top: 10vh;
+    margin-left: 5px;
 }
 
 .Title a {

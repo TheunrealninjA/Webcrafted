@@ -202,8 +202,8 @@
 
         <form method="POST">
             <label for="email">Enter your email to reset your password:</label>
-            <input type="email" name="email" id="email" required>
-            <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br />
+            <input type="email" name="email" id="email" required><br>
+            <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div>
             <button type="submit">Send Reset Link</button>
         </form>
     </div>

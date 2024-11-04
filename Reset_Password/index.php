@@ -54,8 +54,10 @@
     </header>
 
     <div class="Cont">
-        <h2>Reset Passoword</h2>
+        <h2>Reset Password</h2>
         <?php
+        require_once __DIR__ . '../../recaptcha-master/src/autoload.php';
+
         function displayMessage($classname, $image, $message)
         {
             echo '<div class="' . $classname . '">';
@@ -68,59 +70,58 @@
         $secret = '6Ldv2DUqAAAAAMxohMkkHwT90vWDgkh_nxf_s7Eh';
         $remoteIp = $_SERVER['REMOTE_ADDR'];
 
-        if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)) {
+        if (empty($gRecaptchaResponse)) {
+            displayMessage('warnbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
+        } else {
             $recaptcha = new \ReCaptcha\ReCaptcha($secret);
-            $resp = $recaptcha->setExpectedHostname('webcrafted.pro')
-                ->verify($gRecaptchaResponse, $remoteIp);
+            $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
 
             if (!$resp->isSuccess()) {
                 $errors = $resp->getErrorCodes();
-                displayMessage('errorbox', 'Error.webp', 'You are a robot.');
+                displayMessage('errorbox', 'Error.webp', 'Failed Recaptcha');
             } else {
-                displayMessage('warnbox', 'QuestionMark.webp', 'Recaptcha isn`t complete');
+                $servername = "server330";
+                $username = "webcsosl_Admin";
+                $password = "wJFTJo=o=iZ6";
+                $dbname = "webcsosl_SignUp";
+        
+                $conn = new mysqli($servername, $username, $password, $dbname);
+        
+                if ($conn->connect_error) {
+                    displayMessage("errorbox", "Error.webp", "Connection failed: " . $conn->connect_error);
+                }
+        
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $token = $_POST['token'];
+                    $new_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        
+                    $stmt = $conn->prepare("SELECT * FROM users WHERE reset_token = ?");
+                    $stmt->bind_param("s", $token);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+        
+                    if ($result->num_rows > 0) {
+                        $update = $conn->prepare("UPDATE users SET password_hash = ?, reset_token = NULL WHERE reset_token = ?");
+                        $update->bind_param("ss", $new_password, $token);
+                        $update->execute();
+        
+                        displayMessage("successbox", "CheckMark.webp", "Password reset successfully.");
+                    } else {
+                        displayMessage("errorbox", "Error.webp", "Expired or Invalid token.");
+                    }
+                    $stmt->close();
+                    $update->close();
+                }
+                $conn->close();
             }
         }
-
-        $servername = "server330";
-        $username = "webcsosl_Admin";
-        $password = "wJFTJo=o=iZ6";
-        $dbname = "webcsosl_SignUp";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            displayMessage("errorbox", "Error.webp", "Connection failed: " . $conn->connect_error);
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $token = $_POST['token'];
-            $new_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-            $stmt = $conn->prepare("SELECT * FROM users WHERE reset_token = ?");
-            $stmt->bind_param("s", $token);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                $update = $conn->prepare("UPDATE users SET password_hash = ?, reset_token = NULL WHERE reset_token = ?");
-                $update->bind_param("ss", $new_password, $token);
-                $update->execute();
-
-                displayMessage("success", "CheckMark.webp", "Password reset successfully.");
-            } else {
-                displayMessage("error", "Error.webp", "Expired or Invalid token.");
-            }
-            $stmt->close();
-            $update->close();
-        }
-        $conn->close();
         ?>
 
         <form method="POST">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
             <label for="password">Enter your new password:</label>
-            <input type="password" name="password" id="password" required>
-            <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div><br/>
+            <input type="password" name="password" id="password" required><br>
+            <div class="g-recaptcha" data-sitekey="6Ldv2DUqAAAAACCskWsbXnnCAUfXKP-orgUnazGh" data-action="LOGIN"></div>
             <button type="submit">Reset Password</button>
         </form>
     </div>
