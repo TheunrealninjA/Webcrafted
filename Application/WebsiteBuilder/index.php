@@ -261,6 +261,56 @@
         .context-menu li:hover {
             background: #191919;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .resize-handle {
+            width: 10px;
+            height: 10px;
+            background: #007BFF;
+            position: absolute;
+            cursor: nwse-resize;
+        }
+
+        .resize-handle.bottom-right {
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 
@@ -268,8 +318,32 @@
     <div class="sidebar">
         <button onclick="" style="background: none !important; margin: -18px 0 0;"><img src="icons/MenuIcon.webp" alt="Menu"></button>
         <button onclick="addTextBox()"><img src="icons/textboxicon.webp" alt="Text Box"></button>
-        <button onclick="addImageBox()"><img src="icons/addimageicon.webp" alt="Picture Box"></button>
-        <!-- Add more buttons for other elements as needed -->
+        <button onclick="showButtonModel()"><img src="icons/ButtonIcon.webp" alt="Insert Button"></button>
+        <button onclick="showImageUploadModal()"><img src="icons/addimageicon.webp" alt="Picture Box"></button>
+        <button onclick="addShape()"><img src="icons/ShapeIcon.webp" alt="Insert Shape"></button>
+    </div>
+    <!-- The Modal -->
+    <div id="imageUploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeImageUploadModal()">&times;</span>
+            <h2>Upload Image</h2>
+            <input type="file" id="image-upload-modal" accept="image/*" onchange="handleImageUpload(event)">
+        </div>
+    </div>
+    <div id="buttonModel" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeButtonModel()">&times;</span>
+            <h2>Hyperlink</h2>
+            <input type="text" id="URL" placeholder="Enter URL">
+            <div class="file-explorer">
+                <h3>File Explorer</h3>
+                <ul id="file-list">
+                    <li onclick="selectFile('index.html')">index.html</li>
+                    <!-- Add more files as needed -->
+                </ul>
+            </div>
+            <button onclick="applyLink()">Apply</button>
+        </div>
     </div>
     <div class="topbar">
         <input type="text" id="topbar-website-title" placeholder="Website Title" oninput="updateTopbarPreview()">
@@ -309,33 +383,136 @@
                 <option value="bold">Bold</option>
                 <option value="italic">Italic</option>
             </select>
-            <label for="font-color">Font Color:</label>
+            <label for="font-color" id="font-color-label">Font Color:</label>
             <input type="color" id="font-color" onchange="updateElementStyle()">
-            <label for="background-color">Background Color:</label>
+            <label for="background-color" id="background-color-label">Background Color:</label>
             <input type="color" id="background-color" onchange="updateElementStyle()">
         </div>
     </div>
     <div class="context-menu" id="context-menu">
         <ul>
+            <li id="change-image-url" onclick="showChangeImageUrlModal()" style="display: none;">Change Image</li>
             <li onclick="addTextBox()">Add Text Box</li>
             <li onclick="deleteElement()" style="color: red;">Delete</li>
         </ul>
     </div>
+    <div id="changeImageUrlModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChangeImageUrlModal()">&times;</span>
+            <h2>Change Image</h2>
+            <input type="file" id="new-image-file" accept="image/*">
+            <button onclick="changeImage()">Change</button>
+        </div>
+    </div>
     <script>
         let selectedElement = null;
 
+        function showImageUploadModal() {
+            document.getElementById('imageUploadModal').style.display = 'block';
+        }
+
+        function closeImageUploadModal() {
+            document.getElementById('imageUploadModal').style.display = 'none';
+        }
+
+        function handleImageUpload(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imageUrl = reader.result;
+                addImageBox(imageUrl);
+                closeImageUploadModal();
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function addImageBox(imageUrl) {
+            const preview = document.getElementById('website-preview');
+
+            const imageBox = document.createElement('div');
+            imageBox.className = 'draggable resizable';
+            imageBox.style.position = 'absolute';
+            imageBox.style.left = '10px';
+            imageBox.style.top = '10px';
+            imageBox.style.width = '200px'; // Set default width
+
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.display = 'block';
+
+            const resizeHandle = document.createElement('div');
+            resizeHandle.className = 'resize-handle bottom-right';
+
+            imageBox.appendChild(img);
+            imageBox.appendChild(resizeHandle);
+            preview.appendChild(imageBox);
+            makeElementsDraggable();
+            makeElementsResizable();
+        }
+
+        function makeElementsResizable() {
+            const resizables = document.querySelectorAll('.resizable');
+
+            resizables.forEach(el => {
+                const resizeHandle = el.querySelector('.resize-handle');
+                resizeHandle.onmousedown = function(event) {
+                    event.stopPropagation();
+                    selectedElement = el; // Set the selected element
+                    showProperties(); // Show properties when an element is selected
+
+                    const startX = event.clientX;
+                    const startY = event.clientY;
+                    const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
+                    const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
+                    const aspectRatio = startWidth / startHeight;
+
+                    function doDrag(e) {
+                        const newWidth = startWidth + e.clientX - startX;
+                        const newHeight = startHeight + e.clientY - startY;
+
+                        if (el.querySelector('img')) {
+                            // Maintain aspect ratio for image
+                            el.style.width = newWidth + 'px';
+                            el.style.height = newWidth / aspectRatio + 'px';
+                        } else {
+                            // Free scaling for other elements
+                            el.style.width = newWidth + 'px';
+                            el.style.height = newHeight + 'px';
+                        }
+                    }
+
+                    function stopDrag() {
+                        document.documentElement.removeEventListener('mousemove', doDrag, false);
+                        document.documentElement.removeEventListener('mouseup', stopDrag, false);
+                    }
+
+                    document.documentElement.addEventListener('mousemove', doDrag, false);
+                    document.documentElement.addEventListener('mouseup', stopDrag, false);
+                };
+            });
+        }
+
         function updatePreview() {
             const imageUrl = document.getElementById('website-image-url').value;
-            const textStyle = document.getElementById('website-text-style').value;
             const preview = document.getElementById('website-preview');
-            const content = ""; // Define the content variable
 
-            preview.innerHTML = `
-                <div class="snap-line horizontal" id="horizontal-snap-line" style="display: none;"></div>
-                <div class="snap-line vertical" id="vertical-snap-line" style="display: none;"></div>
-            `;
-            makeElementsDraggable();
-            applyFontStyle();
+            // Check if an image element already exists
+            let imageBox = preview.querySelector('img');
+            if (!imageBox) {
+                // If no image element exists, create a new one
+                imageBox = document.createElement('img');
+                imageBox.className = 'draggable';
+                imageBox.contentEditable = 'false';
+                imageBox.style.position = 'absolute';
+                imageBox.style.left = '10px';
+                imageBox.style.top = '10px';
+                imageBox.style.width = '200px'; // Set default width
+                imageBox.style.height = 'auto'; // Maintain aspect ratio
+                preview.appendChild(imageBox);
+                makeElementsDraggable();
+            }
+            imageBox.src = imageUrl;
         }
 
         function updateTopbarPreview() {
@@ -346,7 +523,6 @@
             document.title = title;
             document.getElementById('topbar-font-style').style.fontFamily = fontStyle;
             applyFontStyle();
-            // Update other elements as needed
         }
 
         function applyFontStyle() {
@@ -362,6 +538,7 @@
             const preview = document.getElementById('website-preview');
             const textBox = document.createElement('div');
             textBox.className = 'draggable editable';
+            textBox.id = 'text-box'
             textBox.contentEditable = 'true';
             textBox.style.position = 'absolute';
             textBox.style.left = '10px';
@@ -383,28 +560,47 @@
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        function addImageBox() {
-            const preview = document.getElementById('website-preview');
-            const imageUrl = document.getElementById('website-image-url').value;
-
-            const imageBox = document.createElement('img');
-            imageBox.className = 'draggable';
-            imageBox.src = imageUrl;
-            imageBox.style.position = 'absolute';
-            imageBox.style.left = '10px';
-            imageBox.style.top = '10px';
-            imageBox.style.maxWidth = '100%';
-            preview.appendChild(imageBox);
-            makeElementsDraggable();
-        }
-
         function showProperties() {
             const builderForm = document.querySelector('.builder-form');
+            const fontlabel = document.getElementById('font-color-label');
+            const fontColorInput = document.getElementById('font-color');
+            const textStyleSelect = document.getElementById('website-text-style');
+            const backgroundColorLabel = document.getElementById('background-color-label');
+            const backgroundColorInput = document.getElementById('background-color');
+            const imageUrlInput = document.getElementById('website-image-url');
+            const imageUploadInput = document.getElementById('image-upload');
+
             if (selectedElement) {
                 builderForm.style.display = 'flex';
-                document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
-                document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
-                document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
+                if (selectedElement === document.getElementById('website-preview')) {
+                    imageUrlInput.style.display = 'none';
+                    imageUploadInput.style.display = 'none';
+                    fontlabel.style.display = 'none';
+                    fontColorInput.style.display = 'none';
+                    textStyleSelect.style.display = 'none';
+                    backgroundColorLabel.style.display = 'flex';
+                    backgroundColorInput.style.display = 'flex';
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor);
+                } else if (selectedElement === document.getElementById('text-box')) {
+                    imageUrlInput.style.display = 'none';
+                    imageUploadInput.style.display = 'none';
+                    fontlabel.style.display = 'flex';
+                    fontColorInput.style.display = 'flex';
+                    textStyleSelect.style.display = 'flex';
+                    backgroundColorLabel.style.display = 'flex';
+                    backgroundColorInput.style.display = 'flex';
+                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
+                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
+                    document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
+                } else {
+                    imageUrlInput.style.display = 'none';
+                    imageUploadInput.style.display = 'none';
+                    fontlabel.style.display = 'none';
+                    fontColorInput.style.display = 'none';
+                    textStyleSelect.style.display = 'none';
+                    backgroundColorLabel.style.display = 'none';
+                    backgroundColorInput.style.display = 'none';
+                }
             } else {
                 builderForm.style.display = 'none';
             }
@@ -414,7 +610,7 @@
             if (!rgb || rgb === 'transparent') return '#000000'; // Default to black if transparent or not set
             const rgbValues = rgb.match(/\d+/g);
             if (!rgbValues || rgbValues.length < 3) return '#000000';
-            return `#${((1 << 24) + (parseInt(rgbValues[0]) << 16) + (parseInt(rgbValues[1]) << 8) + parseInt(rgbValues[2])).toString(16).slice(1)}`;
+            return `#${((1 << 24) + (parseInt(rgbValues[0]) << 16) + (parseInt(rgbValues[1]) << 8) + (parseInt(rgbValues[2]))).toString(16).slice(1)}`;
         }
 
         function makeElementsDraggable() {
@@ -514,19 +710,116 @@
                     selectedElement
                 });
 
-                selectedElement.style.color = fontColor;
-                selectedElement.style.backgroundColor = backgroundColor === '#000000' ? 'transparent' : backgroundColor;
-                selectedElement.style.fontWeight = textStyle;
-                selectedElement.style.fontStyle = textStyle;
+                if (selectedElement === document.getElementById('website-preview')) {
+                    selectedElement.style.backgroundColor = backgroundColor;
+                } else if (selectedElement.tagName === 'IMG') {
+                    selectedElement.src = document.getElementById('website-image-url').value;
+                } else {
+                    selectedElement.style.color = fontColor;
+                    selectedElement.style.backgroundColor = backgroundColor === '#000000' ? 'transparent' : backgroundColor;
+                    selectedElement.style.fontWeight = textStyle;
+                    selectedElement.style.fontStyle = textStyle;
+                }
             }
         }
 
         function deleteElement() {
-            if (selectedElement) {
+            if (selectedElement && selectedElement !== document.getElementById('website-preview')) {
                 selectedElement.remove();
                 selectedElement = null;
                 showProperties(); // Hide properties when no element is selected
             }
+        }
+
+        function showChangeImageUrlModal() {
+            document.getElementById('changeImageUrlModal').style.display = 'block';
+        }
+
+        function closeChangeImageUrlModal() {
+            document.getElementById('changeImageUrlModal').style.display = 'none';
+        }
+
+        function changeImage() {
+            const fileInput = document.getElementById('new-image-file');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function() {
+                selectedElement.querySelector('img').src = reader.result;
+                closeChangeImageUrlModal();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function closeButtonModel() {
+            document.getElementById('buttonModel').style.display = 'none';
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('URL').value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showButtonModel() {
+            document.getElementById('buttonModel').style.display = 'block';
+        }
+
+        function applyLink() {
+            const url = document.getElementById('URL').value;
+            const button = document.createElement('a');
+            button.href = url;
+            button.className = 'draggable resizable';
+            button.style.position = 'absolute';
+            button.style.left = '10px';
+            button.style.top = '10px';
+            button.style.padding = '10px 20px';
+            button.style.backgroundColor = '#000';
+            button.style.color = '#fff';
+            button.contentEditable = 'true';
+            button.style.borderRadius = '4px';
+            button.style.textAlign = 'center';
+            button.style.display = 'inline-block';
+            button.innerText = 'Button';
+
+            const resizeHandle = document.createElement('div');
+            resizeHandle.className = 'resize-handle bottom-right';
+
+            button.appendChild(resizeHandle);
+            document.getElementById('website-preview').appendChild(button);
+            makeElementsDraggable();
+            makeElementsResizable();
+            closeButtonModel();
+        }
+
+        function selectFile(fileName) {
+            const fileUrl = `/${fileName}`; // Set the URL to /pagename.html
+            document.getElementById('URL').value = fileUrl;
+        }
+
+        function addShape() {
+            const preview = document.getElementById('website-preview');
+            const shape = document.createElement('div');
+            shape.className = 'draggable resizable';
+            shape.style.position = 'absolute';
+            shape.style.left = '10px';
+            shape.style.top = '10px';
+            shape.style.width = '100px';
+            shape.style.height = '100px';
+            shape.style.backgroundColor = '#000';
+            shape.style.borderRadius = '4px';
+
+            const resizeHandle = document.createElement('div');
+            resizeHandle.className = 'resize-handle bottom-right';
+
+            shape.appendChild(resizeHandle);
+            preview.appendChild(shape);
+            makeElementsDraggable();
+            makeElementsResizable();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -540,6 +833,14 @@
                 contextMenu.style.color = 'black';
                 contextMenu.style.left = (e.pageX - 10) + "px";
                 contextMenu.style.top = (e.pageY - 10) + "px";
+
+                const changeImageUrlOption = document.getElementById('change-image-url');
+                if (e.target.tagName === 'IMG') {
+                    changeImageUrlOption.style.display = 'block';
+                } else {
+                    changeImageUrlOption.style.display = 'none';
+                }
+
                 e.preventDefault();
             }, false);
 
@@ -547,6 +848,10 @@
                 contextMenu.style.display = 'none';
                 contextMenu.style.left = '';
                 contextMenu.style.top = '';
+                if (event.target === websitePreview) {
+                    selectedElement = websitePreview;
+                    showProperties();
+                }
             });
 
             document.getElementById('context-menu').addEventListener('click', function(event) {
@@ -562,6 +867,8 @@
             });
 
             showProperties(); // Initial call to hide properties
+            document.querySelector('.sidebar button[onclick="showButtonModel()"]').setAttribute('onclick', 'showButtonModel()');
+            document.querySelector('.sidebar button[onclick="addshape()"]').setAttribute('onclick', 'addShape()');
         });
     </script>
 </body>
