@@ -268,7 +268,7 @@
     <div class="sidebar">
         <button onclick="" style="background: none !important; margin: -18px 0 0;"><img src="icons/MenuIcon.webp" alt="Menu"></button>
         <button onclick="addTextBox()"><img src="icons/textboxicon.webp" alt="Text Box"></button>
-        <button onclick=""><img src="icons/addimageicon.webp" alt=""></button>
+        <button onclick="addImageBox()"><img src="icons/addimageicon.webp" alt="Picture Box"></button>
         <!-- Add more buttons for other elements as needed -->
     </div>
     <div class="topbar">
@@ -298,15 +298,13 @@
             <h3>File Explorer</h3>
             <ul>
                 <li>index.html</li>
-                <li>style.css</li>
-                <li>script.js</li>
-                <!-- Add more files as needed -->
+
             </ul>
         </div>
         <div class="builder-form">
-            <input type="text" id="website-title" placeholder="Website Title" oninput="updatePreview()">
             <input type="text" id="website-image-url" placeholder="Image URL" oninput="updatePreview()">
-            <select id="website-text-style" onchange="updatePreview()">
+            <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)">
+            <select id="website-text-style" onchange="updateElementStyle()">
                 <option value="normal">Normal</option>
                 <option value="bold">Bold</option>
                 <option value="italic">Italic</option>
@@ -320,23 +318,19 @@
     <div class="context-menu" id="context-menu">
         <ul>
             <li onclick="addTextBox()">Add Text Box</li>
-            <!-- Add more context menu items as needed -->
+            <li onclick="deleteElement()" style="color: red;">Delete</li>
         </ul>
     </div>
     <script>
         let selectedElement = null;
 
         function updatePreview() {
-            const title = document.getElementById('website-title').value || 'Website Title';
             const imageUrl = document.getElementById('website-image-url').value;
             const textStyle = document.getElementById('website-text-style').value;
             const preview = document.getElementById('website-preview');
-            const content = "Sample content"; // Define the content variable
+            const content = ""; // Define the content variable
 
             preview.innerHTML = `
-                <h2 class="draggable editable" contenteditable="true" style="font-style: ${textStyle};">${title}</h2>
-                <p class="draggable editable" contenteditable="true" style="font-style: ${textStyle};">${content}</p>
-                ${imageUrl ? `<img class="draggable" src="${imageUrl}" alt="Website Image">` : ''}
                 <div class="snap-line horizontal" id="horizontal-snap-line" style="display: none;"></div>
                 <div class="snap-line vertical" id="vertical-snap-line" style="display: none;"></div>
             `;
@@ -380,6 +374,49 @@
             makeElementsDraggable();
         }
 
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imageUrl = reader.result;
+                document.getElementById('website-image-url').value = imageUrl;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function addImageBox() {
+            const preview = document.getElementById('website-preview');
+            const imageUrl = document.getElementById('website-image-url').value;
+
+            const imageBox = document.createElement('img');
+            imageBox.className = 'draggable';
+            imageBox.src = imageUrl;
+            imageBox.style.position = 'absolute';
+            imageBox.style.left = '10px';
+            imageBox.style.top = '10px';
+            imageBox.style.maxWidth = '100%';
+            preview.appendChild(imageBox);
+            makeElementsDraggable();
+        }
+
+        function showProperties() {
+            const builderForm = document.querySelector('.builder-form');
+            if (selectedElement) {
+                builderForm.style.display = 'flex';
+                document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
+                document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
+                document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
+            } else {
+                builderForm.style.display = 'none';
+            }
+        }
+
+        function rgbToHex(rgb) {
+            if (!rgb || rgb === 'transparent') return '#000000'; // Default to black if transparent or not set
+            const rgbValues = rgb.match(/\d+/g);
+            if (!rgbValues || rgbValues.length < 3) return '#000000';
+            return `#${((1 << 24) + (parseInt(rgbValues[0]) << 16) + (parseInt(rgbValues[1]) << 8) + parseInt(rgbValues[2])).toString(16).slice(1)}`;
+        }
+
         function makeElementsDraggable() {
             const draggables = document.querySelectorAll('.draggable');
             const preview = document.getElementById('website-preview');
@@ -390,6 +427,7 @@
             draggables.forEach(el => {
                 el.onmousedown = function(event) {
                     selectedElement = el; // Set the selected element
+                    showProperties(); // Show properties when an element is selected
                     let shiftX = event.clientX - el.getBoundingClientRect().left;
                     let shiftY = event.clientY - el.getBoundingClientRect().top;
 
@@ -467,8 +505,27 @@
             if (selectedElement) {
                 const fontColor = document.getElementById('font-color').value;
                 const backgroundColor = document.getElementById('background-color').value;
+                const textStyle = document.getElementById('website-text-style').value;
+
+                console.log('Updating element style:', {
+                    fontColor,
+                    backgroundColor,
+                    textStyle,
+                    selectedElement
+                });
+
                 selectedElement.style.color = fontColor;
-                selectedElement.style.backgroundColor = backgroundColor;
+                selectedElement.style.backgroundColor = backgroundColor === '#000000' ? 'transparent' : backgroundColor;
+                selectedElement.style.fontWeight = textStyle;
+                selectedElement.style.fontStyle = textStyle;
+            }
+        }
+
+        function deleteElement() {
+            if (selectedElement) {
+                selectedElement.remove();
+                selectedElement = null;
+                showProperties(); // Hide properties when no element is selected
             }
         }
 
@@ -486,11 +543,25 @@
                 e.preventDefault();
             }, false);
 
-            websitePreview.addEventListener('click', function(event){
+            websitePreview.addEventListener('click', function(event) {
                 contextMenu.style.display = 'none';
                 contextMenu.style.left = '';
                 contextMenu.style.top = '';
             });
+
+            document.getElementById('context-menu').addEventListener('click', function(event) {
+                const action = event.target.innerText;
+                if (action === 'Delete') {
+                    deleteElement();
+                } else if (action === 'Add Text Box') {
+                    addTextBox();
+                }
+                contextMenu.style.display = 'none';
+                contextMenu.style.left = '';
+                contextMenu.style.top = '';
+            });
+
+            showProperties(); // Initial call to hide properties
         });
     </script>
 </body>
