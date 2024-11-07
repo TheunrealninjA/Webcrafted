@@ -16,6 +16,11 @@
         @import url("https://fonts.googleapis.com/css?family=Lato");
         @import url("https://fonts.googleapis.com/css?family=Montserrat");
         @import url("https://fonts.googleapis.com/css?family=Oswald");
+        @import url("https://fonts.googleapis.com/css?family=Raleway");
+        @import url("https://fonts.googleapis.com/css?family=Ubuntu");
+        @import url("https://fonts.googleapis.com/css?family=Nunito");
+        @import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+        @import url("https://fonts.googleapis.com/css?family=Merriweather");
     </style>
     <style>
         body {
@@ -174,18 +179,23 @@
             padding: 6px;
         }
 
-        .website-preview {
+        .preview-container {
             margin-top: 100px;
             width: 88%;
             max-width: 1200px;
-            aspect-ratio: 16 / 9;
-            /* Set a normal aspect ratio */
+            height: calc(100vh - 160px); /* Adjust height based on other elements */
             border: 1px solid #ccc;
             padding: 20px;
             position: relative;
             background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        .website-preview {
+            width: 100%;
+            height: auto;
+            position: relative;
         }
 
         .website-preview img {
@@ -311,16 +321,73 @@
             right: 0;
             bottom: 0;
         }
+
+        /* Add styles for the menu */
+        .menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background: #202020;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            padding: 10px 0;
+            cursor: pointer;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .menu li:hover {
+            background: #0056b3;
+        }
+
+        .menu .close-menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .menu .close-menu:hover {
+            color: red;
+        }
     </style>
 </head>
 
 <body oncontextmenu="return false;">
     <div class="sidebar">
-        <button onclick="" style="background: none !important; margin: -18px 0 0;"><img src="icons/MenuIcon.webp" alt="Menu"></button>
+        <button onclick="OpenMenu()" style="background: none !important; margin: -18px 0 0;"><img src="icons/MenuIcon.webp" alt="Menu"></button>
         <button onclick="addTextBox()"><img src="icons/textboxicon.webp" alt="Text Box"></button>
         <button onclick="showButtonModel()"><img src="icons/ButtonIcon.webp" alt="Insert Button"></button>
         <button onclick="showImageUploadModal()"><img src="icons/addimageicon.webp" alt="Picture Box"></button>
         <button onclick="addShape()"><img src="icons/ShapeIcon.webp" alt="Insert Shape"></button>
+    </div>
+    <div class="menu" id="menu">
+        <span class="close-menu" style="font-size: 30px;" onclick="closeMenu()">&times;</span>
+        <h2>Menu</h2>
+        <ul>
+            <li onclick="SaveHTML()">Save as HTML</li>
+            <li onclick="ImportHTML()">Import</li>
+            <li>Insert</li>
+            <li>Tools</li>
+            <li><a href="">Help</a></li>
+        </ul>
     </div>
     <!-- The Modal -->
     <div id="imageUploadModal" class="modal">
@@ -350,6 +417,7 @@
         <input type="text" id="topbar-website-description" placeholder="Website Description" oninput="updateTopbarPreview()">
         <select id="topbar-font-style" onchange="updateTopbarPreview()" style="font-family: Arial;">
             <option value="Arial" style="font-family: Arial;">Arial</option>
+            <option value="Sans-serif" style="font-family: sans-serif;">Sans-serif</option>
             <option value="Poppins" style="font-family: Poppins;">Poppins</option>
             <option value="Times New Roman" style="font-family: 'Times New Roman';">Times New Roman</option>
             <option value="Roboto" style="font-family: Roboto;">Roboto</option>
@@ -357,24 +425,24 @@
             <option value="Lato" style="font-family: Lato;">Lato</option>
             <option value="Montserrat" style="font-family: Montserrat;">Montserrat</option>
             <option value="Oswald" style="font-family: Oswald;">Oswald</option>
+            <option value="Raleway" style="font-family: Raleway;">Raleway</option>
+            <option value="Ubuntu" style="font-family: Ubuntu;">Ubuntu</option>
+            <option value="Nunito" style="font-family: Nunito;">Nunito</option>
+            <option value="Playfair Display" style="font-family: 'Playfair Display';">Playfair Display</option>
+            <option value="Merriweather" style="font-family: Merriweather;">Merriweather</option>
             <!-- Add more fonts as needed -->
         </select>
     </div>
     <div class="main-content" id="main-content">
-        <div class="website-preview" id="website-preview">
-            <!-- Generated website will appear here -->
-            <div class="snap-line horizontal" id="horizontal-snap-line" style="display: none;"></div>
-            <div class="snap-line vertical" id="vertical-snap-line" style="display: none;"></div>
+        <div class="preview-container">
+            <div class="website-preview" id="website-preview">
+                <!-- Generated website will appear here -->
+                <div class="snap-line horizontal" id="horizontal-snap-line" style="display: none;"></div>
+                <div class="snap-line vertical" id="vertical-snap-line" style="display: none;"></div>
+            </div>
         </div>
     </div>
     <div class="right-sidebar">
-        <div class="file-explorer">
-            <h3>File Explorer</h3>
-            <ul>
-                <li>index.html</li>
-
-            </ul>
-        </div>
         <div class="builder-form">
             <input type="text" id="website-image-url" placeholder="Image URL" oninput="updatePreview()">
             <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)">
@@ -406,6 +474,14 @@
     </div>
     <script>
         let selectedElement = null;
+
+        function OpenMenu() {
+            document.getElementById('menu').style.display = 'flex';
+        }
+
+        function closeMenu() {
+            document.getElementById('menu').style.display = 'none';
+        }
 
         function showImageUploadModal() {
             document.getElementById('imageUploadModal').style.display = 'block';
@@ -616,7 +692,6 @@
         function makeElementsDraggable() {
             const draggables = document.querySelectorAll('.draggable');
             const preview = document.getElementById('website-preview');
-            const previewRect = preview.getBoundingClientRect();
             const horizontalSnapLine = document.getElementById('horizontal-snap-line');
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
@@ -634,17 +709,21 @@
                     document.body.classList.add('no-select'); // Disable text selection
 
                     function moveAt(pageX, pageY) {
-                        let newLeft = pageX - shiftX - previewRect.left;
-                        let newTop = pageY - shiftY - previewRect.top;
+                        let newLeft = pageX - shiftX - preview.getBoundingClientRect().left;
+                        let newTop = pageY - shiftY - preview.getBoundingClientRect().top;
 
-                        // Constrain within the preview area
+                        // Constrain within the preview area horizontally
                         newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - el.offsetWidth));
-                        newTop = Math.max(0, Math.min(newTop, preview.offsetHeight - el.offsetHeight));
+
+                        // Allow dragging beyond the initial height of the preview
+                        if (newTop + el.offsetHeight > preview.scrollHeight) {
+                            preview.style.height = newTop + el.offsetHeight + 'px';
+                        }
 
                         // Snapping logic
                         const snapTolerance = 3; // Decrease snap tolerance to make snapping less aggressive
                         const centerX = preview.offsetWidth / 2;
-                        const centerY = preview.offsetHeight / 2;
+                        const centerY = preview.scrollHeight / 2;
                         const elCenterX = newLeft + el.offsetWidth / 2;
                         const elCenterY = newTop + el.offsetHeight / 2;
 
@@ -870,6 +949,256 @@
             document.querySelector('.sidebar button[onclick="showButtonModel()"]').setAttribute('onclick', 'showButtonModel()');
             document.querySelector('.sidebar button[onclick="addshape()"]').setAttribute('onclick', 'addShape()');
         });
+
+        function SaveHTML() {
+            const previewContent = document.getElementById('website-preview').innerHTML;
+            // Remove snapping lines
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = previewContent;
+            const snapLines = tempDiv.querySelectorAll('.snap-line');
+            snapLines.forEach(line => line.remove());
+            const cleanedContent = tempDiv.innerHTML;
+
+            // Create a container to upscale the content
+            const upscaleContainer = document.createElement('div');
+            upscaleContainer.style.width = '100%';
+            upscaleContainer.style.height = 'auto';
+            upscaleContainer.style.overflowX = 'hidden';
+            upscaleContainer.innerHTML = cleanedContent;
+
+            const fullHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="${document.getElementById('topbar-website-description').value}">
+    <title>${document.title}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+        .upscale-container {
+            width: 100%;
+            height: 100%;
+            transform: scale(1.5); /* Adjust the scale factor as needed */
+            transform-origin: top left;
+        }
+    </style>
+</head>
+<body>
+    <div class="upscale-container">
+        ${cleanedContent}
+    </div>
+</body>
+</html>`;
+            const blob = new Blob([fullHTML], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'website.html';
+            link.click();
+        }
+
+        function ImportHTML() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.html, .php';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const content = e.target.result;
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = content;
+                        const preview = document.getElementById('website-preview');
+
+                        // Temporarily remove snap lines
+                        const horizontalSnapLine = document.getElementById('horizontal-snap-line');
+                        const verticalSnapLine = document.getElementById('vertical-snap-line');
+                        preview.removeChild(horizontalSnapLine);
+                        preview.removeChild(verticalSnapLine);
+
+                        // Clear existing content
+                        preview.innerHTML = '';
+
+                        // Move elements from upscale-container to website-preview
+                        const upscaleContainer = tempDiv.querySelector('.upscale-container');
+                        if (upscaleContainer) {
+                            while (upscaleContainer.firstChild) {
+                                const child = upscaleContainer.firstChild;
+                                if (child.nodeType === Node.ELEMENT_NODE) {
+                                    child.classList.add('draggable', 'resizable');
+                                    if (child.tagName === 'DIV') {
+                                        child.classList.add('editable');
+                                        child.contentEditable = 'true';
+                                    }
+                                }
+                                preview.appendChild(child);
+                            }
+                            upscaleContainer.remove();
+                        } else {
+                            while (tempDiv.firstChild) {
+                                const child = tempDiv.firstChild;
+                                if (child.nodeType === Node.ELEMENT_NODE) {
+                                    child.classList.add('draggable', 'resizable');
+                                    if (child.tagName === 'DIV') {
+                                        child.classList.add('editable');
+                                        child.contentEditable = 'true';
+                                    }
+                                }
+                                preview.appendChild(child);
+                            }
+                        }
+
+                        // Re-add snap lines
+                        preview.appendChild(horizontalSnapLine);
+                        preview.appendChild(verticalSnapLine);
+
+                        makeElementsDraggable();
+                        makeElementsResizable();
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        function makeElementsDraggable() {
+            const draggables = document.querySelectorAll('.draggable');
+            const preview = document.getElementById('website-preview');
+            const horizontalSnapLine = document.getElementById('horizontal-snap-line');
+            const verticalSnapLine = document.getElementById('vertical-snap-line');
+
+            draggables.forEach(el => {
+                el.onmousedown = function(event) {
+                    selectedElement = el; // Set the selected element
+                    showProperties(); // Show properties when an element is selected
+                    let shiftX = event.clientX - el.getBoundingClientRect().left;
+                    let shiftY = event.clientY - el.getBoundingClientRect().top;
+
+                    el.style.position = 'absolute';
+                    el.style.zIndex = 1000;
+                    preview.append(el);
+
+                    document.body.classList.add('no-select'); // Disable text selection
+
+                    function moveAt(pageX, pageY) {
+                        let newLeft = pageX - shiftX - preview.getBoundingClientRect().left;
+                        let newTop = pageY - shiftY - preview.getBoundingClientRect().top;
+
+                        // Constrain within the preview area horizontally
+                        newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - el.offsetWidth));
+
+                        // Allow dragging beyond the initial height of the preview
+                        if (newTop + el.offsetHeight > preview.scrollHeight) {
+                            preview.style.height = newTop + el.offsetHeight + 'px';
+                        }
+
+                        // Snapping logic
+                        const snapTolerance = 3; // Decrease snap tolerance to make snapping less aggressive
+                        const centerX = preview.offsetWidth / 2;
+                        const centerY = preview.scrollHeight / 2;
+                        const elCenterX = newLeft + el.offsetWidth / 2;
+                        const elCenterY = newTop + el.offsetHeight / 2;
+
+                        if (Math.abs(elCenterX - centerX) < snapTolerance) {
+                            newLeft = centerX - el.offsetWidth / 2;
+                            verticalSnapLine.style.left = `${centerX}px`;
+                            verticalSnapLine.style.display = 'block';
+                        } else {
+                            verticalSnapLine.style.display = 'none';
+                        }
+
+                        if (Math.abs(elCenterY - centerY) < snapTolerance) {
+                            newTop = centerY - el.offsetHeight / 2;
+                            horizontalSnapLine.style.top = `${centerY}px`;
+                            horizontalSnapLine.style.display = 'block';
+                        } else {
+                            horizontalSnapLine.style.display = 'none';
+                        }
+
+                        el.style.left = newLeft + 'px';
+                        el.style.top = newTop + 'px';
+                    }
+
+                    function onMouseMove(event) {
+                        moveAt(event.pageX, event.pageY);
+                    }
+
+                    document.addEventListener('mousemove', onMouseMove);
+
+                    el.onmouseup = function() {
+                        document.removeEventListener('mousemove', onMouseMove);
+                        el.onmouseup = null;
+                        horizontalSnapLine.style.display = 'none';
+                        verticalSnapLine.style.display = 'none';
+                        document.body.classList.remove('no-select'); // Re-enable text selection
+                    };
+
+                    el.onmouseleave = function() {
+                        document.removeEventListener('mousemove', onMouseMove);
+                        el.onmouseup = null;
+                        horizontalSnapLine.style.display = 'none';
+                        verticalSnapLine.style.display = 'none';
+                        document.body.classList.remove('no-select'); // Re-enable text selection
+                    };
+                };
+
+                el.ondragstart = function() {
+                    return false;
+                };
+            });
+        }
+
+        function makeElementsResizable() {
+            const resizables = document.querySelectorAll('.resizable');
+
+            resizables.forEach(el => {
+                const resizeHandle = el.querySelector('.resize-handle');
+                resizeHandle.onmousedown = function(event) {
+                    event.stopPropagation();
+                    selectedElement = el; // Set the selected element
+                    showProperties(); // Show properties when an element is selected
+
+                    const startX = event.clientX;
+                    const startY = event.clientY;
+                    const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
+                    const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
+                    const aspectRatio = startWidth / startHeight;
+
+                    function doDrag(e) {
+                        const newWidth = startWidth + e.clientX - startX;
+                        const newHeight = startHeight + e.clientY - startY;
+
+                        if (el.querySelector('img')) {
+                            // Maintain aspect ratio for image
+                            el.style.width = newWidth + 'px';
+                            el.style.height = newWidth / aspectRatio + 'px';
+                        } else {
+                            // Free scaling for other elements
+                            el.style.width = newWidth + 'px';
+                            el.style.height = newHeight + 'px';
+                        }
+                    }
+
+                    function stopDrag() {
+                        document.documentElement.removeEventListener('mousemove', doDrag, false);
+                        document.documentElement.removeEventListener('mouseup', stopDrag, false);
+                    }
+
+                    document.documentElement.addEventListener('mousemove', doDrag, false);
+                    document.documentElement.addEventListener('mouseup', stopDrag, false);
+                };
+            });
+        }
     </script>
 </body>
 
