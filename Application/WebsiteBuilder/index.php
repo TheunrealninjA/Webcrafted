@@ -183,7 +183,7 @@
             margin-top: 100px;
             width: 88%;
             max-width: 1200px;
-            height: calc(100vh - 160px); /* Adjust height based on other elements */
+            aspect-ratio: 2/1;
             border: 1px solid #ccc;
             padding: 20px;
             position: relative;
@@ -195,6 +195,7 @@
         .website-preview {
             width: 100%;
             height: auto;
+            min-height: 100%;
             position: relative;
         }
 
@@ -367,6 +368,83 @@
         .menu .close-menu:hover {
             color: red;
         }
+
+        @media screen and (max-width: 1800px) {
+            .topbar {
+                left: 70px; /* Adjust based on left sidebar width */
+                width: 72%;
+            }
+
+            .main-content {
+                margin-left: 30px; /* Adjust based on left sidebar width */
+                margin-right: 300px; /* Adjust based on right sidebar width */
+                width: calc(100% - 330px); /* Adjust based on left and right sidebar width */
+            }
+            .preview-container {
+                width: 70%;
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+            }
+
+            .sidebar button {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .topbar {
+                width: calc(100% - 350px); /* Adjust based on left and right sidebar width */
+                left: 50px; /* Adjust based on left sidebar width */
+            }
+
+            .main-content {
+                margin-left: 50px; /* Adjust based on left sidebar width */
+                margin-right: 300px; /* Adjust based on right sidebar width */
+                width: calc(100% - 350px); /* Adjust based on left and right sidebar width */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                position: relative;
+            }
+
+            .sidebar button {
+                width: auto;
+                padding: 10px;
+            }
+
+            .topbar {
+                width: 100%;
+                left: 0;
+                top: auto;
+                bottom: 0;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .main-content {
+                margin: 0;
+                width: 100%;
+                margin-top: 60px; /* Adjust based on topbar height */
+            }
+
+            .right-sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
     </style>
 </head>
 
@@ -455,6 +533,9 @@
             <input type="color" id="font-color" onchange="updateElementStyle()">
             <label for="background-color" id="background-color-label">Background Color:</label>
             <input type="color" id="background-color" onchange="updateElementStyle()">
+            <label for="background-image-url" id="background-image-url-label">Background Image URL:</label>
+            <input type="text" id="background-image-url" placeholder="Background Image URL" oninput="updateBackgroundImage()">
+            <input type="file" id="background-image-upload" accept="image/*" onchange="previewBackgroundImage(event)">
         </div>
     </div>
     <div class="context-menu" id="context-menu">
@@ -645,6 +726,9 @@
             const backgroundColorInput = document.getElementById('background-color');
             const imageUrlInput = document.getElementById('website-image-url');
             const imageUploadInput = document.getElementById('image-upload');
+            const backgroundImageUrlLabel = document.getElementById('background-image-url-label');
+            const backgroundImageUrlInput = document.getElementById('background-image-url');
+            const backgroundImageUploadInput = document.getElementById('background-image-upload');
 
             if (selectedElement) {
                 builderForm.style.display = 'flex';
@@ -656,7 +740,11 @@
                     textStyleSelect.style.display = 'none';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
+                    backgroundImageUrlLabel.style.display = 'flex';
+                    backgroundImageUrlInput.style.display = 'flex';
+                    backgroundImageUploadInput.style.display = 'flex';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor);
+                    backgroundImageUrlInput.value = selectedElement.style.backgroundImage.replace('url("', '').replace('")', '');
                 } else if (selectedElement === document.getElementById('text-box')) {
                     imageUrlInput.style.display = 'none';
                     imageUploadInput.style.display = 'none';
@@ -665,6 +753,9 @@
                     textStyleSelect.style.display = 'flex';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
+                    backgroundImageUrlLabel.style.display = 'none';
+                    backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadInput.style.display = 'none';
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
                     document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
                     document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
@@ -676,6 +767,9 @@
                     textStyleSelect.style.display = 'none';
                     backgroundColorLabel.style.display = 'none';
                     backgroundColorInput.style.display = 'none';
+                    backgroundImageUrlLabel.style.display = 'none';
+                    backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadInput.style.display = 'none';
                 }
             } else {
                 builderForm.style.display = 'none';
@@ -946,8 +1040,16 @@
             });
 
             showProperties(); // Initial call to hide properties
-            document.querySelector('.sidebar button[onclick="showButtonModel()"]').setAttribute('onclick', 'showButtonModel()');
-            document.querySelector('.sidebar button[onclick="addshape()"]').setAttribute('onclick', 'addShape()');
+            const buttonModelButton = document.querySelector('.sidebar button[onclick="showButtonModel()"]');
+            const addShapeButton = document.querySelector('.sidebar button[onclick="addShape()"]');
+
+            if (buttonModelButton) {
+                buttonModelButton.setAttribute('onclick', 'showButtonModel()');
+            }
+
+            if (addShapeButton) {
+                addShapeButton.setAttribute('onclick', 'addShape()');
+            }
         });
 
         function SaveHTML() {
@@ -1198,6 +1300,21 @@
                     document.documentElement.addEventListener('mouseup', stopDrag, false);
                 };
             });
+        }
+
+        function updateBackgroundImage() {
+            const imageUrl = document.getElementById('background-image-url').value;
+            document.getElementById('website-preview').style.backgroundImage = `url(${imageUrl})`;
+        }
+
+        function previewBackgroundImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imageUrl = reader.result;
+                document.getElementById('background-image-url').value = imageUrl;
+                updateBackgroundImage();
+            };
+            reader.readAsDataURL(event.target.files[0]);
         }
     </script>
 </body>
