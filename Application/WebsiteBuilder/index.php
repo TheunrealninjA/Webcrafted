@@ -110,12 +110,11 @@
         }
 
         .topbar {
-            width: 77%;
+            width: 100%;
             background: #202020;
             padding: 10px 20px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -183,13 +182,14 @@
             margin-top: 100px;
             width: 88%;
             max-width: 1200px;
-            aspect-ratio: 2/1;
+            aspect-ratio: 2.08/1;
             border: 1px solid #ccc;
             padding: 20px;
             position: relative;
             background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow-y: auto; /* Allow vertical scrolling */
+            overflow-y: auto;
+            /* Allow vertical scrolling */
         }
 
         .website-preview {
@@ -371,15 +371,19 @@
 
         @media screen and (max-width: 1800px) {
             .topbar {
-                left: 70px; /* Adjust based on left sidebar width */
-                width: 72%;
+                left: 70px;
+                /* Adjust based on left sidebar width */
             }
 
             .main-content {
-                margin-left: 30px; /* Adjust based on left sidebar width */
-                margin-right: 300px; /* Adjust based on right sidebar width */
-                width: calc(100% - 330px); /* Adjust based on left and right sidebar width */
+                margin-left: 30px;
+                /* Adjust based on left sidebar width */
+                margin-right: 300px;
+                /* Adjust based on right sidebar width */
+                width: calc(100% - 330px);
+                /* Adjust based on left and right sidebar width */
             }
+
             .preview-container {
                 width: 70%;
                 padding: 5px;
@@ -397,14 +401,19 @@
             }
 
             .topbar {
-                width: calc(100% - 350px); /* Adjust based on left and right sidebar width */
-                left: 50px; /* Adjust based on left sidebar width */
+                width: calc(100% - 350px);
+                /* Adjust based on left and right sidebar width */
+                left: 50px;
+                /* Adjust based on left sidebar width */
             }
 
             .main-content {
-                margin-left: 50px; /* Adjust based on left sidebar width */
-                margin-right: 300px; /* Adjust based on right sidebar width */
-                width: calc(100% - 350px); /* Adjust based on left and right sidebar width */
+                margin-left: 50px;
+                /* Adjust based on left sidebar width */
+                margin-right: 300px;
+                /* Adjust based on right sidebar width */
+                width: calc(100% - 350px);
+                /* Adjust based on left and right sidebar width */
             }
         }
 
@@ -434,7 +443,8 @@
             .main-content {
                 margin: 0;
                 width: 100%;
-                margin-top: 60px; /* Adjust based on topbar height */
+                margin-top: 60px;
+                /* Adjust based on topbar height */
             }
 
             .right-sidebar {
@@ -450,7 +460,8 @@
 
 <body oncontextmenu="return false;">
     <div class="sidebar">
-        <button onclick="OpenMenu()" style="background: none !important; margin: -18px 0 0;"><img src="icons/MenuIcon.webp" alt="Menu"></button>
+        <button onclick="OpenMenu()" style="background: none !important; margin: -18px 0 0;"><img
+                src="icons/MenuIcon.webp" alt="Menu"></button>
         <button onclick="addTextBox()"><img src="icons/textboxicon.webp" alt="Text Box"></button>
         <button onclick="showButtonModel()"><img src="icons/ButtonIcon.webp" alt="Insert Button"></button>
         <button onclick="showImageUploadModal()"><img src="icons/addimageicon.webp" alt="Picture Box"></button>
@@ -486,13 +497,15 @@
                     <li onclick="selectFile('index.html')">index.html</li>
                     <!-- Add more files as needed -->
                 </ul>
+                <button onclick="addFile()">+</button>
             </div>
             <button onclick="applyLink()">Apply</button>
         </div>
     </div>
     <div class="topbar">
         <input type="text" id="topbar-website-title" placeholder="Website Title" oninput="updateTopbarPreview()">
-        <input type="text" id="topbar-website-description" placeholder="Website Description" oninput="updateTopbarPreview()">
+        <input type="text" id="topbar-website-description" placeholder="Website Description"
+            oninput="updateTopbarPreview()">
         <select id="topbar-font-style" onchange="updateTopbarPreview()" style="font-family: Arial;">
             <option value="Arial" style="font-family: Arial;">Arial</option>
             <option value="Sans-serif" style="font-family: sans-serif;">Sans-serif</option>
@@ -521,6 +534,14 @@
         </div>
     </div>
     <div class="right-sidebar">
+        <div class="file-explorer">
+            <h3>File Explorer</h3>
+            <button onclick="addFile()" style="margin-left: 78%;font-size: 25px; z-index: 0; position: absolute; background: #202020 !important; border-color: transparent; box-shadow: none; padding: 5px 15px;">+</button>
+            <ul id="file-list">
+                <li onclick="">index.html</li>
+                <!-- Add more files as needed -->
+            </ul>
+        </div>
         <div class="builder-form">
             <input type="text" id="website-image-url" placeholder="Image URL" oninput="updatePreview()">
             <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)">
@@ -534,7 +555,9 @@
             <label for="background-color" id="background-color-label">Background Color:</label>
             <input type="color" id="background-color" onchange="updateElementStyle()">
             <label for="background-image-url" id="background-image-url-label">Background Image URL:</label>
-            <input type="text" id="background-image-url" placeholder="Background Image URL" oninput="updateBackgroundImage()">
+            <input type="text" id="background-image-url" placeholder="Background Image URL"
+                oninput="updateBackgroundImage()">
+            <label for="background-image-upload" id="background-image-upload-lable" style="margin-top: -5px;">Or</label>
             <input type="file" id="background-image-upload" accept="image/*" onchange="previewBackgroundImage(event)">
         </div>
     </div>
@@ -574,7 +597,7 @@
 
         function handleImageUpload(event) {
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 const imageUrl = reader.result;
                 addImageBox(imageUrl);
                 closeImageUploadModal();
@@ -613,7 +636,7 @@
 
             resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function(event) {
+                resizeHandle.onmousedown = function (event) {
                     event.stopPropagation();
                     selectedElement = el; // Set the selected element
                     showProperties(); // Show properties when an element is selected
@@ -710,7 +733,7 @@
 
         function previewImage(event) {
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 const imageUrl = reader.result;
                 document.getElementById('website-image-url').value = imageUrl;
             };
@@ -790,7 +813,7 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
-                el.onmousedown = function(event) {
+                el.onmousedown = function (event) {
                     selectedElement = el; // Set the selected element
                     showProperties(); // Show properties when an element is selected
                     let shiftX = event.clientX - el.getBoundingClientRect().left;
@@ -847,7 +870,7 @@
 
                     document.addEventListener('mousemove', onMouseMove);
 
-                    el.onmouseup = function() {
+                    el.onmouseup = function () {
                         document.removeEventListener('mousemove', onMouseMove);
                         el.onmouseup = null;
                         horizontalSnapLine.style.display = 'none';
@@ -855,7 +878,7 @@
                         document.body.classList.remove('no-select'); // Re-enable text selection
                     };
 
-                    el.onmouseleave = function() {
+                    el.onmouseleave = function () {
                         document.removeEventListener('mousemove', onMouseMove);
                         el.onmouseup = null;
                         horizontalSnapLine.style.display = 'none';
@@ -864,7 +887,7 @@
                     };
                 };
 
-                el.ondragstart = function() {
+                el.ondragstart = function () {
                     return false;
                 };
             });
@@ -916,7 +939,7 @@
             const fileInput = document.getElementById('new-image-file');
             const file = fileInput.files[0];
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 selectedElement.querySelector('img').src = reader.result;
                 closeChangeImageUrlModal();
             };
@@ -931,7 +954,7 @@
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('URL').value = e.target.result;
                 };
                 reader.readAsDataURL(file);
@@ -1001,7 +1024,7 @@
             const websitePreview = document.getElementById('website-preview');
             const contextMenu = document.getElementById('context-menu');
 
-            websitePreview.addEventListener('contextmenu', function(e) {
+            websitePreview.addEventListener('contextmenu', function (e) {
                 contextMenu.style.display = 'block';
                 contextMenu.style.color = 'black';
                 contextMenu.style.left = (e.pageX - 10) + "px";
@@ -1017,7 +1040,7 @@
                 e.preventDefault();
             }, false);
 
-            websitePreview.addEventListener('click', function(event) {
+            websitePreview.addEventListener('click', function (event) {
                 contextMenu.style.display = 'none';
                 contextMenu.style.left = '';
                 contextMenu.style.top = '';
@@ -1027,7 +1050,7 @@
                 }
             });
 
-            document.getElementById('context-menu').addEventListener('click', function(event) {
+            document.getElementById('context-menu').addEventListener('click', function (event) {
                 const action = event.target.innerText;
                 if (action === 'Delete') {
                     deleteElement();
@@ -1068,6 +1091,23 @@
             upscaleContainer.style.overflowX = 'hidden';
             upscaleContainer.innerHTML = cleanedContent;
 
+            // Multiply all positioning properties like left and top by 1.8
+            const elements = upscaleContainer.querySelectorAll('*');
+            elements.forEach(el => {
+                if (!el.classList.contains('content-container')) {
+                    const left = parseFloat(el.style.left) || 0;
+                    const top = parseFloat(el.style.top) || 0;
+                    const width = parseFloat(el.style.width) || 0;
+                    const height = parseFloat(el.style.height) || 0;
+                    const fontSize = parseFloat(el.style.fontSize) || 0;
+                    el.style.width = `${width * 1.85}px`;
+                    el.style.height = `${height * 1.85}px`;
+                    el.style.fontSize = `${fontSize * 1.85}px`;
+                    el.style.left = `${left * 1.85}px`;
+                    el.style.top = `${top * 1.85}px`;
+                }
+            });
+
             const fullHTML = `
 <!DOCTYPE html>
 <html lang="en">
@@ -1080,24 +1120,23 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             width: 100vw;
         }
-        .upscale-container {
+        .content-container {
             width: 100%;
             height: 100%;
-            transform: scale(1.5); /* Adjust the scale factor as needed */
-            transform-origin: top left;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <div class="upscale-container">
-        ${cleanedContent}
+    <div class="content-container">
+        ${upscaleContainer.innerHTML}
     </div>
 </body>
 </html>`;
@@ -1112,11 +1151,11 @@
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.html, .php';
-            input.onchange = function(event) {
+            input.onchange = function (event) {
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         const content = e.target.result;
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = content;
@@ -1180,7 +1219,7 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
-                el.onmousedown = function(event) {
+                el.onmousedown = function (event) {
                     selectedElement = el; // Set the selected element
                     showProperties(); // Show properties when an element is selected
                     let shiftX = event.clientX - el.getBoundingClientRect().left;
@@ -1237,7 +1276,7 @@
 
                     document.addEventListener('mousemove', onMouseMove);
 
-                    el.onmouseup = function() {
+                    el.onmouseup = function () {
                         document.removeEventListener('mousemove', onMouseMove);
                         el.onmouseup = null;
                         horizontalSnapLine.style.display = 'none';
@@ -1245,7 +1284,7 @@
                         document.body.classList.remove('no-select'); // Re-enable text selection
                     };
 
-                    el.onmouseleave = function() {
+                    el.onmouseleave = function () {
                         document.removeEventListener('mousemove', onMouseMove);
                         el.onmouseup = null;
                         horizontalSnapLine.style.display = 'none';
@@ -1254,7 +1293,7 @@
                     };
                 };
 
-                el.ondragstart = function() {
+                el.ondragstart = function () {
                     return false;
                 };
             });
@@ -1265,7 +1304,7 @@
 
             resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function(event) {
+                resizeHandle.onmousedown = function (event) {
                     event.stopPropagation();
                     selectedElement = el; // Set the selected element
                     showProperties(); // Show properties when an element is selected
@@ -1309,12 +1348,25 @@
 
         function previewBackgroundImage(event) {
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 const imageUrl = reader.result;
                 document.getElementById('background-image-url').value = imageUrl;
                 updateBackgroundImage();
             };
             reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function addFile() {
+            const fileName = prompt("Enter the new file name:");
+            if (fileName) {
+                const fileList = document.querySelectorAll('#file-list');
+                fileList.forEach(list => {
+                    const newFile = document.createElement('li');
+                    newFile.textContent = fileName + '.html';
+                    newFile.setAttribute('onclick', `selectFile('${fileName}')`);
+                    list.appendChild(newFile);
+                });
+            }
         }
     </script>
 </body>
