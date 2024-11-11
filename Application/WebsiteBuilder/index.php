@@ -180,11 +180,11 @@
 
         .preview-container {
             margin-top: 100px;
-            width: 88%;
+            width: 90%;
             max-width: 1200px;
             aspect-ratio: 2.08/1;
             border: 1px solid #ccc;
-            padding: 20px;
+            padding: 2px;
             position: relative;
             background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -751,6 +751,7 @@
             const imageUploadInput = document.getElementById('image-upload');
             const backgroundImageUrlLabel = document.getElementById('background-image-url-label');
             const backgroundImageUrlInput = document.getElementById('background-image-url');
+            const backgroundImageUploadLable = document.getElementById('background-image-upload-lable');
             const backgroundImageUploadInput = document.getElementById('background-image-upload');
 
             if (selectedElement) {
@@ -765,8 +766,9 @@
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'flex';
                     backgroundImageUrlInput.style.display = 'flex';
+                    backgroundImageUploadLable.style.display = 'flex';
                     backgroundImageUploadInput.style.display = 'flex';
-                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor);
+                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
                     backgroundImageUrlInput.value = selectedElement.style.backgroundImage.replace('url("', '').replace('")', '');
                 } else if (selectedElement === document.getElementById('text-box')) {
                     imageUrlInput.style.display = 'none';
@@ -778,21 +780,40 @@
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
                     backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadLable.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
                     document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
                     document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
-                } else {
+                } else if (selectedElement === document.getElementById('hyperlink-button')) {
+                    imageUrlInput.style.display = 'none';
+                    imageUploadInput.style.display = 'none';
+                    fontlabel.style.display = 'flex';
+                    fontColorInput.style.display = 'flex';
+                    textStyleSelect.style.display = 'flex';
+                    backgroundColorLabel.style.display = 'flex';
+                    backgroundColorInput.style.display = 'flex';
+                    backgroundImageUrlLabel.style.display = 'none';
+                    backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadInput.style.display = 'none';
+                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
+                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
+                } else if (selectedElement === document.getElementById('Shape-Square')) {
                     imageUrlInput.style.display = 'none';
                     imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'none';
                     fontColorInput.style.display = 'none';
                     textStyleSelect.style.display = 'none';
-                    backgroundColorLabel.style.display = 'none';
-                    backgroundColorInput.style.display = 'none';
+                    backgroundColorLabel.style.display = 'flex';
+                    backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
                     backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadLable.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
+                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
+                } else {
+                    builderForm.style.display = 'none';
                 }
             } else {
                 builderForm.style.display = 'none';
@@ -970,6 +991,7 @@
             const button = document.createElement('a');
             button.href = url;
             button.className = 'draggable resizable';
+            button.id = 'hyperlink-button';
             button.style.position = 'absolute';
             button.style.left = '10px';
             button.style.top = '10px';
@@ -1001,6 +1023,7 @@
             const preview = document.getElementById('website-preview');
             const shape = document.createElement('div');
             shape.className = 'draggable resizable';
+            shape.id = 'Shape-Square';
             shape.style.position = 'absolute';
             shape.style.left = '10px';
             shape.style.top = '10px';
@@ -1097,11 +1120,7 @@
                 if (!el.classList.contains('content-container')) {
                     const left = parseFloat(el.style.left) || 0;
                     const top = parseFloat(el.style.top) || 0;
-                    const width = parseFloat(el.style.width) || 0;
-                    const height = parseFloat(el.style.height) || 0;
                     const fontSize = parseFloat(el.style.fontSize) || 0;
-                    el.style.width = `${width * 1.85}px`;
-                    el.style.height = `${height * 1.85}px`;
                     el.style.fontSize = `${fontSize * 1.85}px`;
                     el.style.left = `${left * 1.85}px`;
                     el.style.top = `${top * 1.85}px`;
