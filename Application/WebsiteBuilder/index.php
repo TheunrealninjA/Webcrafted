@@ -1281,7 +1281,7 @@
         function ImportHTML() {
             const input = document.createElement('input');
             input.type = 'file';
-            input.accept = '.html, .php';
+            input.accept = '.html';
             input.onchange = function(event) {
                 const file = event.target.files[0];
                 if (file) {
