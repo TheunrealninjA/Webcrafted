@@ -455,10 +455,29 @@
                 justify-content: space-around;
             }
         }
+
+        .loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #202020;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .selected {
+            border: 2px dashed #007BFF;
+        }
     </style>
 </head>
 
 <body oncontextmenu="return false;">
+    <div class="loading-screen" id="loading-screen">
+        <h1>Loading...</h1>
+    </div>
     <div class="sidebar">
         <button onclick="OpenMenu()" style="background: none !important; margin: -18px 0 0;"><img
                 src="icons/MenuIcon.webp" alt="Menu"></button>
@@ -559,6 +578,8 @@
                 oninput="updateBackgroundImage()">
             <label for="background-image-upload" id="background-image-upload-lable" style="margin-top: -5px;">Or</label>
             <input type="file" id="background-image-upload" accept="image/*" onchange="previewBackgroundImage(event)">
+            <label for="font-size" id="font-size-label">Font Size:</label>
+            <input type="number" id="font-size" min="1" max="100" onchange="updateElementStyle()">
         </div>
     </div>
     <div class="context-menu" id="context-menu">
@@ -578,6 +599,7 @@
     </div>
     <script>
         let selectedElement = null;
+        let selectedElements = [];
 
         function OpenMenu() {
             document.getElementById('menu').style.display = 'flex';
@@ -597,7 +619,7 @@
 
         function handleImageUpload(event) {
             const reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function() {
                 const imageUrl = reader.result;
                 addImageBox(imageUrl);
                 closeImageUploadModal();
@@ -636,7 +658,7 @@
 
             resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function (event) {
+                resizeHandle.onmousedown = function(event) {
                     event.stopPropagation();
                     selectedElement = el; // Set the selected element
                     showProperties(); // Show properties when an element is selected
@@ -721,8 +743,11 @@
             textBox.id = 'text-box'
             textBox.contentEditable = 'true';
             textBox.style.position = 'absolute';
+            textBox.style.height = '20px';
+            textBox.style.width = 'auto';
             textBox.style.left = '10px';
             textBox.style.top = '10px';
+            textBox.style.fontSize = '16px';
             textBox.style.fontFamily = document.getElementById('topbar-font-style').value;
             textBox.style.fontStyle = document.getElementById('website-text-style').value;
             textBox.style.color = 'black'; // Set default font color to black
@@ -733,7 +758,7 @@
 
         function previewImage(event) {
             const reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function() {
                 const imageUrl = reader.result;
                 document.getElementById('website-image-url').value = imageUrl;
             };
@@ -753,10 +778,32 @@
             const backgroundImageUrlInput = document.getElementById('background-image-url');
             const backgroundImageUploadLable = document.getElementById('background-image-upload-lable');
             const backgroundImageUploadInput = document.getElementById('background-image-upload');
+            const fontSizeLabel = document.getElementById('font-size-label');
+            const fontSizeInput = document.getElementById('font-size');
 
-            if (selectedElement) {
+            if (selectedElement || selectedElements.length > 0) {
                 builderForm.style.display = 'flex';
-                if (selectedElement === document.getElementById('website-preview')) {
+                if (selectedElement.id === 'text-box') {
+                    // Text Box
+                    imageUrlInput.style.display = 'none';
+                    imageUploadInput.style.display = 'none';
+                    fontlabel.style.display = 'flex';
+                    fontColorInput.style.display = 'flex';
+                    textStyleSelect.style.display = 'flex';
+                    backgroundColorLabel.style.display = 'flex';
+                    backgroundColorInput.style.display = 'flex';
+                    backgroundImageUrlLabel.style.display = 'none';
+                    backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadInput.style.display = 'none';
+                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#000000');
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
+                    document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
+                    fontSizeLabel.style.display = 'flex';
+                    fontSizeInput.style.display = 'flex';
+                    fontSizeInput.value = parseInt(window.getComputedStyle(selectedElement).fontSize);
+                } else if (selectedElement.id === 'website-preview') {
+                    // Website Preview
                     imageUrlInput.style.display = 'none';
                     imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'none';
@@ -768,9 +815,26 @@
                     backgroundImageUrlInput.style.display = 'flex';
                     backgroundImageUploadLable.style.display = 'flex';
                     backgroundImageUploadInput.style.display = 'flex';
-                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
-                    backgroundImageUrlInput.value = selectedElement.style.backgroundImage.replace('url("', '').replace('")', '');
-                } else if (selectedElement === document.getElementById('text-box')) {
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
+                    fontSizeLabel.style.display = 'none';
+                    fontSizeInput.style.display = 'none';
+                } else if (selectedElement.tagName === 'IMG') {
+                    // Image
+                    imageUrlInput.style.display = 'flex';
+                    imageUploadInput.style.display = 'flex';
+                    fontlabel.style.display = 'none';
+                    fontColorInput.style.display = 'none';
+                    textStyleSelect.style.display = 'none';
+                    backgroundColorLabel.style.display = 'none';
+                    backgroundColorInput.style.display = 'none';
+                    backgroundImageUrlLabel.style.display = 'none';
+                    backgroundImageUrlInput.style.display = 'none';
+                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadInput.style.display = 'none';
+                    fontSizeLabel.style.display = 'none';
+                    fontSizeInput.style.display = 'none';
+                } else if (selectedElement.id === 'hyperlink-button') {
+                    // Button
                     imageUrlInput.style.display = 'none';
                     imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'flex';
@@ -782,24 +846,13 @@
                     backgroundImageUrlInput.style.display = 'none';
                     backgroundImageUploadLable.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
-                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
-                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
-                    document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
-                } else if (selectedElement === document.getElementById('hyperlink-button')) {
-                    imageUrlInput.style.display = 'none';
-                    imageUploadInput.style.display = 'none';
-                    fontlabel.style.display = 'flex';
-                    fontColorInput.style.display = 'flex';
-                    textStyleSelect.style.display = 'flex';
-                    backgroundColorLabel.style.display = 'flex';
-                    backgroundColorInput.style.display = 'flex';
-                    backgroundImageUrlLabel.style.display = 'none';
-                    backgroundImageUrlInput.style.display = 'none';
-                    backgroundImageUploadLable.style.display = 'none';
-                    backgroundImageUploadInput.style.display = 'none';
-                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
-                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color);
-                } else if (selectedElement === document.getElementById('Shape-Square')) {
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
+                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#FFFFFF');
+                    fontSizeLabel.style.display = 'flex';
+                    fontSizeInput.style.display = 'flex';
+                    fontSizeInput.value = parseInt(window.getComputedStyle(selectedElement).fontSize);
+                } else if (selectedElement.id === 'Shape-Square') {
+                    // Shape
                     imageUrlInput.style.display = 'none';
                     imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'none';
@@ -811,20 +864,43 @@
                     backgroundImageUrlInput.style.display = 'none';
                     backgroundImageUploadLable.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
-                    document.getElementById('background-color').value = selectedElement.style.backgroundColor === 'transparent' ? '#000000' : rgbToHex(selectedElement.style.backgroundColor);
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
+                    fontSizeLabel.style.display = 'none';
+                    fontSizeInput.style.display = 'none';
                 } else {
                     builderForm.style.display = 'none';
+                    fontSizeLabel.style.display = 'none';
+                    fontSizeInput.style.display = 'none';
                 }
             } else {
                 builderForm.style.display = 'none';
+                fontSizeLabel.style.display = 'none';
+                fontSizeInput.style.display = 'none';
+            }
+            if (selectedElement === document.getElementById('website-preview')) {
+                // Website Preview
+                imageUrlInput.style.display = 'none';
+                imageUploadInput.style.display = 'none';
+                fontlabel.style.display = 'none';
+                fontColorInput.style.display = 'none';
+                textStyleSelect.style.display = 'none';
+                backgroundColorLabel.style.display = 'flex';
+                backgroundColorInput.style.display = 'flex';
+                backgroundImageUrlLabel.style.display = 'flex';
+                backgroundImageUrlInput.style.display = 'flex';
+                backgroundImageUploadLable.style.display = 'flex';
+                backgroundImageUploadInput.style.display = 'flex';
+                document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
+                fontSizeLabel.style.display = 'none';
+                fontSizeInput.style.display = 'none';
             }
         }
 
         function rgbToHex(rgb) {
-            if (!rgb || rgb === 'transparent') return '#000000'; // Default to black if transparent or not set
+            if (!rgb) return '#000000';
             const rgbValues = rgb.match(/\d+/g);
-            if (!rgbValues || rgbValues.length < 3) return '#000000';
-            return `#${((1 << 24) + (parseInt(rgbValues[0]) << 16) + (parseInt(rgbValues[1]) << 8) + (parseInt(rgbValues[2]))).toString(16).slice(1)}`;
+            if (!rgbValues) return rgb;
+            return `#${((1 << 24) + (parseInt(rgbValues[0]) << 16) + (parseInt(rgbValues[1]) << 8) + parseInt(rgbValues[2])).toString(16).slice(1).toUpperCase()}`;
         }
 
         function makeElementsDraggable() {
@@ -834,81 +910,99 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
-                el.onmousedown = function (event) {
-                    selectedElement = el; // Set the selected element
-                    showProperties(); // Show properties when an element is selected
-                    let shiftX = event.clientX - el.getBoundingClientRect().left;
-                    let shiftY = event.clientY - el.getBoundingClientRect().top;
+                el.onmousedown = function(event) {
+                    if (event.ctrlKey || event.metaKey) {
+                        if (selectedElements.includes(el)) {
+                            selectedElements = selectedElements.filter(e => e !== el);
+                            el.classList.remove('selected');
+                        } else {
+                            selectedElements.push(el);
+                            el.classList.add('selected');
+                        }
+                    } else {
+                        selectedElements.forEach(e => e.classList.remove('selected'));
+                        selectedElements = [el];
+                        el.classList.add('selected');
+                    }
 
-                    el.style.position = 'absolute';
-                    el.style.zIndex = 1000;
-                    preview.append(el);
+                    if (selectedElements.length > 0) {
+                        let shiftX = event.clientX;
+                        let shiftY = event.clientY;
 
-                    document.body.classList.add('no-select'); // Disable text selection
+                        document.body.classList.add('no-select'); // Disable text selection
 
-                    function moveAt(pageX, pageY) {
-                        let newLeft = pageX - shiftX - preview.getBoundingClientRect().left;
-                        let newTop = pageY - shiftY - preview.getBoundingClientRect().top;
+                        function moveAt(pageX, pageY) {
+                            const deltaX = pageX - shiftX;
+                            const deltaY = pageY - shiftY;
 
-                        // Constrain within the preview area horizontally
-                        newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - el.offsetWidth));
+                            selectedElements.forEach(element => {
+                                let newLeft = element.offsetLeft + deltaX;
+                                let newTop = element.offsetTop + deltaY;
 
-                        // Allow dragging beyond the initial height of the preview
-                        if (newTop + el.offsetHeight > preview.scrollHeight) {
-                            preview.style.height = newTop + el.offsetHeight + 'px';
+                                // Constrain within the preview area horizontally
+                                newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - element.offsetWidth));
+
+                                // Allow dragging beyond the initial height of the preview
+                                if (newTop + element.offsetHeight > preview.scrollHeight) {
+                                    preview.style.height = newTop + element.offsetHeight + 'px';
+                                }
+
+                                // Snapping logic
+                                const snapTolerance = 5; // Adjust snap tolerance as needed
+                                const centerX = preview.offsetWidth / 2;
+                                const centerY = preview.scrollHeight / 2;
+                                const elCenterX = newLeft + element.offsetWidth / 2;
+                                const elCenterY = newTop + element.offsetHeight / 2;
+
+                                if (Math.abs(elCenterX - centerX) < snapTolerance) {
+                                    newLeft = centerX - element.offsetWidth / 2;
+                                    verticalSnapLine.style.left = `${centerX}px`;
+                                    verticalSnapLine.style.display = 'block';
+                                } else {
+                                    verticalSnapLine.style.display = 'none';
+                                }
+
+                                if (Math.abs(elCenterY - centerY) < snapTolerance) {
+                                    newTop = centerY - element.offsetHeight / 2;
+                                    horizontalSnapLine.style.top = `${centerY}px`;
+                                    horizontalSnapLine.style.display = 'block';
+                                } else {
+                                    horizontalSnapLine.style.display = 'none';
+                                }
+
+                                element.style.left = newLeft + 'px';
+                                element.style.top = newTop + 'px';
+                            });
+
+                            shiftX = pageX;
+                            shiftY = pageY;
                         }
 
-                        // Snapping logic
-                        const snapTolerance = 3; // Decrease snap tolerance to make snapping less aggressive
-                        const centerX = preview.offsetWidth / 2;
-                        const centerY = preview.scrollHeight / 2;
-                        const elCenterX = newLeft + el.offsetWidth / 2;
-                        const elCenterY = newTop + el.offsetHeight / 2;
-
-                        if (Math.abs(elCenterX - centerX) < snapTolerance) {
-                            newLeft = centerX - el.offsetWidth / 2;
-                            verticalSnapLine.style.left = `${centerX}px`;
-                            verticalSnapLine.style.display = 'block';
-                        } else {
-                            verticalSnapLine.style.display = 'none';
+                        function onMouseMove(event) {
+                            moveAt(event.pageX, event.pageY);
                         }
 
-                        if (Math.abs(elCenterY - centerY) < snapTolerance) {
-                            newTop = centerY - el.offsetHeight / 2;
-                            horizontalSnapLine.style.top = `${centerY}px`;
-                            horizontalSnapLine.style.display = 'block';
-                        } else {
+                        document.addEventListener('mousemove', onMouseMove);
+
+                        el.onmouseup = function() {
+                            document.removeEventListener('mousemove', onMouseMove);
+                            el.onmouseup = null;
                             horizontalSnapLine.style.display = 'none';
-                        }
+                            verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select'); // Re-enable text selection
+                        };
 
-                        el.style.left = newLeft + 'px';
-                        el.style.top = newTop + 'px';
+                        el.onmouseleave = function() {
+                            document.removeEventListener('mousemove', onMouseMove);
+                            el.onmouseup = null;
+                            horizontalSnapLine.style.display = 'none';
+                            verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select'); // Re-enable text selection
+                        };
                     }
-
-                    function onMouseMove(event) {
-                        moveAt(event.pageX, event.pageY);
-                    }
-
-                    document.addEventListener('mousemove', onMouseMove);
-
-                    el.onmouseup = function () {
-                        document.removeEventListener('mousemove', onMouseMove);
-                        el.onmouseup = null;
-                        horizontalSnapLine.style.display = 'none';
-                        verticalSnapLine.style.display = 'none';
-                        document.body.classList.remove('no-select'); // Re-enable text selection
-                    };
-
-                    el.onmouseleave = function () {
-                        document.removeEventListener('mousemove', onMouseMove);
-                        el.onmouseup = null;
-                        horizontalSnapLine.style.display = 'none';
-                        verticalSnapLine.style.display = 'none';
-                        document.body.classList.remove('no-select'); // Re-enable text selection
-                    };
                 };
 
-                el.ondragstart = function () {
+                el.ondragstart = function() {
                     return false;
                 };
             });
@@ -919,6 +1013,7 @@
                 const fontColor = document.getElementById('font-color').value;
                 const backgroundColor = document.getElementById('background-color').value;
                 const textStyle = document.getElementById('website-text-style').value;
+                const fontSize = document.getElementById('font-size').value + 'px';
 
                 console.log('Updating element style:', {
                     fontColor,
@@ -936,13 +1031,15 @@
                     selectedElement.style.backgroundColor = backgroundColor === '#000000' ? 'transparent' : backgroundColor;
                     selectedElement.style.fontWeight = textStyle;
                     selectedElement.style.fontStyle = textStyle;
+                    selectedElement.style.fontSize = fontSize;
                 }
             }
         }
 
         function deleteElement() {
-            if (selectedElement && selectedElement !== document.getElementById('website-preview')) {
-                selectedElement.remove();
+            if (selectedElements.length > 0) {
+                selectedElements.forEach(element => element.remove());
+                selectedElements = [];
                 selectedElement = null;
                 showProperties(); // Hide properties when no element is selected
             }
@@ -960,7 +1057,7 @@
             const fileInput = document.getElementById('new-image-file');
             const file = fileInput.files[0];
             const reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function() {
                 selectedElement.querySelector('img').src = reader.result;
                 closeChangeImageUrlModal();
             };
@@ -975,7 +1072,7 @@
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     document.getElementById('URL').value = e.target.result;
                 };
                 reader.readAsDataURL(file);
@@ -995,9 +1092,12 @@
             button.style.position = 'absolute';
             button.style.left = '10px';
             button.style.top = '10px';
+            button.style.width = 'auto';
+            button.style.height = '22px';
             button.style.padding = '10px 20px';
             button.style.backgroundColor = '#000';
             button.style.color = '#fff';
+            button.style.fontSize = '16px';
             button.contentEditable = 'true';
             button.style.borderRadius = '4px';
             button.style.textAlign = 'center';
@@ -1047,7 +1147,7 @@
             const websitePreview = document.getElementById('website-preview');
             const contextMenu = document.getElementById('context-menu');
 
-            websitePreview.addEventListener('contextmenu', function (e) {
+            websitePreview.addEventListener('contextmenu', function(e) {
                 contextMenu.style.display = 'block';
                 contextMenu.style.color = 'black';
                 contextMenu.style.left = (e.pageX - 10) + "px";
@@ -1063,17 +1163,19 @@
                 e.preventDefault();
             }, false);
 
-            websitePreview.addEventListener('click', function (event) {
+            websitePreview.addEventListener('click', function(event) {
                 contextMenu.style.display = 'none';
                 contextMenu.style.left = '';
                 contextMenu.style.top = '';
-                if (event.target === websitePreview) {
+                if (event.target !== websitePreview) {
+                    selectedElement = event.target;
+                } else {
                     selectedElement = websitePreview;
-                    showProperties();
                 }
+                showProperties();
             });
 
-            document.getElementById('context-menu').addEventListener('click', function (event) {
+            document.getElementById('context-menu').addEventListener('click', function(event) {
                 const action = event.target.innerText;
                 if (action === 'Delete') {
                     deleteElement();
@@ -1096,6 +1198,8 @@
             if (addShapeButton) {
                 addShapeButton.setAttribute('onclick', 'addShape()');
             }
+
+            makeElementsDraggable();
         });
 
         function SaveHTML() {
@@ -1121,9 +1225,13 @@
                     const left = parseFloat(el.style.left) || 0;
                     const top = parseFloat(el.style.top) || 0;
                     const fontSize = parseFloat(el.style.fontSize) || 0;
-                    el.style.fontSize = `${fontSize * 1.85}px`;
-                    el.style.left = `${left * 1.85}px`;
-                    el.style.top = `${top * 1.85}px`;
+                    const width = parseFloat(el.style.width) || auto;
+                    const height = parseFloat(el.style.height) || auto;
+                    el.style.fontSize = `${fontSize * 1.83}px`;
+                    el.style.left = `${left * 1.83}px`;
+                    el.style.top = `${top * 1.83}px`;
+                    el.style.width = `${width * 1.83}px`;
+                    el.style.height = `${height * 1.83}px`;
                 }
             });
 
@@ -1145,6 +1253,8 @@
             align-items: center;
             height: 100vh;
             width: 100vw;
+            font-family: ${document.getElementById('topbar-font-style').value};
+            text-decoration: none;
         }
         .content-container {
             width: 100%;
@@ -1159,7 +1269,9 @@
     </div>
 </body>
 </html>`;
-            const blob = new Blob([fullHTML], { type: 'text/html' });
+            const blob = new Blob([fullHTML], {
+                type: 'text/html'
+            });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = 'website.html';
@@ -1170,11 +1282,11 @@
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.html, .php';
-            input.onchange = function (event) {
+            input.onchange = function(event) {
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = function(e) {
                         const content = e.target.result;
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = content;
@@ -1238,81 +1350,99 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
-                el.onmousedown = function (event) {
-                    selectedElement = el; // Set the selected element
-                    showProperties(); // Show properties when an element is selected
-                    let shiftX = event.clientX - el.getBoundingClientRect().left;
-                    let shiftY = event.clientY - el.getBoundingClientRect().top;
+                el.onmousedown = function(event) {
+                    if (event.ctrlKey || event.metaKey) {
+                        if (selectedElements.includes(el)) {
+                            selectedElements = selectedElements.filter(e => e !== el);
+                            el.classList.remove('selected');
+                        } else {
+                            selectedElements.push(el);
+                            el.classList.add('selected');
+                        }
+                    } else {
+                        selectedElements.forEach(e => e.classList.remove('selected'));
+                        selectedElements = [el];
+                        el.classList.add('selected');
+                    }
 
-                    el.style.position = 'absolute';
-                    el.style.zIndex = 1000;
-                    preview.append(el);
+                    if (selectedElements.length > 0) {
+                        let shiftX = event.clientX;
+                        let shiftY = event.clientY;
 
-                    document.body.classList.add('no-select'); // Disable text selection
+                        document.body.classList.add('no-select'); // Disable text selection
 
-                    function moveAt(pageX, pageY) {
-                        let newLeft = pageX - shiftX - preview.getBoundingClientRect().left;
-                        let newTop = pageY - shiftY - preview.getBoundingClientRect().top;
+                        function moveAt(pageX, pageY) {
+                            const deltaX = pageX - shiftX;
+                            const deltaY = pageY - shiftY;
 
-                        // Constrain within the preview area horizontally
-                        newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - el.offsetWidth));
+                            selectedElements.forEach(element => {
+                                let newLeft = element.offsetLeft + deltaX;
+                                let newTop = element.offsetTop + deltaY;
 
-                        // Allow dragging beyond the initial height of the preview
-                        if (newTop + el.offsetHeight > preview.scrollHeight) {
-                            preview.style.height = newTop + el.offsetHeight + 'px';
+                                // Constrain within the preview area horizontally
+                                newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - element.offsetWidth));
+
+                                // Allow dragging beyond the initial height of the preview
+                                if (newTop + element.offsetHeight > preview.scrollHeight) {
+                                    preview.style.height = newTop + element.offsetHeight + 'px';
+                                }
+
+                                // Snapping logic
+                                const snapTolerance = 1.5; // Adjust snap tolerance as needed
+                                const centerX = preview.offsetWidth / 2;
+                                const centerY = preview.scrollHeight / 2;
+                                const elCenterX = newLeft + element.offsetWidth / 2;
+                                const elCenterY = newTop + element.offsetHeight / 2;
+
+                                if (Math.abs(elCenterX - centerX) < snapTolerance) {
+                                    newLeft = centerX - element.offsetWidth / 2;
+                                    verticalSnapLine.style.left = `${centerX}px`;
+                                    verticalSnapLine.style.display = 'block';
+                                } else {
+                                    verticalSnapLine.style.display = 'none';
+                                }
+
+                                if (Math.abs(elCenterY - centerY) < snapTolerance) {
+                                    newTop = centerY - element.offsetHeight / 2;
+                                    horizontalSnapLine.style.top = `${centerY}px`;
+                                    horizontalSnapLine.style.display = 'block';
+                                } else {
+                                    horizontalSnapLine.style.display = 'none';
+                                }
+
+                                element.style.left = newLeft + 'px';
+                                element.style.top = newTop + 'px';
+                            });
+
+                            shiftX = pageX;
+                            shiftY = pageY;
                         }
 
-                        // Snapping logic
-                        const snapTolerance = 3; // Decrease snap tolerance to make snapping less aggressive
-                        const centerX = preview.offsetWidth / 2;
-                        const centerY = preview.scrollHeight / 2;
-                        const elCenterX = newLeft + el.offsetWidth / 2;
-                        const elCenterY = newTop + el.offsetHeight / 2;
-
-                        if (Math.abs(elCenterX - centerX) < snapTolerance) {
-                            newLeft = centerX - el.offsetWidth / 2;
-                            verticalSnapLine.style.left = `${centerX}px`;
-                            verticalSnapLine.style.display = 'block';
-                        } else {
-                            verticalSnapLine.style.display = 'none';
+                        function onMouseMove(event) {
+                            moveAt(event.pageX, event.pageY);
                         }
 
-                        if (Math.abs(elCenterY - centerY) < snapTolerance) {
-                            newTop = centerY - el.offsetHeight / 2;
-                            horizontalSnapLine.style.top = `${centerY}px`;
-                            horizontalSnapLine.style.display = 'block';
-                        } else {
+                        document.addEventListener('mousemove', onMouseMove);
+
+                        el.onmouseup = function() {
+                            document.removeEventListener('mousemove', onMouseMove);
+                            el.onmouseup = null;
                             horizontalSnapLine.style.display = 'none';
-                        }
+                            verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select'); // Re-enable text selection
+                        };
 
-                        el.style.left = newLeft + 'px';
-                        el.style.top = newTop + 'px';
+                        el.onmouseleave = function() {
+                            document.removeEventListener('mousemove', onMouseMove);
+                            el.onmouseup = null;
+                            horizontalSnapLine.style.display = 'none';
+                            verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select'); // Re-enable text selection
+                        };
                     }
-
-                    function onMouseMove(event) {
-                        moveAt(event.pageX, event.pageY);
-                    }
-
-                    document.addEventListener('mousemove', onMouseMove);
-
-                    el.onmouseup = function () {
-                        document.removeEventListener('mousemove', onMouseMove);
-                        el.onmouseup = null;
-                        horizontalSnapLine.style.display = 'none';
-                        verticalSnapLine.style.display = 'none';
-                        document.body.classList.remove('no-select'); // Re-enable text selection
-                    };
-
-                    el.onmouseleave = function () {
-                        document.removeEventListener('mousemove', onMouseMove);
-                        el.onmouseup = null;
-                        horizontalSnapLine.style.display = 'none';
-                        verticalSnapLine.style.display = 'none';
-                        document.body.classList.remove('no-select'); // Re-enable text selection
-                    };
                 };
 
-                el.ondragstart = function () {
+                el.ondragstart = function() {
                     return false;
                 };
             });
@@ -1323,10 +1453,10 @@
 
             resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function (event) {
+                resizeHandle.onmousedown = function(event) {
                     event.stopPropagation();
-                    selectedElement = el; // Set the selected element
-                    showProperties(); // Show properties when an element is selected
+                    selectedElement = el;
+                    showProperties();
 
                     const startX = event.clientX;
                     const startY = event.clientY;
@@ -1339,11 +1469,9 @@
                         const newHeight = startHeight + e.clientY - startY;
 
                         if (el.querySelector('img')) {
-                            // Maintain aspect ratio for image
                             el.style.width = newWidth + 'px';
                             el.style.height = newWidth / aspectRatio + 'px';
                         } else {
-                            // Free scaling for other elements
                             el.style.width = newWidth + 'px';
                             el.style.height = newHeight + 'px';
                         }
@@ -1367,7 +1495,7 @@
 
         function previewBackgroundImage(event) {
             const reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function() {
                 const imageUrl = reader.result;
                 document.getElementById('background-image-url').value = imageUrl;
                 updateBackgroundImage();
@@ -1387,6 +1515,10 @@
                 });
             }
         }
+
+        window.addEventListener('load', function() {
+            document.getElementById('loading-screen').style.display = 'none';
+        });
     </script>
 </body>
 
