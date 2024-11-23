@@ -1,5 +1,9 @@
 header {
-    height: 100vh
+    height: 100vh;
+}
+
+body{
+    overflow-x: hidden;
 }
 
 .Title {
@@ -134,7 +138,7 @@ h2 {
     border: 1px solid white;
     border-radius: 32px;
     margin: 9vh 2.8vw;
-    width: 25vw;
+    width: 27.3vw;
     background-color: rgb(10, 10, 10);
     background-image: linear-gradient(135deg, #181818, #101010);
     box-shadow: 0 0 8px 3px white;
@@ -207,9 +211,52 @@ h2 {
     width: 60vw
 }
 
-@media screen and (max-width: 1060px) {
-    .Title { padding-top: 20px; }
+@media screen and (max-width: 1664px){
+    .Title {
+        padding-top: 20px;
+    }
+    .Title img {
+        width: 15%;
+    }
+    .Title h3 {
+        margin-top: 2vh;
+    }
+    .Title a {
+        font-size: 30px;
+        margin: -38px 0 55px;
+    }
+    .pricebox h3 {
+        font-size: 20px !important;
+    }
+    .pricebox h4 {
+        font-size: 21px;
+        margin-left: 50px;
+        margin-bottom: 20px;
+    }
+    .box p{
+        font-size: 18px;
+    }
+    .box h3{
+        font-size: 40px;
+    }
+    .pricebox ul li img {
+        width: 15px;
+    }
+    .pricebox ul li {
+        font-size: 16px;
+        margin: 10px 50px;
+    }
+    .pricebox a {
+        font-size: 21px;
+        margin: 30px 32px 20px;
+    }
 
+    .see-more {
+        font-size: 80px;
+    }
+}
+
+@media screen and (max-width: 1060px) {
     .Title h3 {
         margin-top: 9vh;
     }
@@ -279,5 +326,79 @@ h2 {
         font-size: 19px;
         width: auto;
     }
-
+}
+@media screen and (max-width: 800px) {
+    .Title h1{
+        margin-top: 40px;
+    }
+    .pinbar p, .purbar p{
+        font-size: 17px;
+        margin-top: 22px;
+    }
+    .see-more p{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .Title img{
+        width: 25%;
+    }
+    .Title h1{
+        font-size: 20px;
+    }
+    .Title h2{
+        font-size: 18px;
+    }
+    .Title a{
+        font-size: 20px;
+        margin-top: -50px;
+    }
+    .box h3{
+        font-size: 30px;
+        padding-top: 20px;
+    }
+    .box p{
+        font-size: 15px;
+        margin-left: 20px;
+    }
+    .box li{
+        font-size: 15px;
+        margin: 5px 50px;
+    }
+    .pinbar, .purbar{
+        margin-left: 20px;
+    }
+    .pinbar p, .purbar p{
+        font-size: 11px;
+        margin-top: 22px;
+        margin-right: 18px;
+    }
+    .pricebox h3{
+        font-size: 9.7px !important;
+        padding: 35px 10px 4px !important;
+    }
+    .pricebox h4{
+        font-size: 10px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+    .pricebox ul li{
+        font-size: 10px;
+        margin: 5px 10px;
+    }
+    .pricebox ul li img{
+        width: 10px;
+    }
+    .pricebox a{
+        font-size: 10px;
+    }
+    .text img{
+        height: 100px;
+        margin-left: 20px;
+    }
+    .text p{
+        font-size: 10px;
+        margin-top: 0px;
+    }
 }

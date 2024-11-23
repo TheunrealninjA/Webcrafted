@@ -1,6 +1,6 @@
 <?php
-include 'PHPScripts/session_manager.php';
-$is_logged_in = isset($_SESSION['username']);
+// include 'PHPScripts/session_manager.php';
+// $is_logged_in = isset($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
@@ -57,14 +57,14 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
 
             <ul class="account">
-                <?php if ($is_logged_in): ?>
+                <!-- <?php // if ($is_logged_in): ?>
                     <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account"
                                 style="margin-top: -8px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
+                <?php // else: ?>
                     <li><a href="Login.php">Login</a></li>
                     <li><a href="SignUp.php">Sign Up</a></li>
-                <?php endif; ?>
+                <?php // endif; ?> -->
             </ul>
 
             <div class="Title">
@@ -76,6 +76,22 @@ $is_logged_in = isset($_SESSION['username']);
                 </h3>
             </div>
         </header>
+
+        <!-- <div class="box snap">
+            <h3>How it works</h3>
+            <div class="two-grid">
+                <div>
+                    <img src="images/Design.webp" alt="Design">
+                    <h4>What You Do</h4>
+                    <p>You pick a <a href="Templates.php">template</a> and then <a href="ContactUs.php">Contact Us</a> stating any additions you want to the template</p>
+                </div>
+                <div>
+                    <img src="images/Code.webp" alt="Code">
+                    <h4>What We Do</h4>
+                    <p>We will then create a custom website for you, with the additions you requested</p>
+                </div>
+            </div>
+        </div> -->
 
         <div class="box snap">
             <h3 class="farleft" id="wait1">Why Us?</h3>
@@ -100,7 +116,7 @@ $is_logged_in = isset($_SESSION['username']);
 
         <div class="box snap plans">
             <div class="pricebox farleft" id="price1">
-                <h3 class="packtext">Starter/Personal package</h3>
+                <h3 class="packtext">Starter package</h3>
                 <h4>from £18/month</h4>
                 <ul>
                     <li><img src="images/minus.webp" alt="minus emoji"> Hosting (Optional)</li>
@@ -155,15 +171,10 @@ $is_logged_in = isset($_SESSION['username']);
                 </ul>
                 <a href="">Get Started</a>
             </div>
-
-            <div class="next">
-                <a class="see-more" href="Pricing.php">&rarr;<p>See More</p></a>
-
-            </div>
         </div>
 
         <div class="snap">
-            <div class="lastbox">
+            <div class="box">
                 <h3 class="farleft" id="wait7">Our SEO Guarentee</h3>
                 <div class="text">
                     <img class="expand" id="wait8" src="images/SEO.webp" alt="SEO 100% score">
