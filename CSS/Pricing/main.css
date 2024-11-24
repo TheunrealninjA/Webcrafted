@@ -145,6 +145,11 @@
         height: 80%;
     }
 
+    .pricebox img,
+    .serviceBox img {
+        width: 20% !important;
+    }
+
     .pricebox h4,
     .serviceBox h4 {
         font-size: 22px;
