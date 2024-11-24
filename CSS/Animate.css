@@ -130,13 +130,13 @@
 
 .ToDefaultBar1 {
     opacity: 1;
-    width: 80vw;
+    width: 85vw;
     transition: width 1s ease-in-out, opacity 0.8s ease-in !important;
 }
 
 .ToDefaultBar2 {
     opacity: 1;
     transform: translateX(0px) scale(1);
-    width: 45vw;
+    width: 56vw;
     transition: width 1s ease-in-out, transform 1s ease-in-out, opacity 0.8s ease-in !important;
 }

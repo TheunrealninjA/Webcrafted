@@ -60,3 +60,20 @@ footer{
 
     }
 }
+
+@media screen and (max-width: 500px){
+    .footerlist{
+        gap: 10px;
+        padding-bottom: 8px;
+    }
+    .footerlist h3 {
+        font-size: 15px !important;
+    }
+    .footerlist h4, .footerlist h4 a {
+        font-size: 13px !important;
+    }
+    .Copyright p {
+        font-size: 13px !important;
+    }
+
+}
