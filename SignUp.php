@@ -62,7 +62,7 @@
 
 <body>
     <div class="main-body">
-        <header class="snap">
+        <header>
             <ul class="Top-Buttons">
                 <li id="templates"><a href="Templates.php">Templates</a></li>
                 <li id="services" class="Second-Layer"><a href="Pricing.php">Pricing</a>

@@ -190,3 +190,65 @@ input[type="submit"]:hover{
     color:rgb(203, 173, 3);
     text-decoration: underline;
 }
+
+@media screen and (max-width: 1100px){
+    .ContactCont{
+        margin: 7vh 25vw 0 !important;
+    }
+
+    .Cont{
+        margin: 3vh 25vw 0;
+    }
+
+    input, select, textarea{
+        width: 70vw;
+    }
+
+    input[type="submit"] {
+        margin-left: 0;
+    }
+
+    button{
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 800px){
+    .ContactCont{
+        margin: 7vh 20vw 0 !important;
+    }
+
+    .Cont{
+        margin: 3vh 20vw 0;
+    }
+
+    input, select, textarea{
+        width: 80vw;
+    }   
+}
+@media screen and (max-width: 500px){
+    .ContactCont{
+        margin: 7vh 9vw 0 !important;
+    }
+
+    .Cont{
+        margin: 3vh 9vw 0;
+    }
+
+    input, select, textarea{
+        width: 90vw;
+    }   
+}
+@media screen and (max-width: 350px){
+    .ContactCont{
+        margin: 7vh 4vw 0 !important;
+    }
+
+    .Cont{
+        margin: 3vh 4vw 0;
+    }
+
+    input, select, textarea{
+        width: 95vw;
+    }   
+    
+}
