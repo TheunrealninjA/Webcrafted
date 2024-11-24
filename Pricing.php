@@ -1,6 +1,6 @@
 <?php
-include 'PHPScripts/session_manager.php';
-$is_logged_in = isset($_SESSION['username']);
+//include 'PHPScripts/session_manager.php';
+//$is_logged_in = isset($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
@@ -58,13 +58,13 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
 
             <ul class="account">
-                <?php if ($is_logged_in): ?>
+                <!-- <?php //if ($is_logged_in): ?>
                     <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account" style="margin-top: -8px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
+                <?php //else: ?>
                     <li><a href="Login.php">Login</a></li>
                     <li><a href="SignUp.php">Sign Up</a></li>
-                <?php endif; ?>
+                <?php //endif; ?> -->
             </ul>
 
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>
@@ -89,7 +89,6 @@ $is_logged_in = isset($_SESSION['username']);
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
                                 <li><img src="images/Xemoji.webp" alt="X emoji"> PHP included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 3 day delivery</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                                 <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
@@ -116,7 +115,6 @@ $is_logged_in = isset($_SESSION['username']);
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> PHP included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 5 day delivery</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                                 <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
@@ -143,7 +141,6 @@ $is_logged_in = isset($_SESSION['username']);
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> PHP included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 7 day delivery</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                                 <li><img src="images/minus.webp" alt="X emoji"> Domain included</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
@@ -176,7 +173,6 @@ $is_logged_in = isset($_SESSION['username']);
                                 <li><img src="images/Xemoji.webp" alt="X emoji"> PHP included</li>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 3 day delivery</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                             </ul>
                         </div>
@@ -200,7 +196,6 @@ $is_logged_in = isset($_SESSION['username']);
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> PHP included</li>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 5-7 day delivery</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                             </ul>
                         </div>
@@ -224,7 +219,6 @@ $is_logged_in = isset($_SESSION['username']);
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> PHP included</li>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> All devices compatability</li>
                                 <li><img src="images/tickemoji.webp" alt="tick emoji"> Ready to use website</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 7-10 day delivery</li>
                                 <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
                             </ul>
                         </div>
