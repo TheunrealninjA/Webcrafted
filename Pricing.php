@@ -75,62 +75,66 @@
             <div class="slideshow-container" id="slideshow1">
                 <div class="slide">
                     <div class="pricebox">
-                        <h3 class="packtext">Starter/Personal package</h3>
-                        <h4>from £18/month</h4>
                         <div class="two-grid">
                             <div>
+                                <h3 class="packtext">Starter/Personal package</h3>
+                                <h4>from £18/month</h4>
                                 <img style="width: auto;" src="images/Pricing/Personal.webp" alt="computers">
                             </div>
-                            <ul>
-                                <li><img src="images/minus.webp" alt="minus emoji"> Hosting (Optional)</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 2 webpages</li>
-                                <li><img src="images/Xemoji.webp" alt="X emoji"> Server Region Selection</li>
-                                <li><img src="images/Xemoji.webp" alt="X emoji"> E-commerce</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
-                                <li><img src="images/Xemoji.webp" alt="X emoji"> PHP included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                                <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
-                                <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
-                            </ul>
+                            <div>
+                                <ul>
+                                    <li><img src="images/minus.webp" alt="minus emoji"> Hosting (Optional)</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> 2 webpages</li>
+                                    <li><img src="images/Xemoji.webp" alt="X emoji"> Server Region Selection</li>
+                                    <li><img src="images/Xemoji.webp" alt="X emoji"> E-commerce</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
+                                    <li><img src="images/Xemoji.webp" alt="X emoji"> PHP included</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
+                                    <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
+                                    <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
+                                </ul>
+                                <a href="">Get Started</a>
+                            </div>
                         </div>
-                        <a href="">Get Started</a>
                     </div>
                 </div>
 
                 <div class="slide">
                     <div class="pricebox">
-                        <h3 class="packtext">Business package</h3>
-                        <h4>from £30/month</h4>
                         <div class="two-grid">
                             <div>
+                                <h3 class="packtext">Business package</h3>
+                                <h4>from £30/month</h4>
                                 <img style="width: auto;" src="images/Pricing/Business.webp" alt="computers">
                             </div>
-                            <ul>
-                                <li><img src="images/minus.webp" alt="minus emoji"> Hosting (Optional)</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> 10 webpages</li>
-                                <li><img src="images/Xemoji.webp" alt="X emoji"> Server Region Selection</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> E-commerce</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> PHP included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                                <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
-                                <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
-                                <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
-                            </ul>
+                            <div>
+                                <ul>
+                                    <li><img src="images/minus.webp" alt="minus emoji"> Hosting (Optional)</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> 10 webpages</li>
+                                    <li><img src="images/Xemoji.webp" alt="X emoji"> Server Region Selection</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> E-commerce</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> PHP included</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
+                                    <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
+                                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatibility</li>
+                                    <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
+                                </ul>
+                                <a href="">Get Started</a>
+                            </div>
                         </div>
-                        <a href="">Get Started</a>
                     </div>
                 </div>
 
                 <div class="slide">
                     <div class="pricebox">
-                        <h3 class="packtext">Business+ package</h3>
-                        <h4>from £45/month</h4>
                         <div class="two-grid">
                             <div>
+                                <h3 class="packtext">Business+ package</h3>
+                                <h4>from £45/month</h4>
                                 <img style="width: auto;" src="images/Pricing/Business+.webp" alt="computers">
                             </div>
                             <ul>
@@ -159,11 +163,11 @@
             <h3>Just Websites</h3>
             <div class="slideshow-container" id="slideshow2">
                 <div class="slide">
-                    <div class="serviceBox">
-                        <h3 class="packtext">Personal website</h3>
-                        <h4>From £35</h4>
+                    <div class="pricebox">
                         <div class="two-grid">
                             <div>
+                                <h3 class="packtext">Personal website</h3>
+                                <h4>From £35</h4>
                                 <img style="width: auto;" src="images/Pricing/PerWebsite.webp"
                                     alt="Laptop with html and css code">
                             </div>
@@ -180,11 +184,11 @@
                 </div>
 
                 <div class="slide">
-                    <div class="serviceBox">
-                        <h3 class="packtext">E-commerce website</h3>
-                        <h4>From £60</h4>
+                    <div class="pricebox">
                         <div class="two-grid">
                             <div>
+                                <h3 class="packtext">E-commerce website</h3>
+                                <h4>From £60</h4>
                                 <img style="width: auto;" src="images/Pricing/ComWebsite.webp"
                                     alt="Laptop with php, html and css code">
                             </div>
@@ -203,11 +207,11 @@
                 </div>
 
                 <div class="slide">
-                    <div class="serviceBox">
-                        <h3 class="packtext">Business website</h3>
-                        <h4>From £100</h4>
+                    <div class="pricebox">
                         <div class="two-grid">
                             <div>
+                                <h3 class="packtext">Business website</h3>
+                                <h4>From £100</h4>
                                 <img style="width: auto;" src="images/Pricing/Com+Website.webp"
                                     alt="Laptop with php, html and css code">
                             </div>
@@ -233,12 +237,11 @@
         <div class="box snap">
             <h3>Our Services</h3>
             <div class="two-grid">
-
                 <div class="serviceBox">
-                    <h3 class="packtext">Image Optimisation</h3>
-                    <h4>*Free</h4>
                     <div class="two-grid">
                         <div>
+                            <h3 class="packtext">Image Optimisation</h3>
+                            <h4>*Free</h4>
                             <img style="width: auto;" src="images/Pricing/ImgOpt.webp" alt="Image Optimisation">
                         </div>
                         <ul>
@@ -250,10 +253,10 @@
                     <a href="">Get Started</a>
                 </div>
                 <div class="serviceBox">
-                    <h3 class="packtext">Code Optimisation</h3>
-                    <h4>from £10</h4>
                     <div class="two-grid">
                         <div>
+                            <h3 class="packtext">Code Optimisation</h3>
+                            <h4>from £10</h4>
                             <img style="width: auto;" src="images/Pricing/CodOpt.webp" alt="Image Optimisation">
                         </div>
                         <ul>

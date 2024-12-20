@@ -115,6 +115,11 @@
     text-align: left;
 }
 
+.pricebox ul li:first-child,
+.serviceBox ul li:first-child {
+    margin-top: 60px;
+}
+
 .pricebox img,
 .serviceBox img {
     width: 22px;
@@ -138,22 +143,33 @@
     background-color: white;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1550px) {
+    .box h3 {
+        font-size: 30px;
+    }
+
     .pricebox,
     .serviceBox {
         width: 80%;
-        height: 80%;
+        height: 85%;
     }
 
     .pricebox img,
     .serviceBox img {
-        width: 20% !important;
+        width: 70% !important;
+        padding-left: 10px;
     }
 
     .pricebox h4,
     .serviceBox h4 {
         font-size: 22px;
-        margin-left: 30px;
+        margin-left: 50px;
+    }
+
+    .serviceBox h3 {
+        font-size: 25px !important;
+        margin: 15px 0 0 15px;
+        padding: 0;
     }
 
     .pricebox ul li,
@@ -161,10 +177,90 @@
         font-size: 18px;
     }
 
+    .pricebox ul li img {
+        width: 6% !important;
+        padding: 0 !important;
+    }
+
+    .serviceBox ul li img{
+        width: 10% !important;
+        padding: 0 !important;
+    }
+
     .pricebox a,
     .serviceBox a {
         font-size: 18px;
-        margin: 20px 22px 0px;
+        margin: 3% 4% 0px 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .two-grid:nth-child(2) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .serviceBox ul li img{
+        width: 6% !important;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .box h3 {
+        font-size: 20px;
+    }
+
+    .pricebox h3,
+    .serviceBox h3 {
+        font-size: 18px !important;
+    }
+
+    .pricebox ul li,
+    .serviceBox ul li {
+        font-size: 16px;
+    }
+
+    .pricebox h4,
+    .serviceBox h4 {
+        font-size: 16px;
     }
     
+    .prev,
+    .next {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .pricebox,
+    .serviceBox {
+        width: 80%;
+    }
+
+    .pricebox h3,
+    .serviceBox h3 {
+        font-size: 17px !important;
+        margin-left: 0px;
+    }
+
+    .pricebox h4,
+    .serviceBox h4 {
+        font-size: 15px;
+        margin-left: 10px;
+    }
+
+    .pricebox ul li,
+    .serviceBox ul li {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .pricebox a,
+    .serviceBox a {
+        font-size: 16px;
+    }
+
+    .pricebox img,
+    .serviceBox img {
+        width: 18px;
+    }
 }
