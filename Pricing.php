@@ -1,6 +1,6 @@
 <?php
-//include 'PHPScripts/session_manager.php';
-//$is_logged_in = isset($_SESSION['username']);
+include 'PHPScripts/session_manager.php';
+$is_logged_in = isset($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
@@ -58,13 +58,13 @@
             </div>
 
             <ul class="account">
-                <!-- <?php //if ($is_logged_in): ?>
+                <?php if ($is_logged_in): ?>
                     <li><a href="Account.php"><img src="images/icons/Account.webp" alt="Account" style="margin-top: -8px;"></a></li>
                     <li><a href="logout.php">Logout</a></li>
-                <?php //else: ?>
+                <?php else: ?>
                     <li><a href="Login.php">Login</a></li>
                     <li><a href="SignUp.php">Sign Up</a></li>
-                <?php //endif; ?> -->
+                <?php endif; ?>
             </ul>
 
             <a class="MiniWCLogo" href="index.php"><img src="images/MiniWCLogo.webp" alt="Logo"></a>

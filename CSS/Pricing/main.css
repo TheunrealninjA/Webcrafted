@@ -263,4 +263,42 @@
     .serviceBox img {
         width: 18px;
     }
+
+    .prev,
+    .next {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .pricebox h3,
+    .serviceBox h3 {
+        font-size: 15px !important;
+    }
+
+    .pricebox h4,
+    .serviceBox h4 {
+        font-size: 14px;
+    }
+
+    .pricebox ul li,
+    .serviceBox ul li {
+        font-size: 12px;
+    }
+
+    .pricebox a,
+    .serviceBox a {
+        font-size: 14px;
+    }
+
+    .pricebox img,
+    .serviceBox img {
+        width: 16px;
+    }
+
+    .prev,
+    .next {
+        font-size: 25px;
+    }
+    
 }
