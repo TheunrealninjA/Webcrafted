@@ -471,6 +471,25 @@
         .selected {
             border: 2px dashed #007BFF;
         }
+
+        .folder-arrow {
+            margin: 0 5px 10px 0;
+            transition: transform 0.3s;
+        }
+
+        .folder-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .folder-content.open {
+            max-height: 500px; /* Adjust based on content */
+            opacity: 1;
+        }
+
+
     </style>
 </head>
 
@@ -485,6 +504,7 @@
         <button onclick="showButtonModel()"><img src="icons/ButtonIcon.webp" alt="Insert Button"></button>
         <button onclick="showImageUploadModal()"><img src="icons/addimageicon.webp" alt="Picture Box"></button>
         <button onclick="addShape()"><img src="icons/ShapeIcon.webp" alt="Insert Shape"></button>
+        <button onclick="callAPI()"><img src="icons/API.webp" alt="API"></button> <!-- New API button -->
     </div>
     <div class="menu" id="menu">
         <span class="close-menu" style="font-size: 30px;" onclick="closeMenu()">&times;</span>
@@ -521,6 +541,24 @@
             <button onclick="applyLink()">Apply</button>
         </div>
     </div>
+    <div id="addFileFolderModal" class="modal">
+        <div class="modal-content" style="background: #202020;">
+            <span class="close" onclick="closeAddFileFolderModal()">&times;</span>
+            <h2>Add File or Folder</h2>
+            <select id="add-type" onchange="toggleAddType()">
+                <option value="file">File</option>
+                <option value="folder">Folder</option>
+            </select>
+            <div id="add-file-section">
+                <input type="text" id="new-file-name" placeholder="Enter the new file name">
+                <button onclick="addFile()">Add File</button>
+            </div>
+            <div id="add-folder-section" style="display: none;">
+                <input type="text" id="new-folder-name" placeholder="Enter the new folder name">
+                <button onclick="addFolder()">Add Folder</button>
+            </div>
+        </div>
+    </div>
     <div class="topbar">
         <input type="text" id="topbar-website-title" placeholder="Website Title" oninput="updateTopbarPreview()">
         <input type="text" id="topbar-website-description" placeholder="Website Description"
@@ -555,9 +593,16 @@
     <div class="right-sidebar">
         <div class="file-explorer">
             <h3>File Explorer</h3>
-            <button onclick="addFile()" style="margin-left: 78%;font-size: 25px; z-index: 0; position: absolute; background: #202020 !important; border-color: transparent; box-shadow: none; padding: 5px 15px;">+</button>
+            <button onclick="showAddFileFolderModal()" style="margin-left: 78%;font-size: 25px; z-index: 0; position: absolute; background: #202020 !important; border-color: transparent; box-shadow: none; padding: 5px 15px;">+</button>
             <ul id="file-list">
-                <li onclick="">index.html</li>
+                <li onclick="selectFile('index.html')"><img src="icons/HTML5.webp" alt="HTML5 Icon" style="width: 16px; height: 16px; margin-right: 5px;">index.html</li>
+                <li data-folder="images" onclick="toggleFolder('images')">
+                    <span class="folder-arrow down">&or;</span>
+                    <img src="icons/Folder.webp" alt="Folder Icon" style="width: 16px; height: 16px; margin-right: 5px;">Images
+                </li>
+                <ul id="images" class="folder-content">
+                    <!-- Add image files here -->
+                </ul>
                 <!-- Add more files as needed -->
             </ul>
         </div>
@@ -1141,6 +1186,73 @@
             makeElementsResizable();
         }
 
+        function showAddFileModal() {
+            document.getElementById('addFileModal').style.display = 'block';
+        }
+
+        function closeAddFileModal() {
+            document.getElementById('addFileModal').style.display = 'none';
+        }
+
+        function showAddFolderModal() {
+            document.getElementById('addFolderModal').style.display = 'block';
+        }
+
+        function closeAddFolderModal() {
+            document.getElementById('addFolderModal').style.display = 'none';
+        }
+
+        function showAddFileFolderModal() {
+            document.getElementById('addFileFolderModal').style.display = 'block';
+        }
+
+        function closeAddFileFolderModal() {
+            document.getElementById('addFileFolderModal').style.display = 'none';
+        }
+
+        function toggleAddType() {
+            const addType = document.getElementById('add-type').value;
+            if (addType === 'file') {
+                document.getElementById('add-file-section').style.display = 'block';
+                document.getElementById('add-folder-section').style.display = 'none';
+            } else {
+                document.getElementById('add-file-section').style.display = 'none';
+                document.getElementById('add-folder-section').style.display = 'block';
+            }
+        }
+
+        function addFile() {
+            const fileName = document.getElementById('new-file-name').value;
+            if (fileName) {
+                const fileList = document.querySelectorAll('#file-list');
+                fileList.forEach(list => {
+                    const newFile = document.createElement('li');
+                    newFile.innerHTML = `<img src="icons/HTML5.webp" alt="HTML5 Icon" style="width: 16px; height: 16px; margin-right: 5px;">${fileName}.html`;
+                    newFile.setAttribute('onclick', `selectFile('${fileName}')`);
+                    list.appendChild(newFile);
+                });
+                closeAddFileFolderModal();
+            }
+        }
+
+        function addFolder() {
+            const folderName = document.getElementById('new-folder-name').value;
+            if (folderName) {
+                const fileList = document.querySelectorAll('#file-list');
+                fileList.forEach(list => {
+                    const newFolder = document.createElement('li');
+                    newFolder.innerHTML = `<span class="folder-arrow down">&or;</span><img src="icons/Folder.webp" alt="Folder Icon" style="width: 16px; height: 16px; margin-right: 5px;">${folderName}`;
+                    newFolder.setAttribute('onclick', `toggleFolder('${folderName}')`);
+                    const folderContent = document.createElement('ul');
+                    folderContent.id = folderName;
+                    folderContent.className = 'folder-content';
+                    newFolder.appendChild(folderContent);
+                    list.appendChild(newFolder);
+                });
+                closeAddFileFolderModal();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             updatePreview();
 
@@ -1509,11 +1621,46 @@
                 const fileList = document.querySelectorAll('#file-list');
                 fileList.forEach(list => {
                     const newFile = document.createElement('li');
-                    newFile.textContent = fileName + '.html';
+                    newFile.innerHTML = `<img src="icons/HTML5.webp" alt="HTML5 Icon" style="width: 16px; height: 16px; margin-right: 5px;">${fileName}.html`;
                     newFile.setAttribute('onclick', `selectFile('${fileName}')`);
                     list.appendChild(newFile);
                 });
+            } else {
+                const folderName = prompt("Enter the new folder name:");
+                if (folderName) {
+                    const fileList = document.querySelectorAll('#file-list');
+                    fileList.forEach(list => {
+                        const newFolder = document.createElement('li');
+                        newFolder.innerHTML = `<span class="folder-arrow down">&or;</span>`;
+                        newFolder.innerHTML = `<img src="icons/Folder.webp" alt="Folder Icon" style="width: 16px; height: 16px; margin-right: 5px;">${folderName}`;
+                        newFolder.setAttribute('onclick', `toggleFolder('${folderName}')`);
+                        const folderContent = document.createElement('ul');
+                        folderContent.id = folderName;
+                        folderContent.className = 'folder-content';
+                        newFolder.appendChild(folderContent);
+                        list.appendChild(newFolder);
+                    });
+                }
             }
+        }
+
+        function toggleFolder(folderId) {
+            const folder = document.getElementById(folderId);
+            const arrow = document.querySelector(`[data-folder="${folderId}"] .folder-arrow`);
+            if (folder.classList.contains('open')) {
+                folder.classList.remove('open');
+                arrow.classList.remove('open');
+                arrow.innerHTML = '&or;';
+            } else {
+                folder.classList.add('open');
+                arrow.classList.add('open');
+                arrow.innerHTML = '&and;';
+            }
+        }
+
+        function callAPI() {
+            alert("API button clicked!");
+            // Add your API call logic here
         }
 
         window.addEventListener('load', function() {
