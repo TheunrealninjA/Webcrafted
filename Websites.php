@@ -92,6 +92,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <img src="images/QuestionMark.webp" alt="Question Mark">
                     <p>More will be coming soon! If you have made a website with us and want to see it here then please
                         contact us.</p>
+                    <a href="ContactUs.php">Contact Us &gt;</a>
                 </div>
             </div>
         </div>

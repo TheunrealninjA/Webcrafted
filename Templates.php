@@ -27,107 +27,6 @@ $is_logged_in = isset($_SESSION['username']);
     <script src="JavaScript/HamBurger.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            height: 80%;
-            max-width: 90%;
-        }
-
-        #modal-content-container {
-            border: 1px solid white;
-            gap: 20px;
-            margin: auto;
-            border-radius: 16px;
-            box-shadow: 0 0 10px 5px white;
-            padding: 20px;
-            background-image: linear-gradient(135deg, #181818, #101010);
-            width: 80%;
-            height: 80%;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .modal-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-            width: 100%;
-        }
-
-        .modal-info h3 {
-            font-size: 24px
-        }
-
-        .modal-info h4 {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-
-        .modal-info p {
-            margin-top: 5px;
-        }
-
-        .dropcont{
-            flex-grow: 1;
-        }
-
-        .choose-theme-button {
-            padding: 10px 15px;
-            background-color: #101010;
-            color: #fff;
-            border: 1px solid white;
-            box-shadow: inset 0 0 4px 2px black;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.6s, transform 0.6s, color 0.3s;
-            margin-left: 18vw;
-            width: auto;
-        }
-
-        .choose-theme-button:hover {
-            background-color: white;
-            transform: scale(1.05);
-            color: black;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .close-modal:hover,
-        .close-modal:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -317,7 +216,7 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
             <div class="Cont filter-item" data-category="all" style="margin: 25px 0;">
                 <h3>Can't Find What Your Looking For?</h3>
-                <img src="images/QuestionMark.webp" alt="Not Found" style="margin: 16% 0;height: 110px;">
+                <img src="images/QuestionMark.webp" alt="Not Found" style="margin: 16% 0;height: 110px;width: auto;">
                 <p>Tell us what You want us to add to the Templates by sending an email to use at <a class="LinkText" href="mailto:wyattd@webcrafted.pro">wyattd@webcrafted.pro</a> or Explain to our team what you want to your Website to look like in our <a class="LinkText" href="ContactUs.php">Contact Us</a> Page</p>
             </div>
         </div>

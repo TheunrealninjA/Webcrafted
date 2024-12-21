@@ -201,7 +201,7 @@ input[type="submit"]:hover{
     }
 
     input, select, textarea{
-        width: 70vw;
+        width: 15vw;
     }
 
     input[type="submit"] {
@@ -222,7 +222,7 @@ input[type="submit"]:hover{
     }
 
     input, select, textarea{
-        width: 80vw;
+        width: 20vw;
     }   
 }
 @media screen and (max-width: 500px){
@@ -235,7 +235,7 @@ input[type="submit"]:hover{
     }
 
     input, select, textarea{
-        width: 90vw;
+        width: 35vw;
     }   
 }
 @media screen and (max-width: 350px){
@@ -248,7 +248,7 @@ input[type="submit"]:hover{
     }
 
     input, select, textarea{
-        width: 95vw;
+        width: 50vw;
     }   
     
 }

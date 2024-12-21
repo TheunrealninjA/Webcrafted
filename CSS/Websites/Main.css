@@ -1,19 +1,21 @@
 .box h3{
-    padding: 20px 40px 20px;
-    font-size: 35px;
+    padding: 0 40px 20px;
+    font-size: 28px;
 }
 
 .box p{
-    font-size: 18px;
+    font-size: 16px;
+    padding: 0px 10px;
 }
 
 .web{
-    width: 26vw;
+    width: 30vw;
+    margin-bottom: 50px !important;
 }
 
 .web a{
     float: right;
-    font-size: 22px;
+    font-size: 20px;
     margin: 30px 32px 0px;
     border: white 1px solid;
     padding: 5px 10px;
@@ -33,4 +35,58 @@
 
 .web img{
     width: 6.4vw;
+}
+
+@media screen and (max-width: 1000px) {
+    .box h3{
+        padding: 0 20px 20px;
+        font-size: 22px;
+    }
+
+    .three-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .web{
+        width: 45vw;
+    }
+
+    .web img{
+        width: 10vw;
+    }
+
+    .klc{
+        width: 28vw !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .box{
+        height: 150vh;
+    }
+    .box h3{
+        padding: 0 20px 20px;
+        font-size: 20px;
+    }
+
+    .three-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .web{
+        width: 70vw;
+    }
+
+    .web a{
+        font-size: 16px;
+        margin: 20px 22px 0px;
+    }
+
+    .web img{
+        width: 20vw;
+    }
+
+    .klc{
+        width: 50vw !important;
+    }
 }
