@@ -288,7 +288,7 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: #202020;
             margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
@@ -559,6 +559,15 @@
             </div>
         </div>
     </div>
+    <div id="apiModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeApiModal()">&times;</span>
+            <h2>Select API</h2>
+            <button onclick="addGoogleMaps()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleMaps.webp" alt="Google Maps" style="margin-left: 23%;">Google Maps</button>
+            <button onclick="addGoogleAds()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleAds.webp" alt="Google Ads" style="margin-left: 23%;">Google Ads</button>
+            <button onclick="addGoogleRecaptcha()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleReCAPTCHA.webp" alt="Google ReCAPTCHA" style="margin-left: 23%;">Google ReCAPTCHA</button>
+        </div>
+    </div>
     <div class="topbar">
         <input type="text" id="topbar-website-title" placeholder="Website Title" oninput="updateTopbarPreview()">
         <input type="text" id="topbar-website-description" placeholder="Website Description"
@@ -703,40 +712,42 @@
 
             resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function(event) {
-                    event.stopPropagation();
-                    selectedElement = el; // Set the selected element
-                    showProperties(); // Show properties when an element is selected
+                if (resizeHandle) {
+                    resizeHandle.onmousedown = function(event) {
+                        event.stopPropagation();
+                        selectedElement = el; // Set the selected element
+                        showProperties(); // Show properties when an element is selected
 
-                    const startX = event.clientX;
-                    const startY = event.clientY;
-                    const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
-                    const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
-                    const aspectRatio = startWidth / startHeight;
+                        const startX = event.clientX;
+                        const startY = event.clientY;
+                        const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
+                        const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
+                        const aspectRatio = startWidth / startHeight;
 
-                    function doDrag(e) {
-                        const newWidth = startWidth + e.clientX - startX;
-                        const newHeight = startHeight + e.clientY - startY;
+                        function doDrag(e) {
+                            const newWidth = startWidth + e.clientX - startX;
+                            const newHeight = startHeight + e.clientY - startY;
 
-                        if (el.querySelector('img')) {
-                            // Maintain aspect ratio for image
-                            el.style.width = newWidth + 'px';
-                            el.style.height = newWidth / aspectRatio + 'px';
-                        } else {
-                            // Free scaling for other elements
-                            el.style.width = newWidth + 'px';
-                            el.style.height = newHeight + 'px';
+                            if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') || el.classList.contains('g-recaptcha')) {
+                                // Maintain aspect ratio for image and APIs
+                                el.style.width = newWidth + 'px';
+                                el.style.height = newWidth / aspectRatio + 'px';
+                            } else {
+                                // Free scaling for other elements
+                                el.style.width = newWidth + 'px';
+                                el.style.height = newHeight + 'px';
+                            }
                         }
-                    }
 
-                    function stopDrag() {
-                        document.documentElement.removeEventListener('mousemove', doDrag, false);
-                        document.documentElement.removeEventListener('mouseup', stopDrag, false);
-                    }
+                        function stopDrag() {
+                            document.documentElement.removeEventListener('mousemove', doDrag, false);
+                            document.documentElement.removeEventListener('mouseup', stopDrag, false);
+                        }
 
-                    document.documentElement.addEventListener('mousemove', doDrag, false);
-                    document.documentElement.addEventListener('mouseup', stopDrag, false);
-                };
+                        document.documentElement.addEventListener('mousemove', doDrag, false);
+                        document.documentElement.addEventListener('mouseup', stopDrag, false);
+                    };
+                }
             });
         }
 
@@ -1580,7 +1591,7 @@
                         const newWidth = startWidth + e.clientX - startX;
                         const newHeight = startHeight + e.clientY - startY;
 
-                        if (el.querySelector('img')) {
+                        if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') || el.classList.contains('g-recaptcha')) {
                             el.style.width = newWidth + 'px';
                             el.style.height = newWidth / aspectRatio + 'px';
                         } else {
@@ -1659,8 +1670,108 @@
         }
 
         function callAPI() {
-            alert("API button clicked!");
-            // Add your API call logic here
+            document.getElementById('apiModal').style.display = 'block';
+        }
+
+        function closeApiModal() {
+            document.getElementById('apiModal').style.display = 'none';
+        }
+
+        function addGoogleMaps() {
+            const API_KEY = prompt("Enter your Google Maps API key:");
+            const mapDiv = document.createElement('div');
+            mapDiv.className = 'draggable resizable';
+            mapDiv.id = 'google-map';
+            mapDiv.style.width = '100%';
+            mapDiv.style.height = '400px';
+            mapDiv.style.position = 'absolute';
+            mapDiv.style.left = '10px';
+            mapDiv.style.top = '10px';
+
+            const resizeHandle = document.createElement('div');
+            resizeHandle.className = 'resize-handle bottom-right';
+            mapDiv.appendChild(resizeHandle);
+
+            document.getElementById('website-preview').appendChild(mapDiv);
+
+            const script = document.createElement('script');
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&callback=initMap';
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+
+            window.initMap = function() {
+                new google.maps.Map(mapDiv, {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+            };
+
+            makeElementsDraggable();
+            makeElementsResizable();
+            closeApiModal();
+        }
+
+        function addGoogleAds() {
+            const adDiv = document.createElement('div');
+            adDiv.className = 'adsbygoogle draggable resizable';
+            adDiv.style.display = 'block';
+            adDiv.style.width = '300px';
+            adDiv.style.height = '250px';
+            adDiv.style.position = 'absolute';
+            adDiv.style.left = '10px';
+            adDiv.style.top = '10px';
+            adDiv.setAttribute('data-ad-client', 'ca-pub-XXXXXXXXXXXXXXXX');
+            adDiv.setAttribute('data-ad-slot', 'XXXXXXXXXX');
+
+            const resizeHandle = document.createElement('div');
+            resizeHandle.className = 'resize-handle bottom-right';
+            adDiv.appendChild(resizeHandle);
+
+            document.getElementById('website-preview').appendChild(adDiv);
+
+            const script = document.createElement('script');
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            script.async = true;
+            document.head.appendChild(script);
+
+            (adsbygoogle = window.adsbygoogle || []).push({});
+
+            makeElementsDraggable();
+            makeElementsResizable();
+            closeApiModal();
+        }
+
+        function addGoogleRecaptcha() {
+            const recaptchaDiv = document.createElement('div');
+            const site_key = prompt("Enter your Google Recaptcha site key:");
+            recaptchaDiv.className = 'g-recaptcha draggable resizable';
+            recaptchaDiv.style.position = 'absolute';
+            recaptchaDiv.style.left = '10px';
+            recaptchaDiv.style.top = '10px';
+
+            const resizeHandle = document.createElement('div');
+            resizeHandle.className = 'resize-handle bottom-right';
+            recaptchaDiv.appendChild(resizeHandle);
+
+            document.getElementById('website-preview').appendChild(recaptchaDiv);
+
+            const script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+
+            window.onloadCallback = function() {
+                recaptchaDiv.innerHTML = ''; // Ensure the div is empty before rendering
+                grecaptcha.render(recaptchaDiv, {
+                    'sitekey': site_key
+                });
+            };
+
+            makeElementsDraggable();
+            makeElementsResizable();
+            closeApiModal();
         }
 
         window.addEventListener('load', function() {
