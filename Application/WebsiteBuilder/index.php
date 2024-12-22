@@ -1332,6 +1332,59 @@
             tempDiv.innerHTML = previewContent;
             const snapLines = tempDiv.querySelectorAll('.snap-line');
             snapLines.forEach(line => line.remove());
+
+            // Replace API boxes with actual API code
+            const apiBoxes = tempDiv.querySelectorAll('.api-box');
+            apiBoxes.forEach(box => {
+                if (box.id === 'google-map') {
+                    const apiKey = prompt("Enter your Google Maps API key:");
+                    const mapDiv = document.createElement('div');
+                    mapDiv.style.width = box.style.width;
+                    mapDiv.style.height = box.style.height;
+                    mapDiv.id = 'google-map';
+                    mapDiv.style.position = 'absolute';
+                    mapDiv.style.left = box.style.left;
+                    mapDiv.style.top = box.style.top;
+                    mapDiv.innerHTML = `
+                        <div id="google-map" style="width: 100%; height: 100%;"></div>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap" async defer></script>
+                        <script>
+                            function initMap() {
+                                new google.maps.Map(document.getElementById('google-map'), {
+                                    center: { lat: -34.397, lng: 150.644 },
+                                    zoom: 8
+                                });
+                            }
+                        </script>`;
+                    box.replaceWith(mapDiv);
+                } else if (box.id === 'google-ads') {
+                    const adDiv = document.createElement('div');
+                    adDiv.style.width = box.style.width;
+                    adDiv.style.height = box.style.height;
+                    adDiv.className = 'adsbygoogle';
+                    adDiv.style.display = 'block';
+                    adDiv.setAttribute('data-ad-client', 'ca-pub-XXXXXXXXXXXXXXXX');
+                    adDiv.setAttribute('data-ad-slot', 'XXXXXXXXXX');
+                    adDiv.style.position = 'absolute';
+                    adDiv.style.left = box.style.left;
+                    adDiv.style.top = box.style.top;
+                    adDiv.innerHTML = `<script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script>`;
+                    box.replaceWith(adDiv);
+                } else if (box.id === 'google-recaptcha') {
+                    const siteKey = box.getAttribute('data-sitekey');
+                    const recaptchaDiv = document.createElement('div');
+                    recaptchaDiv.style.width = box.style.width;
+                    recaptchaDiv.style.height = box.style.height;
+                    recaptchaDiv.className = 'g-recaptcha';
+                    recaptchaDiv.setAttribute('data-sitekey', siteKey);
+                    recaptchaDiv.style.position = 'absolute';
+                    recaptchaDiv.style.left = box.style.left;
+                    recaptchaDiv.style.top = box.style.top;
+                    recaptchaDiv.innerHTML = `<script src="https://www.google.com/recaptcha/api.js" async defer></script>`;
+                    box.replaceWith(recaptchaDiv);
+                }
+            });
+
             const cleanedContent = tempDiv.innerHTML;
 
             // Create a container to upscale the content
@@ -1348,13 +1401,13 @@
                     const left = parseFloat(el.style.left) || 0;
                     const top = parseFloat(el.style.top) || 0;
                     const fontSize = parseFloat(el.style.fontSize) || 0;
-                    const width = parseFloat(el.style.width) || auto;
-                    const height = parseFloat(el.style.height) || auto;
+                    const width = parseFloat(el.style.width) || 'auto';
+                    const height = parseFloat(el.style.height) || 'auto';
                     el.style.fontSize = `${fontSize * 1.83}px`;
                     el.style.left = `${left * 1.83}px`;
                     el.style.top = `${top * 1.83}px`;
-                    el.style.width = `${width * 1.83}px`;
-                    el.style.height = `${height * 1.83}px`;
+                    el.style.width = width !== 'auto' ? `${parseFloat(width) * 1.83}px` : 'auto';
+                    el.style.height = height !== 'auto' ? `${parseFloat(height) * 1.83}px` : 'auto';
                 }
             });
 
@@ -1678,34 +1731,26 @@
         }
 
         function addGoogleMaps() {
-            const API_KEY = prompt("Enter your Google Maps API key:");
             const mapDiv = document.createElement('div');
-            mapDiv.className = 'draggable resizable';
+            mapDiv.className = 'api-box draggable resizable';
             mapDiv.id = 'google-map';
-            mapDiv.style.width = '100%';
-            mapDiv.style.height = '400px';
+            mapDiv.innerText = 'Google Maps API';
+            mapDiv.style.width = '200px';
+            mapDiv.style.height = '100px';
             mapDiv.style.position = 'absolute';
             mapDiv.style.left = '10px';
             mapDiv.style.top = '10px';
+            mapDiv.style.backgroundColor = '#f0f0f0';
+            mapDiv.style.border = '1px solid #ccc';
+            mapDiv.style.display = 'flex';
+            mapDiv.style.justifyContent = 'center';
+            mapDiv.style.alignItems = 'center';
 
             const resizeHandle = document.createElement('div');
             resizeHandle.className = 'resize-handle bottom-right';
             mapDiv.appendChild(resizeHandle);
 
             document.getElementById('website-preview').appendChild(mapDiv);
-
-            const script = document.createElement('script');
-            script.src = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&callback=initMap';
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
-
-            window.initMap = function() {
-                new google.maps.Map(mapDiv, {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 8
-                });
-            };
 
             makeElementsDraggable();
             makeElementsResizable();
@@ -1714,28 +1759,25 @@
 
         function addGoogleAds() {
             const adDiv = document.createElement('div');
-            adDiv.className = 'adsbygoogle draggable resizable';
-            adDiv.style.display = 'block';
-            adDiv.style.width = '300px';
-            adDiv.style.height = '250px';
+            adDiv.className = 'api-box draggable resizable';
+            adDiv.id = 'google-ads';
+            adDiv.innerText = 'Google Ads API';
+            adDiv.style.width = '200px';
+            adDiv.style.height = '100px';
             adDiv.style.position = 'absolute';
             adDiv.style.left = '10px';
             adDiv.style.top = '10px';
-            adDiv.setAttribute('data-ad-client', 'ca-pub-XXXXXXXXXXXXXXXX');
-            adDiv.setAttribute('data-ad-slot', 'XXXXXXXXXX');
+            adDiv.style.backgroundColor = '#f0f0f0';
+            adDiv.style.border = '1px solid #ccc';
+            adDiv.style.display = 'flex';
+            adDiv.style.justifyContent = 'center';
+            adDiv.style.alignItems = 'center';
 
             const resizeHandle = document.createElement('div');
             resizeHandle.className = 'resize-handle bottom-right';
             adDiv.appendChild(resizeHandle);
 
             document.getElementById('website-preview').appendChild(adDiv);
-
-            const script = document.createElement('script');
-            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-            script.async = true;
-            document.head.appendChild(script);
-
-            (adsbygoogle = window.adsbygoogle || []).push({});
 
             makeElementsDraggable();
             makeElementsResizable();
@@ -1745,29 +1787,26 @@
         function addGoogleRecaptcha() {
             const recaptchaDiv = document.createElement('div');
             const site_key = prompt("Enter your Google Recaptcha site key:");
-            recaptchaDiv.className = 'g-recaptcha draggable resizable';
+            recaptchaDiv.className = 'api-box draggable resizable';
+            recaptchaDiv.id = 'google-recaptcha';
+            recaptchaDiv.innerText = 'Google Recaptcha API';
+            recaptchaDiv.setAttribute('data-sitekey', site_key);
+            recaptchaDiv.style.width = '200px';
+            recaptchaDiv.style.height = '100px';
             recaptchaDiv.style.position = 'absolute';
             recaptchaDiv.style.left = '10px';
             recaptchaDiv.style.top = '10px';
+            recaptchaDiv.style.backgroundColor = '#f0f0f0';
+            recaptchaDiv.style.border = '1px solid #ccc';
+            recaptchaDiv.style.display = 'flex';
+            recaptchaDiv.style.justifyContent = 'center';
+            recaptchaDiv.style.alignItems = 'center';
 
             const resizeHandle = document.createElement('div');
             resizeHandle.className = 'resize-handle bottom-right';
             recaptchaDiv.appendChild(resizeHandle);
 
             document.getElementById('website-preview').appendChild(recaptchaDiv);
-
-            const script = document.createElement('script');
-            script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
-
-            window.onloadCallback = function() {
-                recaptchaDiv.innerHTML = ''; // Ensure the div is empty before rendering
-                grecaptcha.render(recaptchaDiv, {
-                    'sitekey': site_key
-                });
-            };
 
             makeElementsDraggable();
             makeElementsResizable();
