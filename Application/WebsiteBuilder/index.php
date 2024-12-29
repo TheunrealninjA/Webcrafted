@@ -24,17 +24,19 @@
     </style>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
         }
 
         .sidebar {
-            width: 30px;
-            background: #202020;
-            padding: 20px;
+            width: 60px;
+            background: #252526;
+            padding: 20px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -47,25 +49,26 @@
         }
 
         .sidebar button {
-            width: 130%;
+            width: 85%;
             border: none;
-            padding: 6px 0 2px;
+            padding: 10px 0;
             margin: 10px 0;
             cursor: pointer;
             border-radius: 4px;
             font-size: 16px;
             box-shadow: none;
-            background: #242424;
+            background: #202021;
             transition: background 0.3s;
+            color: #d4d4d4;
         }
 
         .sidebar button:hover {
-            background: #0056b3;
+            background: #181819;
         }
 
         .right-sidebar {
             width: 300px;
-            background: #202020;
+            background: #252526;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -78,11 +81,11 @@
         }
 
         .file-explorer {
-            width: 97%;
-            background: #202020;
-            border: 1px solid #ccc;
+            width: 94%;
+            background: #333;
+            border: 1px solid #444;
             border-radius: 4px;
-            padding: 10px 0 10px 10px;
+            padding: 10px;
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -90,6 +93,7 @@
         .file-explorer h3 {
             margin: 0 0 10px 0;
             font-size: 18px;
+            color: #d4d4d4;
         }
 
         .file-explorer ul {
@@ -103,23 +107,23 @@
             cursor: pointer;
             border-radius: 4px;
             transition: background 0.3s;
+            color: #d4d4d4;
         }
 
         .file-explorer li:hover {
-            background: #e0e0e0;
+            background: #3c3c3c;
         }
 
         .topbar {
-            width: 100%;
-            background: #202020;
+            width: calc(100% - 60px);
+            background: #252526;
             padding: 10px 20px;
             display: flex;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
-            left: 70.4px;
-            /* Adjust based on left sidebar width */
+            left: 60px;
             z-index: 1000;
         }
 
@@ -127,23 +131,23 @@
         .topbar select {
             padding: 5px;
             margin: 0 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #444;
             border-radius: 4px;
             font-size: 14px;
+            background: #3c3c3c;
+            color: #d4d4d4;
         }
 
         .main-content {
-            margin-left: 120px;
-            /* Adjust based on left sidebar width */
-            margin-right: 320px;
-            /* Adjust based on right sidebar width */
+            margin-left: 60px;
+            margin-right: 300px;
             margin-top: 60px;
-            /* Adjust based on topbar height */
-            width: calc(100% - 540px);
+            width: calc(100% - 360px);
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
+            background: #1e1e1e;
         }
 
         .builder-form {
@@ -159,16 +163,18 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #444;
             border-radius: 4px;
             font-size: 16px;
+            background: #3c3c3c;
+            color: #d4d4d4;
             transition: border-color 0.3s;
         }
 
         .builder-form input:focus,
         .builder-form textarea:focus,
         .builder-form select:focus {
-            border-color: #007BFF;
+            border-color: #007acc;
             outline: none;
         }
 
@@ -179,17 +185,16 @@
         }
 
         .preview-container {
-            margin-top: 100px;
+            margin-top: 20px;
             width: 90%;
             max-width: 1200px;
             aspect-ratio: 2.08/1;
-            border: 1px solid #ccc;
+            border: 1px solid #444;
             padding: 2px;
             position: relative;
-            background: #fff;
+            background: #1e1e1e;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            /* Allow vertical scrolling */
         }
 
         .website-preview {
@@ -197,6 +202,7 @@
             height: auto;
             min-height: 100%;
             position: relative;
+            background-color: #ffffff; /* Set background color to white */
         }
 
         .website-preview img {
@@ -207,21 +213,18 @@
             position: absolute;
             cursor: move;
             user-select: none;
-            /* Disable text selection */
-            color: black;
-            /* Default font color */
+            color: #d4d4d4;
         }
 
         .editable {
-            border: 1px dashed #ccc;
+            border: 1px dashed #444;
             padding: 5px;
             transition: border-color 0.3s;
-            color: black;
-            /* Default font color */
+            color: #d4d4d4;
         }
 
         .editable:focus {
-            border-color: #007BFF;
+            border-color: #007acc;
             outline: none;
         }
 
@@ -248,8 +251,8 @@
         .context-menu {
             display: none;
             position: absolute;
-            background: #252525;
-            border: 1px solid #ccc;
+            background: #252526;
+            border: 1px solid #444;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             z-index: 1001;
             padding: 10px;
@@ -267,10 +270,11 @@
             cursor: pointer;
             transition: background 0.3s;
             border-radius: 4px;
+            color: #d4d4d4;
         }
 
         .context-menu li:hover {
-            background: #191919;
+            background: #3c3c3c;
         }
 
         .modal {
@@ -282,18 +286,18 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
             padding-top: 60px;
         }
 
         .modal-content {
-            background-color: #202020;
+            background-color: #252526;
             margin: 5% auto;
             padding: 20px;
-            border: 1px solid #888;
+            border: 1px solid #444;
             width: 80%;
             max-width: 500px;
+            color: #d4d4d4;
         }
 
         .close {
@@ -305,7 +309,7 @@
 
         .close:hover,
         .close:focus {
-            color: black;
+            color: #d4d4d4;
             text-decoration: none;
             cursor: pointer;
         }
@@ -313,7 +317,7 @@
         .resize-handle {
             width: 10px;
             height: 10px;
-            background: #007BFF;
+            background: #007acc;
             position: absolute;
             cursor: nwse-resize;
         }
@@ -323,7 +327,6 @@
             bottom: 0;
         }
 
-        /* Add styles for the menu */
         .menu {
             display: none;
             position: fixed;
@@ -331,7 +334,7 @@
             left: 0;
             width: 200px;
             height: 100%;
-            background: #202020;
+            background: #252526;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             z-index: 1001;
             padding: 20px;
@@ -347,12 +350,12 @@
         .menu li {
             padding: 10px 0;
             cursor: pointer;
-            color: white;
+            color: #d4d4d4;
             transition: background 0.3s;
         }
 
         .menu li:hover {
-            background: #0056b3;
+            background: #007acc;
         }
 
         .menu .close-menu {
@@ -360,7 +363,7 @@
             top: 10px;
             right: 10px;
             font-size: 24px;
-            color: white;
+            color: #d4d4d4;
             cursor: pointer;
             transition: color 0.3s;
         }
@@ -371,17 +374,13 @@
 
         @media screen and (max-width: 1800px) {
             .topbar {
-                left: 70px;
-                /* Adjust based on left sidebar width */
+                left: 60px;
             }
 
             .main-content {
-                margin-left: 30px;
-                /* Adjust based on left sidebar width */
+                margin-left: 60px;
                 margin-right: 300px;
-                /* Adjust based on right sidebar width */
-                width: calc(100% - 330px);
-                /* Adjust based on left and right sidebar width */
+                width: calc(100% - 360px);
             }
 
             .preview-container {
@@ -391,6 +390,7 @@
         }
 
         @media (max-width: 768px) {
+
             .sidebar {
                 width: 50px;
             }
@@ -402,18 +402,13 @@
 
             .topbar {
                 width: calc(100% - 350px);
-                /* Adjust based on left and right sidebar width */
                 left: 50px;
-                /* Adjust based on left sidebar width */
             }
 
             .main-content {
                 margin-left: 50px;
-                /* Adjust based on left sidebar width */
                 margin-right: 300px;
-                /* Adjust based on right sidebar width */
                 width: calc(100% - 350px);
-                /* Adjust based on left and right sidebar width */
             }
         }
 
@@ -444,7 +439,6 @@
                 margin: 0;
                 width: 100%;
                 margin-top: 60px;
-                /* Adjust based on topbar height */
             }
 
             .right-sidebar {
@@ -460,8 +454,8 @@
             position: fixed;
             width: 100%;
             height: 100%;
-            background: #202020;
-            color: white;
+            background: #1e1e1e;
+            color: #d4d4d4;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -469,7 +463,7 @@
         }
 
         .selected {
-            border: 2px dashed #007BFF;
+            border: 2px dashed #007acc;
         }
 
         .folder-arrow {
@@ -485,11 +479,9 @@
         }
 
         .folder-content.open {
-            max-height: 500px; /* Adjust based on content */
+            max-height: 500px;
             opacity: 1;
         }
-
-
     </style>
 </head>
 
@@ -563,9 +555,15 @@
         <div class="modal-content">
             <span class="close" onclick="closeApiModal()">&times;</span>
             <h2>Select API</h2>
-            <button onclick="addGoogleMaps()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleMaps.webp" alt="Google Maps" style="margin-left: 23%;">Google Maps</button>
-            <button onclick="addGoogleAds()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleAds.webp" alt="Google Ads" style="margin-left: 23%;">Google Ads</button>
-            <button onclick="addGoogleRecaptcha()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleReCAPTCHA.webp" alt="Google ReCAPTCHA" style="margin-left: 23%;">Google ReCAPTCHA</button>
+            <button onclick="addGoogleMaps()"
+                style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img src="icons/GoogleMaps.webp"
+                    alt="Google Maps" style="margin-left: 23%;">Google Maps</button>
+            <button onclick="addGoogleAds()" style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img
+                    src="icons/GoogleAds.webp" alt="Google Ads" style="margin-left: 23%;">Google Ads</button>
+            <button onclick="addGoogleRecaptcha()"
+                style="display: inline-grid; margin: 10px 20px 0 0; max-width: 105px;"><img
+                    src="icons/GoogleReCAPTCHA.webp" alt="Google ReCAPTCHA" style="margin-left: 23%;">Google
+                ReCAPTCHA</button>
         </div>
     </div>
     <div class="topbar">
@@ -602,12 +600,15 @@
     <div class="right-sidebar">
         <div class="file-explorer">
             <h3>File Explorer</h3>
-            <button onclick="showAddFileFolderModal()" style="margin-left: 78%;font-size: 25px; z-index: 0; position: absolute; background: #202020 !important; border-color: transparent; box-shadow: none; padding: 5px 15px;">+</button>
+            <button onclick="showAddFileFolderModal()"
+                style="margin-left: 71%;font-size: 25px; z-index: 0; position: absolute; background: transparent; border-color: transparent; box-shadow: none; padding: 5px 15px; margin-top: -48px;">+</button>
             <ul id="file-list">
-                <li onclick="selectFile('index.html')"><img src="icons/HTML5.webp" alt="HTML5 Icon" style="width: 16px; height: 16px; margin-right: 5px;">index.html</li>
+                <li onclick="selectFile('index.html')"><img src="icons/HTML5.webp" alt="HTML5 Icon"
+                        style="width: 16px; height: 16px; margin-right: 5px;">index.html</li>
                 <li data-folder="images" onclick="toggleFolder('images')">
                     <span class="folder-arrow down">&or;</span>
-                    <img src="icons/Folder.webp" alt="Folder Icon" style="width: 16px; height: 16px; margin-right: 5px;">Images
+                    <img src="icons/Folder.webp" alt="Folder Icon"
+                        style="width: 16px; height: 16px; margin-right: 5px;">Images
                 </li>
                 <ul id="images" class="folder-content">
                     <!-- Add image files here -->
@@ -673,7 +674,7 @@
 
         function handleImageUpload(event) {
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 const imageUrl = reader.result;
                 addImageBox(imageUrl);
                 closeImageUploadModal();
@@ -713,7 +714,7 @@
             resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
                 if (resizeHandle) {
-                    resizeHandle.onmousedown = function(event) {
+                    resizeHandle.onmousedown = function (event) {
                         event.stopPropagation();
                         selectedElement = el; // Set the selected element
                         showProperties(); // Show properties when an element is selected
@@ -814,7 +815,7 @@
 
         function previewImage(event) {
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 const imageUrl = reader.result;
                 document.getElementById('website-image-url').value = imageUrl;
             };
@@ -857,7 +858,7 @@
                     document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
                     fontSizeLabel.style.display = 'flex';
                     fontSizeInput.style.display = 'flex';
-                    fontSizeInput.value = parseInt(window.getComputedStyle(selectedElement).fontSize);
+                    fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
                 } else if (selectedElement.id === 'website-preview') {
                     // Website Preview
                     imageUrlInput.style.display = 'none';
@@ -906,7 +907,7 @@
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#FFFFFF');
                     fontSizeLabel.style.display = 'flex';
                     fontSizeInput.style.display = 'flex';
-                    fontSizeInput.value = parseInt(window.getComputedStyle(selectedElement).fontSize);
+                    fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
                 } else if (selectedElement.id === 'Shape-Square') {
                     // Shape
                     imageUrlInput.style.display = 'none';
@@ -920,7 +921,7 @@
                     backgroundImageUrlInput.style.display = 'none';
                     backgroundImageUploadLable.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
-                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#010101');
                     fontSizeLabel.style.display = 'none';
                     fontSizeInput.style.display = 'none';
                 } else {
@@ -966,7 +967,7 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
-                el.onmousedown = function(event) {
+                el.onmousedown = function (event) {
                     if (event.ctrlKey || event.metaKey) {
                         if (selectedElements.includes(el)) {
                             selectedElements = selectedElements.filter(e => e !== el);
@@ -1040,7 +1041,7 @@
 
                         document.addEventListener('mousemove', onMouseMove);
 
-                        el.onmouseup = function() {
+                        el.onmouseup = function () {
                             document.removeEventListener('mousemove', onMouseMove);
                             el.onmouseup = null;
                             horizontalSnapLine.style.display = 'none';
@@ -1048,7 +1049,7 @@
                             document.body.classList.remove('no-select'); // Re-enable text selection
                         };
 
-                        el.onmouseleave = function() {
+                        el.onmouseleave = function () {
                             document.removeEventListener('mousemove', onMouseMove);
                             el.onmouseup = null;
                             horizontalSnapLine.style.display = 'none';
@@ -1058,7 +1059,7 @@
                     }
                 };
 
-                el.ondragstart = function() {
+                el.ondragstart = function () {
                     return false;
                 };
             });
@@ -1069,7 +1070,7 @@
                 const fontColor = document.getElementById('font-color').value;
                 const backgroundColor = document.getElementById('background-color').value;
                 const textStyle = document.getElementById('website-text-style').value;
-                const fontSize = document.getElementById('font-size').value + 'px';
+                const fontSize = Math.round(document.getElementById('font-size').value / 1.7) + 'px';
 
                 console.log('Updating element style:', {
                     fontColor,
@@ -1113,7 +1114,7 @@
             const fileInput = document.getElementById('new-image-file');
             const file = fileInput.files[0];
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 selectedElement.querySelector('img').src = reader.result;
                 closeChangeImageUrlModal();
             };
@@ -1128,7 +1129,7 @@
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('URL').value = e.target.result;
                 };
                 reader.readAsDataURL(file);
@@ -1151,7 +1152,7 @@
             button.style.width = 'auto';
             button.style.height = '22px';
             button.style.padding = '10px 20px';
-            button.style.backgroundColor = '#000';
+            button.style.backgroundColor = '#010101';
             button.style.color = '#fff';
             button.style.fontSize = '16px';
             button.contentEditable = 'true';
@@ -1270,7 +1271,7 @@
             const websitePreview = document.getElementById('website-preview');
             const contextMenu = document.getElementById('context-menu');
 
-            websitePreview.addEventListener('contextmenu', function(e) {
+            websitePreview.addEventListener('contextmenu', function (e) {
                 contextMenu.style.display = 'block';
                 contextMenu.style.color = 'black';
                 contextMenu.style.left = (e.pageX - 10) + "px";
@@ -1286,7 +1287,7 @@
                 e.preventDefault();
             }, false);
 
-            websitePreview.addEventListener('click', function(event) {
+            websitePreview.addEventListener('click', function (event) {
                 contextMenu.style.display = 'none';
                 contextMenu.style.left = '';
                 contextMenu.style.top = '';
@@ -1298,7 +1299,7 @@
                 showProperties();
             });
 
-            document.getElementById('context-menu').addEventListener('click', function(event) {
+            document.getElementById('context-menu').addEventListener('click', function (event) {
                 const action = event.target.innerText;
                 if (action === 'Delete') {
                     deleteElement();
@@ -1327,13 +1328,12 @@
 
         function SaveHTML() {
             const previewContent = document.getElementById('website-preview').innerHTML;
-            // Remove snapping lines
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = previewContent;
+
             const snapLines = tempDiv.querySelectorAll('.snap-line');
             snapLines.forEach(line => line.remove());
 
-            // Replace API boxes with actual API code
             const apiBoxes = tempDiv.querySelectorAll('.api-box');
             apiBoxes.forEach(box => {
                 if (box.id === 'google-map') {
@@ -1346,16 +1346,16 @@
                     mapDiv.style.left = box.style.left;
                     mapDiv.style.top = box.style.top;
                     mapDiv.innerHTML = `
-                        <div id="google-map" style="width: 100%; height: 100%;"></div>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap" async defer></script>
-                        <script>
-                            function initMap() {
-                                new google.maps.Map(document.getElementById('google-map'), {
-                                    center: { lat: -34.397, lng: 150.644 },
-                                    zoom: 8
-                                });
-                            }
-                        </script>`;
+                <div id="google-map" style="width: 100%; height: 100%;"></div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap" async defer>
+                <script>
+                    function initMap() {
+                        new google.maps.Map(document.getElementById('google-map'), {
+                            center: { lat: -34.397, lng: 150.644 },
+                            zoom: 8
+                        });
+                    }
+                `;
                     box.replaceWith(mapDiv);
                 } else if (box.id === 'google-ads') {
                     const adDiv = document.createElement('div');
@@ -1368,7 +1368,8 @@
                     adDiv.style.position = 'absolute';
                     adDiv.style.left = box.style.left;
                     adDiv.style.top = box.style.top;
-                    adDiv.innerHTML = `<script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script>`;
+                    adDiv.innerHTML = `
+                    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async>`;
                     box.replaceWith(adDiv);
                 } else if (box.id === 'google-recaptcha') {
                     const siteKey = box.getAttribute('data-sitekey');
@@ -1380,74 +1381,77 @@
                     recaptchaDiv.style.position = 'absolute';
                     recaptchaDiv.style.left = box.style.left;
                     recaptchaDiv.style.top = box.style.top;
-                    recaptchaDiv.innerHTML = `<script src="https://www.google.com/recaptcha/api.js" async defer></script>`;
+                    recaptchaDiv.innerHTML = `
+                    <script src="https://www.google.com/recaptcha/api.js" async defer>`;
                     box.replaceWith(recaptchaDiv);
                 }
             });
 
             const cleanedContent = tempDiv.innerHTML;
 
-            // Create a container to upscale the content
             const upscaleContainer = document.createElement('div');
             upscaleContainer.style.width = '100%';
             upscaleContainer.style.height = 'auto';
             upscaleContainer.style.overflowX = 'hidden';
             upscaleContainer.innerHTML = cleanedContent;
 
-            // Multiply all positioning properties like left and top by 1.8
             const elements = upscaleContainer.querySelectorAll('*');
             elements.forEach(el => {
                 if (!el.classList.contains('content-container')) {
                     const left = parseFloat(el.style.left) || 0;
                     const top = parseFloat(el.style.top) || 0;
-                    const fontSize = parseFloat(el.style.fontSize) || 0;
+                    const fontSize = Math.round(parseFloat(el.style.fontSize) * 1.7) || 0;
+                    const fontStyle = document.getElementById('topbar-font-style').value;
                     const width = parseFloat(el.style.width) || 'auto';
                     const height = parseFloat(el.style.height) || 'auto';
-                    el.style.fontSize = `${fontSize * 1.83}px`;
-                    el.style.left = `${left * 1.83}px`;
-                    el.style.top = `${top * 1.83}px`;
-                    el.style.width = width !== 'auto' ? `${parseFloat(width) * 1.83}px` : 'auto';
-                    el.style.height = height !== 'auto' ? `${parseFloat(height) * 1.83}px` : 'auto';
+                    el.style.fontSize = `${fontSize}px`;
+                    el.style.fontFamily = fontStyle;
+                    el.style.left = `${left * 1.7}px`;
+                    el.style.top = `${top * 1.7}px`;
+                    el.style.width = width !== 'auto' ? `${parseFloat(width) * 1.7}px` : 'auto';
+                    el.style.height = height !== 'auto' ? `${parseFloat(height) * 1.7}px` : 'auto';
                 }
             });
 
             const fullHTML = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="${document.getElementById('topbar-website-description').value}">
-    <title>${document.title}</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            font-family: ${document.getElementById('topbar-font-style').value};
-            text-decoration: none;
-        }
-        .content-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-    <div class="content-container">
-        ${upscaleContainer.innerHTML}
-    </div>
-</body>
-</html>`;
-            const blob = new Blob([fullHTML], {
-                type: 'text/html'
-            });
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="${document.getElementById('topbar-website-description').value}">
+        <title>${document.title}</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                width: 100vw;
+                text-decoration: none;
+            }
+
+            .content-container {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="content-container" style="background-color: ${document.getElementById('website-preview').style.backgroundColor}">
+            ${upscaleContainer.innerHTML}
+        </div>
+    </body>
+
+    </html>`;
+
+            const blob = new Blob([fullHTML], { type: 'text/html' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = 'website.html';
@@ -1458,11 +1462,11 @@
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.html';
-            input.onchange = function(event) {
+            input.onchange = function (event) {
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         const content = e.target.result;
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = content;
@@ -1488,6 +1492,7 @@
                                         child.classList.add('editable');
                                         child.contentEditable = 'true';
                                     }
+                                    downscaleElement(child);
                                 }
                                 preview.appendChild(child);
                             }
@@ -1501,6 +1506,7 @@
                                         child.classList.add('editable');
                                         child.contentEditable = 'true';
                                     }
+                                    downscaleElement(child);
                                 }
                                 preview.appendChild(child);
                             }
@@ -1519,6 +1525,20 @@
             input.click();
         }
 
+        function downscaleElement(element) {
+            const left = parseFloat(element.style.left) || 0;
+            const top = parseFloat(element.style.top) || 0;
+            const fontSize = Math.round(parseFloat(element.style.fontSize) / 1.7) || 0;
+            const width = parseFloat(element.style.width) || 'auto';
+            const height = parseFloat(element.style.height) || 'auto';
+
+            element.style.left = `${left / 1.7}px`;
+            element.style.top = `${top / 1.7}px`;
+            element.style.fontSize = `${fontSize}px`;
+            element.style.width = width !== 'auto' ? `${parseFloat(width) / 1.7}px` : 'auto';
+            element.style.height = height !== 'auto' ? `${parseFloat(height) / 1.7}px` : 'auto';
+        }
+
         function makeElementsDraggable() {
             const draggables = document.querySelectorAll('.draggable');
             const preview = document.getElementById('website-preview');
@@ -1526,7 +1546,7 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
-                el.onmousedown = function(event) {
+                el.onmousedown = function (event) {
                     if (event.ctrlKey || event.metaKey) {
                         if (selectedElements.includes(el)) {
                             selectedElements = selectedElements.filter(e => e !== el);
@@ -1572,64 +1592,36 @@
 
                                 if (Math.abs(elCenterX - centerX) < snapTolerance) {
                                     newLeft = centerX - element.offsetWidth / 2;
-                                    verticalSnapLine.style.left = `${centerX}px`;
-                                    verticalSnapLine.style.display = 'block';
+                                    verticalSnapLine.style.left = `${centerX}px`; verticalSnapLine.style.display = 'block';
                                 } else {
                                     verticalSnapLine.style.display = 'none';
-                                }
-
-                                if (Math.abs(elCenterY - centerY) < snapTolerance) {
-                                    newTop = centerY - element.offsetHeight / 2;
-                                    horizontalSnapLine.style.top = `${centerY}px`;
-                                    horizontalSnapLine.style.display = 'block';
-                                } else {
-                                    horizontalSnapLine.style.display = 'none';
-                                }
-
-                                element.style.left = newLeft + 'px';
+                                } if (Math.abs(elCenterY - centerY) < snapTolerance) {
+                                    newTop = centerY -
+                                    element.offsetHeight / 2; horizontalSnapLine.style.top = `${centerY}px`; horizontalSnapLine.style.display = 'block'
+                                        ;
+                                } else { horizontalSnapLine.style.display = 'none'; } element.style.left = newLeft + 'px';
                                 element.style.top = newTop + 'px';
-                            });
-
-                            shiftX = pageX;
-                            shiftY = pageY;
-                        }
-
-                        function onMouseMove(event) {
+                            }); shiftX = pageX; shiftY = pageY;
+                        } function onMouseMove(event) {
                             moveAt(event.pageX, event.pageY);
-                        }
-
-                        document.addEventListener('mousemove', onMouseMove);
-
-                        el.onmouseup = function() {
-                            document.removeEventListener('mousemove', onMouseMove);
-                            el.onmouseup = null;
-                            horizontalSnapLine.style.display = 'none';
-                            verticalSnapLine.style.display = 'none';
-                            document.body.classList.remove('no-select'); // Re-enable text selection
+                        } document.addEventListener('mousemove', onMouseMove); el.onmouseup = function () {
+                            document.removeEventListener('mousemove', onMouseMove); el.onmouseup = null;
+                            horizontalSnapLine.style.display = 'none'; verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select'); // Re-enable text selection }; el.onmouseleave=function() {
+                            document.removeEventListener('mousemove', onMouseMove); el.onmouseup = null;
+                            horizontalSnapLine.style.display = 'none'; verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select'); // Re-enable text selection }; } }; el.ondragstart=function() {
+                            return false;
                         };
-
-                        el.onmouseleave = function() {
-                            document.removeEventListener('mousemove', onMouseMove);
-                            el.onmouseup = null;
-                            horizontalSnapLine.style.display = 'none';
-                            verticalSnapLine.style.display = 'none';
-                            document.body.classList.remove('no-select'); // Re-enable text selection
-                        };
-                    }
-                };
-
-                el.ondragstart = function() {
-                    return false;
+                    };
                 };
             });
         }
-
         function makeElementsResizable() {
-            const resizables = document.querySelectorAll('.resizable');
-
-            resizables.forEach(el => {
+            const
+            resizables = document.querySelectorAll('.resizable'); resizables.forEach(el => {
                 const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function(event) {
+                resizeHandle.onmousedown = function (event) {
                     event.stopPropagation();
                     selectedElement = el;
                     showProperties();
@@ -1644,7 +1636,8 @@
                         const newWidth = startWidth + e.clientX - startX;
                         const newHeight = startHeight + e.clientY - startY;
 
-                        if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') || el.classList.contains('g-recaptcha')) {
+                        if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') ||
+                            el.classList.contains('g-recaptcha')) {
                             el.style.width = newWidth + 'px';
                             el.style.height = newWidth / aspectRatio + 'px';
                         } else {
@@ -1671,7 +1664,7 @@
 
         function previewBackgroundImage(event) {
             const reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 const imageUrl = reader.result;
                 document.getElementById('background-image-url').value = imageUrl;
                 updateBackgroundImage();
@@ -1685,7 +1678,8 @@
                 const fileList = document.querySelectorAll('#file-list');
                 fileList.forEach(list => {
                     const newFile = document.createElement('li');
-                    newFile.innerHTML = `<img src="icons/HTML5.webp" alt="HTML5 Icon" style="width: 16px; height: 16px; margin-right: 5px;">${fileName}.html`;
+                    newFile.innerHTML = `<img src="icons/HTML5.webp" alt="HTML5 Icon"
+            style="width: 16px; height: 16px; margin-right: 5px;">${fileName}.html`;
                     newFile.setAttribute('onclick', `selectFile('${fileName}')`);
                     list.appendChild(newFile);
                 });
@@ -1696,7 +1690,8 @@
                     fileList.forEach(list => {
                         const newFolder = document.createElement('li');
                         newFolder.innerHTML = `<span class="folder-arrow down">&or;</span>`;
-                        newFolder.innerHTML = `<img src="icons/Folder.webp" alt="Folder Icon" style="width: 16px; height: 16px; margin-right: 5px;">${folderName}`;
+                        newFolder.innerHTML = `<img src="icons/Folder.webp" alt="Folder Icon"
+            style="width: 16px; height: 16px; margin-right: 5px;">${folderName}`;
                         newFolder.setAttribute('onclick', `toggleFolder('${folderName}')`);
                         const folderContent = document.createElement('ul');
                         folderContent.id = folderName;
@@ -1787,6 +1782,10 @@
         function addGoogleRecaptcha() {
             const recaptchaDiv = document.createElement('div');
             const site_key = prompt("Enter your Google Recaptcha site key:");
+            if (!site_key) {
+                alert("Site key is required.");
+                return;
+            }
             recaptchaDiv.className = 'api-box draggable resizable';
             recaptchaDiv.id = 'google-recaptcha';
             recaptchaDiv.innerText = 'Google Recaptcha API';
@@ -1813,7 +1812,7 @@
             closeApiModal();
         }
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.getElementById('loading-screen').style.display = 'none';
         });
     </script>
