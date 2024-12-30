@@ -147,20 +147,26 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            background: #1e1e1e;
+
         }
 
         .builder-form {
-            width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+
+            width: 94%;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .builder-form input,
         .builder-form textarea,
         .builder-form select {
-            width: 100%;
+            width: 92%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #444;
@@ -594,6 +600,7 @@
                 <!-- Generated website will appear here -->
                 <div class="snap-line horizontal" id="horizontal-snap-line" style="display: none;"></div>
                 <div class="snap-line vertical" id="vertical-snap-line" style="display: none;"></div>
+                <!-- Add the preview image element if it doesn't exist -->
             </div>
         </div>
     </div>
@@ -617,24 +624,31 @@
             </ul>
         </div>
         <div class="builder-form">
-            <input type="text" id="website-image-url" placeholder="Image URL" oninput="updatePreview()">
-            <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)">
+            <h3>Properties</h3>
             <select id="website-text-style" onchange="updateElementStyle()">
                 <option value="normal">Normal</option>
                 <option value="bold">Bold</option>
                 <option value="italic">Italic</option>
             </select>
-            <label for="font-color" id="font-color-label">Font Color:</label>
-            <input type="color" id="font-color" onchange="updateElementStyle()">
-            <label for="background-color" id="background-color-label">Background Color:</label>
-            <input type="color" id="background-color" onchange="updateElementStyle()">
-            <label for="background-image-url" id="background-image-url-label">Background Image URL:</label>
-            <input type="text" id="background-image-url" placeholder="Background Image URL"
-                oninput="updateBackgroundImage()">
-            <label for="background-image-upload" id="background-image-upload-lable" style="margin-top: -5px;">Or</label>
-            <input type="file" id="background-image-upload" accept="image/*" onchange="previewBackgroundImage(event)">
-            <label for="font-size" id="font-size-label">Font Size:</label>
-            <input type="number" id="font-size" min="1" max="100" onchange="updateElementStyle()">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <label for="font-color" id="font-color-label"style="width: 180px; margin-top:15px">Font Color:</label>
+                <input type="color" id="font-color" onchange="updateElementStyle()">
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <label for="background-color" id="background-color-label" style="width: 180px; margin-top:15px">Background Color :</label>
+                <input type="color" id="background-color" onchange="updateElementStyle()">
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <label for="background-image-url" id="background-image-url-label" style="width: 180px; margin-top:15px">Background Image :</label>
+                <label for="background-image-upload" id="background-image-upload-icon" style="background: #252526; padding: 8px 10px; border-radius: 4px; width: 30%">
+                    <img src="icons/upload-icon.webp" alt="Upload Background Image" style="cursor: pointer;">
+                </label>
+                <input type="file" id="background-image-upload" style="display: none;" accept="image/*" onchange="previewBackgroundImage(event)">
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <label for="font-size" id="font-size-label"style="width: 180px; margin-top:15px">Font Size:</label>
+                <input type="number" id="font-size" min="1" max="100" onchange="updateElementStyle()" style="width: 40px;">
+            </div>
         </div>
     </div>
     <div class="context-menu" id="context-menu">
@@ -648,7 +662,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeChangeImageUrlModal()">&times;</span>
             <h2>Change Image</h2>
-            <input type="file" id="new-image-file" accept="image/*">
+            <input type="file" id="new-image-file" accept="image/*" onchange="changeImage()">
             <button onclick="changeImage()">Change</button>
         </div>
     </div>
@@ -751,29 +765,6 @@
                 }
             });
         }
-
-        function updatePreview() {
-            const imageUrl = document.getElementById('website-image-url').value;
-            const preview = document.getElementById('website-preview');
-
-            // Check if an image element already exists
-            let imageBox = preview.querySelector('img');
-            if (!imageBox) {
-                // If no image element exists, create a new one
-                imageBox = document.createElement('img');
-                imageBox.className = 'draggable';
-                imageBox.contentEditable = 'false';
-                imageBox.style.position = 'absolute';
-                imageBox.style.left = '10px';
-                imageBox.style.top = '10px';
-                imageBox.style.width = '200px'; // Set default width
-                imageBox.style.height = 'auto'; // Maintain aspect ratio
-                preview.appendChild(imageBox);
-                makeElementsDraggable();
-            }
-            imageBox.src = imageUrl;
-        }
-
         function updateTopbarPreview() {
             const title = document.getElementById('topbar-website-title').value;
             const description = document.getElementById('topbar-website-description').value;
@@ -814,12 +805,31 @@
         }
 
         function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                const imageUrl = reader.result;
-                document.getElementById('website-image-url').value = imageUrl;
-            };
-            reader.readAsDataURL(event.target.files[0]);
+            const file = event.target.files[0];
+            if (file && file.size > 2 * 1024 * 1024) {
+                alert("Warning! The image is too large. The recommended maximum size is 2MB.");
+                return;
+            }
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const img = new Image();
+                    img.onload = function () {
+                        if (img.width > 1920 || img.height > 1080) {
+                            alert("Warning! The image dimensions exceed 1920x1080 pixels.");
+                            return;
+                        }
+                        const previewImg = document.getElementById('preview-image');
+                        if (previewImg) { // Added null check
+                            previewImg.src = reader.result;
+                        } else {
+                            console.error("Element with id 'preview-image' not found.");
+                        }
+                    };
+                    img.src = reader.result;
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
         function showProperties() {
@@ -829,11 +839,8 @@
             const textStyleSelect = document.getElementById('website-text-style');
             const backgroundColorLabel = document.getElementById('background-color-label');
             const backgroundColorInput = document.getElementById('background-color');
-            const imageUrlInput = document.getElementById('website-image-url');
-            const imageUploadInput = document.getElementById('image-upload');
             const backgroundImageUrlLabel = document.getElementById('background-image-url-label');
-            const backgroundImageUrlInput = document.getElementById('background-image-url');
-            const backgroundImageUploadLable = document.getElementById('background-image-upload-lable');
+            const backgroundImageUploadIcon = document.getElementById('background-image-upload-icon');
             const backgroundImageUploadInput = document.getElementById('background-image-upload');
             const fontSizeLabel = document.getElementById('font-size-label');
             const fontSizeInput = document.getElementById('font-size');
@@ -842,16 +849,13 @@
                 builderForm.style.display = 'flex';
                 if (selectedElement.id === 'text-box') {
                     // Text Box
-                    imageUrlInput.style.display = 'none';
-                    imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'flex';
                     fontColorInput.style.display = 'flex';
                     textStyleSelect.style.display = 'flex';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
-                    backgroundImageUrlInput.style.display = 'none';
-                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#000000');
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
@@ -861,47 +865,38 @@
                     fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
                 } else if (selectedElement.id === 'website-preview') {
                     // Website Preview
-                    imageUrlInput.style.display = 'none';
-                    imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'none';
                     fontColorInput.style.display = 'none';
                     textStyleSelect.style.display = 'none';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'flex';
-                    backgroundImageUrlInput.style.display = 'flex';
-                    backgroundImageUploadLable.style.display = 'flex';
-                    backgroundImageUploadInput.style.display = 'flex';
+                    backgroundImageUploadIcon.style.display = 'flex';
+                    backgroundImageUploadInput.style.display = 'none';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
                     fontSizeLabel.style.display = 'none';
                     fontSizeInput.style.display = 'none';
                 } else if (selectedElement.tagName === 'IMG') {
                     // Image
-                    imageUrlInput.style.display = 'flex';
-                    imageUploadInput.style.display = 'flex';
                     fontlabel.style.display = 'none';
                     fontColorInput.style.display = 'none';
                     textStyleSelect.style.display = 'none';
                     backgroundColorLabel.style.display = 'none';
                     backgroundColorInput.style.display = 'none';
                     backgroundImageUrlLabel.style.display = 'none';
-                    backgroundImageUrlInput.style.display = 'none';
-                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
                     fontSizeLabel.style.display = 'none';
                     fontSizeInput.style.display = 'none';
                 } else if (selectedElement.id === 'hyperlink-button') {
                     // Button
-                    imageUrlInput.style.display = 'none';
-                    imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'flex';
                     fontColorInput.style.display = 'flex';
                     textStyleSelect.style.display = 'flex';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
-                    backgroundImageUrlInput.style.display = 'none';
-                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#FFFFFF');
@@ -910,16 +905,13 @@
                     fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
                 } else if (selectedElement.id === 'Shape-Square') {
                     // Shape
-                    imageUrlInput.style.display = 'none';
-                    imageUploadInput.style.display = 'none';
                     fontlabel.style.display = 'none';
                     fontColorInput.style.display = 'none';
                     textStyleSelect.style.display = 'none';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
-                    backgroundImageUrlInput.style.display = 'none';
-                    backgroundImageUploadLable.style.display = 'none';
+                    backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#010101');
                     fontSizeLabel.style.display = 'none';
@@ -936,17 +928,14 @@
             }
             if (selectedElement === document.getElementById('website-preview')) {
                 // Website Preview
-                imageUrlInput.style.display = 'none';
-                imageUploadInput.style.display = 'none';
                 fontlabel.style.display = 'none';
                 fontColorInput.style.display = 'none';
                 textStyleSelect.style.display = 'none';
                 backgroundColorLabel.style.display = 'flex';
                 backgroundColorInput.style.display = 'flex';
                 backgroundImageUrlLabel.style.display = 'flex';
-                backgroundImageUrlInput.style.display = 'flex';
-                backgroundImageUploadLable.style.display = 'flex';
-                backgroundImageUploadInput.style.display = 'flex';
+                backgroundImageUploadIcon.style.display = 'flex';
+                backgroundImageUploadInput.style.display = 'none';
                 document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
                 fontSizeLabel.style.display = 'none';
                 fontSizeInput.style.display = 'none';
@@ -958,111 +947,6 @@
             const rgbValues = rgb.match(/\d+/g);
             if (!rgbValues) return rgb;
             return `#${((1 << 24) + (parseInt(rgbValues[0]) << 16) + (parseInt(rgbValues[1]) << 8) + parseInt(rgbValues[2])).toString(16).slice(1).toUpperCase()}`;
-        }
-
-        function makeElementsDraggable() {
-            const draggables = document.querySelectorAll('.draggable');
-            const preview = document.getElementById('website-preview');
-            const horizontalSnapLine = document.getElementById('horizontal-snap-line');
-            const verticalSnapLine = document.getElementById('vertical-snap-line');
-
-            draggables.forEach(el => {
-                el.onmousedown = function (event) {
-                    if (event.ctrlKey || event.metaKey) {
-                        if (selectedElements.includes(el)) {
-                            selectedElements = selectedElements.filter(e => e !== el);
-                            el.classList.remove('selected');
-                        } else {
-                            selectedElements.push(el);
-                            el.classList.add('selected');
-                        }
-                    } else {
-                        selectedElements.forEach(e => e.classList.remove('selected'));
-                        selectedElements = [el];
-                        el.classList.add('selected');
-                    }
-
-                    if (selectedElements.length > 0) {
-                        let shiftX = event.clientX;
-                        let shiftY = event.clientY;
-
-                        document.body.classList.add('no-select'); // Disable text selection
-
-                        function moveAt(pageX, pageY) {
-                            const deltaX = pageX - shiftX;
-                            const deltaY = pageY - shiftY;
-
-                            selectedElements.forEach(element => {
-                                let newLeft = element.offsetLeft + deltaX;
-                                let newTop = element.offsetTop + deltaY;
-
-                                // Constrain within the preview area horizontally
-                                newLeft = Math.max(0, Math.min(newLeft, preview.offsetWidth - element.offsetWidth));
-
-                                // Allow dragging beyond the initial height of the preview
-                                if (newTop + element.offsetHeight > preview.scrollHeight) {
-                                    preview.style.height = newTop + element.offsetHeight + 'px';
-                                }
-
-                                // Snapping logic
-                                const snapTolerance = 5; // Adjust snap tolerance as needed
-                                const centerX = preview.offsetWidth / 2;
-                                const centerY = preview.scrollHeight / 2;
-                                const elCenterX = newLeft + element.offsetWidth / 2;
-                                const elCenterY = newTop + element.offsetHeight / 2;
-
-                                if (Math.abs(elCenterX - centerX) < snapTolerance) {
-                                    newLeft = centerX - element.offsetWidth / 2;
-                                    verticalSnapLine.style.left = `${centerX}px`;
-                                    verticalSnapLine.style.display = 'block';
-                                } else {
-                                    verticalSnapLine.style.display = 'none';
-                                }
-
-                                if (Math.abs(elCenterY - centerY) < snapTolerance) {
-                                    newTop = centerY - element.offsetHeight / 2;
-                                    horizontalSnapLine.style.top = `${centerY}px`;
-                                    horizontalSnapLine.style.display = 'block';
-                                } else {
-                                    horizontalSnapLine.style.display = 'none';
-                                }
-
-                                element.style.left = newLeft + 'px';
-                                element.style.top = newTop + 'px';
-                            });
-
-                            shiftX = pageX;
-                            shiftY = pageY;
-                        }
-
-                        function onMouseMove(event) {
-                            moveAt(event.pageX, event.pageY);
-                        }
-
-                        document.addEventListener('mousemove', onMouseMove);
-
-                        el.onmouseup = function () {
-                            document.removeEventListener('mousemove', onMouseMove);
-                            el.onmouseup = null;
-                            horizontalSnapLine.style.display = 'none';
-                            verticalSnapLine.style.display = 'none';
-                            document.body.classList.remove('no-select'); // Re-enable text selection
-                        };
-
-                        el.onmouseleave = function () {
-                            document.removeEventListener('mousemove', onMouseMove);
-                            el.onmouseup = null;
-                            horizontalSnapLine.style.display = 'none';
-                            verticalSnapLine.style.display = 'none';
-                            document.body.classList.remove('no-select'); // Re-enable text selection
-                        };
-                    }
-                };
-
-                el.ondragstart = function () {
-                    return false;
-                };
-            });
         }
 
         function updateElementStyle() {
@@ -1113,12 +997,35 @@
         function changeImage() {
             const fileInput = document.getElementById('new-image-file');
             const file = fileInput.files[0];
-            const reader = new FileReader();
-            reader.onload = function () {
-                selectedElement.querySelector('img').src = reader.result;
-                closeChangeImageUrlModal();
-            };
-            reader.readAsDataURL(file);
+            if (file && file.size > 2 * 1024 * 1024) {
+                alert("Warning! The image is too large. The recommended maximum size is 2MB.");
+                return;
+            }
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        if (img.width > 1920 || img.height > 1080) {
+                            alert("Warning! The image dimensions exceed 1920x1080 pixels.");
+                            return;
+                        }
+                        if (selectedElement.tagName === 'IMG') {
+                            selectedElement.src = e.target.result; // Directly update if selectedElement is img
+                        } else {
+                            const imgElement = selectedElement.querySelector('img');
+                            if (imgElement) {
+                                imgElement.src = e.target.result; // Update child img if exists
+                            } else {
+                                alert("No image element found in the selected element.");
+                            }
+                        }
+                        closeChangeImageUrlModal();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
         }
 
         function closeButtonModel() {
@@ -1266,7 +1173,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            updatePreview();
 
             const websitePreview = document.getElementById('website-preview');
             const contextMenu = document.getElementById('context-menu');
@@ -1546,6 +1452,17 @@
             const verticalSnapLine = document.getElementById('vertical-snap-line');
 
             draggables.forEach(el => {
+                if (el.tagName === 'IMG') {
+                    el.setAttribute('draggable', 'false');
+                    el.ondragstart = function(event) {
+                        event.preventDefault();
+                    };
+                    el.onmousedown = function(event) {
+                        event.preventDefault();
+                    };
+                    return;
+                }
+
                 el.onmousedown = function (event) {
                     if (event.ctrlKey || event.metaKey) {
                         if (selectedElements.includes(el)) {
@@ -1602,17 +1519,31 @@
                                 } else { horizontalSnapLine.style.display = 'none'; } element.style.left = newLeft + 'px';
                                 element.style.top = newTop + 'px';
                             }); shiftX = pageX; shiftY = pageY;
+
+                            const rect = preview.getBoundingClientRect();
+                            if (
+                                pageX < rect.left ||
+                                pageX > rect.right ||
+                                pageY < rect.top ||
+                                pageY > rect.bottom
+                            ) {
+                                stopDrag();
+                            }
                         } function onMouseMove(event) {
                             moveAt(event.pageX, event.pageY);
-                        } document.addEventListener('mousemove', onMouseMove); el.onmouseup = function () {
-                            document.removeEventListener('mousemove', onMouseMove); el.onmouseup = null;
-                            horizontalSnapLine.style.display = 'none'; verticalSnapLine.style.display = 'none';
-                            document.body.classList.remove('no-select'); // Re-enable text selection }; el.onmouseleave=function() {
-                            document.removeEventListener('mousemove', onMouseMove); el.onmouseup = null;
-                            horizontalSnapLine.style.display = 'none'; verticalSnapLine.style.display = 'none';
-                            document.body.classList.remove('no-select'); // Re-enable text selection }; } }; el.ondragstart=function() {
-                            return false;
-                        };
+                        }
+
+                        function stopDrag() {
+                            document.removeEventListener('mousemove', onMouseMove);
+                            document.removeEventListener('mouseup', stopDrag);
+                            horizontalSnapLine.style.display = 'none';
+                            verticalSnapLine.style.display = 'none';
+                            document.body.classList.remove('no-select');
+                        }
+
+                        document.addEventListener('mousemove', onMouseMove);
+                        document.addEventListener('mouseup', stopDrag);
+
                     };
                 };
             });
@@ -1657,19 +1588,31 @@
             });
         }
 
-        function updateBackgroundImage() {
-            const imageUrl = document.getElementById('background-image-url').value;
+        function updateBackgroundImage(imageUrl) {
             document.getElementById('website-preview').style.backgroundImage = `url(${imageUrl})`;
         }
 
         function previewBackgroundImage(event) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                const imageUrl = reader.result;
-                document.getElementById('background-image-url').value = imageUrl;
-                updateBackgroundImage();
-            };
-            reader.readAsDataURL(event.target.files[0]);
+            const file = event.target.files[0];
+            if (file && file.size > 2 * 1024 * 1024) {
+                alert("Warning! The image is too large. The recommended maximum size is 2MB.");
+                return;
+            }
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const img = new Image();
+                    img.onload = function () {
+                        if (img.width > 1920 || img.height > 1080) {
+                            alert("Warning! The background image dimensions exceed 1920x1080 pixels.");
+                            return;
+                        }
+                        updateBackgroundImage(reader.result);
+                    };
+                    img.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
         }
 
         function addFile() {
@@ -1815,6 +1758,25 @@
         window.addEventListener('load', function () {
             document.getElementById('loading-screen').style.display = 'none';
         });
+
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = `
+            img {
+                -webkit-user-drag: none;
+                user-drag: none;
+                -khtml-user-drag: none;
+                -moz-user-drag: none;
+                -o-user-drag: none;
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName.toLowerCase() === 'img') {
+                e.preventDefault();
+            }
+        }, false);
     </script>
 </body>
 
