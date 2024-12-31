@@ -153,7 +153,6 @@
         .builder-form {
             display: flex;
             flex-direction: column;
-
             width: 94%;
             background: #333;
             border: 1px solid #444;
@@ -208,7 +207,8 @@
             height: auto;
             min-height: 100%;
             position: relative;
-            background-color: #ffffff; /* Set background color to white */
+            background-color: #ffffff;
+            /* Set background color to white */
         }
 
         .website-preview img {
@@ -488,6 +488,15 @@
             max-height: 500px;
             opacity: 1;
         }
+
+        .splitter {
+            width: 100%;
+            height: 2px;
+            border-radius: 1000px;
+            opacity: 0.2;
+            background-color: #ccc;
+            margin: 10px 0;        
+        }
     </style>
 </head>
 
@@ -524,17 +533,20 @@
         </div>
     </div>
     <div id="buttonModel" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 10px;">
             <span class="close" onclick="closeButtonModel()">&times;</span>
             <h2>Hyperlink</h2>
             <input type="text" id="URL" placeholder="Enter URL">
-            <div class="file-explorer">
-                <h3>File Explorer</h3>
-                <ul id="file-list">
-                    <li onclick="selectFile('index.html')">index.html</li>
-                    <!-- Add more files as needed -->
-                </ul>
-                <button onclick="addFile()">+</button>
+            <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px;">
+                <div class="file-explorer" style="width: 55%;">
+                    <h3>File Explorer</h3>
+                    <button onclick="addFile()"
+                        style="border: none; background: transparent; box-shadow: none; font-size: 25px; position: absolute; margin: -2.7% 0 0 12.3%; color:#d4d4d4;">+</button>
+                    <ul id="file-list">
+                        <li onclick="selectFile('index.html')"><img src="icons/HTML5.webp" alt="HTML5 Icon"
+                                style="width: 16px; height: 16px; margin-right: 5px;">index.html</li>
+                    </ul>
+                </div>
             </div>
             <button onclick="applyLink()">Apply</button>
         </div>
@@ -623,31 +635,54 @@
                 <!-- Add more files as needed -->
             </ul>
         </div>
-        <div class="builder-form">
-            <h3>Properties</h3>
-            <select id="website-text-style" onchange="updateElementStyle()">
-                <option value="normal">Normal</option>
-                <option value="bold">Bold</option>
-                <option value="italic">Italic</option>
-            </select>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                <label for="font-color" id="font-color-label"style="width: 180px; margin-top:15px">Font Color:</label>
-                <input type="color" id="font-color" onchange="updateElementStyle()">
+        <div class="builder-form" >
+            <h3 style="color:#d4d4d4;">Properties</h3>
+            <div class="splitter"></div>
+            <div>
+                <h3 id="font-header" style="color:#d4d4d4;">Font</h3>
+                <select id="website-text-style" onchange="updateElementStyle()">
+                    <option value="normal">Normal</option>
+                    <option value="bold">Bold</option>
+                    <option value="italic">Italic</option>
+                </select>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="font-color" id="font-color-label" style="width: 180px; margin-top:15px; color:#d4d4d4;">Font
+                        Color:</label>
+                    <input type="color" id="font-color" onchange="updateElementStyle()">
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="font-size" id="font-size-label" style="width: 180px; margin-top:15px; color:#d4d4d4;">Font Size:</label>
+                    <input type="number" id="font-size" min="1" max="100" onchange="updateElementStyle()"
+                        style="width: 40px;">
+                </div>
+                <div class="splitter" id="font-splitter"></div>
+            </div>
+            <div>
+                <h3 id="background-header" style="color:#d4d4d4;">Background</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="background-color" id="background-color-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Background Color :</label>
+                    <input type="color" id="background-color" onchange="updateElementStyle()">
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr);">
+                    <label for="background-image-url" id="background-image-url-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Background Image :</label>
+                    <label for="background-image-upload" id="background-image-upload-icon"
+                        style="background: #252526; padding: 8px 10px; border-radius: 4px; width: 62%">
+                        <img src="icons/upload-icon.webp" alt="Upload Background Image" style="cursor: pointer;">
+                    </label>
+                    <button for="delete-background-image" id="delete-background-image" style="color: #d4d4d4; margin:0; border: none; 
+                        background: transparent; box-shadow: none; font-size: 23px; display: none;"
+                        onclick="ResetBackground()" >&#x1D5EB;</button>
+                    <input type="file" id="background-image-upload" style="display: none;" accept="image/*"
+                        onchange="previewBackgroundImage(event)">
+                </div>
+                <div class="splitter" id="background-splitter"></div>
             </div>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                <label for="background-color" id="background-color-label" style="width: 180px; margin-top:15px">Background Color :</label>
-                <input type="color" id="background-color" onchange="updateElementStyle()">
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                <label for="background-image-url" id="background-image-url-label" style="width: 180px; margin-top:15px">Background Image :</label>
-                <label for="background-image-upload" id="background-image-upload-icon" style="background: #252526; padding: 8px 10px; border-radius: 4px; width: 30%">
-                    <img src="icons/upload-icon.webp" alt="Upload Background Image" style="cursor: pointer;">
-                </label>
-                <input type="file" id="background-image-upload" style="display: none;" accept="image/*" onchange="previewBackgroundImage(event)">
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                <label for="font-size" id="font-size-label"style="width: 180px; margin-top:15px">Font Size:</label>
-                <input type="number" id="font-size" min="1" max="100" onchange="updateElementStyle()" style="width: 40px;">
+                <label for="border-radius" id="border-radius-label" style="width: 180px; margin-top:15px; color:#d4d4d4;">Border
+                    Radius:</label>
+                <input type="number" id="border-radius" min="0" onchange="updateElementStyle()" style="width: 40px;">
             </div>
         </div>
     </div>
@@ -834,111 +869,159 @@
 
         function showProperties() {
             const builderForm = document.querySelector('.builder-form');
+
+            const fontheader = document.getElementById('font-header');
+            const fontsplitter = document.getElementById('font-splitter');
             const fontlabel = document.getElementById('font-color-label');
             const fontColorInput = document.getElementById('font-color');
             const textStyleSelect = document.getElementById('website-text-style');
+            const fontSizeLabel = document.getElementById('font-size-label');
+            const fontSizeInput = document.getElementById('font-size');
+
+            const backgroundheader = document.getElementById('background-header');
+            const backgroundsplitter = document.getElementById('background-splitter');
             const backgroundColorLabel = document.getElementById('background-color-label');
             const backgroundColorInput = document.getElementById('background-color');
             const backgroundImageUrlLabel = document.getElementById('background-image-url-label');
             const backgroundImageUploadIcon = document.getElementById('background-image-upload-icon');
             const backgroundImageUploadInput = document.getElementById('background-image-upload');
-            const fontSizeLabel = document.getElementById('font-size-label');
-            const fontSizeInput = document.getElementById('font-size');
+            const backgroundImageDeleteButton = document.getElementById('delete-background-image');
+            
+            const borderRadiusLabel = document.getElementById('border-radius-label');
+            const borderRadiusInput = document.getElementById('border-radius');
 
             if (selectedElement || selectedElements.length > 0) {
                 builderForm.style.display = 'flex';
                 if (selectedElement.id === 'text-box') {
                     // Text Box
+                    fontheader.style.display = 'flex';
+                    fontsplitter.style.display = 'flex';
                     fontlabel.style.display = 'flex';
                     fontColorInput.style.display = 'flex';
                     textStyleSelect.style.display = 'flex';
+                    document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
+                    fontSizeLabel.style.display = 'flex';
+                    fontSizeInput.style.display = 'flex';
+                    fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
+
+                    backgroundheader.style.display = 'flex';
+                    backgroundsplitter.style.display = 'flex';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
                     backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
+                    backgroundImageDeleteButton.style.display = 'none';
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#000000');
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
-                    document.getElementById('website-text-style').value = selectedElement.style.fontStyle || 'normal';
-                    fontSizeLabel.style.display = 'flex';
-                    fontSizeInput.style.display = 'flex';
-                    fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
+
+                    borderRadiusLabel.style.display = 'flex';
+                    borderRadiusInput.style.display = 'flex';
+                    borderRadiusInput.value = parseFloat(selectedElement.style.borderRadius) || 0;
                 } else if (selectedElement.id === 'website-preview') {
                     // Website Preview
+                    fontheader.style.display = 'none';
+                    fontsplitter.style.display = 'none';
                     fontlabel.style.display = 'none';
                     fontColorInput.style.display = 'none';
                     textStyleSelect.style.display = 'none';
+                    fontSizeLabel.style.display = 'none';
+                    fontSizeInput.style.display = 'none';
+
+                    backgroundheader.style.display = 'flex';
+                    backgroundsplitter.style.display = 'none';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'flex';
                     backgroundImageUploadIcon.style.display = 'flex';
                     backgroundImageUploadInput.style.display = 'none';
+                    backgroundImageDeleteButton.style.display = 'flex';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
-                    fontSizeLabel.style.display = 'none';
-                    fontSizeInput.style.display = 'none';
+
+                    borderRadiusLabel.style.display = 'none';
+                    borderRadiusInput.style.display = 'none';
                 } else if (selectedElement.tagName === 'IMG') {
                     // Image
+                    fontheader.style.display = 'none';
+                    fontsplitter.style.display = 'none';
                     fontlabel.style.display = 'none';
                     fontColorInput.style.display = 'none';
                     textStyleSelect.style.display = 'none';
+                    fontSizeLabel.style.display = 'none';
+                    fontSizeInput.style.display = 'none';
+
+                    backgroundheader.style.display = 'none';
+                    backgroundsplitter.style.display = 'none';
                     backgroundColorLabel.style.display = 'none';
                     backgroundColorInput.style.display = 'none';
                     backgroundImageUrlLabel.style.display = 'none';
                     backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
-                    fontSizeLabel.style.display = 'none';
-                    fontSizeInput.style.display = 'none';
+                    backgroundImageDeleteButton.style.display = 'none';
+
+                    borderRadiusLabel.style.display = 'none';
+                    borderRadiusInput.style.display = 'none';
                 } else if (selectedElement.id === 'hyperlink-button') {
                     // Button
+                    fontheader.style.display = 'flex';
+                    fontsplitter.style.display = 'flex';
                     fontlabel.style.display = 'flex';
                     fontColorInput.style.display = 'flex';
                     textStyleSelect.style.display = 'flex';
-                    backgroundColorLabel.style.display = 'flex';
-                    backgroundColorInput.style.display = 'flex';
-                    backgroundImageUrlLabel.style.display = 'none';
-                    backgroundImageUploadIcon.style.display = 'none';
-                    backgroundImageUploadInput.style.display = 'none';
-                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
-                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#FFFFFF');
                     fontSizeLabel.style.display = 'flex';
                     fontSizeInput.style.display = 'flex';
                     fontSizeInput.value = Math.round(parseInt(window.getComputedStyle(selectedElement).fontSize) * 1.7);
-                } else if (selectedElement.id === 'Shape-Square') {
-                    // Shape
-                    fontlabel.style.display = 'none';
-                    fontColorInput.style.display = 'none';
-                    textStyleSelect.style.display = 'none';
+
+                    backgroundheader.style.display = 'flex';
+                    backgroundsplitter.style.display = 'flex';
                     backgroundColorLabel.style.display = 'flex';
                     backgroundColorInput.style.display = 'flex';
                     backgroundImageUrlLabel.style.display = 'none';
                     backgroundImageUploadIcon.style.display = 'none';
                     backgroundImageUploadInput.style.display = 'none';
-                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#010101');
+                    backgroundImageDeleteButton.style.display = 'none';
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
+                    document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#FFFFFF');
+                    
+                    borderRadiusLabel.style.display = 'flex';
+                    borderRadiusInput.style.display = 'flex';
+                    borderRadiusInput.value = parseFloat(selectedElement.style.borderRadius) || 0;
+                } else if (selectedElement.id === 'Shape-Square') {
+                    // Shape
+                    fontheader.style.display = 'none';
+                    fontsplitter.style.display = 'none';
+                    fontlabel.style.display = 'none';
+                    fontColorInput.style.display = 'none';
+                    textStyleSelect.style.display = 'none';
                     fontSizeLabel.style.display = 'none';
                     fontSizeInput.style.display = 'none';
+
+                    backgroundheader.style.display = 'flex';
+                    backgroundsplitter.style.display = 'flex';
+                    backgroundColorLabel.style.display = 'flex';
+                    backgroundColorInput.style.display = 'flex';
+                    backgroundImageUrlLabel.style.display = 'none';
+                    backgroundImageUploadIcon.style.display = 'none';
+                    backgroundImageUploadInput.style.display = 'none';
+                    backgroundImageDeleteButton.style.display = 'none';
+                    document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#010101');
+                    
+                    borderRadiusLabel.style.display = 'flex';
+                    borderRadiusInput.style.display = 'flex';
+                    borderRadiusInput.value = parseFloat(selectedElement.style.borderRadius) || 0;
                 } else {
                     builderForm.style.display = 'none';
                     fontSizeLabel.style.display = 'none';
                     fontSizeInput.style.display = 'none';
+                    borderRadiusLabel.style.display = 'none';
+                    borderRadiusInput.style.display = 'none';
                 }
             } else {
                 builderForm.style.display = 'none';
                 fontSizeLabel.style.display = 'none';
                 fontSizeInput.style.display = 'none';
-            }
-            if (selectedElement === document.getElementById('website-preview')) {
-                // Website Preview
-                fontlabel.style.display = 'none';
-                fontColorInput.style.display = 'none';
-                textStyleSelect.style.display = 'none';
-                backgroundColorLabel.style.display = 'flex';
-                backgroundColorInput.style.display = 'flex';
-                backgroundImageUrlLabel.style.display = 'flex';
-                backgroundImageUploadIcon.style.display = 'flex';
-                backgroundImageUploadInput.style.display = 'none';
-                document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
-                fontSizeLabel.style.display = 'none';
-                fontSizeInput.style.display = 'none';
+                borderRadiusLabel.style.display = 'none';
+                borderRadiusInput.style.display = 'none';
             }
         }
 
@@ -955,6 +1038,7 @@
                 const backgroundColor = document.getElementById('background-color').value;
                 const textStyle = document.getElementById('website-text-style').value;
                 const fontSize = Math.round(document.getElementById('font-size').value / 1.7) + 'px';
+                const borderRadius = document.getElementById('border-radius').value + 'px';
 
                 console.log('Updating element style:', {
                     fontColor,
@@ -973,6 +1057,7 @@
                     selectedElement.style.fontWeight = textStyle;
                     selectedElement.style.fontStyle = textStyle;
                     selectedElement.style.fontSize = fontSize;
+                    selectedElement.style.borderRadius = borderRadius;
                 }
             }
         }
@@ -1066,6 +1151,7 @@
             button.style.borderRadius = '4px';
             button.style.textAlign = 'center';
             button.style.display = 'inline-block';
+            button.style.textDecoration = 'none';
             button.innerText = 'Button';
 
             const resizeHandle = document.createElement('div');
@@ -1093,7 +1179,7 @@
             shape.style.top = '10px';
             shape.style.width = '100px';
             shape.style.height = '100px';
-            shape.style.backgroundColor = '#000';
+            shape.style.backgroundColor = '#010101';
             shape.style.borderRadius = '4px';
 
             const resizeHandle = document.createElement('div');
@@ -1310,12 +1396,15 @@
                     const fontStyle = document.getElementById('topbar-font-style').value;
                     const width = parseFloat(el.style.width) || 'auto';
                     const height = parseFloat(el.style.height) || 'auto';
+                    const radius = parseFloat(el.style.borderRadius) || 0;
                     el.style.fontSize = `${fontSize}px`;
                     el.style.fontFamily = fontStyle;
                     el.style.left = `${left * 1.7}px`;
                     el.style.top = `${top * 1.7}px`;
                     el.style.width = width !== 'auto' ? `${parseFloat(width) * 1.7}px` : 'auto';
                     el.style.height = height !== 'auto' ? `${parseFloat(height) * 1.7}px` : 'auto';
+                    el.style.borderRadius = `${radius * 1.7}px`;
+                    el.contentEditable = 'false';
                 }
             });
 
@@ -1329,6 +1418,20 @@
         <meta name="description" content="${document.getElementById('topbar-website-description').value}">
         <title>${document.title}</title>
         <style>
+            @import url("https://fonts.googleapis.com/css?family=Poppins");
+            @import url("https://fonts.googleapis.com/css?family=Arial");
+            @import url("https://fonts.googleapis.com/css?family=Times+New+Roman");
+            @import url("https://fonts.googleapis.com/css?family=Roboto");
+            @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+            @import url("https://fonts.googleapis.com/css?family=Lato");
+            @import url("https://fonts.googleapis.com/css?family=Montserrat");
+            @import url("https://fonts.googleapis.com/css?family=Oswald");
+            @import url("https://fonts.googleapis.com/css?family=Raleway");
+            @import url("https://fonts.googleapis.com/css?family=Ubuntu");
+            @import url("https://fonts.googleapis.com/css?family=Nunito");
+            @import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+            @import url("https://fonts.googleapis.com/css?family=Merriweather");
+
             body {
                 margin: 0;
                 padding: 0;
@@ -1339,6 +1442,7 @@
                 height: 100vh;
                 width: 100vw;
                 text-decoration: none;
+                font-family: ${document.getElementById('topbar-font-style').value};
             }
 
             .content-container {
@@ -1350,7 +1454,7 @@
     </head>
 
     <body>
-        <div class="content-container" style="background-color: ${document.getElementById('website-preview').style.backgroundColor}">
+        <div class="content-container" style='background-color: ${document.getElementById('website-preview').style.backgroundColor}; background-image: ${document.getElementById('website-preview').style.backgroundImage};'>
             ${upscaleContainer.innerHTML}
         </div>
     </body>
@@ -1360,7 +1464,7 @@
             const blob = new Blob([fullHTML], { type: 'text/html' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'website.html';
+            link.download = 'index.html';
             link.click();
         }
 
@@ -1437,12 +1541,14 @@
             const fontSize = Math.round(parseFloat(element.style.fontSize) / 1.7) || 0;
             const width = parseFloat(element.style.width) || 'auto';
             const height = parseFloat(element.style.height) || 'auto';
+            const radius = parseFloat(element.style.borderRadius) || 0;
 
             element.style.left = `${left / 1.7}px`;
             element.style.top = `${top / 1.7}px`;
             element.style.fontSize = `${fontSize}px`;
             element.style.width = width !== 'auto' ? `${parseFloat(width) / 1.7}px` : 'auto';
             element.style.height = height !== 'auto' ? `${parseFloat(height) / 1.7}px` : 'auto';
+            element.style.borderRadius = `${radius / 1.7}px`;
         }
 
         function makeElementsDraggable() {
@@ -1454,10 +1560,10 @@
             draggables.forEach(el => {
                 if (el.tagName === 'IMG') {
                     el.setAttribute('draggable', 'false');
-                    el.ondragstart = function(event) {
+                    el.ondragstart = function (event) {
                         event.preventDefault();
                     };
-                    el.onmousedown = function(event) {
+                    el.onmousedown = function (event) {
                         event.preventDefault();
                     };
                     return;
@@ -1514,7 +1620,7 @@
                                     verticalSnapLine.style.display = 'none';
                                 } if (Math.abs(elCenterY - centerY) < snapTolerance) {
                                     newTop = centerY -
-                                    element.offsetHeight / 2; horizontalSnapLine.style.top = `${centerY}px`; horizontalSnapLine.style.display = 'block'
+                                        element.offsetHeight / 2; horizontalSnapLine.style.top = `${centerY}px`; horizontalSnapLine.style.display = 'block'
                                         ;
                                 } else { horizontalSnapLine.style.display = 'none'; } element.style.left = newLeft + 'px';
                                 element.style.top = newTop + 'px';
@@ -1550,42 +1656,42 @@
         }
         function makeElementsResizable() {
             const
-            resizables = document.querySelectorAll('.resizable'); resizables.forEach(el => {
-                const resizeHandle = el.querySelector('.resize-handle');
-                resizeHandle.onmousedown = function (event) {
-                    event.stopPropagation();
-                    selectedElement = el;
-                    showProperties();
+                resizables = document.querySelectorAll('.resizable'); resizables.forEach(el => {
+                    const resizeHandle = el.querySelector('.resize-handle');
+                    resizeHandle.onmousedown = function (event) {
+                        event.stopPropagation();
+                        selectedElement = el;
+                        showProperties();
 
-                    const startX = event.clientX;
-                    const startY = event.clientY;
-                    const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
-                    const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
-                    const aspectRatio = startWidth / startHeight;
+                        const startX = event.clientX;
+                        const startY = event.clientY;
+                        const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
+                        const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
+                        const aspectRatio = startWidth / startHeight;
 
-                    function doDrag(e) {
-                        const newWidth = startWidth + e.clientX - startX;
-                        const newHeight = startHeight + e.clientY - startY;
+                        function doDrag(e) {
+                            const newWidth = startWidth + e.clientX - startX;
+                            const newHeight = startHeight + e.clientY - startY;
 
-                        if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') ||
-                            el.classList.contains('g-recaptcha')) {
-                            el.style.width = newWidth + 'px';
-                            el.style.height = newWidth / aspectRatio + 'px';
-                        } else {
-                            el.style.width = newWidth + 'px';
-                            el.style.height = newHeight + 'px';
+                            if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') ||
+                                el.classList.contains('g-recaptcha')) {
+                                el.style.width = newWidth + 'px';
+                                el.style.height = newWidth / aspectRatio + 'px';
+                            } else {
+                                el.style.width = newWidth + 'px';
+                                el.style.height = newHeight + 'px';
+                            }
                         }
-                    }
 
-                    function stopDrag() {
-                        document.documentElement.removeEventListener('mousemove', doDrag, false);
-                        document.documentElement.removeEventListener('mouseup', stopDrag, false);
-                    }
+                        function stopDrag() {
+                            document.documentElement.removeEventListener('mousemove', doDrag, false);
+                            document.documentElement.removeEventListener('mouseup', stopDrag, false);
+                        }
 
-                    document.documentElement.addEventListener('mousemove', doDrag, false);
-                    document.documentElement.addEventListener('mouseup', stopDrag, false);
-                };
-            });
+                        document.documentElement.addEventListener('mousemove', doDrag, false);
+                        document.documentElement.addEventListener('mouseup', stopDrag, false);
+                    };
+                });
         }
 
         function updateBackgroundImage(imageUrl) {
@@ -1593,6 +1699,7 @@
         }
 
         function previewBackgroundImage(event) {
+            const backgroundImageDeleteButton = document.getElementById('delete-background-image');
             const file = event.target.files[0];
             if (file && file.size > 2 * 1024 * 1024) {
                 alert("Warning! The image is too large. The recommended maximum size is 2MB.");
@@ -1610,6 +1717,7 @@
                         updateBackgroundImage(reader.result);
                     };
                     img.src = reader.result;
+                    backgroundImageDeleteButton.style.color = 'red';
                 };
                 reader.readAsDataURL(event.target.files[0]);
             }
@@ -1772,11 +1880,19 @@
         `;
         document.head.appendChild(style);
 
-        document.addEventListener('dragstart', function(e) {
+        document.addEventListener('dragstart', function (e) {
             if (e.target.tagName.toLowerCase() === 'img') {
                 e.preventDefault();
             }
         }, false);
+
+        function ResetBackground() {
+            document.getElementById('website-preview').style.backgroundImage = 'none';
+            const deleteButton = document.getElementById('delete-background-image');
+            if (deleteButton) {
+                deleteButton.style.color = '#d4d4d4';
+            }
+        }
     </script>
 </body>
 
