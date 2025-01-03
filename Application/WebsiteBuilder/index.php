@@ -160,6 +160,7 @@
             padding: 10px;
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
 
         .builder-form input,
@@ -304,6 +305,7 @@
             width: 80%;
             max-width: 500px;
             color: #d4d4d4;
+            border-radius: 10px;
         }
 
         .close {
@@ -495,7 +497,36 @@
             border-radius: 1000px;
             opacity: 0.2;
             background-color: #ccc;
-            margin: 10px 0;        
+            margin: 10px 0;
+        }
+
+        .context-menu-insert {
+            display: none;
+            position: absolute;
+            background: #252526;
+            border: 1px solid #444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .context-menu-insert ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .context-menu-insert li {
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 4px;
+            color: #d4d4d4;
+        }
+
+        .context-menu-insert li:hover {
+            background: #3c3c3c;
         }
     </style>
 </head>
@@ -516,8 +547,10 @@
     <div class="menu" id="menu">
         <span class="close-menu" style="font-size: 30px;" onclick="closeMenu()">&times;</span>
         <h2>Menu</h2>
+        <div class="splitter"></div>
         <ul>
-            <li onclick="SaveHTML()">Save as HTML</li>
+            <li>Save</li>
+            <li onclick="SaveHTML()">Export as File</li>
             <li onclick="ImportHTML()">Import</li>
             <li>Insert</li>
             <li>Tools</li>
@@ -529,13 +562,20 @@
         <div class="modal-content">
             <span class="close" onclick="closeImageUploadModal()">&times;</span>
             <h2>Upload Image</h2>
-            <input type="file" id="image-upload-modal" accept="image/*" onchange="handleImageUpload(event)">
+            <div class="splitter"></div>
+            <div id="drop-zone"
+                style="border: 2px dashed #444; padding: 80px 20px; text-align: center; height: 45%; margin-top: 20px;">
+                Drag and drop an image here or click to select
+                <input type="file" id="image-upload-modal" accept="image/*" onchange="handleImageUpload(event)"
+                    style="display: none;">
+            </div>
         </div>
     </div>
     <div id="buttonModel" class="modal">
-        <div class="modal-content" style="border-radius: 10px;">
+        <div class="modal-content">
             <span class="close" onclick="closeButtonModel()">&times;</span>
             <h2>Hyperlink</h2>
+            <div class="splitter"></div>
             <input type="text" id="URL" placeholder="Enter URL">
             <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px;">
                 <div class="file-explorer" style="width: 55%;">
@@ -612,7 +652,6 @@
                 <!-- Generated website will appear here -->
                 <div class="snap-line horizontal" id="horizontal-snap-line" style="display: none;"></div>
                 <div class="snap-line vertical" id="vertical-snap-line" style="display: none;"></div>
-                <!-- Add the preview image element if it doesn't exist -->
             </div>
         </div>
     </div>
@@ -635,9 +674,34 @@
                 <!-- Add more files as needed -->
             </ul>
         </div>
-        <div class="builder-form" >
+        <div class="builder-form">
             <h3 style="color:#d4d4d4;">Properties</h3>
             <div class="splitter"></div>
+            <div>
+                <h3 id="premade-header">Premade Styles</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="premade-button-styles" id="premade-styles-label"
+                        style="width: 110px; margin-top:15px; color:#d4d4d4;">Select a Style:</label>
+                    <select id="premade-button-styles" onchange="updateButtonPreview()">
+                        <option value="default" style="background-color: #333; color: #fff;">Default</option>
+                        <option value="light" style="background-color: #fff; color: #000;">Light</option>
+                        <option value="dark" style="background-color: #000; color: #fff;">Dark</option>
+                        <option value="gradient"
+                            style="background: linear-gradient(to right, #ff7e5f, #feb47b); color: #fff;">Gradient
+                        </option>
+                        <option value="outline"
+                            style="background-color: transparent; color: #007acc; border: 2px solid #007acc;">Outline
+                        </option>
+                        <option value="rounded" style="background-color: #4caf50; color: #fff; border-radius: 20px;">
+                            Rounded</option>
+                    </select>
+                </div>
+                <div id="button-preview" style="margin-top: 10px; margin: 0;">
+                    <button id="preview-button"
+                        style="width: 100px; height: 40px; background-color: #333; color: #fff; padding-bottom: 10px; margin: 0 0 20px 90px;">Preview</button>
+                </div>
+                <div class="splitter"></div>
+            </div>
             <div>
                 <h3 id="font-header" style="color:#d4d4d4;">Font</h3>
                 <select id="website-text-style" onchange="updateElementStyle()">
@@ -646,12 +710,14 @@
                     <option value="italic">Italic</option>
                 </select>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                    <label for="font-color" id="font-color-label" style="width: 180px; margin-top:15px; color:#d4d4d4;">Font
+                    <label for="font-color" id="font-color-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Font
                         Color:</label>
                     <input type="color" id="font-color" onchange="updateElementStyle()">
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                    <label for="font-size" id="font-size-label" style="width: 180px; margin-top:15px; color:#d4d4d4;">Font Size:</label>
+                    <label for="font-size" id="font-size-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Font Size:</label>
                     <input type="number" id="font-size" min="1" max="100" onchange="updateElementStyle()"
                         style="width: 40px;">
                 </div>
@@ -671,18 +737,48 @@
                         style="background: #252526; padding: 8px 10px; border-radius: 4px; width: 62%">
                         <img src="icons/upload-icon.webp" alt="Upload Background Image" style="cursor: pointer;">
                     </label>
-                    <button for="delete-background-image" id="delete-background-image" style="color: #d4d4d4; margin:0; border: none; 
+                    <button for="delete-background-image" id="delete-background-image" style="color: #d4d4d4; margin:5px 0 0 7px; border: none; 
                         background: transparent; box-shadow: none; font-size: 23px; display: none;"
-                        onclick="ResetBackground()" >&#x1D5EB;</button>
+                        onclick="ResetBackground()">&#x1D5EB;</button>
                     <input type="file" id="background-image-upload" style="display: none;" accept="image/*"
                         onchange="previewBackgroundImage(event)">
                 </div>
                 <div class="splitter" id="background-splitter"></div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-                <label for="border-radius" id="border-radius-label" style="width: 180px; margin-top:15px; color:#d4d4d4;">Border
-                    Radius:</label>
-                <input type="number" id="border-radius" min="0" onchange="updateElementStyle()" style="width: 40px;">
+            <div>
+                <h3 id="border-header">Border</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="border-style" id="border-style-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Border Style:</label>
+                    <select id="border-style" onchange="updateElementStyle()">
+                        <option value="none">None</option>
+                        <option value="solid">Solid</option>
+                        <option value="dashed">Dashed</option>
+                        <option value="dotted">Dotted</option>
+                        <option value="double">Double</option>
+                        <option value="groove">Groove</option>
+                        <option value="ridge">Ridge</option>
+                        <option value="inset">Inset</option>
+                        <option value="outset">Outset</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="border-color" id="border-color-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Border Color:</label>
+                    <input type="color" id="border-color" onchange="updateElementStyle()">
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="border-width" id="border-width-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Border Width:</label>
+                    <input type="number" id="border-width" min="0" onchange="updateElementStyle()" style="width: 40px;">
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                    <label for="border-radius" id="border-radius-label"
+                        style="width: 180px; margin-top:15px; color:#d4d4d4;">Border
+                        Radius:</label>
+                    <input type="number" id="border-radius" min="0" onchange="updateElementStyle()"
+                        style="width: 40px;">
+                </div>
             </div>
         </div>
     </div>
@@ -698,12 +794,17 @@
             <span class="close" onclick="closeChangeImageUrlModal()">&times;</span>
             <h2>Change Image</h2>
             <input type="file" id="new-image-file" accept="image/*" onchange="changeImage()">
-            <button onclick="changeImage()">Change</button>
         </div>
+    </div>
+    <div class="context-menu-insert" id="context-menu-insert">
+        <ul>
+            <li onclick="showImageUploadModal()">Insert Image</li>
+        </ul>
     </div>
     <script>
         let selectedElement = null;
         let selectedElements = [];
+        let uploadedImages = []; // Populate with actual uploaded image URLs
 
         function OpenMenu() {
             document.getElementById('menu').style.display = 'flex';
@@ -870,6 +971,10 @@
         function showProperties() {
             const builderForm = document.querySelector('.builder-form');
 
+            const premadeheader = document.getElementById('premade-header');
+            const premadelabel = document.getElementById('premade-styles-label');
+            const buttonStyles = document.getElementById('premade-button-styles');
+
             const fontheader = document.getElementById('font-header');
             const fontsplitter = document.getElementById('font-splitter');
             const fontlabel = document.getElementById('font-color-label');
@@ -886,14 +991,25 @@
             const backgroundImageUploadIcon = document.getElementById('background-image-upload-icon');
             const backgroundImageUploadInput = document.getElementById('background-image-upload');
             const backgroundImageDeleteButton = document.getElementById('delete-background-image');
-            
+
+            const borderheader = document.getElementById('border-header');
+            const borderStyleLabel = document.getElementById('border-style-label');
+            const borderStyleSelect = document.getElementById('border-style');
+            const borderColorLabel = document.getElementById('border-color-label');
+            const borderColorInput = document.getElementById('border-color');
             const borderRadiusLabel = document.getElementById('border-radius-label');
             const borderRadiusInput = document.getElementById('border-radius');
+            const borderWidthLabel = document.getElementById('border-width-label');
+            const borderWidthInput = document.getElementById('border-width');
 
             if (selectedElement || selectedElements.length > 0) {
                 builderForm.style.display = 'flex';
                 if (selectedElement.id === 'text-box') {
                     // Text Box
+                    premadeheader.style.display = 'none';
+                    premadelabel.style.display = 'none';
+                    buttonStyles.style.display = 'none';
+
                     fontheader.style.display = 'flex';
                     fontsplitter.style.display = 'flex';
                     fontlabel.style.display = 'flex';
@@ -915,11 +1031,25 @@
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#000000');
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
 
+                    borderheader.style.display = 'flex';
+                    borderStyleLabel.style.display = 'flex';
+                    borderStyleSelect.style.display = 'flex';
+                    borderStyleSelect.value = selectedElement.style.borderStyle || 'none';
+                    borderColorLabel.style.display = 'flex';
+                    borderColorInput.style.display = 'flex';
+                    borderColorInput.value = rgbToHex(selectedElement.style.borderColor || '#000000');
                     borderRadiusLabel.style.display = 'flex';
                     borderRadiusInput.style.display = 'flex';
                     borderRadiusInput.value = parseFloat(selectedElement.style.borderRadius) || 0;
+                    borderWidthLabel.style.display = 'flex';
+                    borderWidthInput.style.display = 'flex';
+                    borderWidthInput.value = parseFloat(selectedElement.style.borderWidth) || 0;
                 } else if (selectedElement.id === 'website-preview') {
                     // Website Preview
+                    premadeheader.style.display = 'none';
+                    premadelabel.style.display = 'none';
+                    buttonStyles.style.display = 'none';
+
                     fontheader.style.display = 'none';
                     fontsplitter.style.display = 'none';
                     fontlabel.style.display = 'none';
@@ -938,10 +1068,21 @@
                     backgroundImageDeleteButton.style.display = 'flex';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#FFFFFF');
 
+                    borderheader.style.display = 'none';
+                    borderStyleLabel.style.display = 'none';
+                    borderStyleSelect.style.display = 'none';
+                    borderColorLabel.style.display = 'none';
+                    borderColorInput.style.display = 'none';
                     borderRadiusLabel.style.display = 'none';
                     borderRadiusInput.style.display = 'none';
+                    borderWidthLabel.style.display = 'none';
+                    borderWidthInput.style.display = 'none';
                 } else if (selectedElement.tagName === 'IMG') {
                     // Image
+                    premadeheader.style.display = 'none';
+                    premadelabel.style.display = 'none';
+                    buttonStyles.style.display = 'none';
+
                     fontheader.style.display = 'none';
                     fontsplitter.style.display = 'none';
                     fontlabel.style.display = 'none';
@@ -959,10 +1100,21 @@
                     backgroundImageUploadInput.style.display = 'none';
                     backgroundImageDeleteButton.style.display = 'none';
 
+                    borderheader.style.display = 'none';
+                    borderStyleLabel.style.display = 'none';
+                    borderStyleSelect.style.display = 'none';
+                    borderColorLabel.style.display = 'none';
+                    borderColorInput.style.display = 'none';
                     borderRadiusLabel.style.display = 'none';
                     borderRadiusInput.style.display = 'none';
+                    borderWidthLabel.style.display = 'none';
+                    borderWidthInput.style.display = 'none';
                 } else if (selectedElement.id === 'hyperlink-button') {
                     // Button
+                    premadeheader.style.display = 'flex';
+                    premadelabel.style.display = 'flex';
+                    buttonStyles.style.display = 'flex';
+
                     fontheader.style.display = 'flex';
                     fontsplitter.style.display = 'flex';
                     fontlabel.style.display = 'flex';
@@ -982,12 +1134,26 @@
                     backgroundImageDeleteButton.style.display = 'none';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#000000');
                     document.getElementById('font-color').value = rgbToHex(selectedElement.style.color || '#FFFFFF');
-                    
+
+                    borderheader.style.display = 'flex';
+                    borderStyleLabel.style.display = 'flex';
+                    borderStyleSelect.style.display = 'flex';
+                    borderStyleSelect.value = selectedElement.style.borderStyle || 'none';
+                    borderColorLabel.style.display = 'flex';
+                    borderColorInput.style.display = 'flex';
+                    borderColorInput.value = rgbToHex(selectedElement.style.borderColor || '#000000');
                     borderRadiusLabel.style.display = 'flex';
                     borderRadiusInput.style.display = 'flex';
                     borderRadiusInput.value = parseFloat(selectedElement.style.borderRadius) || 0;
+                    borderWidthLabel.style.display = 'flex';
+                    borderWidthInput.style.display = 'flex';
+                    borderWidthInput.value = parseFloat(selectedElement.style.borderWidth) || 0;
                 } else if (selectedElement.id === 'Shape-Square') {
                     // Shape
+                    premadeheader.style.display = 'none';
+                    premadelabel.style.display = 'none';
+                    buttonStyles.style.display = 'none';
+
                     fontheader.style.display = 'none';
                     fontsplitter.style.display = 'none';
                     fontlabel.style.display = 'none';
@@ -1005,10 +1171,20 @@
                     backgroundImageUploadInput.style.display = 'none';
                     backgroundImageDeleteButton.style.display = 'none';
                     document.getElementById('background-color').value = rgbToHex(selectedElement.style.backgroundColor || '#010101');
-                    
+
+                    borderheader.style.display = 'flex';
+                    borderStyleLabel.style.display = 'flex';
+                    borderStyleSelect.style.display = 'flex';
+                    borderStyleSelect.value = selectedElement.style.borderStyle || 'none';
+                    borderColorLabel.style.display = 'flex';
+                    borderColorInput.style.display = 'flex';
+                    borderColorInput.value = rgbToHex(selectedElement.style.borderColor || '#000000');
                     borderRadiusLabel.style.display = 'flex';
                     borderRadiusInput.style.display = 'flex';
                     borderRadiusInput.value = parseFloat(selectedElement.style.borderRadius) || 0;
+                    borderWidthLabel.style.display = 'flex';
+                    borderWidthInput.style.display = 'flex';
+                    borderWidthInput.value = parseFloat(selectedElement.style.borderWidth) || 0;
                 } else {
                     builderForm.style.display = 'none';
                     fontSizeLabel.style.display = 'none';
@@ -1038,14 +1214,10 @@
                 const backgroundColor = document.getElementById('background-color').value;
                 const textStyle = document.getElementById('website-text-style').value;
                 const fontSize = Math.round(document.getElementById('font-size').value / 1.7) + 'px';
+                const borderStyle = document.getElementById('border-style').value;
+                const borderColor = document.getElementById('border-color').value;
                 const borderRadius = document.getElementById('border-radius').value + 'px';
-
-                console.log('Updating element style:', {
-                    fontColor,
-                    backgroundColor,
-                    textStyle,
-                    selectedElement
-                });
+                const borderWidth = document.getElementById('border-width').value + 'px';
 
                 if (selectedElement === document.getElementById('website-preview')) {
                     selectedElement.style.backgroundColor = backgroundColor;
@@ -1057,7 +1229,10 @@
                     selectedElement.style.fontWeight = textStyle;
                     selectedElement.style.fontStyle = textStyle;
                     selectedElement.style.fontSize = fontSize;
+                    selectedElement.style.borderStyle = borderStyle;
+                    selectedElement.style.borderColor = borderColor;
                     selectedElement.style.borderRadius = borderRadius;
+                    selectedElement.style.borderWidth = borderWidth;
                 }
             }
         }
@@ -1089,6 +1264,15 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
+                    console.log('Image preview URL:', e.target.result);
+                    if (selectedElement && selectedElement.tagName === 'IMG') {
+                        selectedElement.src = e.target.result;
+                    } else {
+                        const imgElement = selectedElement.querySelector('img');
+                        if (imgElement) {
+                            imgElement.src = e.target.result;
+                        }
+                    }
                     const img = new Image();
                     img.onload = function () {
                         if (img.width > 1920 || img.height > 1080) {
@@ -1223,20 +1407,6 @@
             } else {
                 document.getElementById('add-file-section').style.display = 'none';
                 document.getElementById('add-folder-section').style.display = 'block';
-            }
-        }
-
-        function addFile() {
-            const fileName = document.getElementById('new-file-name').value;
-            if (fileName) {
-                const fileList = document.querySelectorAll('#file-list');
-                fileList.forEach(list => {
-                    const newFile = document.createElement('li');
-                    newFile.innerHTML = `<img src="icons/HTML5.webp" alt="HTML5 Icon" style="width: 16px; height: 16px; margin-right: 5px;">${fileName}.html`;
-                    newFile.setAttribute('onclick', `selectFile('${fileName}')`);
-                    list.appendChild(newFile);
-                });
-                closeAddFileFolderModal();
             }
         }
 
@@ -1654,45 +1824,6 @@
                 };
             });
         }
-        function makeElementsResizable() {
-            const
-                resizables = document.querySelectorAll('.resizable'); resizables.forEach(el => {
-                    const resizeHandle = el.querySelector('.resize-handle');
-                    resizeHandle.onmousedown = function (event) {
-                        event.stopPropagation();
-                        selectedElement = el;
-                        showProperties();
-
-                        const startX = event.clientX;
-                        const startY = event.clientY;
-                        const startWidth = parseInt(document.defaultView.getComputedStyle(el).width, 10);
-                        const startHeight = parseInt(document.defaultView.getComputedStyle(el).height, 10);
-                        const aspectRatio = startWidth / startHeight;
-
-                        function doDrag(e) {
-                            const newWidth = startWidth + e.clientX - startX;
-                            const newHeight = startHeight + e.clientY - startY;
-
-                            if (el.querySelector('img') || el.id === 'google-map' || el.classList.contains('adsbygoogle') ||
-                                el.classList.contains('g-recaptcha')) {
-                                el.style.width = newWidth + 'px';
-                                el.style.height = newWidth / aspectRatio + 'px';
-                            } else {
-                                el.style.width = newWidth + 'px';
-                                el.style.height = newHeight + 'px';
-                            }
-                        }
-
-                        function stopDrag() {
-                            document.documentElement.removeEventListener('mousemove', doDrag, false);
-                            document.documentElement.removeEventListener('mouseup', stopDrag, false);
-                        }
-
-                        document.documentElement.addEventListener('mousemove', doDrag, false);
-                        document.documentElement.addEventListener('mouseup', stopDrag, false);
-                    };
-                });
-        }
 
         function updateBackgroundImage(imageUrl) {
             document.getElementById('website-preview').style.backgroundImage = `url(${imageUrl})`;
@@ -1893,6 +2024,122 @@
                 deleteButton.style.color = '#d4d4d4';
             }
         }
+
+        document.getElementById('drop-zone').addEventListener('click', function () {
+            document.getElementById('image-upload-modal').click();
+        });
+
+        document.getElementById('drop-zone').addEventListener('dragover', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.style.borderColor = '#007acc';
+        });
+
+        document.getElementById('drop-zone').addEventListener('dragleave', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.style.borderColor = '#444';
+        });
+
+        document.getElementById('drop-zone').addEventListener('drop', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.style.borderColor = '#444';
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('image-upload-modal').files = files;
+                handleImageUpload({ target: { files: files } });
+            }
+        });
+
+        document.querySelector('button[onclick="showImageUploadModal()"]').addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            const contextMenu = document.getElementById('context-menu-insert');
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${e.pageX}px`;
+            contextMenu.style.top = `${e.pageY}px`;
+        });
+
+        document.addEventListener('click', function () {
+            document.getElementById('context-menu-insert').style.display = 'none';
+        });
+
+        function updateButtonPreview() {
+            const previewButton = document.getElementById('preview-button');
+            const selectedStyle = document.getElementById('premade-button-styles').value;
+
+            if (selectedStyle === 'default') {
+                selectedElement.style.background = '#333';
+                previewButton.style.background = '#333';
+                selectedElement.style.color = '#fff';
+                previewButton.style.color = '#fff';
+                previewButton.style.border = '1px solid #fff';
+                selectedElement.style.border = '1px solid #fff';
+                previewButton.style.borderRadius = '8px';
+                selectedElement.style.borderRadius = '8px';
+                previewButton.style.boxShadow = 'inset 0 0 4px 2px black';
+                selectedElement.style.boxShadow = 'inset 0 0 4px 2px black';
+            } else if (selectedStyle === 'light') {
+                previewButton.style.background = '#fff';
+                selectedElement.style.background = '#fff';
+                previewButton.style.color = '#000';
+                selectedElement.style.color = '#000';
+                previewButton.style.border = '1px solid #000';
+                selectedElement.style.border = '1px solid #000';
+                previewButton.style.borderRadius = '8px';
+                selectedElement.style.borderRadius = '8px';
+                previewButton.style.boxShadow = 'inset 0 0 4px 2px black';
+                selectedElement.style.boxShadow = 'inset 0 0 4px 2px black';
+            } else if (selectedStyle === 'dark') {
+                previewButton.style.background = '#000';
+                selectedElement.style.background = '#000';
+                previewButton.style.color = '#fff';
+                selectedElement.style.color = '#fff';
+                previewButton.style.border = '1px solid #fff';
+                selectedElement.style.border = '1px solid #fff';
+                previewButton.style.borderRadius = '8px';
+                selectedElement.style.borderRadius = '8px';
+                previewButton.style.boxShadow = 'inset 0 0 4px 2px black';
+                selectedElement.style.boxShadow = 'inset 0 0 4px 2px black';
+            } else if (selectedStyle === 'gradient') {
+                previewButton.style.background = 'linear-gradient(to right, #ff7e5f, #feb47b)';
+                selectedElement.style.background = 'linear-gradient(to right, #ff7e5f, #feb47b)';
+                previewButton.style.color = '#fff';
+                selectedElement.style.color = '#fff';
+                previewButton.style.border = 'none';
+                selectedElement.style.border = 'none';
+                previewButton.style.borderRadius = '8px';
+                selectedElement.style.borderRadius = '8px';
+                previewButton.style.boxShadow = 'inset 0 0 4px 2px black';
+                selectedElement.style.boxShadow = 'inset 0 0 4px 2px black';
+            } else if (selectedStyle === 'outline') {
+                previewButton.style.background = 'transparent';
+                selectedElement.style.background = 'transparent';
+                previewButton.style.color = '#007acc';
+                selectedElement.style.color = '#007acc';
+                previewButton.style.border = '2px solid #007acc';
+                selectedElement.style.border = '2px solid #007acc';
+                previewButton.style.borderRadius = '8px';
+                selectedElement.style.borderRadius = '8px';
+                previewButton.style.boxShadow = 'none';
+                selectedElement.style.boxShadow = 'none';
+            } else if (selectedStyle === 'rounded') {
+                previewButton.style.background = '#4caf50';
+                selectedElement.style.background = '#4caf50';
+                previewButton.style.color = '#fff';
+                selectedElement.style.color = '#fff';
+                previewButton.style.border = 'none';
+                selectedElement.style.border = 'none';
+                previewButton.style.borderRadius = '20px';
+                selectedElement.style.borderRadius = '20px';
+                previewButton.style.boxShadow = 'inset 0 0 4px 2px black';
+                selectedElement.style.boxShadow = 'inset 0 0 4px 2px black';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateButtonPreview(); // Initial call to set the preview
+        });
     </script>
 </body>
 
