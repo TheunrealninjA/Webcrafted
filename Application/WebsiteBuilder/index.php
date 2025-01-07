@@ -161,6 +161,21 @@
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color:rgb(34, 34, 34) #333;
+        }
+
+        .builder-form::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .builder-form::-webkit-scrollbar-track {
+            background: #333;
+        }
+
+        .builder-form::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            border: 2px solid #333;
         }
 
         .builder-form input,
@@ -687,7 +702,7 @@
                         <option value="light" style="background-color: #fff; color: #000;">Light</option>
                         <option value="dark" style="background-color: #000; color: #fff;">Dark</option>
                         <option value="gradient"
-                            style="background: linear-gradient(to right, #ff7e5f, #feb47b); color: #fff;">Gradient
+                            style="background: linear-gradient(to right, #ff7e5f, #feb47b); color: #fff;">Summer
                         </option>
                         <option value="outline"
                             style="background-color: transparent; color: #007acc; border: 2px solid #007acc;">Outline
@@ -700,7 +715,7 @@
                     <button id="preview-button"
                         style="width: 100px; height: 40px; background-color: #333; color: #fff; padding-bottom: 10px; margin: 0 0 20px 90px;">Preview</button>
                 </div>
-                <div class="splitter"></div>
+                <div id="premade-splitter" class="splitter"></div>
             </div>
             <div>
                 <h3 id="font-header" style="color:#d4d4d4;">Font</h3>
@@ -804,7 +819,6 @@
     <script>
         let selectedElement = null;
         let selectedElements = [];
-        let uploadedImages = []; // Populate with actual uploaded image URLs
 
         function OpenMenu() {
             document.getElementById('menu').style.display = 'flex';
@@ -974,6 +988,8 @@
             const premadeheader = document.getElementById('premade-header');
             const premadelabel = document.getElementById('premade-styles-label');
             const buttonStyles = document.getElementById('premade-button-styles');
+            const previewButton = document.getElementById('preview-button');
+            const premadeSplitter = document.getElementById('premade-splitter');
 
             const fontheader = document.getElementById('font-header');
             const fontsplitter = document.getElementById('font-splitter');
@@ -1009,6 +1025,8 @@
                     premadeheader.style.display = 'none';
                     premadelabel.style.display = 'none';
                     buttonStyles.style.display = 'none';
+                    previewButton.style.display = 'none';
+                    premadeSplitter.style.display = 'none';
 
                     fontheader.style.display = 'flex';
                     fontsplitter.style.display = 'flex';
@@ -1049,6 +1067,8 @@
                     premadeheader.style.display = 'none';
                     premadelabel.style.display = 'none';
                     buttonStyles.style.display = 'none';
+                    previewButton.style.display = 'none';
+                    premadeSplitter.style.display = 'none';
 
                     fontheader.style.display = 'none';
                     fontsplitter.style.display = 'none';
@@ -1082,6 +1102,8 @@
                     premadeheader.style.display = 'none';
                     premadelabel.style.display = 'none';
                     buttonStyles.style.display = 'none';
+                    previewButton.style.display = 'none';
+                    premadeSplitter.style.display = 'none';
 
                     fontheader.style.display = 'none';
                     fontsplitter.style.display = 'none';
@@ -1114,6 +1136,8 @@
                     premadeheader.style.display = 'flex';
                     premadelabel.style.display = 'flex';
                     buttonStyles.style.display = 'flex';
+                    previewButton.style.display = 'flex';
+                    premadeSplitter.style.display = 'flex';
 
                     fontheader.style.display = 'flex';
                     fontsplitter.style.display = 'flex';
@@ -1153,6 +1177,8 @@
                     premadeheader.style.display = 'none';
                     premadelabel.style.display = 'none';
                     buttonStyles.style.display = 'none';
+                    previewButton.style.display = 'none';
+                    premadeSplitter.style.display = 'none';
 
                     fontheader.style.display = 'none';
                     fontsplitter.style.display = 'none';
@@ -2135,6 +2161,7 @@
                 previewButton.style.boxShadow = 'inset 0 0 4px 2px black';
                 selectedElement.style.boxShadow = 'inset 0 0 4px 2px black';
             }
+            showProperties();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -2142,5 +2169,4 @@
         });
     </script>
 </body>
-
 </html>
