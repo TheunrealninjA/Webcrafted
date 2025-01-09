@@ -42,20 +42,19 @@ $message = htmlspecialchars($_POST['message']);
 $email_subject = "New Contact Form Submission From " . $name;
 
 // Construct email message
-$body = '<html><body style="background-color: #9cb1d0;">';
-$body .= '<div style="text-align: center; padding: 5px; width: 100%;">';
-$body .= '<div style="display: flex; justify-contents; center; align-items: center; width; 75%; border-radius; 10px; background-color: #fff; margin: 0 auto; padding: 10px;">';
-$body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebCrafted.Pro Logo">';
-$body .= '<h2 style="color: #000;">New Contact Form Submission</h2>';
-$body .= '<p style="color: #000;"><strong>Name: </strong>'. $name .'</p>';
-$body .= '<p style="color: #000;"><strong>Email: </strong>'. $email .'</p>';
+$body = '<html><body style="background-color: #9cb1d0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">';
+$body .= '<div style="text-align: center; padding: 20px; width: 80%; max-width: 600px; border-radius: 10px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">';
+$body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebCrafted.Pro Logo" style="width: 100px; margin-bottom: 20px;">';
+$body .= '<h2 style="color: #000; margin-bottom: 20px;">New Contact Form Submission</h2>';
+$body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Name: </strong>'. $name .'</p>';
+$body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Email: </strong>'. $email .'</p>';
 if (!empty($address)) {
-    $body .= '<p style="color: #000;"><strong>Address: </strong>' . $address . '</p>';
+    $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Address: </strong>' . $address . '</p>';
 }
 if (!empty($postcode)) {
-    $body .= '<p style="color: #000;"><strong>Postcode: </strong>'. $postcode .'</p>';
+    $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Postcode: </strong>'. $postcode .'</p>';
 }
-$body .= '<p style="color: #000;"><strong>Subject: </strong>';
+$body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Subject: </strong>';
 if ($subject !== "Other") {
     $body .= $subject;
 } else {
@@ -63,11 +62,11 @@ if ($subject !== "Other") {
 }
 $body .= "</p>";
 if (!empty($moreInfo)) {
-    $body .= '<p style="color: #000;"><strong>More Info:</strong>' . $moreInfo . '</p>';
+    $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>More Info:</strong>' . $moreInfo . '</p>';
 }
-$body .= '<p style="color: #000;"><strong>Message: </strong><br>'. $message .'</p>';
-$body .= '<br><hr><p style="font-size: 12px; color: #252525;">This message was sent from your website`s contact form.</p>';
-$body .= '</div></div></body></html>';
+$body .= '<p style="color: #000; margin-bottom: 20px;"><strong>Message: </strong><br>'. $message .'</p>';
+$body .= '<hr><p style="font-size: 12px; color: #252525; margin-top: 20px;">This message was sent from your website`s contact form.</p>';
+$body .= '</div></body></html>';
 
 // Set headers
 $headers = "From: <$email>\r\n";
