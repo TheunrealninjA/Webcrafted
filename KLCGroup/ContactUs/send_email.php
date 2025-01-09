@@ -42,9 +42,9 @@ $message = htmlspecialchars($_POST['message']);
 $email_subject = "New Contact Form Submission From " . $name;
 
 // Construct email message
-$body = '<html><body style="background-color: #9cb1d0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">';
-$body .= '<div style="text-align: center; padding: 20px; width: 80%; max-width: 600px; border-radius: 10px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">';
-$body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebCrafted.Pro Logo" style="width: 100px; margin-bottom: 20px;">';
+$body = '<html><body style="background-color:rgb(143, 172, 215); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">';
+$body .= '<div style="text-align: center; padding: 20px; width: 80%; max-width: 700px; border-radius: 10px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">';
+$body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebCrafted.Pro Logo" style="width: 200px; margin-bottom: 20px;">';
 $body .= '<h2 style="color: #000; margin-bottom: 20px;">New Contact Form Submission</h2>';
 $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Name: </strong>'. $name .'</p>';
 $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Email: </strong>'. $email .'</p>';
