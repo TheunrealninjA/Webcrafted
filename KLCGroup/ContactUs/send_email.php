@@ -42,9 +42,9 @@ $message = htmlspecialchars($_POST['message']);
 $email_subject = "New Contact Form Submission From " . $name;
 
 // Construct email message
-$body = '<html><body style="background-color:rgb(255, 255, 255); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">';
-$body .= '<div margin: 20px 40px;>';
-$body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebCrafted.Pro Logo" style="width: 200px; margin-bottom: 20px;"><hr>';
+$body = '<html><body style="background-color:rgb(255, 255, 255); display: flex; justify-content: center; height: 100%; margin: 0; width: 100%;">';
+$body .= '<div margin: 20px 40px; text-align: center;>';
+$body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebCrafted.Pro Logo" style="width: 300px;"><hr>';
 $body .= '<h2 style="color: #000; margin-bottom: 20px;">New Contact Form Submission</h2>';
 $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Name: </strong>'. $name .'</p>';
 $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Email: </strong>'. $email .'</p>';
