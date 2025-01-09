@@ -39,7 +39,7 @@ $otherSubject = isset($_POST['otherSubject']) ? htmlspecialchars($_POST['otherSu
 $message = htmlspecialchars($_POST['message']);
 
 // Set email subject
-$email_subject = "New Contact Form Submission From" . $name;
+$email_subject = "New Contact Form Submission From " . $name;
 
 // Construct email message
 $body = '<html><body style="background-color: #9cb1d0;">';
@@ -70,8 +70,8 @@ $body .= '<br><hr><p style="font-size: 12px; color: #252525;">This message was s
 $body .= '</div></div></body></html>';
 
 // Set headers
-$headers = "From: <$email>";
-$headers .= "Reply-To: $email";
+$headers = "From: <$email>\r\n";
+$headers .= "Reply-To: $email\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8\r\n";
 
 // Send email
