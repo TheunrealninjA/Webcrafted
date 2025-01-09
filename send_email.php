@@ -60,7 +60,7 @@ if ($subject !== "Other") {
 }
 $body .= "</p>";
 if (!empty($moreInfo)) {
-    $body .= '<p><strong>More Info:</strong> $moreInfo</p>';
+    $body .= '<p style="color: #fff;"><strong>More Info:</strong>' . $moreInfo . '</p>';
 }
 $body .= '<p style="color: #fff;"><strong>Message: </strong><br>'. $message .'</p>';
 $body .= '<br><hr><p style="font-size: 12px; color: #777;">This message was sent from your website`s contact form.</p>';
