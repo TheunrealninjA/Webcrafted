@@ -51,7 +51,7 @@
         <?php
         function displayMessage($classname, $image, $message)
         {
-            echo '<div class="' . $classname . '">';
+            echo '<div class="' . $classname . '" style ="margin-top: 20px;">';
             echo '<img style="width: 30px;" src="../Images/Status/' . $image . '" alt="' . $message . '">';
             echo '<h5>' . $message . '</h5>';
             echo '</div>';
