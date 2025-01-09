@@ -52,7 +52,7 @@
         function displayMessage($classname, $image, $message)
         {
             echo '<div class="' . $classname . '">';
-            echo '<img style="width: 30px;" src="../Images/status/' . $image . '" alt="' . $message . '">';
+            echo '<img style="width: 30px;" src="../Images/Status/' . $image . '" alt="' . $message . '">';
             echo '<h5>' . $message . '</h5>';
             echo '</div>';
         }
