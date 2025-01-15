@@ -543,6 +543,57 @@
         .context-menu-insert li:hover {
             background: #3c3c3c;
         }
+
+        .expandable-menu {
+            display: none;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        .expandable-menu.open {
+            display: flex;
+        }
+
+        .expandable-menu label {
+            margin-top: 5px;
+            color: #d4d4d4;
+        }
+
+        .expandable-menu input {
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .collapsible-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .collapsible-content.show {
+            display: block;
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .collapsible::after {
+            content: '▼';
+            float: right;
+            position: absolute;
+            right: 10%;
+            transition: transform 0.3s;
+        }
+
+        .collapsible.show::after {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
@@ -692,8 +743,9 @@
         <div class="builder-form">
             <h3 style="color:#d4d4d4;">Properties</h3>
             <div class="splitter"></div>
-            <div>
-                <h3 id="premade-header">Premade Styles</h3>
+            <h3 class="collapsible" onclick="toggleSection('premade-section')" id="premade-header" style="color:#d4d4d4;">Premade Styles</h3>
+            <div id="premade-splitter" class="splitter"></div>
+            <div id="premade-section" class="collapsible-content">
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
                     <label for="premade-button-styles" id="premade-styles-label"
                         style="width: 110px; margin-top:15px; color:#d4d4d4;">Select a Style:</label>
@@ -717,8 +769,9 @@
                 </div>
                 <div id="premade-splitter" class="splitter"></div>
             </div>
-            <div>
-                <h3 id="font-header" style="color:#d4d4d4;">Font</h3>
+            <h3 class="collapsible" onclick="toggleSection('font-section')" id="font-header" style="color:#d4d4d4;">Font</h3>
+            <div class="splitter" id="font-splitter"></div>
+            <div id="font-section" class="collapsible-content">
                 <select id="website-text-style" onchange="updateElementStyle()">
                     <option value="normal">Normal</option>
                     <option value="bold">Bold</option>
@@ -738,8 +791,9 @@
                 </div>
                 <div class="splitter" id="font-splitter"></div>
             </div>
-            <div>
-                <h3 id="background-header" style="color:#d4d4d4;">Background</h3>
+            <h3 class="collapsible" onclick="toggleSection('background-section')" id="background-header" style="color:#d4d4d4;">Background</h3>
+            <div class="splitter" id="background-splitter"></div>
+            <div id="background-section" class="collapsible-content">
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
                     <label for="background-color" id="background-color-label"
                         style="width: 180px; margin-top:15px; color:#d4d4d4;">Background Color :</label>
@@ -760,8 +814,32 @@
                 </div>
                 <div class="splitter" id="background-splitter"></div>
             </div>
-            <div>
-                <h3 id="border-header">Border</h3>
+            <h3 class="collapsible" onclick="toggleSection('text-shadow-section')" id="text-shadow-header" style="color:#d4d4d4;">Text Shadow</h3>
+            <div class="splitter" id="text-shadow-splitter"></div>
+            <div id="text-shadow-section" class="collapsible-content">
+                <div id="text-shadow-menu" class="expandable-menu">
+                    <div class="two-grid">
+                        <label for="text-shadow-color" style="width: 180px; margin-top:12px; color:#d4d4d4;">Shadow Color:</label>
+                        <input type="color" id="text-shadow-color" onchange="updateElementStyle()">
+                    </div>
+                    <div class="two-grid">
+                        <label for="text-shadow-offset-x"style="width: 180px; margin-top:12px; color:#d4d4d4;">Offset X:</label>
+                        <input type="number" id="text-shadow-offset-x" value="0" onchange="updateElementStyle()" style="width: 40px;">
+                    </div>
+                    <div class="two-grid">
+                        <label for="text-shadow-offset-y"style="width: 180px; margin-top:12px; color:#d4d4d4;">Offset Y:</label>
+                        <input type="number" id="text-shadow-offset-y" value="0" onchange="updateElementStyle()" style="width: 40px;">
+                    </div>
+                    <div class="two-grid">
+                        <label for="text-shadow-blur"style="width: 180px; margin-top:12px; color:#d4d4d4;">Blur Radius:</label>
+                        <input type="number" id="text-shadow-blur" value="0" onchange="updateElementStyle()" style="width: 40px;">
+                    </div>
+                </div>
+                <div class="splitter" id="text-shadow-splitter"></div>
+            </div>
+            <h3 class="collapsible" onclick="toggleSection('border-section')" id="border-header" style="color:#d4d4d4;">Border</h3>
+            <div class="splitter"></div>
+            <div id="border-section" class="collapsible-content">
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
                     <label for="border-style" id="border-style-label"
                         style="width: 180px; margin-top:15px; color:#d4d4d4;">Border Style:</label>
@@ -1018,6 +1096,10 @@
             const borderWidthLabel = document.getElementById('border-width-label');
             const borderWidthInput = document.getElementById('border-width');
 
+            const textShadowHeader = document.getElementById('text-shadow-header');
+            const textShadowMenu = document.getElementById('text-shadow-menu');
+            const textShadowSplitter = document.getElementById('text-shadow-splitter');
+
             if (selectedElement || selectedElements.length > 0) {
                 builderForm.style.display = 'flex';
                 if (selectedElement.id === 'text-box') {
@@ -1062,6 +1144,14 @@
                     borderWidthLabel.style.display = 'flex';
                     borderWidthInput.style.display = 'flex';
                     borderWidthInput.value = parseFloat(selectedElement.style.borderWidth) || 0;
+
+                    textShadowHeader.style.display = 'flex';
+                    textShadowMenu.style.display = 'flex';
+                    textShadowSplitter.style.display = 'flex';
+                    document.getElementById('text-shadow-color').value = rgbToHex(selectedElement.style.textShadowColor || '#000000');
+                    document.getElementById('text-shadow-offset-x').value = parseFloat(selectedElement.style.textShadowOffsetX) || 0;
+                    document.getElementById('text-shadow-offset-y').value = parseFloat(selectedElement.style.textShadowOffsetY) || 0;
+                    document.getElementById('text-shadow-blur').value = parseFloat(selectedElement.style.textShadowBlur) || 0;
                 } else if (selectedElement.id === 'website-preview') {
                     // Website Preview
                     premadeheader.style.display = 'none';
@@ -1097,6 +1187,10 @@
                     borderRadiusInput.style.display = 'none';
                     borderWidthLabel.style.display = 'none';
                     borderWidthInput.style.display = 'none';
+
+                    textShadowHeader.style.display = 'none';
+                    textShadowMenu.style.display = 'none';
+                    textShadowSplitter.style.display = 'none';
                 } else if (selectedElement.tagName === 'IMG') {
                     // Image
                     premadeheader.style.display = 'none';
@@ -1131,6 +1225,10 @@
                     borderRadiusInput.style.display = 'none';
                     borderWidthLabel.style.display = 'none';
                     borderWidthInput.style.display = 'none';
+
+                    textShadowHeader.style.display = 'none';
+                    textShadowMenu.style.display = 'none';
+                    textShadowSplitter.style.display = 'none';
                 } else if (selectedElement.id === 'hyperlink-button') {
                     // Button
                     premadeheader.style.display = 'flex';
@@ -1172,6 +1270,14 @@
                     borderWidthLabel.style.display = 'flex';
                     borderWidthInput.style.display = 'flex';
                     borderWidthInput.value = parseFloat(selectedElement.style.borderWidth) || 0;
+
+                    textShadowHeader.style.display = 'flex';
+                    textShadowMenu.style.display = 'flex';
+                    textShadowSplitter.style.display = 'flex';
+                    document.getElementById('text-shadow-color').value = rgbToHex(selectedElement.style.textShadowColor || '#000000');
+                    document.getElementById('text-shadow-offset-x').value = parseFloat(selectedElement.style.textShadowOffsetX) || 0;
+                    document.getElementById('text-shadow-offset-y').value = parseFloat(selectedElement.style.textShadowOffsetY) || 0;
+                    document.getElementById('text-shadow-blur').value = parseFloat(selectedElement.style.textShadowBlur) || 0;
                 } else if (selectedElement.id === 'Shape-Square') {
                     // Shape
                     premadeheader.style.display = 'none';
@@ -1211,12 +1317,20 @@
                     borderWidthLabel.style.display = 'flex';
                     borderWidthInput.style.display = 'flex';
                     borderWidthInput.value = parseFloat(selectedElement.style.borderWidth) || 0;
+
+                    textShadowHeader.style.display = 'none';
+                    textShadowMenu.style.display = 'none';
+                    textShadowSplitter.style.display = 'none';
                 } else {
                     builderForm.style.display = 'none';
                     fontSizeLabel.style.display = 'none';
                     fontSizeInput.style.display = 'none';
                     borderRadiusLabel.style.display = 'none';
                     borderRadiusInput.style.display = 'none';
+
+                    textShadowHeader.style.display = 'none';
+                    textShadowMenu.style.display = 'none';
+                    textShadowSplitter.style.display = 'none';
                 }
             } else {
                 builderForm.style.display = 'none';
@@ -1224,6 +1338,10 @@
                 fontSizeInput.style.display = 'none';
                 borderRadiusLabel.style.display = 'none';
                 borderRadiusInput.style.display = 'none';
+
+                textShadowHeader.style.display = 'none';
+                textShadowMenu.style.display = 'none';
+                textShadowSplitter.style.display = 'none';
             }
         }
 
@@ -1244,6 +1362,13 @@
                 const borderColor = document.getElementById('border-color').value;
                 const borderRadius = document.getElementById('border-radius').value + 'px';
                 const borderWidth = document.getElementById('border-width').value + 'px';
+
+                const textShadowColor = document.getElementById('text-shadow-color').value;
+                const textShadowOffsetX = document.getElementById('text-shadow-offset-x').value + 'px';
+                const textShadowOffsetY = document.getElementById('text-shadow-offset-y').value + 'px';
+                const textShadowBlur = document.getElementById('text-shadow-blur').value + 'px';
+
+                selectedElement.style.textShadow = `${textShadowOffsetX} ${textShadowOffsetY} ${textShadowBlur} ${textShadowColor}`;
 
                 if (selectedElement === document.getElementById('website-preview')) {
                     selectedElement.style.backgroundColor = backgroundColor;
@@ -2167,6 +2292,18 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateButtonPreview(); // Initial call to set the preview
         });
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = section.previousElementSibling.previousElementSibling;
+            if (!header.classList.contains('collapsible')) {
+                header.classList.add('collapsible');
+            }
+            section.classList.toggle('show');
+            header.classList.toggle('show');
+            // Ensure properties are shown correctly after toggling
+            showProperties();
+        }
     </script>
 </body>
 </html>

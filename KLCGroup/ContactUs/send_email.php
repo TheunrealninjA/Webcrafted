@@ -26,7 +26,7 @@ if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)){
 }
 
 // Set recipient email address
-$to = "wyattd@webcrafted.pro";
+$to = "Richard.Gallagher@klcgroup.co.uk";
 
 // Get form data
 $name = htmlspecialchars($_POST['name']);
