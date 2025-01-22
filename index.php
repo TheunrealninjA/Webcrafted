@@ -245,7 +245,7 @@ $is_logged_in = isset($_SESSION['username']);
                         Backend (+ £5/month)
                     </label><br>
 
-                    <a href="" id="submit">Submit</a>
+                    <a href="Checkout/index.php?package=starter" id="submit">Submit</a>
                 </form>
             </div>
         </div>
