@@ -1,5 +1,5 @@
 <?php
-include 'PHPScripts/session_manager.php';
+//include 'PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
 ?>
 
@@ -25,6 +25,43 @@ $is_logged_in = isset($_SESSION['username']);
     <script src="JavaScript/HamBurger.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
+
+        #getStartedModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #252525;
+            margin: 10% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        .close{
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.5s;
+        }
+
+        .close:hover{
+            color: red;
+
+        }
     </style>
 </head>
 
@@ -68,7 +105,7 @@ $is_logged_in = isset($_SESSION['username']);
             </ul>
 
             <div class="Title">
-                <img src="images/WCLogo.webp" alt="">
+                <img src="images/WCLogo.webp" alt="Logo">
                 <h1>Welcome to WebCrafted.Pro</h1>
                 <h2>Websites done right.</h2>
                 <a href="Templates.php">Get Started</a>
@@ -125,17 +162,17 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/Xemoji.webp" alt="X emoji"> E-commerce</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
-                    <li><img src="images/Xemoji.webp" alt="X emoji"> PHP included</li>
+                    <li><img src="images/Xemoji.webp" alt="X emoji"> Backend included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                    <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
+                    <li><img src="images/minus.webp" alt="minus emoji"> Domain included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
                     <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
                 </ul>
-                <a href="">Get Started</a>
+                <button onclick="openGetStartedModal('Starter package')">Get Started</button>
             </div>
 
             <div class="pricebox farleft" style="transition-duration: 1.2s;" id="price2">
-                <h3 class="packtext">Buisness package</h3>
+                <h3 class="packtext">Business package</h3>
                 <h4>from £30/month</h4>
                 <ul>
                     <li><img src="images/minus.webp" alt="minus emoji"> Hosting (Optional)</li>
@@ -144,17 +181,17 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="X emoji"> E-commerce</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
-                    <li><img src="images/tickemoji.webp" alt="X emoji"> PHP included</li>
+                    <li><img src="images/tickemoji.webp" alt="X emoji"> Backend included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                    <li><img src="images/Xemoji.webp" alt="X emoji"> Domain included</li>
+                    <li><img src="images/minus.webp" alt="minus emoji"> Domain included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
                     <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
                 </ul>
-                <a href="">Get Started</a>
+                <button onclick="openGetStartedModal('Buisness package')">Get Started</button>
             </div>
 
             <div class="pricebox farleft" style="transition-duration: 1.8s;" id="price3">
-                <h3 class="packtext">Buisness+ package</h3>
+                <h3 class="packtext">Business+ package</h3>
                 <h4>from £45/month</h4>
                 <ul>
                     <li><img src="images/tickemoji.webp" alt="minus emoji"> Hosting</li>
@@ -163,13 +200,13 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="X emoji"> E-commerce</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Can upload images/videos</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Ready to use website</li>
-                    <li><img src="images/tickemoji.webp" alt="X emoji"> PHP included</li>
+                    <li><img src="images/tickemoji.webp" alt="X emoji"> Backend included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> Personalised website</li>
-                    <li><img src="images/minus.webp" alt="X emoji"> Domain included</li>
+                    <li><img src="images/tickemoji.webp" alt="Tick emoji"> Domain included</li>
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
                     <li><img src="images/tickemoji.webp" alt="minus emoji"> One click setup</li>
                 </ul>
-                <a href="">Get Started</a>
+                <button onclick="openGetStartedModal('Buisness+ package')">Get Started</button>
             </div>
         </div>
 
@@ -183,6 +220,36 @@ $is_logged_in = isset($_SESSION['username']);
                         your site for relevant keywords, improving user experience, and providing measurable results, we
                         give you a competitive advantage in boosting your businesses success.</p>
                 </div>
+            </div>
+        </div>
+
+        <div id="getStartedModal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeGetStartedModal()">&times;</span>
+                <h3>Get Started</h3>
+                <form>
+                    <label for="plan">Selected Plan:</label><br>
+                    <input type="text" id="plan" name="plan" readonly><br>
+
+                    <input type="hidden" id="basePrice" value="0">
+                    <label for="totalPrice">Total Price (£/month):</label>
+                    <input type="text" id="totalPrice" name="totalPrice" readonly>
+
+                    <label for="addons">Addons:</label><br>
+                    <label for="hosting" id="hostingLabel">
+                        <input type="checkbox" name="hosting" id="hosting" style="width: 25px;">
+                        Hosting (+ £2/month)
+                    </label>
+                    <label for="backend" id="backendLabel">
+                        <input type="checkbox" name="backend" id="backend" style="width: 25px;">
+                        Backend (+ £5/month)
+                    </label><br>
+
+                    <label for="details">Your Requirements:</label><br>
+                    <textarea id="details" name="details"></textarea><br><br>
+
+                    <input type="submit" value="Submit">
+                </form>
             </div>
         </div>
 
@@ -218,6 +285,40 @@ $is_logged_in = isset($_SESSION['username']);
             </div>
         </footer>
     </div>
+
+    <script>
+        function openGetStartedModal(planName) {
+            document.getElementById('plan').value = planName;
+            document.getElementById('getStartedModal').style.display = 'block';
+            if (planName === 'Starter package' || planName === 'Business package') {
+                document.getElementById('hostingLabel').style.display = 'block';
+            } else {
+                document.getElementById('hostingLabel').style.display = 'none';
+            }
+            let basePrice = 0;
+            if (planName === 'Starter package') basePrice = 18;
+            else if (planName === 'Business package') basePrice = 30;
+            else if (planName === 'Business+ package') basePrice = 45;
+
+            document.getElementById('basePrice').value = basePrice;
+            document.getElementById('hosting').checked = false;
+            document.getElementById('backend').checked = false;
+            updateTotalPrice();
+        }
+
+        function updateTotalPrice() {
+            let basePrice = Number(document.getElementById('basePrice').value);
+            let total = basePrice;
+            if (document.getElementById('hosting').checked) total += 2;
+            if (document.getElementById('backend').checked) total += 5;
+            document.getElementById('totalPrice').value = total;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('hosting').addEventListener('change', updateTotalPrice);
+            document.getElementById('backend').addEventListener('change', updateTotalPrice);
+        });
+    </script>
 </body>
 
 </html>

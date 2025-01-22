@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #262626, #131313); /* changed */
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* changed */
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem; /* changed */
+}
+
+button {
+    display: block;
+    width: 30vw;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease; /* changed */
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.product {
+    display: flex; /* added */
+    align-items: center; /* added */
+    margin-top: -10%; /* added */
+    text-align: left; /* added */
+    height: 92vh;
+    margin-left: 10%;
+}
+.product img {
+    width: 20%; /* added */
+    margin-right: 20px;
+    border-radius: 10px; /* added */
+    display: flex;
+}
+
+.description {
+    flex: 1; /* added */
+    font-size: 1.1rem; /* added */
+}
+
+.two-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* added */
+}
+
+.left-panel {
+    flex: 2;
+    /* added */
+    background-color: #131313;
+    height: 95.8vh;
+    display: flex; /* added */
+    justify-content: center; /* added */
+    align-items: center; /* added */
+    flex-direction: column; /* added */
+    padding: 20px; /* added */
+}
+
+.right-panel {
+    flex: 1;
+    /* added */
+    display: flex;
+    flex-direction: column; /* changed */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.price-calculation {
+    margin-top: 10%;
+    width: 80%; /* changed */
+    padding: 20px; /* changed */
+    background-color: #1a1a1a;
+    border-radius: 10px; /* changed */
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1.1rem; /* changed */
+    margin-bottom: 20px;
+}
+
+.price-calculation h3 {
+    margin-bottom: 15px; /* changed */
+}
+
+.price-calculation p {
+    margin: 8px 0; /* changed */
+}
+
+.price-calculation p:last-child {
+    font-weight: bold; /* added */
+    border-top: 1px solid #fff; /* added */
+    padding-top: 10px; /* added */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        width: 90%; /* changed */
+    }
+    
+    .product {
+        flex-direction: column; /* added */
+        align-items: flex-start; /* added */
+    }
+    
+    .product img {
+        margin-right: 0; /* changed */
+        margin-bottom: 15px; /* added */
+    }
+    
+    .two-panel {
+        flex-direction: column;
+        /* changed */
+    }
+    
+    .right-panel {
+        width: 100%;
+        /* added */
+        margin-top: 20px;
+    }
+}
