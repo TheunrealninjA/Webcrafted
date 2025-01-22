@@ -227,7 +227,7 @@ $is_logged_in = isset($_SESSION['username']);
             <div class="modal-content">
                 <span class="close" onclick="closeGetStartedModal()">&times;</span>
                 <h3>Get Started</h3>
-                <form>
+                <form id="getstartedform" >
                     <label for="plan">Selected Plan:</label><br>
                     <input type="text" id="plan" name="plan" readonly><br>
 
@@ -245,10 +245,7 @@ $is_logged_in = isset($_SESSION['username']);
                         Backend (+ £5/month)
                     </label><br>
 
-                    <label for="details">Your Requirements:</label><br>
-                    <textarea id="details" name="details"></textarea><br><br>
-
-                    <input type="submit" value="Submit">
+                    <a href="" id="submit">Submit</a>
                 </form>
             </div>
         </div>
@@ -288,6 +285,7 @@ $is_logged_in = isset($_SESSION['username']);
 
     <script>
         function openGetStartedModal(planName) {
+            const button = document.getElementById('submit');
             document.getElementById('plan').value = planName;
             document.getElementById('getStartedModal').style.display = 'block';
             if (planName === 'Starter package' || planName === 'Business package') {
@@ -296,9 +294,18 @@ $is_logged_in = isset($_SESSION['username']);
                 document.getElementById('hostingLabel').style.display = 'none';
             }
             let basePrice = 0;
-            if (planName === 'Starter package') basePrice = 18;
-            else if (planName === 'Business package') basePrice = 30;
-            else if (planName === 'Business+ package') basePrice = 45;
+            if (planName === 'Starter package') {
+                basePrice = 18;
+                button.href = 'Checkout/index.php?package=starter';
+            }
+            else if (planName === 'Business package') {
+                basePrice = 30;
+                button.href = 'Checkout/index.php?package=business';
+            }
+            else if (planName === 'Business+ package') {
+                basePrice = 45;
+                button.href = 'Checkout/index.php?package=business+';
+            }
 
             document.getElementById('basePrice').value = basePrice;
             document.getElementById('hosting').checked = false;
@@ -315,6 +322,7 @@ $is_logged_in = isset($_SESSION['username']);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+
             document.getElementById('hosting').addEventListener('change', updateTotalPrice);
             document.getElementById('backend').addEventListener('change', updateTotalPrice);
         });
