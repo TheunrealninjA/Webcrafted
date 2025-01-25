@@ -70,7 +70,7 @@ if (!$is_logged_in) {
                 <p>Tax : Will be calculated after checkout</p> <!-- added -->
                 <p>Total: $<?= number_format($product['price'] + (isset($addons) ? $addons : 0), 2); ?></p> <!-- added -->
             </div>
-            <form action="/checkout.php" method="POST">
+            <form action="/Checkout/checkout.php" method="POST">
                 <input type="hidden" name="priceId" value="<?= $product['priceId']; ?>">
                 <button type="submit" id="checkout-button">Checkout</button>
             </form>
