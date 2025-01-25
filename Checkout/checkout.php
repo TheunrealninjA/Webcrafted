@@ -34,7 +34,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'quantity' => 1,
   ]],
   'customer_email' => $_SESSION['email'],
-  'phone-number' => 'required',
+  'phone_number_collection' => ['enabled' => true],
   'mode' => 'subscription',
   'billing_address_collection' => 'required',
   'metadata' => [
