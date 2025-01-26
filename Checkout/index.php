@@ -15,7 +15,7 @@ if (!$is_logged_in) {
 <html>
 
 <head>
-    <title>Buy cool new product</title>
+    <title>Basket - WebCrafted Pro</title>
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://js.stripe.com/v3/"></script>
 </head>
