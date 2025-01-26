@@ -187,7 +187,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
                     <li><img src="images/minus.webp" alt="minus emoji"> One click setup</li>
                 </ul>
-                <button onclick="openGetStartedModal('Buisness package')">Get Started</button>
+                <button onclick="openGetStartedModal('Business package')">Get Started</button>
             </div>
 
             <div class="pricebox farleft" style="transition-duration: 1.8s;" id="price3">
@@ -206,7 +206,7 @@ $is_logged_in = isset($_SESSION['username']);
                     <li><img src="images/tickemoji.webp" alt="Tick emoji"> All devices compatability</li>
                     <li><img src="images/tickemoji.webp" alt="minus emoji"> One click setup</li>
                 </ul>
-                <button onclick="openGetStartedModal('Buisness+ package')">Get Started</button>
+                <button onclick="openGetStartedModal('Business+ package')">Get Started</button>
             </div>
         </div>
 
@@ -311,6 +311,10 @@ $is_logged_in = isset($_SESSION['username']);
             document.getElementById('hosting').checked = false;
             document.getElementById('backend').checked = false;
             updateTotalPrice();
+        }
+
+        function closeGetStartedModal() {
+            document.getElementById('getStartedModal').style.display = 'none';
         }
 
         function updateTotalPrice() {
