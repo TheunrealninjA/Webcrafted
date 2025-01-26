@@ -1,16 +1,18 @@
 <?php
 
 require '../vendor/autoload.php';
+require_once __DIR__ . '/secrets.php';
 
 include '../PHPScripts/session_manager.php';
 $is_logged_in = isset($_SESSION['username']);
+
 
 if (!$is_logged_in) {
     header('Location: ../Login.php?status=noaccess');
     exit;
 }
 
-\Stripe\Stripe::setApiKey('your-secret-key');
+\Stripe\Stripe::setApiKey('$stripeSecretKey');
 
 $session_id = $_GET['session_id'] ?? null;
 $payment_success = false;
@@ -40,11 +42,11 @@ if ($payment_success) {
     if ($conn->connect_error) {
         error_log("Connection failed: " . $conn->connect_error);
     } else {
-        $user_email = $_SESSION['email'];
+        $user = $_SESSION['username'];
 
         // Prepare and bind
-        $stmt = $conn->prepare("UPDATE users SET subscription = ?, access_level = ? WHERE email = ?");
-        $stmt->bind_param("sss", $subscription, $access_level, $user_email);
+        $stmt = $conn->prepare("UPDATE users SET subscription = ?, access_level = ? WHERE username = ?");
+        $stmt->bind_param("sss", $subscription, $access_level, $user);
         
         // Determine subscription and access_level based on the package
         $package = $session->metadata->package;
