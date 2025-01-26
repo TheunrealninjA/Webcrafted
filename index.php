@@ -304,7 +304,7 @@ $is_logged_in = isset($_SESSION['username']);
             }
             else if (planName === 'Business+ package') {
                 basePrice = 45;
-                button.href = 'Checkout/index.php?package=business+';
+                button.href = 'Checkout/index.php?package=business_plus';
             }
 
             document.getElementById('basePrice').value = basePrice;

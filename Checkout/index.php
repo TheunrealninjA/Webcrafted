@@ -37,7 +37,7 @@ if (!$is_logged_in) {
             'webpages' => 10,
             'priceId' => 'price_1QjrsQABmXQuToBWvZn37ngh'
         ],
-        'business+' => [
+        'business_plus' => [
             'name' => 'Business+ Package',
             'img' => 'Business+.webp',
             'price' => 45.00,
