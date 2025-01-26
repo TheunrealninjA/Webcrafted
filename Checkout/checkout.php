@@ -5,12 +5,39 @@ ini_set('display_errors', 1);
 require_once '../vendor/autoload.php';
 require_once __DIR__ . '/secrets.php';
 include '../PHPScripts/session_manager.php';
+
 $is_logged_in = isset($_SESSION['username']);
 
+$session_username = htmlspecialchars($_SESSION['username']);
+
 if (!$is_logged_in) {
-    header('Location: ../Login.php?status=noaccess');
-    exit;
+    header("Location: LoginPage.php?status=noaccess");
+    exit();
 }
+
+$servername = "server330";
+$username = "webcsosl_Admin";
+$password = "wJFTJo=o=iZ6";
+$dbname = "webcsosl_SignUp";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$stmt = $conn->prepare("SELECT email FROM users WHERE username = ?");
+$stmt->bind_param("s", $session_username);
+$stmt->execute();
+$stmt->bind_result($email);
+$stmt->store_result();
+
+if ($stmt->fetch()) {
+    $_SESSION['email'] = $email;
+}
+
+$stmt->close();
+$conn->close();
 
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 header('Content-Type: application/json');
@@ -33,7 +60,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'price' => $priceId,
     'quantity' => 1,
   ]],
-  'customer_email' => $_SESSION['email'],
+  'customer_email' => $email,
   'phone_number_collection' => ['enabled' => true],
   'mode' => 'subscription',
   'billing_address_collection' => 'required',
