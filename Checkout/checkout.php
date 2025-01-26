@@ -17,13 +17,13 @@ header('Content-Type: application/json');
 
 $YOUR_DOMAIN = 'https://webcrafted.pro/checkout';
 
-$priceId = $_POST['priceId'] ?? 'prod_Rd97NrpLOK0CLM'; // fallback price if none provided
+$priceId = $_POST['priceId'] ?? 'price_1QjspWABmXQuToBWxb5JhxPp'; // fallback price if none provided
 
 // Map priceId to package
 $packageMap = [
-    'prod_Rd7r6UKI7f3p4J' => 'starter',
-    'prod_Rd88IHmNVNcbc0' => 'business',
-    'prod_Rd97NrpLOK0CLM' => 'business+',
+    'price_1QjrbeABmXQuToBWDdEVhgpW' => 'starter',
+    'price_1QjrsQABmXQuToBWvZn37ngh' => 'business',
+    'price_1QjspWABmXQuToBWxb5JhxPp' => 'business+',
 ];
 
 $package = $packageMap[$priceId] ?? 'starter';

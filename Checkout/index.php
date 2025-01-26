@@ -28,21 +28,21 @@ if (!$is_logged_in) {
             'img' => 'Personal.webp',
             'price' => 18.00,
             'webpages' => 2,
-            'priceId' => 'prod_Rd7r6UKI7f3p4J'
+            'priceId' => 'price_1QjrbeABmXQuToBWDdEVhgpW'
         ],
         'business' => [
             'name' => 'Business Package',
             'img' => 'Business.webp',
             'price' => 30.00,
             'webpages' => 10,
-            'priceId' => 'prod_Rd88IHmNVNcbc0'
+            'priceId' => 'price_1QjrsQABmXQuToBWvZn37ngh'
         ],
         'business+' => [
             'name' => 'Business+ Package',
             'img' => 'Business+.webp',
             'price' => 45.00,
             'webpages' => 'unlimited',
-            'priceId' => 'prod_Rd97NrpLOK0CLM'
+            'priceId' => 'price_1QjspWABmXQuToBWxb5JhxPp'
         ],
         // ...more packages...
     ];
