@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 require_once '../vendor/autoload.php';
 require_once __DIR__ . '/secrets.php';
 include '../PHPScripts/session_manager.php';
