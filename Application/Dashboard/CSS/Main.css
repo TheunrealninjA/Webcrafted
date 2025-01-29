@@ -1,121 +1,126 @@
 /* nav */
 
 .Top-Buttons {
-    display: flex;
-    background-color: #202020;
+  display: flex;
+  background-color: #202020;
 }
 
-.Top-Buttons img{
-    margin-left: 50px;
+.Top-Buttons img {
+  margin-left: 50px;
 }
 
-.Top-Buttons ul{
-    float: right;
-    margin: 2.3% 0 2.3% 2.8%;
-}
-.Top-Buttons ul li{
-    float: left;
-    margin-left: 30px;
-    font-size: 22px;
-    position: relative;
+.Top-Buttons ul {
+  float: right;
+  margin: 2.3% 0 2.3% 2.8%;
 }
 
-.Top-Buttons li a, .account li a{
-    color: lightgray;
-    text-shadow: 2px 2px 4px #000000a6;
-    transition: color 0.8s;
+.Top-Buttons ul li {
+  float: left;
+  margin-left: 30px;
+  font-size: 22px;
+  position: relative;
 }
 
-.Top-Buttons li a:hover, .account li a:hover{
-    color: #FFF;
+.Top-Buttons li a,
+.account li a {
+  color: lightgray;
+  text-shadow: 2px 2px 4px #000000a6;
+  transition: color 0.8s;
 }
 
-.Top-Buttons li a::after, .account li a::after {
-    background-color: white;
-    bottom: 0;
-    content: '';
-    height: 4px;
-    left: 0;
-    position: absolute;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .3s ease;
-    width: 100%
+.Top-Buttons li a:hover,
+.account li a:hover {
+  color: #fff;
 }
 
-.Top-Buttons li a:hover::after, .account li a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left
+.Top-Buttons li a::after,
+.account li a::after {
+  background-color: white;
+  bottom: 0;
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  width: 100%;
 }
 
-.account{
-    float: right;
-    margin-right: 50px;
-    margin-top: -4%;
+.Top-Buttons li a:hover::after,
+.account li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
-.account li{
-    float: left;
-    margin-left: 80px;
-    font-size: 19px;
-    font-weight: 700;
-    position: relative;
-    padding-bottom: 5px;
+.account {
+  float: right;
+  margin-right: 50px;
+  margin-top: -4%;
+}
+
+.account li {
+  float: left;
+  margin-left: 80px;
+  font-size: 19px;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 5px;
 }
 
 .open-slide a p {
-    align-items: center;
-    color: #fff;
-    font-size: 60px;
-    padding-top: 50px
+  align-items: center;
+  color: #fff;
+  font-size: 60px;
+  padding-top: 50px;
 }
 
 .hamburger p {
-    display: none;
-    margin-left: 50px;
-    margin-bottom: -31px;
+  display: none;
+  margin-left: 50px;
+  margin-bottom: -31px;
 }
 
 .hamburger {
-    text-decoration: none
+  text-decoration: none;
 }
 
 .side-nav {
-    background-color: #535353;
-    border-color: #000;
-    border-radius: 10px;
-    height: 100vh;
-    left: 0;
-    opacity: .95;
-    overflow: hidden;
-    padding-top: 60px;
-    position: fixed;
-    top: 0;
-    transition: 0, 5s;
-    width: 0;
-    z-index: 1
+  background-color: #535353;
+  border-color: #000;
+  border-radius: 10px;
+  height: 100vh;
+  left: 0;
+  opacity: 0.95;
+  overflow: hidden;
+  padding-top: 60px;
+  position: fixed;
+  top: 0;
+  transition: 0, 5s;
+  width: 0;
+  z-index: 1;
 }
 
 .side-nav a {
-    color: lightgray;
-    display: block;
-    font-size: 22px;
-    margin-right: 20px;
-    padding: 10px 10px 10px 30px;
-    text-decoration: none;
-    transition: color 0.8s, .3s
+  color: lightgray;
+  display: block;
+  font-size: 22px;
+  margin-right: 20px;
+  padding: 10px 10px 10px 30px;
+  text-decoration: none;
+  transition: color 0.8s, 0.3s;
 }
 
 .side-nav a:hover {
-    color: #fff
+  color: #fff;
 }
 
 .side-nav .btn-close {
-    font-size: 36px;
-    margin-left: 50px;
-    position: absolute;
-    right: 22px;
-    top: 0
+  font-size: 36px;
+  margin-left: 50px;
+  position: absolute;
+  right: 22px;
+  top: 0;
 }
 
 /* end of nav */
@@ -124,11 +129,13 @@
   display: flex;
   min-height: 100vh;
 }
+
 .sidebar {
   width: 250px;
   background: #202020;
   /* ...more sidebar styles... */
 }
+
 .menu-item {
   display: block;
   padding: 0.75rem 1rem !important;
@@ -137,100 +144,170 @@
   font-size: 18px;
   transition: background-color 0.3s;
 }
+
 .menu-item:hover {
   background-color: #252525;
 }
+
 .main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
+
 .navbar {
   background: #fff;
   /* ...navbar styles... */
 }
+
 .content {
   flex: 1;
   padding: 1rem;
+  margin: 20px 30px 8%;
   /* ...content styles... */
+  background-color: #202020;
+  border: 1px solid #fff;
+  border-radius: 28px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-button{
-    padding: 0 !important;
-    margin: 0 !important;
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    width: 100% !important;
-    text-align: left !important;
-    border-radius: 0 !important;
+button {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  border-radius: 0 !important;
 }
 
-button:hover{
-    background-color: #252525 !important;
+button:hover {
+  background-color: #252525 !important;
+}
+
+.subscription-info,
+.account-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+  width: 80%;
+  height: 65vh;
+}
+
+.subscription-info p,
+.account-info p {
+ font-size: 20px;
+ padding-top: 20px;
+}
+
+.control-buttons{
+    font-size: 20px;
+    border: 1px solid white;
+    padding: 10px 65% 10px 10px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.control-buttons:hover {
+  background-color: #fff;
+  color: #202020;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.8s ease, color 0.8s ease;
+  font-size: 23px;
+  margin-top: -0px;
+}
+
+.control-buttons:hover .arrow {
+  transform: translateX(21vw);
+  color: #202020;
 }
 
 @media screen and (max-width: 1410px) {
-    .Top-Buttons li { margin-left: 50px;}
+  .Top-Buttons li {
+    margin-left: 50px;
+  }
 
-    .MiniWCLogo{ margin-left: 3vw; }
+  .MiniWCLogo {
+    margin-left: 3vw;
+  }
 
-    .account{ margin-right: 30px; }
-    
-    .account li{ margin-left: 40px; }
+  .account {
+    margin-right: 30px;
+  }
+
+  .account li {
+    margin-left: 40px;
+  }
 }
 
 @media screen and (max-width: 1080px) {
-    .Top-Buttons {
-        display: none
-    }
+  .Top-Buttons {
+    display: none;
+  }
 
-    .hamburger p {
-        display: block
-    }
+  .hamburger p {
+    display: block;
+  }
 
-    .MiniWCLogo{
-        display: flex;
-        justify-content: center;
-        margin-left: 4vw;
-    }
+  .MiniWCLogo {
+    display: flex;
+    justify-content: center;
+    margin-left: 4vw;
+  }
 
-    .hamburger {
-        display: block;
-        margin-left: 50px;
-        width: 53px
-    }
+  .hamburger {
+    display: block;
+    margin-left: 50px;
+    width: 53px;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .hamburger p{ margin-bottom: -8px; }
+  .hamburger p {
+    margin-bottom: -8px;
+  }
 
-    .open-slide a p {
-        font-size: 40px;
-        padding-top: 40px
-    }
+  .open-slide a p {
+    font-size: 40px;
+    padding-top: 40px;
+  }
 
-    .MiniWCLogo img{
-       margin-top: -58px;
-       width: 75px;
-    }
+  .MiniWCLogo img {
+    margin-top: -58px;
+    width: 75px;
+  }
 
-    .account{ margin-right: 10px; }
+  .account {
+    margin-right: 10px;
+  }
 
-    .account li{ 
-        margin-left: 20px; 
-        font-size: 15px;
-    }
+  .account li {
+    margin-left: 20px;
+    font-size: 15px;
+  }
 
-    .hamburger { margin-left: 0 }
+  .hamburger {
+    margin-left: 0;
+  }
 }
 
-@media screen and (max-width: 415px) { 
-    .open-slide a p { font-size: 35px }
+@media screen and (max-width: 415px) {
+  .open-slide a p {
+    font-size: 35px;
+  }
 
-    .account li{ 
-        margin-left: 10px; 
-        font-size: 10px;
-        margin-top: 9px;
-    }
+  .account li {
+    margin-left: 10px;
+    font-size: 10px;
+    margin-top: 9px;
+  }
 }
