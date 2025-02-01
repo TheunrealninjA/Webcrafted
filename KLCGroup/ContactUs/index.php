@@ -86,6 +86,9 @@
             <label for="email">Email:</label><br>
             <input type="email" name="email" placeholder="Enter Your Email" required autocomplete="email"><br>
 
+            <label for="phone">Phone Number :</label><br>
+            <input type="tel" name="phone" placeholder="Enter Your Phone Number" required autocomplete="tel" pattern="^(\+44\s?\d{10}|0\d{10})$" title="Please enter a valid UK phone number"><br>
+
             <label for="address">Address: (optional)</label><br>
             <input type="text" name="address" placeholder="Enter Address or Leave Blank"
                 autocomplete="address-line1"><br>

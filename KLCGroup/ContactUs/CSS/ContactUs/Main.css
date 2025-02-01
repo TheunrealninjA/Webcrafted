@@ -31,7 +31,8 @@ p{ font-size: 18px }
 }
 
 .ContactForm input[type="text"],
-.ContactForm input[type="email"] {
+.ContactForm input[type="email"],
+.ContactForm input[type="tel"] {
     width: 35%;
     padding: 10px;
     margin-bottom: 20px;

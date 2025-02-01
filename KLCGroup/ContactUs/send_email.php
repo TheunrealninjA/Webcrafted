@@ -26,11 +26,12 @@ if (!isset($gRecaptchaResponse) || empty($gRecaptchaResponse)){
 }
 
 // Set recipient email address
-$to = "Richard.Gallagher@klcgroup.co.uk";
+$to = "contactform@klcgroup.co.uk";
 
 // Get form data
 $name = htmlspecialchars($_POST['name']);
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+$phone = filter_var($_POST['phone'], FILTER_SANITIZE_NUMBER_INT);
 $address = isset($_POST['address']) ? htmlspecialchars($_POST['address']) : '';
 $postcode = isset($_POST['postcode']) ? htmlspecialchars($_POST['postcode']) : '';
 $subject = htmlspecialchars($_POST['subject']);
@@ -48,6 +49,7 @@ $body .= '<img src="https://klcgroup.co.uk/Images/Company%20Logo.webp" alt="WebC
 $body .= '<h2 style="color: #000; margin-bottom: 20px;">New Contact Form Submission</h2>';
 $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Name: </strong>'. $name .'</p>';
 $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Email: </strong>'. $email .'</p>';
+$body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Phone Number: </strong>'. $phone .'</p>';
 if (!empty($address)) {
     $body .= '<p style="color: #000; margin-bottom: 10px;"><strong>Address: </strong>' . $address . '</p>';
 }
