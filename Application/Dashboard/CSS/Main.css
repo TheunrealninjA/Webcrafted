@@ -1,138 +1,12 @@
-/* nav */
-
-.Top-Buttons {
-  display: flex;
-  background-color: #202020;
-}
-
-.Top-Buttons img {
-  margin-left: 50px;
-}
-
-.Top-Buttons ul {
-  float: right;
-  margin: 2.3% 0 2.3% 2.8%;
-}
-
-.Top-Buttons ul li {
-  float: left;
-  margin-left: 30px;
-  font-size: 22px;
-  position: relative;
-}
-
-.Top-Buttons li a,
-.account li a {
-  color: lightgray;
-  text-shadow: 2px 2px 4px #000000a6;
-  transition: color 0.8s;
-}
-
-.Top-Buttons li a:hover,
-.account li a:hover {
-  color: #fff;
-}
-
-.Top-Buttons li a::after,
-.account li a::after {
-  background-color: white;
-  bottom: 0;
-  content: "";
-  height: 4px;
-  left: 0;
-  position: absolute;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-  width: 100%;
-}
-
-.Top-Buttons li a:hover::after,
-.account li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.account {
-  float: right;
-  margin-right: 50px;
-  margin-top: -4%;
-}
-
-.account li {
-  float: left;
-  margin-left: 80px;
-  font-size: 19px;
-  font-weight: 700;
-  position: relative;
-  padding-bottom: 5px;
-}
-
-.open-slide a p {
-  align-items: center;
-  color: #fff;
-  font-size: 60px;
-  padding-top: 50px;
-}
-
-.hamburger p {
-  display: none;
-  margin-left: 50px;
-  margin-bottom: -31px;
-}
-
-.hamburger {
-  text-decoration: none;
-}
-
-.side-nav {
-  background-color: #535353;
-  border-color: #000;
-  border-radius: 10px;
-  height: 100vh;
-  left: 0;
-  opacity: 0.95;
-  overflow: hidden;
-  padding-top: 60px;
-  position: fixed;
-  top: 0;
-  transition: 0, 5s;
-  width: 0;
-  z-index: 1;
-}
-
-.side-nav a {
-  color: lightgray;
-  display: block;
-  font-size: 22px;
-  margin-right: 20px;
-  padding: 10px 10px 10px 30px;
-  text-decoration: none;
-  transition: color 0.8s, 0.3s;
-}
-
-.side-nav a:hover {
-  color: #fff;
-}
-
-.side-nav .btn-close {
-  font-size: 36px;
-  margin-left: 50px;
-  position: absolute;
-  right: 22px;
-  top: 0;
-}
-
-/* end of nav */
-
 .dashboard-container {
   display: flex;
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 .sidebar {
   width: 250px;
-  background: #202020;
+  background: rgb(10, 10, 20);
   /* ...more sidebar styles... */
 }
 
@@ -141,12 +15,12 @@
   padding: 0.75rem 1rem !important;
   text-decoration: none;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   transition: background-color 0.3s;
 }
 
 .menu-item:hover {
-  background-color: #252525;
+  background-color: rgb(6, 6, 16);
 }
 
 .main {
@@ -162,13 +36,8 @@
 
 .content {
   flex: 1;
-  padding: 1rem;
-  margin: 20px 30px 8%;
-  /* ...content styles... */
-  background-color: #202020;
-  border: 1px solid #fff;
-  border-radius: 28px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  background-color: rgb(12, 12, 22);
+  border-left: 1px solid #fff;
 }
 
 button {
@@ -183,35 +52,51 @@ button {
 }
 
 button:hover {
-  background-color: #252525 !important;
+  background-color: rgb(6, 6, 16) !important;
 }
 
 .subscription-info,
-.account-info {
+.account-info,
+.dashboard-info {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #333;
-  border: 1px solid #444;
+  background-color: rgb(16, 16, 26);
+  border: 1px solid rgb(30, 30, 40);
   border-radius: 8px;
   color: #fff;
   width: 80%;
   height: 65vh;
 }
 
+.dashboard-info {
+  margin-left: 9%;
+}
+
 .subscription-info p,
-.account-info p {
+.account-info p,
+.dashboard-info p, 
+.dashboard-info a {
  font-size: 20px;
  padding-top: 20px;
 }
 
-.control-buttons{
+.dashboard-info p, .dashboard-info a {
+  padding-bottom: 20px;
+}
+
+.control-buttons, .control-buttons-bad{
     font-size: 20px;
     border: 1px solid white;
     padding: 10px 65% 10px 10px;
     border-radius: 12px;
-    position: relative;
-    overflow: hidden;
     transition: background-color 0.8s ease, color 0.8s ease;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.control-buttons-bad{
+  border-color: rgb(150, 0, 0);
+  color: rgb(150, 0, 0);
 }
 
 .control-buttons:hover {
@@ -219,16 +104,29 @@ button:hover {
   color: #202020;
 }
 
-.arrow {
+.control-buttons-bad:hover {
+  background-color: rgb(150, 0, 0);
+  color: white;
+}
+
+.arrow, .arrow2 {
   display: inline-block;
   transition: transform 0.8s ease, color 0.8s ease;
   font-size: 23px;
   margin-top: -0px;
 }
 
+.arrow2 {
+  color: rgb(150, 0, 0);
+}
+
 .control-buttons:hover .arrow {
-  transform: translateX(21vw);
+  transform: translateX(23vw);
   color: #202020;
+}
+.control-buttons-bad:hover .arrow2 {
+  transform: translateX(24.5vw);
+  color: white;
 }
 
 @media screen and (max-width: 1410px) {

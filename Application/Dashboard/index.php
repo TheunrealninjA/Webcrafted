@@ -10,6 +10,18 @@
     <script src="../../JavaScript/HamBurger.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Poppins");
+
+        .fade {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.5s, transform 1s ease-in-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0px);
+            transition: opacity 0.5s, transform 1s ease-in-out;
+        }
     </style>
     <script>
         function hideEmail(email) {
@@ -44,71 +56,92 @@
                     phoneParagraph.style.display = "block";
                 }
             }
+            
+            // Domain and Account buttons
+            const domainButton = document.getElementById("Domain-button");
+            const accountButton = document.getElementById("Account-button");
+
+            domainButton.addEventListener("click", () => {
+                document.getElementById("Account-Content").classList.remove("show");
+                document.getElementById("Account-Content").classList.add("fade");
+                setTimeout(() => {
+                    document.getElementById("Account-Content").style.display = "none";
+                    document.getElementById("Domain-Content").style.display = "block";
+                    document.getElementById("Domain-Content").classList.remove("fade");
+                    document.getElementById("Domain-Content").classList.add("show");
+                }, 500);
+            });
+
+            accountButton.addEventListener("click", () => {
+                document.getElementById("Domain-Content").classList.remove("show");
+                document.getElementById("Domain-Content").classList.add("fade");
+                setTimeout(() => {
+                    document.getElementById("Domain-Content").style.display = "none";
+                    document.getElementById("Account-Content").style.display = "block";
+                    document.getElementById("Account-Content").classList.remove("fade");
+                    document.getElementById("Account-Content").classList.add("show");
+                }, 500);
+            });
         });
     </script>
 </head>
 
 <body>
-    <header class="snap">
-        <div class="Top-Buttons">
-            <img src="../../images/MiniWCLogo.webp" alt="Webcrafted Pro Logo">
-            <ul>
-                <li class="First-Layer"><a href="../../index.php">Home</a></li>
-                <li id="services" class="Second-Layer"><a href="../../Pricing.php">Pricing</a></li>
-                <li id="websites" class="Second-Layer"><a href="../../Websites.php">Websites</a></li>
-                <li id="templates"><a href="../../Templates.php">Templates</a></li>
-                <li id="contact"><a href="../../ContactUs.php">Contact Us</a></li>
-            </ul>
-        </div>
-        <ul class="account">
-            <li><a href="Account.php"><img src="../../images/icons/Account.webp" alt="Account"
-                        style="margin-top: -8px;"></a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-        <span class="open-slide">
-            <a class="hamburger" href="#" onclick="openSideMenu()">
-                <p>&#9776;</p>
-            </a>
-        </span>
-        <div id="side-menu" class="side-nav">
-            <a href="#" class="btn-close" onclick="closeSideMenu()">&times;</a>
-            <div class="mobile-nav-buttons">
-                <a href="../../">Home</a>
-                <a href="../../Websites.php">Websites</a>
-                <a href="../../Pricing.php">Pricing</a>
-                <a href="../../Templates.php">Templates</a>
-                <a href="../../ContactUs.php">Contact Us</a>
-            </div>
-        </div>
-    </header>
     <div class="dashboard-container">
         <div class="sidebar">
-            <button class="menu-item" id="Account-button">Account</button>
-            <button class="menu-item">Domain Management</button>
-            <a class="menu-item" href="../WebsiteBuilder/">Website Builder</a>
-            <a class="menu-item" href="../../logout.php">Logout</a>
+            <img src="../../images/MiniWCLogo.webp" alt="Webcrafted Pro Logo" style="margin: 0 auto; display: block;">
+            <button class="menu-item" id="Account-button"><img src="../../images/icons/Account.webp" alt="Account Icon"
+                    style="width: 30px; margin-bottom: -4%; margin-left: -1.5%;"> Account</button>
+            <button class="menu-item" id="Domain-button"><img src="icons/Domain.webp" alt="Domain Icon"
+                    style="width: 24px; margin-bottom: -2.7%;"> Domain Management</button>
+            <a class="menu-item" href="../WebsiteBuilder/"><img src="icons/WebsiteBuilder.webp"
+                    alt="Website Builder Logo" style="width: 24px; margin-bottom: -2.7%;"> Website Builder</a>
+            <a class="menu-item" href="../../logout.php"><img src="icons/Logout.webp" alt="Logout Logo"
+                    style="width: 23px; margin-bottom: -2.4%;"> Logout</a>
         </div>
         <div class="main">
             <div class="content">
                 <div id="Account-Content">
-                    <h1 style="text-align: center;">Account</h1>
+                    <h1 style="text-align: center; margin-top: 6%;">Account</h1>
                     <div class="two-grid">
                         <div class="account-info">
-                            <h2>Account Information</h2><hr>
+                            <h2>Account Information</h2>
+                            <hr>
                             <p>Username: Example User</p>
                             <p style="display: none;" id="email">Email: Email@gmail.com</p>
-                            <p style="display: none;" id="phone">Phone Number: 07123 456789</p>
+                            <p style="display: none;" id="phone">Phone Number: 07123 456789</p><br>
                             <div>
-                                <h2>Account Controls</h2><hr style="margin-bottom: 30px;">
+                                <h2>Account Controls</h2>
+                                <hr style="margin-bottom: 30px;">
                                 <a class="control-buttons" href="../../Email_Verification">
                                     Change Password <span class="arrow">&gt;</span>
                                 </a>
-                                <a class="control-buttons" href=""><span class="arrow">&gt;</span></a>
+                                <a class="control-buttons-bad" href="">
+                                    Delete Account <span class="arrow2">&gt;</span>
+                                </a>
                             </div>
                         </div>
                         <div class="subscription-info">
-                            <h2>Subscription</h2><hr>
+                            <h2>Subscription</h2>
+                            <hr>
                             <p>Plan: Premium</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="Domain-Content" style="display: none;">
+                    <h1 style="text-align: center; margin-top: 6%;">Domain Management</h1>
+                    <div class="dashboard-info">
+                        <div>
+                            <div class="three-grid">
+                                <p>Domain Name</p>
+                                <p>Expiry Date</p>
+                                <p>Actions</p>
+                            </div><hr>
+                            <div class="three-grid">
+                                <p>example.com</p>
+                                <p>Expiry Date : 12/12/2022</p>
+                                <a href="">Renew Now <span style="font-size: 22px">&gt;</span></a>
+                            </div><hr>
                         </div>
                     </div>
                 </div>
