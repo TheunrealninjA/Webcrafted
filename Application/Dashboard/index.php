@@ -13,14 +13,14 @@
 
         .fade {
             opacity: 0;
-            transform: translateY(-50px);
-            transition: opacity 0.5s, transform 1s ease-in-out;
+            transform: translateY(-20%);
+            transition: opacity 0.5s, transform 0.5s ease-in-out;
         }
 
         .show {
             opacity: 1;
-            transform: translateY(0px);
-            transition: opacity 0.5s, transform 1s ease-in-out;
+            transform: translateY(0%);
+            transition: opacity 0.5s, transform 0.5s ease-in-out;
         }
     </style>
     <script>
@@ -67,8 +67,10 @@
                 setTimeout(() => {
                     document.getElementById("Account-Content").style.display = "none";
                     document.getElementById("Domain-Content").style.display = "block";
-                    document.getElementById("Domain-Content").classList.remove("fade");
-                    document.getElementById("Domain-Content").classList.add("show");
+                    setTimeout(() => {
+                        document.getElementById("Domain-Content").classList.remove("fade");
+                        document.getElementById("Domain-Content").classList.add("show");
+                    }, 10);
                 }, 500);
             });
 
@@ -78,9 +80,33 @@
                 setTimeout(() => {
                     document.getElementById("Domain-Content").style.display = "none";
                     document.getElementById("Account-Content").style.display = "block";
-                    document.getElementById("Account-Content").classList.remove("fade");
-                    document.getElementById("Account-Content").classList.add("show");
+                    setTimeout(() => {
+                        document.getElementById("Account-Content").classList.remove("fade");
+                        document.getElementById("Account-Content").classList.add("show");
+                    }, 10);
                 }, 500);
+            });
+
+            const redirectButton = document.getElementById("Redirect-button");
+            redirectButton.addEventListener("click", () => {
+                document.getElementById("Account-Content").classList.remove("show");
+                document.getElementById("Account-Content").classList.add("fade");
+                document.getElementById("Domain-Content").classList.remove("show");
+                document.getElementById("Domain-Content").classList.add("fade");
+
+                setTimeout(() => {
+                    document.getElementById("Account-Content").style.display = "none";
+                    document.getElementById("Domain-Content").style.display = "none";
+                    document.getElementById("Redirect-Content").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("Redirect-Content").classList.remove("fade");
+                        document.getElementById("Redirect-Content").classList.add("show");
+                    }, 10);
+                }, 500);
+
+                setTimeout(() => {
+                    window.location.href = "../../WebsiteBuilder.php";
+                }, 5000);
             });
         });
     </script>
@@ -94,8 +120,8 @@
                     style="width: 30px; margin-bottom: -4%; margin-left: -1.5%;"> Account</button>
             <button class="menu-item" id="Domain-button"><img src="icons/Domain.webp" alt="Domain Icon"
                     style="width: 24px; margin-bottom: -2.7%;"> Domain Management</button>
-            <a class="menu-item" href="../WebsiteBuilder/"><img src="icons/WebsiteBuilder.webp"
-                    alt="Website Builder Logo" style="width: 24px; margin-bottom: -2.7%;"> Website Builder</a>
+            <button class="menu-item" id="Redirect-button"><img src="icons/WebsiteBuilder.webp"
+                    alt="Website Builder Logo" style="width: 24px; margin-bottom: -2.7%;"> Website Builder</button>
             <a class="menu-item" href="../../logout.php"><img src="icons/Logout.webp" alt="Logout Logo"
                     style="width: 23px; margin-bottom: -2.4%;"> Logout</a>
         </div>
@@ -128,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="Domain-Content" style="display: none;">
+                <div id="Domain-Content" style="display: none;" class="fade">
                     <h1 style="text-align: center; margin-top: 6%;">Domain Management</h1>
                     <div class="dashboard-info">
                         <div>
@@ -142,6 +168,14 @@
                                 <p>Expiry Date : 12/12/2022</p>
                                 <a href="">Renew Now <span style="font-size: 22px">&gt;</span></a>
                             </div><hr>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none;" id="Redirect-Content">
+                    <h1 style="text-align: center; margin-top: 6%;">Website Builder</h1>
+                    <div class="dashboard-info">
+                        <div>
+                            <h3>Your Are About to be redirected in 5 seconds</h3>
                         </div>
                     </div>
                 </div>
