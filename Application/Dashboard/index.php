@@ -58,37 +58,42 @@
             }
             
             // Domain and Account buttons
-            const domainButton = document.getElementById("Domain-button");
-            const accountButton = document.getElementById("Account-button");
-
-            domainButton.addEventListener("click", () => {
-                document.getElementById("Account-Content").classList.remove("show");
-                document.getElementById("Account-Content").classList.add("fade");
+            function fadeAndShow(hideId, showId) {
+                document.getElementById(hideId).classList.remove("show");
+                document.getElementById(hideId).classList.add("fade");
                 setTimeout(() => {
-                    document.getElementById("Account-Content").style.display = "none";
-                    document.getElementById("Domain-Content").style.display = "block";
+                    document.getElementById(hideId).style.display = "none";
+                    document.getElementById(showId).style.display = "block";
                     setTimeout(() => {
-                        document.getElementById("Domain-Content").classList.remove("fade");
-                        document.getElementById("Domain-Content").classList.add("show");
+                        document.getElementById(showId).classList.remove("fade");
+                        document.getElementById(showId).classList.add("show");
                     }, 10);
                 }, 500);
+            }
+
+            const domainButton = document.getElementById("Domain-button");
+            const accountButton = document.getElementById("Account-button");
+            const redirectButton = document.getElementById("Redirect-button");
+
+            function setActiveButton(activeBtn) {
+                domainButton.disabled = false;
+                accountButton.disabled = false;
+                redirectButton.disabled = false;
+                activeBtn.disabled = true;
+            }
+
+            domainButton.addEventListener("click", () => {
+                setActiveButton(domainButton);
+                fadeAndShow("Account-Content", "Domain-Content");
             });
 
             accountButton.addEventListener("click", () => {
-                document.getElementById("Domain-Content").classList.remove("show");
-                document.getElementById("Domain-Content").classList.add("fade");
-                setTimeout(() => {
-                    document.getElementById("Domain-Content").style.display = "none";
-                    document.getElementById("Account-Content").style.display = "block";
-                    setTimeout(() => {
-                        document.getElementById("Account-Content").classList.remove("fade");
-                        document.getElementById("Account-Content").classList.add("show");
-                    }, 10);
-                }, 500);
+                setActiveButton(accountButton);
+                fadeAndShow("Domain-Content", "Account-Content");
             });
 
-            const redirectButton = document.getElementById("Redirect-button");
             redirectButton.addEventListener("click", () => {
+                setActiveButton(redirectButton);
                 document.getElementById("Account-Content").classList.remove("show");
                 document.getElementById("Account-Content").classList.add("fade");
                 document.getElementById("Domain-Content").classList.remove("show");
@@ -101,11 +106,21 @@
                     setTimeout(() => {
                         document.getElementById("Redirect-Content").classList.remove("fade");
                         document.getElementById("Redirect-Content").classList.add("show");
+                        // Start countdown
+                        const countdownElement = document.getElementById("countdown");
+                        if (countdownElement) {
+                            let secondsLeft = 5;
+                            const interval = setInterval(() => {
+                                secondsLeft--;
+                                countdownElement.textContent = secondsLeft;
+                                if (secondsLeft <= 0) clearInterval(interval);
+                            }, 1000);
+                        }
                     }, 10);
                 }, 500);
 
                 setTimeout(() => {
-                    window.location.href = "../../WebsiteBuilder.php";
+                    window.location.href = "../WebsiteBuilder.php";
                 }, 5000);
             });
         });
@@ -175,7 +190,7 @@
                     <h1 style="text-align: center; margin-top: 6%;">Website Builder</h1>
                     <div class="dashboard-info">
                         <div>
-                            <h3>Your Are About to be redirected in 5 seconds</h3>
+                            <h3>You Are About to be redirected in <span id="countdown">5</span> seconds</h3>
                         </div>
                     </div>
                 </div>
