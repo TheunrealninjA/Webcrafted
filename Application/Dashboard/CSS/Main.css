@@ -109,7 +109,7 @@ button:hover {
   color: white;
 }
 
-.arrow, .arrow2 {
+.arrow, .arrow2, .arrow3 {
   display: inline-block;
   transition: transform 0.8s ease, color 0.8s ease;
   font-size: 23px;
@@ -128,6 +128,11 @@ button:hover {
   transform: translateX(24.5vw);
   color: white;
 }
+.control-buttons:hover .arrow3 {
+  transform: translateX(25vw);
+  color: #202020;
+}
+
 
 @media screen and (max-width: 1410px) {
   .Top-Buttons li {

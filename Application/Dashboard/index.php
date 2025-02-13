@@ -74,6 +74,7 @@
             const domainButton = document.getElementById("Domain-button");
             const accountButton = document.getElementById("Account-button");
             const redirectButton = document.getElementById("Redirect-button");
+            const redirectButton2 = document.getElementById("Redirect-button2");
 
             function setActiveButton(activeBtn) {
                 domainButton.disabled = false;
@@ -120,7 +121,39 @@
                 }, 500);
 
                 setTimeout(() => {
-                    window.location.href = "../WebsiteBuilder.php";
+                    window.location.href = "../WebsiteBuilder/index.php";
+                }, 5000);
+            });
+
+            redirectButton2.addEventListener("click", () => {
+                setActiveButton(redirectButton);
+                document.getElementById("Account-Content").classList.remove("show");
+                document.getElementById("Account-Content").classList.add("fade");
+                document.getElementById("Domain-Content").classList.remove("show");
+                document.getElementById("Domain-Content").classList.add("fade");
+
+                setTimeout(() => {
+                    document.getElementById("Account-Content").style.display = "none";
+                    document.getElementById("Domain-Content").style.display = "none";
+                    document.getElementById("Redirect-Content").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("Redirect-Content").classList.remove("fade");
+                        document.getElementById("Redirect-Content").classList.add("show");
+                        // Start countdown
+                        const countdownElement = document.getElementById("countdown");
+                        if (countdownElement) {
+                            let secondsLeft = 5;
+                            const interval = setInterval(() => {
+                                secondsLeft--;
+                                countdownElement.textContent = secondsLeft;
+                                if (secondsLeft <= 0) clearInterval(interval);
+                            }, 1000);
+                        }
+                    }, 10);
+                }, 500);
+
+                setTimeout(() => {
+                    window.location.href = "../../logout.php";
                 }, 5000);
             });
         });
@@ -133,12 +166,14 @@
             <img src="../../images/MiniWCLogo.webp" alt="Webcrafted Pro Logo" style="margin: 0 auto; display: block;">
             <button class="menu-item" id="Account-button"><img src="../../images/icons/Account.webp" alt="Account Icon"
                     style="width: 30px; margin-bottom: -4%; margin-left: -1.5%;"> Account</button>
+            <button class="menu-item" id="Analytics-button"><img src="icons/Analytics.webp" alt="Analytics Icon"
+            style="width: 23px; margin-bottom: -2.8%;"> Analytics</button>
             <button class="menu-item" id="Domain-button"><img src="icons/Domain.webp" alt="Domain Icon"
                     style="width: 24px; margin-bottom: -2.7%;"> Domain Management</button>
             <button class="menu-item" id="Redirect-button"><img src="icons/WebsiteBuilder.webp"
                     alt="Website Builder Logo" style="width: 24px; margin-bottom: -2.7%;"> Website Builder</button>
-            <a class="menu-item" href="../../logout.php"><img src="icons/Logout.webp" alt="Logout Logo"
-                    style="width: 23px; margin-bottom: -2.4%;"> Logout</a>
+            <button class="menu-item" id="Redirect-button2"><img src="icons/Logout.webp" alt="Logout Logo"
+                    style="width: 23px; margin-bottom: -2.4%;"> Logout</button>
         </div>
         <div class="main">
             <div class="content">
@@ -150,7 +185,9 @@
                             <hr>
                             <p>Username: Example User</p>
                             <p style="display: none;" id="email">Email: Email@gmail.com</p>
-                            <p style="display: none;" id="phone">Phone Number: 07123 456789</p><br>
+                            <p style="display: none;" id="phone">Phone Number: 07123 456789</p>
+                            <p>Account ID : 010101</p>
+                            <p>Account Created Date : 11/11/11</p><br>
                             <div>
                                 <h2>Account Controls</h2>
                                 <hr style="margin-bottom: 30px;">
@@ -165,7 +202,12 @@
                         <div class="subscription-info">
                             <h2>Subscription</h2>
                             <hr>
-                            <p>Plan: Premium</p>
+                            <p>Plan: Premium</p><br>
+
+                            <h2>Manage Subscription</h2>
+                            <hr style="margin-bottom: 30px;">
+                            <a class="control-buttons" href="">
+                                Upgrade Plan <span class="arrow3">&gt;</span></a>
                         </div>
                     </div>
                 </div>
