@@ -58,11 +58,26 @@
             }
             
             // Domain and Account buttons
-            function fadeAndShow(hideId, showId) {
-                document.getElementById(hideId).classList.remove("show");
-                document.getElementById(hideId).classList.add("fade");
+            function fadeAndShow(showId, activeBtn) {
+                // Disable other buttons
+                domainButton.disabled = false;
+                accountButton.disabled = false;
+                redirectButton.disabled = false;
+                redirectButton2.disabled = false;
+                analyticsButton.disabled = false;
+                // Disable the active button
+                activeBtn.disabled = true;
+
+                // Find which content is currently visible
+                const sections = ["Account-Content", "Analytics-Content", "Domain-Content", "Redirect-Content"];
+                const current = sections.find((sec) => document.getElementById(sec).style.display === "block") || "Account-Content";
+
+                // Fade out the currently visible section
+                document.getElementById(current).classList.remove("show");
+                document.getElementById(current).classList.add("fade");
                 setTimeout(() => {
-                    document.getElementById(hideId).style.display = "none";
+                    document.getElementById(current).style.display = "none";
+                    // Show the new section
                     document.getElementById(showId).style.display = "block";
                     setTimeout(() => {
                         document.getElementById(showId).classList.remove("fade");
@@ -75,26 +90,18 @@
             const accountButton = document.getElementById("Account-button");
             const redirectButton = document.getElementById("Redirect-button");
             const redirectButton2 = document.getElementById("Redirect-button2");
-
-            function setActiveButton(activeBtn) {
-                domainButton.disabled = false;
-                accountButton.disabled = false;
-                redirectButton.disabled = false;
-                activeBtn.disabled = true;
-            }
+            const analyticsButton = document.getElementById("Analytics-button");
 
             domainButton.addEventListener("click", () => {
-                setActiveButton(domainButton);
-                fadeAndShow("Account-Content", "Domain-Content");
+                fadeAndShow("Domain-Content", domainButton);
             });
 
             accountButton.addEventListener("click", () => {
-                setActiveButton(accountButton);
-                fadeAndShow("Domain-Content", "Account-Content");
+                fadeAndShow("Account-Content", accountButton);
             });
 
             redirectButton.addEventListener("click", () => {
-                setActiveButton(redirectButton);
+                fadeAndShow("Redirect-Content", redirectButton);
                 document.getElementById("Account-Content").classList.remove("show");
                 document.getElementById("Account-Content").classList.add("fade");
                 document.getElementById("Domain-Content").classList.remove("show");
@@ -126,7 +133,7 @@
             });
 
             redirectButton2.addEventListener("click", () => {
-                setActiveButton(redirectButton);
+                fadeAndShow("Redirect-Content", redirectButton2);
                 document.getElementById("Account-Content").classList.remove("show");
                 document.getElementById("Account-Content").classList.add("fade");
                 document.getElementById("Domain-Content").classList.remove("show");
@@ -155,6 +162,10 @@
                 setTimeout(() => {
                     window.location.href = "../../logout.php";
                 }, 5000);
+            });
+
+            analyticsButton.addEventListener("click", () => {
+                fadeAndShow("Analytics-Content", analyticsButton);
             });
         });
     </script>
@@ -202,12 +213,21 @@
                         <div class="subscription-info">
                             <h2>Subscription</h2>
                             <hr>
-                            <p>Plan: Premium</p><br>
-
+                            <p>Plan: Premium</p>
+                            <p>Next Payment Date : 25/01/23</p>
+                            <p>Current Plan Price : £00.00/month</p><br>
                             <h2>Manage Subscription</h2>
                             <hr style="margin-bottom: 30px;">
                             <a class="control-buttons" href="">
                                 Upgrade Plan <span class="arrow3">&gt;</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="Analytics-Content" style="display: none;" class="fade">
+                    <h1 style="text-align: center; margin-top: 6%;">Analytics</h1>
+                    <div class="dashboard-info">
+                        <div>
+                            <h3>Coming Soon</h3>
                         </div>
                     </div>
                 </div>
